@@ -19,8 +19,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/dywoq/vacui/asm/pkg/lexer/tokenizer"
-	"github.com/dywoq/vacui/asm/pkg/token"
+	"github.com/dywoq/vacui/asm/lexer/tokenizer"
+	"github.com/dywoq/vacui/asm/token"
 )
 
 func TestNew(t *testing.T) {

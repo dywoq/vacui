@@ -17,7 +17,7 @@ package token_test
 import (
 	"testing"
 
-	"github.com/dywoq/vacui/asm/pkg/token"
+	"github.com/dywoq/vacui/asm/token"
 )
 
 func TestIsIdentifier(t *testing.T) {

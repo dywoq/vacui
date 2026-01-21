@@ -18,7 +18,7 @@ import (
 	"slices"
 	"unicode"
 
-	"github.com/dywoq/vacui/asm/pkg/token"
+	"github.com/dywoq/vacui/asm/token"
 )
 
 // Default contains default language tokenizers.

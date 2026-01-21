@@ -21,9 +21,9 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/dywoq/vacui/asm/pkg/ast"
-	"github.com/dywoq/vacui/asm/pkg/parser/mini"
-	"github.com/dywoq/vacui/asm/pkg/token"
+	"github.com/dywoq/vacui/asm/ast"
+	"github.com/dywoq/vacui/asm/parser/mini"
+	"github.com/dywoq/vacui/asm/token"
 )
 
 type Parser struct {
@@ -136,7 +136,7 @@ func (c *context) Position() int {
 	return c.p.pos
 }
 
-func (c *context) NewError(str string, pos *token.Position) error {
+func (c *context) NewError(str string, pos token.Position) error {
 	return c.p.makeError(str, pos)
 }
 
@@ -176,7 +176,7 @@ func (c *context) DebugPrintln(a ...any) {
 	}
 }
 
-func (p *Parser) makeError(str string, pos *token.Position) error {
+func (p *Parser) makeError(str string, pos token.Position) error {
 	return fmt.Errorf("%v (%v:%v:%v)", str, p.filename, pos.Line, pos.Column)
 }
 

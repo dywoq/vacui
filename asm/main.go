@@ -19,10 +19,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/dywoq/vacui/asm/pkg/lexer"
-	"github.com/dywoq/vacui/asm/pkg/lexer/tokenizer"
-	"github.com/dywoq/vacui/asm/pkg/parser"
-	"github.com/dywoq/vacui/asm/pkg/parser/mini"
+	"github.com/dywoq/vacui/asm/lexer"
+	"github.com/dywoq/vacui/asm/lexer/tokenizer"
+	"github.com/dywoq/vacui/asm/parser"
+	"github.com/dywoq/vacui/asm/parser/mini"
 )
 
 func main() {

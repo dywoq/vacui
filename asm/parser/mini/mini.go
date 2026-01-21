@@ -15,9 +15,9 @@
 package mini
 
 import (
-	"github.com/dywoq/vacui/asm/pkg/ast"
-	"github.com/dywoq/vacui/asm/pkg/debug"
-	"github.com/dywoq/vacui/asm/pkg/token"
+	"github.com/dywoq/vacui/asm/ast"
+	"github.com/dywoq/vacui/asm/debug"
+	"github.com/dywoq/vacui/asm/token"
 )
 
 type Context interface {
@@ -37,7 +37,7 @@ type Context interface {
 
 	// NewError makes a new error with automatically inserted token position
 	// and parser position.
-	NewError(str string, pos *token.Position) error
+	NewError(str string, pos token.Position) error
 
 	// ExpectLiteral expects a literal from the current token.
 	// If the token literal doesn't satisfy lit, the function returns false,

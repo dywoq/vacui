@@ -22,8 +22,8 @@ import (
 	"sync/atomic"
 	"unicode"
 
-	"github.com/dywoq/vacui/asm/pkg/lexer/tokenizer"
-	"github.com/dywoq/vacui/asm/pkg/token"
+	"github.com/dywoq/vacui/asm/lexer/tokenizer"
+	"github.com/dywoq/vacui/asm/token"
 )
 
 type Lexer struct {
@@ -237,9 +237,10 @@ func (c *context) Slice(start, end int) (string, error) {
 	return string(c.l.bytes[start:end]), nil
 }
 
-func (c *context) Position() *token.Position {
+func (c *context) Position() token.Position {
 	c.DebugPrintf("Position(): Returning current position")
-	return c.l.position
+	copy := *c.l.position
+	return copy
 }
 
 func (c *context) DebugPrintf(format string, a ...any) {
@@ -309,7 +310,8 @@ func (l *Lexer) Do(filename string) ([]*token.Token, error) {
 }
 
 func (l *Lexer) makeError(err string) error {
-	return fmt.Errorf("%v (at %v:%v:%v)", err, l.filename, l.position.Line, l.position.Column)
+	copy := *l.position
+	return fmt.Errorf("%v (at %v:%v:%v)", err, l.filename, copy.Line, copy.Column)
 }
 
 func (l *Lexer) tokenize(c *context) (*token.Token, error) {

@@ -14,7 +14,7 @@
 
 package ast
 
-import "github.com/dywoq/vacui/asm/pkg/token"
+import "github.com/dywoq/vacui/asm/token"
 
 type Node interface {
 	Node()

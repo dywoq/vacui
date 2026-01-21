@@ -1,11 +1,9 @@
 arr [
     "Hi!",
-    ""
+    "SD"9
 ]2
 
 main (args^) {
-    mov ref(at(
-        at(arr, 0), 
-        at(arr, 1)
-    ))
+    mov ref(at(arr, 20)), 20;
 }
+

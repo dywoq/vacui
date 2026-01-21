@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/dywoq/vacui/asm/pkg/ast"
-	"github.com/dywoq/vacui/asm/pkg/token"
+	"github.com/dywoq/vacui/asm/ast"
+	"github.com/dywoq/vacui/asm/token"
 )
 
 // Default contains default language parsers.

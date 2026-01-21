@@ -43,7 +43,7 @@ type Position struct {
 // which is used by parser to build AST tree.
 type Token struct {
 	Literal  string    `json:"literal"`
-	Position *Position `json:"position"`
+	Position Position `json:"position"`
 	Kind     Kind      `json:"kind"`
 }
 
@@ -74,7 +74,7 @@ var (
 	}
 )
 
-func New(lit string, kind Kind, pos *Position) *Token {
+func New(lit string, kind Kind, pos Position) *Token {
 	return &Token{lit, pos, kind}
 }
 

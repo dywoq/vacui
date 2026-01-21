@@ -15,8 +15,8 @@
 package tokenizer
 
 import (
-	"github.com/dywoq/vacui/asm/pkg/debug"
-	"github.com/dywoq/vacui/asm/pkg/token"
+	"github.com/dywoq/vacui/asm/debug"
+	"github.com/dywoq/vacui/asm/token"
 )
 
 type Context interface {
@@ -47,7 +47,7 @@ type Context interface {
 	Slice(start, end int) (string, error)
 
 	// Position returns the current position in the file.
-	Position() *token.Position
+	Position() token.Position
 
 	// NewError creates a new error, which automatically has location of the error.
 	NewError(str string) error
