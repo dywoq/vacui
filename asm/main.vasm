@@ -1,0 +1,11 @@
+arr [
+    "Hi!",
+    ""
+]2
+
+main (args^) {
+    mov ref(at(
+        at(arr, 0), 
+        at(arr, 1)
+    ))
+}
