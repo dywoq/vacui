@@ -1,4 +1,4 @@
-package language
+package abstract
 
 // Debugger represents the standard interface for the debuggers.
 // The print functions work by default, but may behave differently if
