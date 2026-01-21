@@ -4,9 +4,9 @@ package language
 // The print functions work by default, but may behave differently if
 // debugging mode is explicitly enabled in any structure that implements Debugger.
 type Debugger interface {
-	Printf(format string, v ...any)
-	Println(v ...any)
-	Print(v ...any)
+	Debugf(format string, v ...any)
+	Debugln(v ...any)
+	Debug(v ...any)
 }
 
 // ErrorMaker represents the standard methods of error making.
