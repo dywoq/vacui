@@ -1,13 +1,4 @@
-package language
-
-// Debugger represents the standard interface for the debuggers.
-// The print functions work by default, but may behave differently if
-// debugging mode is explicitly enabled in any structure that implements Debugger.
-type Debugger interface {
-	Debugf(format string, v ...any)
-	Debugln(v ...any)
-	Debug(v ...any)
-}
+package errors
 
 // ErrorMaker represents the standard methods of error making.
 // It's purposed for structures that need different error formatting.
@@ -21,10 +12,4 @@ type Debugger interface {
 type ErrorMaker interface {
 	Error(msg string) error
 	Errorf(format string, v ...any) error
-}
-
-// Advancer defines standard method for advancing to the next position
-// or something similar.
-type Advancer interface {
-	Advance()  
 }
