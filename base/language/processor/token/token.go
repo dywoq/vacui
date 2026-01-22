@@ -1,8 +1,8 @@
-package language
+package token
 
-type TokenKind string
+type Kind string
 
-type TokenPosition struct {
+type Position struct {
 	Line     int
 	Column   int
 	Position int
@@ -10,6 +10,6 @@ type TokenPosition struct {
 
 type Token struct {
 	Literal  string
-	Position TokenPosition
-	Kind     TokenKind
+	Position Position
+	Kind     Kind
 }
