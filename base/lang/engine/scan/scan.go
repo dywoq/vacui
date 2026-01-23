@@ -30,3 +30,13 @@ type Backwards interface {
 type Slicer interface {
 	Slice(start, end int) (string, error)
 }
+
+// EofChecker defines method for checking EOF (End Of File).
+type EofChecker interface {
+	Eof() bool
+}
+
+// SofChecker defines method for checking SOF (Start Of File).
+type SofChecker interface {
+	Sof() bool
+}

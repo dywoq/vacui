@@ -28,9 +28,11 @@ type Context interface {
 	scan.Advancer
 	scan.Backwards
 	scan.Slicer
+	scan.EofChecker
+	scan.SofChecker
 	errors.Maker
 	Current() rune
-	Position() token.Position
+	Position() *token.Position
 }
 
 // Tokenizer represents the function that tokenizes one or multiple
