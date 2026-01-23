@@ -51,3 +51,19 @@ func (t *Tracer) Debug(v ...any) {
 	userformat := fmt.Sprint(v...)
 	fmt.Fprintf(t.w, "-- %s Lexer: %s", time.Now().String(), userformat)
 }
+
+func (t *Tracer) SetMode(on bool) {
+	t.on.Store(true)
+}
+
+func (t *Tracer) On() bool {
+	return t.on.Load()
+}
+
+func (t *Tracer) SetWriter(w io.Writer) {
+	t.w = w
+}
+
+func (t *Tracer) Writer() io.Writer {
+	return t.w
+}
