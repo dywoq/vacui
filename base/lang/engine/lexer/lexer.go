@@ -15,7 +15,6 @@
 package lexer
 
 import (
-	"errors"
 	"io"
 	"sync"
 	"sync/atomic"
@@ -29,27 +28,32 @@ type Lexer struct {
 	config     *Config
 	tokenizers []Tokenizer
 
-	pos      *token.Position
-	fileName string
-	runes    []rune
+	pos   *token.Position
+	runes []rune
 
 	mu sync.Mutex
 }
 
-
+// New returns the new instance of Lexer,
+// with configuration c.
 func New(c *Config) *Lexer {
 	l := &Lexer{}
 	l.on.Store(false)
 	l.config = c
 	l.tokenizers = []Tokenizer{}
 	l.pos = &token.Position{Line: 1, Column: 1}
-	l.fileName = ""
 	l.runes = []rune{}
 	l.mu = sync.Mutex{}
 	return l
 }
 
-func (l *Lexer) LoadRunes(r io.Reader) error {
+// Read reads bytes from r and converts them to runes,
+// saving it internally,
+//
+// Panics if the lexer is currently running.
+//
+// Returns an error if it fails to read bytes from r.
+func (l *Lexer) Read(r io.Reader) error {
 	l.mu.Lock()
 	defer l.mu.Unlock()
 	if l.on.Load() {
@@ -60,37 +64,43 @@ func (l *Lexer) LoadRunes(r io.Reader) error {
 	return err
 }
 
+// Config returns the configuration of the lexer.
 func (l *Lexer) Config() *Config {
 	l.mu.Lock()
 	defer l.mu.Unlock()
 	return l.config
 }
 
+// Run runs tokenizers in the loop to transform
+// input into a sequence of tokens.
+//
+// Returns (nil, nil) if there are no tokenizers and input is empty.
+//
+// Returns an error if one of tokenizers failed.
 func (l *Lexer) Run() ([]*token.Token, error) {
 	l.mu.Lock()
 	defer l.mu.Unlock()
-	
-	
+
 	if len(l.tokenizers) == 0 {
-		return nil, errors.New("no tokenizers")
+		return nil, nil
 	}
 	if len(l.runes) == 0 {
-		return nil, errors.New("nothing to tokenize")
+		return nil, nil
 	}
-	
+
 	tokens := []*token.Token{}
 	c := &context{l}
-	
+
 	for !c.Eof() {
 		tok, err := l.tokenize(c)
 		if err != nil {
 			return nil, err
 		}
-		
+
 		tokens = append(tokens, tok)
 	}
-	
-	return tokens,nil
+
+	return tokens, nil
 }
 
 func (l *Lexer) tokenize(c *context) (*token.Token, error) {
