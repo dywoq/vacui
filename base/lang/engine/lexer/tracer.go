@@ -53,7 +53,7 @@ func (t *Tracer) Debug(v ...any) {
 }
 
 func (t *Tracer) SetMode(on bool) {
-	t.on.Store(true)
+	t.on.Store(on)
 }
 
 func (t *Tracer) On() bool {
