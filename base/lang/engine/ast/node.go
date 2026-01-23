@@ -19,6 +19,5 @@ type Node interface {
 }
 
 type Tree struct {
-	Symbols string
 	Nodes   []Node
 }
