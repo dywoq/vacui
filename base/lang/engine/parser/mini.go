@@ -16,12 +16,16 @@ package parser
 
 import (
 	"github.com/dywoq/vacui/base/lang/engine/ast"
+	"github.com/dywoq/vacui/base/lang/engine/debug"
 	"github.com/dywoq/vacui/base/lang/engine/scan"
+	"github.com/dywoq/vacui/base/lang/engine/token"
 )
 
 type Context interface {
+	debug.Tracer
 	scan.Advancer
 	scan.EofChecker
+	Current() *token.Token
 }
 
 // Mini represents the function that parses top level declarations,
