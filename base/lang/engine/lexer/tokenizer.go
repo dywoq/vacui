@@ -46,7 +46,7 @@ type Context interface {
 // if the error is not nil.
 type Tokenizer func(c Context) (*token.Token, bool, error)
 
-// TokenizerAppender defines method for appending tokenizers. 
+// TokenizerAppender defines method for appending tokenizers.
 type TokenizerAppender interface {
 	AppendTokenizer(t Tokenizer)
 }

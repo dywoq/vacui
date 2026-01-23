@@ -19,5 +19,5 @@ type Node interface {
 }
 
 type Tree struct {
-	Nodes   []Node
+	Nodes []Node
 }
