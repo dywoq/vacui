@@ -59,7 +59,7 @@ func (p *Parser) LoadTokens(tokens []*token.Token) {
 // Run parses tokens, turning them into nested nodes.
 // Once it's finished, the function returns ast.Tree
 // with nodes.
-// 
+//
 // Returns an error if one of the mini parsers failed.
 func (p *Parser) Run() (*ast.Tree, error) {
 	p.mu.Lock()
@@ -69,6 +69,8 @@ func (p *Parser) Run() (*ast.Tree, error) {
 	defer func() {
 		p.on.Store(false)
 	}()
+
+	p.pos = 0
 
 	nodes := []ast.Node{}
 	tree := &ast.Tree{}
