@@ -1,6 +1,6 @@
 `Vacui ASM` is an Assembly-like programming language interpreter.
 
-Unlike other Assembly-like languages, `Vacui ASM` doesn't require memory management and has no data types. It ensures all objects are valid, therefore undefined behavior is impossible.
+Unlike other Assembly-like languages, `Vacui ASM` doesn't require memory management and has no fixed types. It ensures all objects are valid, therefore undefined behavior is impossible.
 
 - File extensions: `.vasm`
 # Program example
