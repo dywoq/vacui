@@ -97,10 +97,7 @@ func (l *Lexer) Run() ([]*token.Token, error) {
 		l.on.Store(false)
 	}()
 
-	if len(l.tokenizers) == 0 {
-		return nil, nil
-	}
-	if len(l.runes) == 0 {
+	if len(l.runes) == 0 || len(l.tokenizers) == 0 {
 		return nil, nil
 	}
 

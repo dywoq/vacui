@@ -70,6 +70,10 @@ func (p *Parser) Run() (*ast.Tree, error) {
 		p.on.Store(false)
 	}()
 
+	if len(p.minis) == 0 || len(p.tokens) == 0 {
+		return nil, nil
+	}
+
 	p.pos = 0
 
 	nodes := []ast.Node{}
