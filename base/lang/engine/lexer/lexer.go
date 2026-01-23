@@ -91,6 +91,11 @@ func (l *Lexer) AppendTokenizer(t Tokenizer) {
 func (l *Lexer) Run() ([]*token.Token, error) {
 	l.mu.Lock()
 	defer l.mu.Unlock()
+	
+	l.on.Store(true)
+	defer func(){
+		l.on.Store(false)
+	}()
 
 	if len(l.tokenizers) == 0 {
 		return nil, nil
