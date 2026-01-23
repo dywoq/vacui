@@ -71,6 +71,17 @@ func (l *Lexer) Config() *Config {
 	return l.config
 }
 
+// AppendTokenizer appends new tokenizer to the lexer.
+// Panics if the lexer is currently running.
+func (l *Lexer) AppendTokenizer(t Tokenizer) {
+	l.mu.Lock()
+	defer l.mu.Unlock()
+	if l.on.Load() {
+		panic("Unable to modify lexer during its work")
+	}
+	l.tokenizers = append(l.tokenizers, t)
+}
+
 // Run runs tokenizers in the loop to transform
 // input into a sequence of tokens.
 //
