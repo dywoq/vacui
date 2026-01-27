@@ -1,7 +1,7 @@
 NASM := nasm
 NASM_FLAGS := -f bin
 BUILD := build
-ENTRY := src/bootloader.asm
+ENTRY := src/bootloader.s
 TARGET := $(BUILD)/vacuios.bin
 
 all: $(TARGET)

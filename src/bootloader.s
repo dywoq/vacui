@@ -30,7 +30,7 @@ _start:
 
     hlt ; Never executed
     
-%include "src/kernel.asm"
+%include "src/bootloader.asm"
 
 ; Fill 510 bytes and create boot signature
 times 510-($-$$) db 0
