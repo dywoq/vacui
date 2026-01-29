@@ -57,3 +57,7 @@ func (c *context) Advance() {
 	}
 	c.p.pos++
 }
+
+func (c *context) Filename() string {
+	return c.p.config.Filename
+}

@@ -110,3 +110,7 @@ func (c *context) Slice(start, end int) (string, error) {
 	}
 	return string(c.l.runes[start:end]), nil
 }
+
+func (c *context) Filename() string {
+	return c.l.config.Filename
+}

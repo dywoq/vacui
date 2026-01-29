@@ -21,6 +21,7 @@ import (
 
 // Config represents the parser configuration.
 type Config struct {
+	Filename    string
 	DebugTracer debug.Tracer
 	ErrorsMaker errors.Maker
 }

@@ -19,6 +19,7 @@ import (
 	"github.com/dywoq/vacui/base/lang/engine/errors"
 	"github.com/dywoq/vacui/base/lang/engine/scan"
 	"github.com/dywoq/vacui/base/lang/engine/token"
+	"github.com/dywoq/vacui/base/metadata"
 )
 
 // Context represents a API for tokenizers to transform input
@@ -31,6 +32,7 @@ type Context interface {
 	scan.EofChecker
 	scan.SofChecker
 	errors.Maker
+	metadata.FilenameGetter
 	Current() rune
 	Position() *token.Position
 }

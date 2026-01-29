@@ -12,16 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package lexer
+package metadata
 
-import (
-	"github.com/dywoq/vacui/base/lang/engine/debug"
-	"github.com/dywoq/vacui/base/lang/engine/errors"
-)
-
-// Config represents the lexer configuration.
-type Config struct {
-	Filename    string
-	DebugTracer debug.Tracer
-	ErrorsMaker errors.Maker
+// FilenameGetter represents the method for retrieving current filename.
+type FilenameGetter interface {
+	Filename() string
 }

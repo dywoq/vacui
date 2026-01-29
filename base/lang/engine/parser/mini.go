@@ -19,12 +19,14 @@ import (
 	"github.com/dywoq/vacui/base/lang/engine/debug"
 	"github.com/dywoq/vacui/base/lang/engine/scan"
 	"github.com/dywoq/vacui/base/lang/engine/token"
+	"github.com/dywoq/vacui/base/metadata"
 )
 
 type Context interface {
 	debug.Tracer
 	scan.Advancer
 	scan.EofChecker
+	metadata.FilenameGetter
 	Current() *token.Token
 }
 
