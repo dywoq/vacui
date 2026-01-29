@@ -56,6 +56,13 @@ func (p *Parser) LoadTokens(tokens []*token.Token) {
 	p.tokens = tokens
 }
 
+// Context returns the implementation of Context.
+func (p *Parser) Context() Context {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+	return &context{p}
+}
+
 // Run parses tokens, turning them into nested nodes.
 // Once it's finished, the function returns ast.Tree
 // with nodes.

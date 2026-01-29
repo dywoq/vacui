@@ -82,6 +82,13 @@ func (l *Lexer) AppendTokenizer(t Tokenizer) {
 	l.tokenizers = append(l.tokenizers, t)
 }
 
+// Context returns the implementation of Context.
+func (l *Lexer) Context() Context {
+	l.mu.Lock()
+	defer l.mu.Unlock()
+	return &context{l}
+}
+
 // Run runs tokenizers in the loop to transform
 // input into a sequence of tokens.
 //
