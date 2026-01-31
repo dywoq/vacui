@@ -11,14 +11,13 @@ package main
 import (
 	"os"
 
-	"github.com/dywoq/vacui/root"
-	"github.com/dywoq/vacui/terminal"
+	"github.com/dywoq/vacui/internal/cmd"
+	"github.com/dywoq/vacui/internal/terminal"
 )
 
 func main() {
-	err := root.Create()
-	if err != nil {
-		terminal.Errorf("Failed to create root directory: %v\n", err)
+	if err := cmd.Root().Execute(); err != nil {
+		terminal.Errorf("Failed to execute root command: %v\n", err)
 		os.Exit(1)
 	}
 }
