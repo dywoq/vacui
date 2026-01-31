@@ -21,6 +21,4 @@ func main() {
 		terminal.Errorf("Failed to create root directory: %v\n", err)
 		os.Exit(1)
 	}
-	terminal.Infoln("Hi!")
-	terminal.Warnln("Warning")
 }
