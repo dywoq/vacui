@@ -46,28 +46,6 @@ func (r *Runner) init() error {
 	lua.OpenBase(r.state)
 	lua.OpenPackage(r.state)
 
-	r.state.PreloadModule("mymodule", func(L *lua.LState) int {
-		mod := L.NewTable() // the module table
-
-		// Add a function
-		L.SetField(mod, "hello", L.NewFunction(func(L *lua.LState) int {
-			name := L.ToString(1)
-			L.Push(lua.LString("Hello, " + name))
-			return 1
-		}))
-
-		// Add a constant
-		L.SetField(mod, "pi", lua.LNumber(3.1415926))
-
-		// Add a nested table
-		nested := L.NewTable()
-		L.SetField(nested, "version", lua.LString("1.0.0"))
-		L.SetField(mod, "meta", nested)
-
-		L.Push(mod) // push module table onto stack
-		return 1    // one return value for require
-	})
-
 	r.lazyInit = true
 	return nil
 }
