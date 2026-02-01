@@ -9,6 +9,7 @@
 package cmd
 
 import (
+	"github.com/dywoq/vacui/internal/cmd/run"
 	"github.com/spf13/cobra"
 )
 
@@ -17,5 +18,6 @@ func Root() *cobra.Command {
 		Use:   "vacui",
 		Short: "Run and manage Vacui CPU projects",
 	}
+	root.AddCommand(run.Cmd())
 	return root
 }
