@@ -9,6 +9,7 @@
 package scanner
 
 import (
+	"github.com/dywoq/vacui/base/lang/debug"
 	"github.com/dywoq/vacui/base/lang/token"
 	"github.com/dywoq/vacui/base/lang/worker"
 )
@@ -21,16 +22,31 @@ type Api interface {
 	// Sof reports whether the scanner has reached Start Of File.
 	Sof() bool
 
-	// Filename returns the name of file the scanner is currently processing.
-	Filename() string
+	// Filepath returns the path of file the scanner is currently processing.
+	Filepath() string
 
 	// Input returns the user input the scanner is currently processing.
 	Input() []rune
 
 	// Pos returns the current token position.
 	Pos() token.Pos
+
+	// Advance advances to the next position until the scanner reached EOF.
+	// Updates the line and column to 0 if it encountered new line.
+	Advance()
+
+	// Current returns the current rune that's being processed.
+	// Returns 0 if the scanner encountered EOF.
+	Current() rune
+
+	debug.Logger
 }
 
 // Worker represents the scanner worker, which is responsible for turning
 // input into the token.
 type Worker func(api Api) (*worker.Result, *token.Tok)
+
+// WorkerAppender defines method for appending scanner workers.
+type WorkerAppender interface {
+	AppendWorker(w Worker) error
+}
