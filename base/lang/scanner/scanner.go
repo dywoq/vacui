@@ -20,6 +20,8 @@ import (
 
 // Options allows you to customize Scanner.
 type Options struct {
+	// Logger is a debug logger Scanner uses in API implementation.
+	// It can be nil to use no logging functionality.
 	Logger debug.Logger
 }
 
