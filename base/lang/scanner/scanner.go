@@ -97,11 +97,12 @@ func (s *Scanner) DoFile(path string) ([]*token.Tok, error) {
 			if res.Err != nil {
 				return nil, res.Err
 			}
-			if !res.Matched {
+			if res.Matched {
 				*s.pos = old
 				continue
 			}
 			result = append(result, tok)
+			break
 		}
 	}
 	return result, nil
@@ -119,10 +120,6 @@ func (s *Scanner) reset(filepath string, input []rune) {
 
 func (a *api) Eof() bool {
 	return a.s.pos.Pos >= len(a.s.input)
-}
-
-func (a *api) Sof() bool {
-	return a.s.pos.Pos < 0
 }
 
 func (a *api) Filepath() string {

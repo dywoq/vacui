@@ -89,6 +89,7 @@ func (p *Parser) DoTokens(filepath string, tokens []*token.Tok) (*ast.Tree, erro
 				continue
 			}
 			tree.Nodes = append(tree.Nodes, node)
+			break
 		}
 	}
 

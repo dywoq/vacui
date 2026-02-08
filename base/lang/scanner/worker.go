@@ -19,9 +19,6 @@ type Api interface {
 	// Eof reports whether the scanner has reached End Of File.
 	Eof() bool
 
-	// Sof reports whether the scanner has reached Start Of File.
-	Sof() bool
-
 	// Filepath returns the path of file the scanner is currently processing.
 	Filepath() string
 
@@ -44,6 +41,9 @@ type Api interface {
 
 // Worker represents the scanner worker, which is responsible for turning
 // input into the token.
+//
+// Scanner workers are tried in order, and the first match is added to the result
+// in the scanner loop.
 type Worker func(api Api) (*worker.Result, *token.Tok)
 
 // WorkerAppender defines method for appending scanner workers.
