@@ -24,6 +24,11 @@ func Match() *Result {
 	return &Result{Matched: true}
 }
 
+// Match returns a pointer to Result, setting Matched to false.
+func NoMatch() *Result {
+	return &Result{Matched: false}
+}
+
 // Err returns a pointer to Result, setting Err to provided error.
 func Err(err error) *Result {
 	return &Result{Err: err}

@@ -97,7 +97,7 @@ func (s *Scanner) DoFile(path string) ([]*token.Tok, error) {
 			if res.Err != nil {
 				return nil, res.Err
 			}
-			if res.Matched {
+			if !res.Matched {
 				*s.pos = old
 				continue
 			}
