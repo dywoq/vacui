@@ -1,7 +1,7 @@
 // Copyright 2026 dywoq - Apache License 2.0
 // Part of Vacui SDK: https://github.com/dywoq/vacui
 
-package runtime
+package process
 
 import "sync/atomic"
 
@@ -17,14 +17,4 @@ func (p *process) start() error {
 func (p *process) shutdown() error {
 	p.on.Store(false)
 	return nil
-}
-
-var globalProcess *process = &process{}
-
-func Start() error {
-	return globalProcess.start()
-}
-
-func Shutdown() error {
-	return globalProcess.shutdown()
 }
