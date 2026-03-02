@@ -3,6 +3,8 @@
 
 package component
 
+import "github.com/dywoq/vacui/runtime/lifecycle"
+
 // Component is part of the SDK runtime, which is base of all components in runtime.
 // It helps keep things modular.
 type Component interface {
@@ -10,9 +12,8 @@ type Component interface {
 	StateGetter
 	StateSetter
 
-	// Life-cycle management
-	Initializer
-	Cleaner
+	// Life-cycle manager
+	lifecycle.Manager
 
 	// ID management
 	IDGetter
