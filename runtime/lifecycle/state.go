@@ -18,7 +18,7 @@ type (
 	// StateGetter defines a method to get object lifecycle state.
 	StateGetter interface {
 		// GetLifecycleState returns object lifecycle state.
-		GetLifecycleState(s State)
+		GetLifecycleState() State
 	}
 
 	// StateCleaner defines a method to clean object lifecycle state.
