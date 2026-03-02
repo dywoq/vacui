@@ -3,8 +3,8 @@
 
 package component
 
-// Component is part of the SDK runtime, which is responsible for one thing solely,
-// and helps keep things modular.
+// Component is part of the SDK runtime, which is base of all components in runtime.
+// It helps keep things modular.
 type Component interface {
 	// State management
 	StateGetter
