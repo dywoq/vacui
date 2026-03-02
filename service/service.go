@@ -11,9 +11,4 @@ type (
 	Service interface {
 		component.Component
 	}
-
-	// Appender defines a method to append new services.
-	Appender interface {
-		AppendService(s Service) error
-	}
 )
