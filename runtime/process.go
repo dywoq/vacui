@@ -3,17 +3,26 @@
 
 package runtime
 
-type process struct{}
+import "sync/atomic"
 
-var globalProcess *process = &process{}
+var processOn atomic.Bool
 
-func (p *process) start() error    { return nil }
-func (p *process) shutdown() error { return nil }
+func init() {
+	processOn.Store(false)
+}
 
 func Start() error {
-	return globalProcess.start()
+	if processOn.Load() {
+		return ErrProcessOn
+	}
+	processOn.Store(true)
+	return nil
 }
 
 func Shutdown() error {
-	return globalProcess.shutdown()
+	if !processOn.Load() {
+		return ErrProcessDisabled
+	}
+	processOn.Store(false)
+	return nil
 }
