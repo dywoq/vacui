@@ -3,12 +3,22 @@
 
 package service
 
-import "github.com/dywoq/vacui/component"
+import (
+	"github.com/dywoq/vacui/runtime/lifecycle"
+)
 
 type (
 	// Service is part of the SDK, which is responsible
 	// for doing one thing.
 	Service interface {
-		component.Component
+		// Life-cycle
+		lifecycle.Manager
+		lifecycle.StateCleaner
+		lifecycle.StateGetter
+		lifecycle.StateSetter
+
+		// ID management
+		IDGetter
+		IDSetter
 	}
 )
