@@ -3,26 +3,8 @@
 
 package runtime
 
-import "sync/atomic"
+import "github.com/dywoq/vacui/runtime/internal/process"
 
-var processOn atomic.Bool
+func Start() error { return process.Start() }
 
-func init() {
-	processOn.Store(false)
-}
-
-func Start() error {
-	if processOn.Load() {
-		return ErrProcessOn
-	}
-	processOn.Store(true)
-	return nil
-}
-
-func Shutdown() error {
-	if !processOn.Load() {
-		return ErrProcessDisabled
-	}
-	processOn.Store(false)
-	return nil
-}
+func Shutdown() error { return process.Shutdown() }
