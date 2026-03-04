@@ -27,6 +27,8 @@ func NewSericeController() *ServiceController {
 }
 
 func (s *ServiceController) Add(srv service.Service) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
 	if info.Runtime.Process.On.Load() {
 		return errors.ErrRuntimeProcessOn
 	}
@@ -35,6 +37,8 @@ func (s *ServiceController) Add(srv service.Service) error {
 }
 
 func (s *ServiceController) Init() error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
 	if len(s.list) == 0 {
 		return nil
 	}
@@ -55,6 +59,8 @@ func (s *ServiceController) Init() error {
 }
 
 func (s *ServiceController) Clean() {
+	s.mu.Lock()
+	defer s.mu.Unlock()
 	for _, srv := range s.list {
 		if srv.GetLifecycleState()&lifecycle.StateInitialized != 0 {
 			srv.Clean()
@@ -62,7 +68,7 @@ func (s *ServiceController) Clean() {
 	}
 }
 
-// NOTE: Since methods can't have its type parameters,
+// NOTE: Since struct methods can't have its type parameters,
 // we have to put it out of scope.
 //
 // If the proposal is implemented, SCGetService will be deprecated.
