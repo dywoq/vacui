@@ -61,3 +61,20 @@ func (s *ServiceController) Clean() {
 		}
 	}
 }
+
+// NOTE: Since methods can't have its type parameters,
+// we have to put it out of scope.
+//
+// If the proposal is implemented, SCGetService will be deprecated.
+func SCGetService[T any](s *ServiceController) (*T, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	for _, service := range s.list {
+		if asserted, ok := service.(T); ok {
+			return &asserted, nil
+		}
+	}
+
+	return nil, errors.ErrRuntimeServiceNotFound
+}

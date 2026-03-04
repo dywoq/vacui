@@ -11,3 +11,7 @@ import (
 func AddService(s service.Service) error {
 	return subsystem.SCInst.Add(s)
 }
+
+func GetService[T any]() (*T, error) {
+	return subsystem.SCGetService[T](subsystem.SCInst)
+}

@@ -7,7 +7,13 @@ import (
 	"errors"
 )
 
+// Process error.
 var (
 	ErrRuntimeProcessOn  = errors.New("vacui: runtime: process is already running")
 	ErrRuntimeProcessOff = errors.New("vacui: runtime: process is not active")
+)
+
+// Service management error.
+var (
+	ErrRuntimeServiceNotFound = errors.New("vacui: runtime: service not found")
 )
