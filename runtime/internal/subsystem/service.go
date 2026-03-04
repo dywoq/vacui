@@ -72,15 +72,17 @@ func (s *ServiceController) Clean() {
 // we have to put it out of scope.
 //
 // If the proposal is implemented, SCGetService will be deprecated.
-func SCGetService[T any](s *ServiceController) (*T, error) {
+func SCGetService[T any](s *ServiceController) (T, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
+	var zero T
+
 	for _, service := range s.list {
 		if asserted, ok := service.(T); ok {
-			return &asserted, nil
+			return asserted, nil
 		}
 	}
 
-	return nil, errors.ErrRuntimeServiceNotFound
+	return zero, errors.ErrRuntimeServiceNotFound
 }
