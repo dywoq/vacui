@@ -32,6 +32,7 @@ func (s *ServiceController) Add(srv service.Service) error {
 	if info.Runtime.Process.On.Load() {
 		return errors.ErrRuntimeProcessOn
 	}
+	srv.SetID(service.ID(len(s.list)))
 	s.list = append(s.list, srv)
 	return nil
 }
