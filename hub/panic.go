@@ -17,11 +17,6 @@ func PanicOn() bool {
 	return panicOn.Load()
 }
 
-// TODO:
-//
-// After localization is supported, we should load panic message/app name
-// from one of localization configurations. Both in PanicUI and Panic.
-
 // PanicUI alerts the user about panic through UI.
 // If it fails, it outputs a panic message into the console automatically.
 //
