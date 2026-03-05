@@ -28,9 +28,9 @@ func Shutdown() error {
 	if !info.Runtime.Process.On.Load() {
 		return errors.ErrRuntimeProcessOff
 	}
-	
+
 	cleanSubsystems()
-	
+
 	info.Runtime.Process.On.Store(false)
 	return nil
 }
@@ -39,7 +39,7 @@ func setupSubsystems() error {
 	if len(startup.Subsystems) == 0 {
 		return nil
 	}
-	ok := false
+	ok := true
 	err := error(nil)
 	initialized := []lifecycle.Manager{}
 	for _, pre := range startup.Subsystems {
@@ -55,8 +55,8 @@ func setupSubsystems() error {
 		return nil
 	}
 
-	for _, init := range initialized {
-		init.Clean()
+	for i := len(initialized) - 1; i >= 0; i-- {
+		startup.Subsystems[i].Clean()
 	}
 
 	return err
@@ -66,7 +66,7 @@ func cleanSubsystems() {
 	if len(startup.Subsystems) == 0 {
 		return
 	}
-	for _, pre := range startup.Subsystems {
-		pre.Clean()
+	for i := len(startup.Subsystems) - 1; i >= 0; i-- {
+		startup.Subsystems[i].Clean()
 	}
 }
