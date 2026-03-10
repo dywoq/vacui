@@ -1,0 +1,67 @@
+// Copyright (c) 2026 dywoq - MIT License
+// A part of https://github.com/dywoq/vacui
+
+// Package token represents a token definitions, which is crucial for parser to build AST nodes.
+package token
+
+import "unicode"
+
+// Kind is used to identify tokens.
+type Kind string
+
+// T represents the literal in the source code
+// with its kind and position.
+type T struct {
+	Lit  string `json:"identifier"`
+	Kind Kind   `json:"kind"`
+	Pos  Pos    `json:"pos"`
+}
+
+// Pos is a location of token in the code.
+type Pos struct {
+	Line  int `json:"line"`
+	Col   int `json:"col"`
+	Index int `json:"index"`
+}
+
+const (
+	KIND_INSTRUCTION Kind = "instruction"
+	KIND_NUMBER      Kind = "number"
+	KIND_STRING      Kind = "string"
+	KIND_SEPARATOR   Kind = "separator"
+	KIND_REGISTER    Kind = "register"
+	KIND_IDENTIFIER  Kind = "identifier"
+)
+
+// A set of literals for token kind.
+var (
+	Instructions = []string{
+		"mov",
+		"sys",
+		"ret",
+	}
+)
+
+// IsIdentifier checks if str is a valid identifier.
+// The rules:
+//
+//   - The length must fit into a range 0-255.
+//   - The first rune of string must be not digit.
+//   - The identifier must not contain any special symbols, except '_'.
+//
+// If any of these rules are violated, IsIdentifier returns false.
+// Otherwise, it returns true.
+func IsIdentifier(str string) bool {
+	if len(str) > 255 || len(str) == 0 {
+		return false
+	}
+	for i, r := range str {
+		if unicode.IsDigit(r) && i == 0 {
+			return false
+		}
+		if unicode.IsSymbol(r) && r != '_' && !unicode.IsLetter(r) {
+			return false
+		}
+	}
+	return true
+}
