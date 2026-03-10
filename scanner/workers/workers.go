@@ -17,6 +17,7 @@ type W struct{}
 
 func (w *W) Append(c scanner.WorkerAppender) error {
 	workers := []scanner.Worker{
+		w.Separator,
 		w.Registry,
 		w.Identifier,
 		w.Digit,
@@ -92,4 +93,14 @@ func (w *W) Registry(c scanner.Context) (*token.T, error) {
 	}
 
 	return token.New(total, token.KIND_REGISTRY, c.Pos()), nil
+}
+
+func (w *W) Separator(c scanner.Context) (*token.T, error) {
+	cur := util.Current(c)
+	str := string(cur)
+	if !slices.Contains(token.Separators, str) {
+		return nil, scanner.ErrNoMatch
+	}
+	c.Advance()
+	return token.New(str, token.KIND_SEPARATOR, c.Pos()), nil
 }
