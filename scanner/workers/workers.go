@@ -17,6 +17,7 @@ type W struct{}
 
 func (w *W) Append(c scanner.WorkerAppender) error {
 	workers := []scanner.Worker{
+		w.Instruction,
 		w.Separator,
 		w.Registry,
 		w.Identifier,
@@ -130,4 +131,12 @@ func (w *W) String(c scanner.Context) (*token.T, error) {
 		return nil, err
 	}
 	return token.New(str, token.KIND_STRING, c.Pos()), nil
+}
+
+func (w *W) Instruction(c scanner.Context) (*token.T, error) {
+	str, err := util.SelectWord(c)
+	if err != nil {
+		return nil, err
+	}
+	return token.New(str, token.KIND_INSTRUCTION, c.Pos()), nil
 }
