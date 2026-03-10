@@ -32,7 +32,7 @@ const (
 	KIND_DIGIT       Kind = "number"
 	KIND_STRING      Kind = "string"
 	KIND_SEPARATOR   Kind = "separator"
-	KIND_REGISTER    Kind = "register"
+	KIND_REGISTRY    Kind = "registry"
 	KIND_IDENTIFIER  Kind = "identifier"
 )
 
@@ -46,7 +46,7 @@ var (
 		"pop",
 	}
 
-	Registers = []string{
+	Registries = []string{
 		"x0",
 		"x1",
 		"x2",
@@ -80,7 +80,7 @@ func New(lit string, kind Kind, pos Pos) *T {
 // If any of these rules are violated, IsIdentifier returns false.
 // Otherwise, it returns true.
 func IsIdentifier(str string) bool {
-	if slices.Contains(Instructions, str) || slices.Contains(Separators, str) || slices.Contains(Registers, str) {
+	if slices.Contains(Instructions, str) || slices.Contains(Separators, str) || slices.Contains(Registries, str) {
 		return false
 	}
 	runes := []rune(str)
