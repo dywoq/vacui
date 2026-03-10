@@ -26,7 +26,7 @@ type Pos struct {
 
 const (
 	KIND_INSTRUCTION Kind = "instruction"
-	KIND_NUMBER      Kind = "number"
+	KIND_DIGIT       Kind = "number"
 	KIND_STRING      Kind = "string"
 	KIND_SEPARATOR   Kind = "separator"
 	KIND_REGISTER    Kind = "register"
