@@ -4,7 +4,8 @@
 package workers
 
 import (
-
+	"fmt"
+	"slices"
 	"unicode"
 
 	"github.com/dywoq/vacui/scanner"
@@ -16,6 +17,7 @@ type W struct{}
 
 func (w *W) Append(c scanner.WorkerAppender) error {
 	workers := []scanner.Worker{
+		w.Registry,
 		w.Identifier,
 		w.Digit,
 	}
@@ -49,26 +51,45 @@ func (w *W) Digit(c scanner.Context) (*token.T, error) {
 }
 
 func (w *W) Identifier(c scanner.Context) (*token.T, error) {
-    cur := util.Current(c)
-    if !unicode.IsLetter(rune(cur)) && rune(cur) != '_' {
-        return nil, scanner.ErrNoMatch
-    }
-    startPos := c.Pos()
-    startIdx := startPos.Index
-    for !c.Eof() {
-        r := rune(util.Current(c))
-        if !unicode.IsLetter(r) && !unicode.IsDigit(r) && r != '_' {
-            break
-        }
-        c.Advance()
-    }
-    endIdx := c.Pos().Index
-    str, err := util.Slice(c, startIdx, endIdx)
-    if err != nil {
-        return nil, err
-    }
-    if !token.IsIdentifier(str) {
-        return nil, scanner.ErrNoMatch
-    }
-    return token.New(str, token.KIND_IDENTIFIER, startPos), nil
+	cur := util.Current(c)
+	if !unicode.IsLetter(rune(cur)) && rune(cur) != '_' {
+		return nil, scanner.ErrNoMatch
+	}
+	startPos := c.Pos()
+	startIdx := startPos.Index
+	for !c.Eof() {
+		r := rune(util.Current(c))
+		if !unicode.IsLetter(r) && !unicode.IsDigit(r) && r != '_' {
+			break
+		}
+		c.Advance()
+	}
+	endIdx := c.Pos().Index
+	str, err := util.Slice(c, startIdx, endIdx)
+	if err != nil {
+		return nil, err
+	}
+	if !token.IsIdentifier(str) {
+		return nil, scanner.ErrNoMatch
+	}
+	return token.New(str, token.KIND_IDENTIFIER, startPos), nil
+}
+
+func (w *W) Registry(c scanner.Context) (*token.T, error) {
+	str, err := util.SelectWord(c)
+	if err != nil {
+		return nil, err
+	}
+
+	r := rune(util.Current(c))
+	if !unicode.IsDigit(r) {
+		return nil, scanner.ErrNoMatch
+	}
+
+	total := fmt.Sprintf("%s%v", str, string(r))
+	if !slices.Contains(token.Registries, total) {
+		return nil, scanner.ErrNoMatch
+	}
+
+	return token.New(total, token.KIND_REGISTRY, c.Pos()), nil
 }
