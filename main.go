@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	r := strings.NewReader("1234121212")
+	r := strings.NewReader("23_hello2323")
 	w := &workers.W{}
 
 	s := scanner.New()

@@ -4,6 +4,7 @@
 package workers
 
 import (
+
 	"unicode"
 
 	"github.com/dywoq/vacui/scanner"
@@ -15,6 +16,7 @@ type W struct{}
 
 func (w *W) Append(c scanner.WorkerAppender) error {
 	workers := []scanner.Worker{
+		w.Identifier,
 		w.Digit,
 	}
 	for _, worker := range workers {
@@ -44,4 +46,29 @@ func (w *W) Digit(c scanner.Context) (*token.T, error) {
 		return nil, err
 	}
 	return token.New(str, token.KIND_DIGIT, c.Pos()), nil
+}
+
+func (w *W) Identifier(c scanner.Context) (*token.T, error) {
+    cur := util.Current(c)
+    if !unicode.IsLetter(rune(cur)) && rune(cur) != '_' {
+        return nil, scanner.ErrNoMatch
+    }
+    startPos := c.Pos()
+    startIdx := startPos.Index
+    for !c.Eof() {
+        r := rune(util.Current(c))
+        if !unicode.IsLetter(r) && !unicode.IsDigit(r) && r != '_' {
+            break
+        }
+        c.Advance()
+    }
+    endIdx := c.Pos().Index
+    str, err := util.Slice(c, startIdx, endIdx)
+    if err != nil {
+        return nil, err
+    }
+    if !token.IsIdentifier(str) {
+        return nil, scanner.ErrNoMatch
+    }
+    return token.New(str, token.KIND_IDENTIFIER, startPos), nil
 }

@@ -143,17 +143,17 @@ func (s *Scanner) Do(filename string) ([]*token.T, error) {
 }
 
 func (s *Scanner) perform(api *api) (*token.T, error) {
-	for _, w := range s.workers {
-		old := s.pos
-		t, err := w(api)
-		if err != nil {
-			if errors.Is(err, ErrNoMatch) {
-				s.pos = old
-				continue
-			}
-			return nil, err
-		}
-		return t, nil
-	}
-	return nil, ErrIllegalToken
+    for _, w := range s.workers {
+        old := *s.pos 
+        t, err := w(api)
+        if err != nil {
+            if errors.Is(err, ErrNoMatch) {
+                *s.pos = old 
+                continue
+            }
+            return nil, err
+        }
+        return t, nil
+    }
+    return nil, ErrIllegalToken
 }

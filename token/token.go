@@ -77,16 +77,21 @@ func New(lit string, kind Kind, pos Pos) *T {
 // If any of these rules are violated, IsIdentifier returns false.
 // Otherwise, it returns true.
 func IsIdentifier(str string) bool {
-	if len(str) > 255 || len(str) == 0 {
-		return false
-	}
-	for i, r := range str {
-		if unicode.IsDigit(r) && i == 0 {
-			return false
-		}
-		if unicode.IsSymbol(r) && r != '_' && !unicode.IsLetter(r) {
-			return false
-		}
-	}
-	return true
+    runes := []rune(str)
+    l := len(runes)
+    if l == 0 || l > 255 {
+        return false
+    }
+    for i, r := range runes {
+        if i == 0 && unicode.IsDigit(r) {
+            return false
+        }
+        isLetter := unicode.IsLetter(r)
+        isDigit := unicode.IsDigit(r)
+        isUnderscore := (r == '_')
+        if !isLetter && !isDigit && !isUnderscore {
+            return false
+        }
+    }
+    return true
 }
