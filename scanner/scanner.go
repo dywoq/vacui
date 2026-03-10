@@ -8,6 +8,7 @@ import (
 	"io"
 	"sync"
 	"sync/atomic"
+	"unicode"
 
 	"github.com/dywoq/vacui/token"
 )
@@ -133,27 +134,42 @@ func (s *Scanner) Do(filename string) ([]*token.T, error) {
 	api := &api{s}
 	tokens := []*token.T{}
 	for !api.Eof() {
+		s.skipWhitespace(api)
 		t, err := s.perform(api)
 		if err != nil {
 			return nil, err
 		}
+		s.skipWhitespace(api)
 		tokens = append(tokens, t)
 	}
 	return tokens, nil
 }
 
+func (s *Scanner) skipWhitespace(a *api) {
+	for {
+		if a.Eof() {
+			break
+		}
+		cur := a.Input()[a.Pos().Index]
+		if !unicode.IsSpace(rune(cur)) {
+			break
+		}
+		a.Advance()
+	}
+}
+
 func (s *Scanner) perform(api *api) (*token.T, error) {
-    for _, w := range s.workers {
-        old := *s.pos 
-        t, err := w(api)
-        if err != nil {
-            if errors.Is(err, ErrNoMatch) {
-                *s.pos = old 
-                continue
-            }
-            return nil, err
-        }
-        return t, nil
-    }
-    return nil, ErrIllegalToken
+	for _, w := range s.workers {
+		old := *s.pos
+		t, err := w(api)
+		if err != nil {
+			if errors.Is(err, ErrNoMatch) {
+				*s.pos = old
+				continue
+			}
+			return nil, err
+		}
+		return t, nil
+	}
+	return nil, ErrIllegalToken
 }
