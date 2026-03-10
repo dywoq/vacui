@@ -11,10 +11,15 @@ import (
 
 // Context represents an API for workers to interact with the scanner.
 type Context interface {
+	Filename() string
+	Eof() bool
 	Pos() token.Pos
-	Input() []rune
-	Error(msg string) error
-	Errorf(format string, v ...any) error
+	Input() []byte
+}
+
+// WorkerAppender defines a method for appending new workers.
+type WorkerAppender interface {
+	AppendWorker(w Worker) error
 }
 
 // Worker represents the function, that works with the input
@@ -34,3 +39,6 @@ type Worker func(c Context) (*token.T, error)
 // ErrNoMatch is a signal for the scanner to try other worker,
 // if the input didn't satisfy the previous scanner requirements.
 var ErrNoMatch = errors.New("no match")
+
+// ErrNoWorkers indicates that there are no workers appended.
+var ErrNoWorkers = errors.New("no workers")
