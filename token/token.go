@@ -42,6 +42,10 @@ var (
 	}
 )
 
+func New(lit string, kind Kind, pos Pos) *T {
+	return &T{Lit: lit, Kind: kind, Pos: pos}
+}
+
 // IsIdentifier checks if str is a valid identifier.
 // The rules:
 //
