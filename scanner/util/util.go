@@ -36,3 +36,12 @@ func Error(c scanner.Context, msg string) error {
 func Errorf(c scanner.Context, format string, v ...any) error {
 	return Error(c, fmt.Sprintf(format, v...))
 }
+
+// Current returns the current processing byte.
+// If there's EOF - the function returns 0 to avoid runtime panic.
+func Current(c scanner.Context) byte {
+	if c.Eof() {
+		return 0
+	}
+	return c.Input()[c.Pos().Index]
+}
