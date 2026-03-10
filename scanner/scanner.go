@@ -55,6 +55,20 @@ func (a *api) Eof() bool        { return a.s.pos.Index >= len(a.s.bytes) }
 func (a *api) Pos() token.Pos   { return *a.s.pos }
 func (a *api) Input() []byte    { return a.s.bytes }
 
+func (a *api) Advance() {
+	if a.Eof() {
+		return
+	}
+	cur := a.s.bytes[a.s.pos.Index]
+	if cur == '\n' {
+		a.s.pos.Col = 1
+		a.s.pos.Line++
+	} else {
+		a.s.pos.Col++
+	}
+	a.s.pos.Index++
+}
+
 // AppendWorker appends new worker to the Scanner.
 // Returns ErrOn if the scanner is currently on.
 func (s *Scanner) AppendWorker(w Worker) error {

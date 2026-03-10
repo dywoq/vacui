@@ -15,6 +15,7 @@ type Context interface {
 	Eof() bool
 	Pos() token.Pos
 	Input() []byte
+	Advance()
 }
 
 // WorkerAppender defines a method for appending new workers.
