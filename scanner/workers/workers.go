@@ -21,6 +21,7 @@ func (w *W) Append(c scanner.WorkerAppender) error {
 		w.Registry,
 		w.Identifier,
 		w.Digit,
+		w.String,
 	}
 	for _, worker := range workers {
 		if err := c.AppendWorker(worker); err != nil {
@@ -103,4 +104,30 @@ func (w *W) Separator(c scanner.Context) (*token.T, error) {
 	}
 	c.Advance()
 	return token.New(str, token.KIND_SEPARATOR, c.Pos()), nil
+}
+
+func (w *W) String(c scanner.Context) (*token.T, error) {
+	cur := util.Current(c)
+	if rune(cur) != '"' {
+		return nil, scanner.ErrNoMatch
+	}
+	c.Advance()
+	start := c.Pos().Index
+	for {
+		if c.Eof() {
+			return nil, util.Errorf(c, "Unexpected EOF: No ending quote")
+		}
+		cur := util.Current(c)
+		if cur == '"' {
+			break
+		}
+		c.Advance()
+	}
+	end := c.Pos().Index
+	c.Advance()
+	str, err := util.Slice(c, start, end)
+	if err != nil {
+		return nil, err
+	}
+	return token.New(str, token.KIND_STRING, c.Pos()), nil
 }
