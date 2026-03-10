@@ -116,7 +116,10 @@ func (s *Scanner) UpdateR(r io.Reader) error {
 // and returning it. Sets the current filename.
 //
 // Returns an error if there are no workers, no bytes given,
-// or
+// there's illegal token or error from worker.
+//
+// During processing token, it saves the current position.
+// In case the worker didn't match, it reduces to the old position.
 func (s *Scanner) Do(filename string) ([]*token.T, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
@@ -141,9 +144,11 @@ func (s *Scanner) Do(filename string) ([]*token.T, error) {
 
 func (s *Scanner) perform(api *api) (*token.T, error) {
 	for _, w := range s.workers {
+		old := s.pos
 		t, err := w(api)
 		if err != nil {
 			if errors.Is(err, ErrNoMatch) {
+				s.pos = old
 				continue
 			}
 			return nil, err
