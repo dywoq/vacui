@@ -125,6 +125,12 @@ func (s *Scanner) UpdateR(r io.Reader) error {
 func (s *Scanner) Do(filename string) ([]*token.T, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
+
+	s.on.Store(true)
+	defer func() {
+		s.on.Store(false)
+	}()
+
 	if len(s.workers) == 0 {
 		return nil, workers.ErrNoWorkers
 	}
