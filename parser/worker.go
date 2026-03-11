@@ -1,7 +1,7 @@
 // Copyright (c) 2026 dywoq - MIT License
 // A part of https://github.com/dywoq/vacui
 
-package scanner
+package parser
 
 import (
 	"github.com/dywoq/vacui/ast"
