@@ -56,12 +56,13 @@ func ExpectKind(c parser.Context, kind token.Kind) (*token.T, error) {
 }
 
 // ExpectKinds iterates over kinds, checking if token matches any of them.
-// The first match returns the token.
+// The first match returns the token and automatically advances.
 //
 // Returns an error if it failed.
 func ExpectKinds(c parser.Context, kinds []token.Kind) (*token.T, error) {
 	t := Current(c)
 	if slices.Contains(kinds, t.Kind) {
+		c.Advance()
 		return t, nil
 	}
 	return nil, Errorf(c, "Expected \"%v\" token kinds", kinds)

@@ -1,0 +1,5 @@
+main {
+    push "Hello"
+    sys 1
+    ret 1
+}

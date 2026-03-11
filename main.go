@@ -1,19 +1,28 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"strings"
+	
+	"os"
+	
 
+	"github.com/dywoq/vacui/parser"
+	"github.com/dywoq/vacui/parser/workers"
 	"github.com/dywoq/vacui/scanner"
-	"github.com/dywoq/vacui/scanner/workers"
+	scanw "github.com/dywoq/vacui/scanner/workers"
 )
 
 func main() {
-	r := strings.NewReader("")
-	w := &workers.W{}
+	f, err := os.Open("foo.vac")
+	if err != nil {
+panic(err)
+	}
+
+	w := &scanw.W{}
 
 	s := scanner.New()
-	s.UpdateR(r)
+	s.UpdateR(f)
 	w.Append(s)
 
 	tokens, err := s.Do("foo.vac")
@@ -23,5 +32,20 @@ func main() {
 
 	for _, tok := range tokens {
 		fmt.Printf("%s %s\n", tok.Lit, tok.Kind)
+	}
+
+	p := parser.New()
+	p.Update(tokens)
+	pw := workers.W{}
+	pw.Append(p)
+
+	body, err := p.Parse("foo.vac")
+	if err != nil {
+		panic(err)
+	}
+
+	for _, n := range body {
+		bytes, _ := json.Marshal(n)
+		fmt.Printf("bytes: %v\n", string(bytes))
 	}
 }

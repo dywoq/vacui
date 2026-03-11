@@ -49,7 +49,7 @@ var ErrOn = errors.New("parser is on")
 var ErrTokensEmpty = errors.New("tokens empty ")
 
 func (a *api) Filename() string   { return a.p.filename }
-func (a *api) Eof() bool          { return a.p.pos > len(a.p.tokens) }
+func (a *api) Eof() bool          { return a.p.pos >= len(a.p.tokens) }
 func (a *api) Pos() int           { return a.p.pos }
 func (a *api) Tokens() []*token.T { return a.p.tokens }
 
@@ -58,6 +58,16 @@ func (a *api) Advance() {
 		return
 	}
 	a.p.pos++
+}
+
+func (p *Parser) AppendWorker(w Worker) error {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+	if p.on.Load() {
+		return ErrOn
+	}
+	p.workers = append(p.workers, w)
+	return nil
 }
 
 // Update sets new given tokens.
@@ -94,7 +104,7 @@ func (p *Parser) Parse(filename string) ([]ast.Node, error) {
 	}
 
 	p.filename = filename
-	api := &api{}
+	api := &api{p}
 	nodes := []ast.Node{}
 	for !api.Eof() {
 		n, err := p.perform(api)

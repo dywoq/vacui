@@ -45,7 +45,7 @@ type Instruction struct {
 //	}
 type Function struct {
 	Name string
-	Body []Instruction
+	Body []Node
 }
 
 func (Value) Node()       {}
