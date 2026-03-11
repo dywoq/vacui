@@ -11,6 +11,7 @@ import (
 	"unicode"
 
 	"github.com/dywoq/vacui/token"
+	"github.com/dywoq/vacui/workers"
 )
 
 // Scanner is responsible for turning code into a sequence of tokens, using workers.
@@ -125,7 +126,7 @@ func (s *Scanner) Do(filename string) ([]*token.T, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	if len(s.workers) == 0 {
-		return nil, ErrNoWorkers
+		return nil, workers.ErrNoWorkers
 	}
 	if len(s.bytes) == 0 {
 		return nil, ErrBytesEmpty
@@ -163,7 +164,7 @@ func (s *Scanner) perform(api *api) (*token.T, error) {
 		old := *s.pos
 		t, err := w(api)
 		if err != nil {
-			if errors.Is(err, ErrNoMatch) {
+			if errors.Is(err, workers.ErrNoMatch) {
 				*s.pos = old
 				continue
 			}

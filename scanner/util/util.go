@@ -9,6 +9,7 @@ import (
 	"unicode"
 
 	"github.com/dywoq/vacui/scanner"
+	"github.com/dywoq/vacui/workers"
 )
 
 // Slice slices the code input from start to the end.
@@ -56,7 +57,7 @@ func Current(c scanner.Context) byte {
 func SelectWord(c scanner.Context) (string, error) {
 	cur := Current(c)
 	if !unicode.IsLetter(rune(cur)) {
-		return "", scanner.ErrNoMatch
+		return "", workers.ErrNoMatch
 	}
 	start := c.Pos().Index
 	for {

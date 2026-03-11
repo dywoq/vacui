@@ -4,8 +4,6 @@
 package scanner
 
 import (
-	"errors"
-
 	"github.com/dywoq/vacui/token"
 )
 
@@ -36,10 +34,3 @@ type WorkerAppender interface {
 // If the input doesn't satisfy the worker, it returns ErrNoMatch,
 // which is a signal for the scanner to try other worker.
 type Worker func(c Context) (*token.T, error)
-
-// ErrNoMatch is a signal for the scanner to try other worker,
-// if the input didn't satisfy the previous scanner requirements.
-var ErrNoMatch = errors.New("no match")
-
-// ErrNoWorkers indicates that there are no workers appended.
-var ErrNoWorkers = errors.New("no workers")

@@ -11,6 +11,7 @@ import (
 	"github.com/dywoq/vacui/scanner"
 	"github.com/dywoq/vacui/scanner/util"
 	"github.com/dywoq/vacui/token"
+	"github.com/dywoq/vacui/workers"
 )
 
 type W struct{}
@@ -35,7 +36,7 @@ func (w *W) Append(c scanner.WorkerAppender) error {
 func (w *W) Digit(c scanner.Context) (*token.T, error) {
 	cur := util.Current(c)
 	if !unicode.IsDigit(rune(cur)) {
-		return nil, scanner.ErrNoMatch
+		return nil, workers.ErrNoMatch
 	}
 	start := c.Pos().Index
 	for {
@@ -56,7 +57,7 @@ func (w *W) Digit(c scanner.Context) (*token.T, error) {
 func (w *W) Identifier(c scanner.Context) (*token.T, error) {
 	cur := util.Current(c)
 	if !unicode.IsLetter(rune(cur)) && rune(cur) != '_' {
-		return nil, scanner.ErrNoMatch
+		return nil, workers.ErrNoMatch
 	}
 	startPos := c.Pos()
 	startIdx := startPos.Index
@@ -73,7 +74,7 @@ func (w *W) Identifier(c scanner.Context) (*token.T, error) {
 		return nil, err
 	}
 	if !token.IsIdentifier(str) {
-		return nil, scanner.ErrNoMatch
+		return nil, workers.ErrNoMatch
 	}
 	return token.New(str, token.KIND_IDENTIFIER, startPos), nil
 }
@@ -86,12 +87,12 @@ func (w *W) Registry(c scanner.Context) (*token.T, error) {
 
 	r := rune(util.Current(c))
 	if !unicode.IsDigit(r) {
-		return nil, scanner.ErrNoMatch
+		return nil, workers.ErrNoMatch
 	}
 
 	total := fmt.Sprintf("%s%v", str, string(r))
 	if !slices.Contains(token.Registries, total) {
-		return nil, scanner.ErrNoMatch
+		return nil, workers.ErrNoMatch
 	}
 
 	return token.New(total, token.KIND_REGISTRY, c.Pos()), nil
@@ -101,7 +102,7 @@ func (w *W) Separator(c scanner.Context) (*token.T, error) {
 	cur := util.Current(c)
 	str := string(cur)
 	if !slices.Contains(token.Separators, str) {
-		return nil, scanner.ErrNoMatch
+		return nil,workers.ErrNoMatch
 	}
 	c.Advance()
 	return token.New(str, token.KIND_SEPARATOR, c.Pos()), nil
@@ -110,7 +111,7 @@ func (w *W) Separator(c scanner.Context) (*token.T, error) {
 func (w *W) String(c scanner.Context) (*token.T, error) {
 	cur := util.Current(c)
 	if rune(cur) != '"' {
-		return nil, scanner.ErrNoMatch
+		return nil, workers.ErrNoMatch
 	}
 	c.Advance()
 	start := c.Pos().Index
