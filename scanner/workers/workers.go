@@ -102,7 +102,7 @@ func (w *W) Separator(c scanner.Context) (*token.T, error) {
 	cur := util.Current(c)
 	str := string(cur)
 	if !slices.Contains(token.Separators, str) {
-		return nil,workers.ErrNoMatch
+		return nil, workers.ErrNoMatch
 	}
 	c.Advance()
 	return token.New(str, token.KIND_SEPARATOR, c.Pos()), nil
@@ -138,6 +138,9 @@ func (w *W) Instruction(c scanner.Context) (*token.T, error) {
 	str, err := util.SelectWord(c)
 	if err != nil {
 		return nil, err
+	}
+	if !slices.Contains(token.Instructions, str) {
+		return nil, workers.ErrNoMatch
 	}
 	return token.New(str, token.KIND_INSTRUCTION, c.Pos()), nil
 }
