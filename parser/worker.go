@@ -28,6 +28,6 @@ type WorkerAppender interface {
 // Parser workers are appended for global declarations only. However, you can use sub-workers for statements,
 // values etc.
 //
-// If the input doesn't satisfy the worker, it returns ErrNoMatch,
+// If the input doesn't satisfy the worker, it returns workers.ErrNoMatch,
 // which is a signal for the parser to try other worker.
 type Worker func(c Context) (ast.Node, error)

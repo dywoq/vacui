@@ -31,6 +31,6 @@ type WorkerAppender interface {
 //
 // WorkerIdentifier is responsible only for one thing: scanning input and return identifier token.
 //
-// If the input doesn't satisfy the worker, it returns ErrNoMatch,
+// If the input doesn't satisfy the worker, it returns workers.ErrNoMatch,
 // which is a signal for the scanner to try other worker.
 type Worker func(c Context) (*token.T, error)
