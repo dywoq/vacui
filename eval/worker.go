@@ -8,7 +8,14 @@ import "github.com/dywoq/vacui/ast"
 // Context is an API interface for evaluator workers.
 type Context interface {
 	Filename() string
-	GlobalNode() ast.Node
+	Pos() int
+	Nodes() []ast.Node
+	Eof() bool
+}
+
+// WorkerAppender appends a method for appending workers.
+type WorkerAppender interface {
+	AppendWorker(w Worker) error
 }
 
 // Worker is a function which scans and evaluates the top-level node,
