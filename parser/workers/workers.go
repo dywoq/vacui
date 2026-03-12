@@ -37,7 +37,7 @@ func (w *W) Function(c parser.Context) (ast.Node, error) {
 		return nil, err
 	}
 
-	body := []ast.Node{}
+	body := []ast.Instruction{}
 	for {
 		if c.Eof() {
 			return nil, util.Errorf(c, "Unexpected EOF during parsing function")
@@ -50,7 +50,7 @@ func (w *W) Function(c parser.Context) (ast.Node, error) {
 		if err != nil {
 			return nil, err
 		}
-		body = append(body, instr)
+		body = append(body, instr.(ast.Instruction))
 	}
 
 	_, err = util.ExpectLit(c, "}")

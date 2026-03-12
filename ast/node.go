@@ -47,7 +47,7 @@ type Instruction struct {
 //	}
 type Function struct {
 	Name string
-	Body []Node
+	Body []Instruction
 	Pos  token.Pos
 }
 

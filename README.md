@@ -13,7 +13,7 @@ main {
   sys 1
 
   # Return
-  ret 0
+  ret
 }
 ```
 
