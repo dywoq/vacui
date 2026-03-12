@@ -50,7 +50,7 @@ func (w *W) Function(c parser.Context) (ast.Node, error) {
 		if err != nil {
 			return nil, err
 		}
-		body = append(body, instr.(ast.Instruction))
+		body = append(body, instr)
 	}
 
 	_, err = util.ExpectLit(c, "}")
@@ -64,10 +64,10 @@ func (w *W) Function(c parser.Context) (ast.Node, error) {
 		Pos:  name.Pos,
 	}, nil
 }
-func (w *W) Instruction(c parser.Context) (ast.Node, error) {
+func (w *W) Instruction(c parser.Context) (ast.Instruction, error) {
 	name, err := util.ExpectKind(c, token.KIND_INSTRUCTION)
 	if err != nil {
-		return nil, err
+		return ast.Instruction{}, err
 	}
 
 	args := []ast.Node{}
@@ -84,7 +84,7 @@ func (w *W) Instruction(c parser.Context) (ast.Node, error) {
 
 		val, err := w.Value(c)
 		if err != nil {
-			return nil, err
+			return ast.Instruction{}, err
 		}
 		args = append(args, val)
 	}
