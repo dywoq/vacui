@@ -45,7 +45,7 @@ panic(err)
 	}
 
 	for _, n := range body {
-		bytes, _ := json.Marshal(n)
+		bytes, _ := json.MarshalIndent(n, "", "   ")
 		fmt.Printf("bytes: %v\n", string(bytes))
 	}
 }

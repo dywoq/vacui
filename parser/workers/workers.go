@@ -61,6 +61,7 @@ func (w *W) Function(c parser.Context) (ast.Node, error) {
 	return ast.Function{
 		Name: name.Lit,
 		Body: body,
+		Pos:  name.Pos,
 	}, nil
 }
 func (w *W) Instruction(c parser.Context) (ast.Node, error) {
@@ -91,6 +92,7 @@ func (w *W) Instruction(c parser.Context) (ast.Node, error) {
 	return ast.Instruction{
 		Name: name.Lit,
 		Args: args,
+		Pos:  name.Pos,
 	}, nil
 }
 
@@ -103,5 +105,6 @@ func (w *W) Value(c parser.Context) (ast.Node, error) {
 	return ast.Value{
 		Lit:  val.Lit,
 		Kind: val.Kind,
+		Pos:  val.Pos,
 	}, nil
 }

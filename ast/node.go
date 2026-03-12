@@ -22,6 +22,7 @@ type Node interface {
 type Value struct {
 	Lit  string
 	Kind token.Kind
+	Pos  token.Pos
 }
 
 // Instruction is a command to the interpreter to do something.
@@ -34,6 +35,7 @@ type Value struct {
 type Instruction struct {
 	Name string
 	Args []Node
+	Pos  token.Pos
 }
 
 // Function is a block in the code which does something.
@@ -46,6 +48,7 @@ type Instruction struct {
 type Function struct {
 	Name string
 	Body []Node
+	Pos  token.Pos
 }
 
 func (Value) Node()       {}
