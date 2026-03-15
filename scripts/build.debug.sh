@@ -6,5 +6,5 @@
 rm build -fr
 rm compile_commands.json -fr
 catnip debug -T 3DS
-mv build/main.release/compile_commands.json ./
-3dsxtool build/main.release/zero.elf build/main.release/zero.3dsx
+mv build/main.debug/compile_commands.json ./
+3dsxtool build/main.debug/zero.elf build/main.debug/zero.3dsx
