@@ -4,12 +4,11 @@
 // The project is not associated with Nintendo Co., Ltd.
 
 #include <3ds.h>
-#include <stdio.h>
 
 int main() {
     gfxInitDefault();
     consoleInit(GFX_TOP, nullptr);
-    printf("Hi!\n");
+
     while (aptMainLoop()) {
         gfxFlushBuffers();
         gfxSwapBuffers();
