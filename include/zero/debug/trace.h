@@ -48,7 +48,7 @@ void zr_debug_trace_push(struct zr_debug_trace_loc loc);
 void zr_debug_trace_pop();
 
 // Returns the thread-local debug trace stack.
-// Max size of elements is
+// Max size of elements is ZR_DEBUG_TRACE_STACK_MAX.
 //
 // Notes:
 // - Returns nullptr if DEBUG macro isn't 1.
