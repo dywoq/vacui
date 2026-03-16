@@ -27,6 +27,7 @@ void bios_vid_tt_output(char ch);
 - `al`: `ch`
 - `ah`: `0x0E`
 - `bh`: 0 
+
 **Parameters:**
 - `ch`: A character to print.  
 
