@@ -5,9 +5,7 @@ The `bios/vid.h` header contains functionality, that wraps around BIOS video ser
 # Symbols
 
 ## `bios_vid_mode`
-
 **Signature:**
-
 ```c
 enum bios_vid_mode : word_t {
     BIOS_VID_TEXT_X80_25 = 0x03,
@@ -19,9 +17,7 @@ enum bios_vid_mode : word_t {
 - `BIOS_VID_TEXT_X80_25`: The 80x25 video mode, allows only ASCII characters (range 0-127).
 
 ## `bios_vid_tt_output`
-
 **Signature:**
-
 ```c
 void bios_vid_tt_output(char ch);
 ```
@@ -39,6 +35,7 @@ void bios_vid_tt_output(char ch);
 ```c
 void bios_vid_mode_set(enum bios_vid_mode mode);
 ```
+
 **Description**: A wrapper around BIOS interruption 0x10.
 **BIOS interruption interface**: 
 - `ax`: `mode`
