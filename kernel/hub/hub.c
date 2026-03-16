@@ -6,7 +6,7 @@
 #include <std/types.h>
 
 void hub() {
-    hub_panic("HSD");
+    hub_panic("Testing panic. Nothing more.");
     while (true) {
         __asm volatile("hlt\n");
     }
