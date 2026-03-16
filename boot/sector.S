@@ -19,13 +19,13 @@ _start:
     int 0x13
 
     jmp 0x1000:0x0000
-
-    ret
+    
+    hlt
 
 kernel_dap:
     db 16 ; Size
     db 0 ; Reserved
-    dw 2 ; How much sectors we read (1 sector = 512 bytes)
+    dw 1 ; How much sectors we read (1 sector = 512 bytes)
     dw 0x0000 ; Offset
     dw 0x1000 ; Segment
     dq 1 ; LBA start

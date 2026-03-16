@@ -8,13 +8,15 @@ CFLAGS := -fno-stack-protector \
 	      -m16 \
 		  -I../include/ \
 		  -c \
-		  --std=c23
+		  --std=c23 \
+		  -ffunction-sections \
+		  -fdata-sections
 
 LD := i686-elf-ld
-LDFLAGS := -T linker.ld --oformat binary
+LDFLAGS := -T linker.ld --oformat binary -s -n
 
 AS := i686-elf-as
-ASFLAGS := 
+ASFLAGS :=
 
 # Target
 BUILD := .build
@@ -40,15 +42,20 @@ endif
 all: $(TARGET)
 
 $(TARGET): $(BUILD) $(OBJ)
-	$(LD) $(LDFLAGS) $(OBJ) -o $(TARGET)
+	@echo "Building for $(BUILD_TYPE) mode"
+	@$(LD) $(LDFLAGS) $(OBJ) -o $(TARGET)
 $(BUILD)/%.o: %.c
-	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $< -o $@
+	@echo " CC $<"
+	@@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $< -o $@
 $(BUILD)/%.o: %.S
+	@echo " AS $<"
 	@mkdir -p $(dir $@)
-	$(AS) $(ASFLAGS) $< -o $@
+	@$(AS) $(ASFLAGS) $< -o $@
 
 $(BUILD):
-	mkdir $(BUILD) -p
+	@echo " MKDIR $(BUILD)"
+	@mkdir $(BUILD) -p
 clean:
-	rm $(BUILD) -fr
+	@echo " RM $(BUILD)"
+	@rm $(BUILD) -fr
