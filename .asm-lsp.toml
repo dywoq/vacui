@@ -1,0 +1,11 @@
+[[project]]
+path = ""
+version = "0.10.1"
+assembler = "gas"
+instruction_set = "x86"
+
+[project.opts]
+compiler = ""
+compile_flags_txt = ["s"]
+diagnostics = true
+default_diagnostics = false
