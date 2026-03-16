@@ -7,6 +7,6 @@
 #include <std/types.h>
 
 void vga_output_char(std_byte_t ch);
-void vga_output_str(const char *);
+void vga_output_str(const std_byte_t *);
 
 #endif

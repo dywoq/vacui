@@ -12,9 +12,8 @@ void vga_output_char(std_byte_t ch) {
                      : "ax");
 }
 
-void vga_output_str(const char *str) {
-
-    for (const char *p = str; *p != '\0'; ++p) {
+void vga_output_str(const std_byte_t *str) {
+    for (const std_byte_t *p = str; *p != '\0'; ++p) {
         vga_output_char(*p);
     }
 }
