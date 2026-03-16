@@ -27,6 +27,7 @@ SRC =
 OBJ =
 
 include hub/Makefile
+include std/Makefile
 
 # Build type
 BUILD_TYPE ?= debug
