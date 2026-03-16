@@ -7,7 +7,6 @@ ENTRY(_start)
 OUTPUT_FORMAT("binary")
 
 SECTIONS {
-    /* Set to 0 because we use segmented addressing 0x1000:0000 */
     . = 0x0;
 
     .text : {
@@ -17,7 +16,6 @@ SECTIONS {
         *(.text)
         *(.text.*)
         
-        /* Include read-only data here for simpler 16-bit addressing */
         *(.rodata)
         *(.rodata.*)
     }
@@ -33,7 +31,6 @@ SECTIONS {
         *(COMMON)
     }
 
-    /* CRITICAL: Discard sections that cause "garbage" bytes in the binary */
     /DISCARD/ : {
         *(.note*)
         *(.indent)

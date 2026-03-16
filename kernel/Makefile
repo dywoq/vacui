@@ -27,7 +27,7 @@ SRC =
 OBJ =
 
 include hub/Makefile
-include std/Makefile
+include vga/Makefile
 
 # Build type
 BUILD_TYPE ?= debug

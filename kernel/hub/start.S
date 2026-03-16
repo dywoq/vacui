@@ -16,10 +16,6 @@ _start:
     mov %ax, %sp
     sti
     
-    # Set Video Mode 0x13
-    mov $0x0013, %ax
-    int $0x10
-
     call hub
     
     # Hang if hub returns
