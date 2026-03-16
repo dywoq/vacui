@@ -7,19 +7,16 @@
 
 _start:
     cli
-    # Manually load the correct segment (0x1000)
     mov $0x1000, %ax
     mov %ax, %ds
     mov %ax, %es
-    
-    # Setup stack (Safe zone: 0x0000:0x8000)
     xor %ax, %ax
     mov %ax, %ss
     mov $0x8000, %ax
     mov %ax, %sp
     sti
     
-    # Set Video Mode 0x13 (320x200 256-color)
+    # Set Video Mode 0x13
     mov $0x0013, %ax
     int $0x10
 
