@@ -27,6 +27,7 @@ SRC =
 OBJ =
 
 include hub/Makefile
+include bios/Makefile
 
 # Build type
 BUILD_TYPE ?= debug
