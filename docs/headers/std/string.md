@@ -1,5 +1,5 @@
 # Description
-The `std/string.h` header includes a functionality for managing strings.
+The `std/string.h` header contains functionality for managing strings.
 # Symbols
 ## string_len
 **Signature**:
