@@ -26,8 +26,9 @@ TARGET := $(BUILD)/kernel.bin
 SRC =
 OBJ =
 
-include hub/Makefile
 include bios/Makefile
+include hub/Makefile
+include std/Makefile
 
 # Build type
 BUILD_TYPE ?= debug
@@ -41,9 +42,9 @@ endif
 
 # Building
 all: $(TARGET)
-
-$(TARGET): $(BUILD) $(OBJ)
 	@echo "Building for $(BUILD_TYPE) mode"
+	
+$(TARGET): $(BUILD) $(OBJ)
 	@$(LD) $(LDFLAGS) $(OBJ) -o $(TARGET)
 $(BUILD)/%.o: %.c
 	@echo " CC $<"
