@@ -42,3 +42,28 @@ void bios_vid_mode_set(enum bios_vid_mode mode);
 - `ax`: `mode`
 **Parameters**:
 - `mode`: A video mode to choose.
+
+## `bios_vid_width`
+**Signature**:
+```c
+uword_t bios_vid_width();
+```
+**Description**: 
+Returns the maximum width in the current video mode. Returns zero if the current video mode is unknown.
+## `bios_vid_height`
+**Signature**:
+```c
+uword_t bios_vid_height();
+```
+**Description**: 
+Returns the maximum height in the current video mode. Returns zero if the current video mode is unknown.
+## `bios_vid_mode
+**Signature**:
+```c
+uword_t bios_vid_height();
+```
+**Description**: 
+Returns the current video mode. If there was no call of  `bios_vid_mode_set`, the default mode is BIOS_VID_TEXT_X80_25 (because it's chosen as the default in the start of .img file).
+
+
+

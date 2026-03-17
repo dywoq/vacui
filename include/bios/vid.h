@@ -12,5 +12,8 @@ enum bios_vid_mode : word_t {
 
 void bios_vid_tt_output(char ch);
 void bios_vid_mode_set(enum bios_vid_mode mode);
+uword_t bios_vid_width();
+uword_t bios_vid_height();
+enum bios_vid_mode bios_vid_mode();
 
 #endif
