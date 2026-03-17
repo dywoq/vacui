@@ -1,6 +1,6 @@
 # Description
 
-The `bios/vid.h` header contains functionality, that wraps around BIOS video services.
+The `bios/vid.h` header contains functionality that wraps around BIOS video services.
 
 # Symbols
 

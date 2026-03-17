@@ -1,5 +1,5 @@
 # Description
-The `hub/panic.h` header includes a functionality for causing kernel hub panic.
+The `hub/panic.h` header contains functionality for causing kernel hub panic.
 
 # Symbols
 ## hub_panic
