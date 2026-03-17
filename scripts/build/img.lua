@@ -51,7 +51,7 @@ cmd.run_and_fail("mkdir", { build_temp, "-p" })
 -- Compile boot sector/kernel
 log.info("Compiling boot sector/kernel")
 cmd.run_and_fail("cd boot && make clean all", {})
-cmd.run_and_fail("cd kernel &&" .. " BUILD_TYPE=" .. build_type .." make clean all", {})
+cmd.run_and_fail("cd kernel &&" .. " BUILD_TYPE=" .. build_type .." make all", {})
 
 
 -- Create .img file
