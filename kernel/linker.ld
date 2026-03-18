@@ -9,13 +9,15 @@ OUTPUT_FORMAT("binary")
 SECTIONS {
     . = 0x0;
 
+    compiler_ld_start = .;
+
     .text : {
         /* Force the entry code to the absolute beginning of the file */
         KEEP(*(.start))
-        
+
         *(.text)
         *(.text.*)
-        
+
         *(.rodata)
         *(.rodata.*)
     }
@@ -39,4 +41,6 @@ SECTIONS {
         *(.eh_frame_hdr)
         *(.debug*)
     }
+
+    compiler_ld_end = .;
 }

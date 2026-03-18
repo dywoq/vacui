@@ -7,3 +7,5 @@ The `headers` folder contains the headers symbols documentation. To see sections
 - [hub/print.h](./hub/print.md)
 # STD
 - [std/string.h](./std/string.md)
+# Compiler
+- [compiler/ld.h](./compiler/ld.md)
