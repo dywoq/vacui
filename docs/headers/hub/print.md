@@ -16,3 +16,18 @@ Automatically moves cursor if it meets newline character in the string.
 
 **Parameters**:
 - `str`: A string to print.
+## `hub_printnf_dbg`
+**Signature**:
+```c
+void hub_printnf_dbg(const char *str);
+```
+
+**Description**: 
+Wraps around `hub_printf`. Works only if DEBUG macro is 1.
+The format of the message that's printed:
+```
+DEBUG: <>
+```
+
+**Parameters**:
+- `str`: A string to print.

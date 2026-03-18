@@ -13,3 +13,10 @@ void hub_printnf(const char *str) {
         bios_vid_tt_output(*p);
     }
 }
+
+void hub_printnf_dbg(const char *str) {
+#if DEBUG
+    hub_printnf("DEBUG: ");
+    hub_printnf(str);
+#endif
+}
