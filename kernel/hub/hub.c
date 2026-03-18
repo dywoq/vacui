@@ -4,12 +4,19 @@
 #include <bios/vid.h>
 #include <compiler/ld.h>
 #include <hub/panic.h>
+#include <hub/print.h>
 #include <std/types.h>
 
 void hub() {
     compiler_ld_size_init();
 
-    hub_panic("Testing panic. Nothing more.");
+#if DEBUG
+    hub_printnf("WARNING: This is the debug build of Zero.\n"
+                "Expect debug messages and not-optimized functions.\n");
+#endif
+
+    hub_printnf_dbg("Test.\n");
+
     while (true) {
         __asm volatile("hlt\n");
     }
