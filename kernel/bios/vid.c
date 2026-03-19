@@ -23,18 +23,18 @@ void bios_vid_mode_set(enum bios_vid_mode mode) {
                    : "ax");
 }
 
-uword_t bios_vid_width() {
+[[nodiscard]] uword_t bios_vid_width() {
     if (mode_ == BIOS_VID_TEXT_X80_25) {
         return 80;
     }
     return 0;
 }
 
-uword_t bios_vid_height() {
+[[nodiscard]] uword_t bios_vid_height() {
     if (mode_ == BIOS_VID_TEXT_X80_25) {
         return 25;
     }
     return 0;
 }
 
-enum bios_vid_mode bios_vid_mode() { return mode_; }
+[[nodiscard]] enum bios_vid_mode bios_vid_mode() { return mode_; }

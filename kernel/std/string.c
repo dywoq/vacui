@@ -3,7 +3,7 @@
 
 #include <std/types.h>
 
-word_t string_len(const char *str) {
+[[nodiscard]] word_t string_len(const char *str) {
     word_t len = 0;
     for (const char *p = str; *p != '\0'; ++p) {
         len++;
