@@ -24,7 +24,7 @@
 
 #define mem_far_writeb(val, segment, offset)                                   \
     do {                                                                       \
-        ubyte_t char __tmp = (val);                                            \
+        ubyte_t __tmp = (val);                                            \
         uword_t __ofs = (offset);                                              \
         uword_t __seg = (segment);                                             \
         __asm volatile("movw %1, %%ax\n\t"                                     \
