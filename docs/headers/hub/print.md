@@ -19,11 +19,15 @@ Automatically moves cursor if it meets newline character in the string.
 ## `hub_printnf_dbg`
 **Signature**:
 ```c
-void hub_printnf_dbg(const char *str);
+#if DEBUG
+#define hub_printnf_dbg(str) hub_printnf("DEBUG: " str)
+#else
+#define hub_printnf_dbg(str) ((void)0)
+#endif
 ```
 
 **Description**: 
-Wraps around `hub_printf`. Works only if DEBUG macro is 1.
+A macro which wraps around `hub_printf`. Works only if DEBUG macro is 1.
 The format of the message that's printed:
 ```
 DEBUG: <>

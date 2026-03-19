@@ -10,10 +10,8 @@
 void hub() {
     compiler_ld_size_init();
 
-#if DEBUG
-    hub_printnf("WARNING: This is the debug build of Zero.\n"
-                "Expect debug messages and not-optimized functions.\n");
-#endif
+    hub_printnf_dbg("This is the debug build of Zero.\n"
+                    "Expect debug messages and not-optimized functions.\n");
 
     hub_printnf_dbg("Test.\n");
 
