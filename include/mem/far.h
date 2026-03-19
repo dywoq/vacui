@@ -4,11 +4,13 @@
 #ifndef _MEM_FAR_H
 #define _MEM_FAR_H
 
+#include <std/types.h>
+
 #define mem_far_readb(b, segment, offset)                                      \
     do {                                                                       \
-        unsigned char __tmp;                                                   \
-        unsigned short __ofs = (offset);                                       \
-        unsigned short __seg = (segment);                                      \
+        ubyte_t __tmp;                                                         \
+        uword_t __ofs = (offset);                                              \
+        uword_t __seg = (segment);                                             \
         __asm volatile("movw %1, %%ax\n\t"                                     \
                        "movw %%ax, %%ds\n\t"                                   \
                        "movw %2, %%bx\n\t"                                     \
@@ -22,9 +24,9 @@
 
 #define mem_far_writeb(val, segment, offset)                                   \
     do {                                                                       \
-        unsigned char __tmp = (val);                                           \
-        unsigned short __ofs = (offset);                                       \
-        unsigned short __seg = (segment);                                      \
+        ubyte_t char __tmp = (val);                                            \
+        uword_t __ofs = (offset);                                              \
+        uword_t __seg = (segment);                                             \
         __asm volatile("movw %1, %%ax\n\t"                                     \
                        "movw %%ax, %%es\n\t"                                   \
                        "movw %2, %%di\n\t"                                     \
