@@ -6,6 +6,7 @@ The `headers` folder contains the headers symbols documentation. To see sections
 - [hub/panic.h](./hub/panic.md)
 - [hub/print.h](./hub/print.md)
 # STD
+- [std/def.h](./std/def.md)
 - [std/string.h](./std/string.md)
 # Compiler
 - [compiler/ld.h](./compiler/ld.md)
