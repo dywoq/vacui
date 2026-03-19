@@ -13,3 +13,5 @@ The `headers` folder contains the headers symbols documentation. To see sections
 - [compiler/ld.h](./compiler/ld.md)
 # Memory
 - [mem/far.h](./mem/far.md)
+# Result
+- [result/err.h](./result/err.md)
