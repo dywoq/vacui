@@ -1,0 +1,12 @@
+# temp
+.build
+
+# kconfig
+.config
+.config.*
+
+# cache files
+.cache
+
+# autoconf
+include/zero/autoconf.h
