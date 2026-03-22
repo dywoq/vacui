@@ -9,7 +9,7 @@
 .cache
 
 # autoconf
-include/zero/autoconf.h
+autoconf.h
 
 # clangd
 compile_commands.json

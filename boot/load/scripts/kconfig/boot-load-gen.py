@@ -4,6 +4,8 @@
 import os
 import sys
 
+autoconf_path = "include/zero/boot/autoconf.h"
+
 try:
     import kconfiglib
 except ImportError:
@@ -13,14 +15,14 @@ except ImportError:
 try:
     kconf = kconfiglib.Kconfig("Kconfig")
     kconf.load_config(".config")
-    kconf.write_autoconf("include/zero/boot/load/autoconf.h")
+    kconf.write_autoconf(autoconf_path)
     kconf.write_config(".config")
 except Exception as e:
     print(f"Error: Failed to process Kconfig: {e}")
     sys.exit(1)
 
 try:
-    with open("include/zero/boot/load/autoconf.h", "r") as f:
+    with open(autoconf_path, "r") as f:
         content = f.read()
 except FileNotFoundError:
     print("Error: autoconf.h not found after generation")
@@ -30,7 +32,7 @@ except PermissionError:
     sys.exit(1)
 
 try:
-    with open("include/zero/boot/load/autoconf.h", "w") as f:
+    with open(autoconf_path, "w") as f:
         f.write("// Copyright 2026 dywoq - Apache License 2.0\n")
         f.write("// A part of https://github.com/dywoq/zero\n\n")
         f.write("#ifndef _ZERO_BOOT_LOAD_AUTOCONF_H\n")
