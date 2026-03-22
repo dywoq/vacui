@@ -5,6 +5,9 @@ import os
 import sys
 
 autoconf_path = "include/zero/krnl/autoconf.h"
+config_path = ".config"
+
+os.makedirs("include/zero/krnl", exist_ok=True)
 
 try:
     import kconfiglib
@@ -14,9 +17,9 @@ except ImportError:
 
 try:
     kconf = kconfiglib.Kconfig("Kconfig")
-    kconf.load_config(".config")
+    kconf.load_config(config_path)
     kconf.write_autoconf(autoconf_path)
-    kconf.write_config(".config")
+    kconf.write_config(config_path)
 except Exception as e:
     print(f"Error: Failed to process Kconfig: {e}")
     sys.exit(1)

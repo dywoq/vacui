@@ -5,7 +5,6 @@ CC ?= gcc
 CFLAGS  ?= -Wall \
 	-Wextra \
 	-Iinclude \
-	-I../../include \
 	--std=gnu23 \
 	-Wstack-usage=16384 \
 	-Wframe-larger-than=16384 \
