@@ -10,3 +10,7 @@
 
 # autoconf
 include/zero/autoconf.h
+
+# clangd
+compile_commands.json
+
