@@ -5,7 +5,7 @@ import argparse
 import os
 from pathlib import Path
 
-CLEAN_PATTERNS = {".cache", ".build", ".config", ".config.old"}
+CLEAN_PATTERNS = {".cache", ".build", ".config", ".config.old", "compile_commands.json"}
 
 
 def clean_directory(base_path: Path) -> None:
@@ -28,7 +28,7 @@ def clean_directory(base_path: Path) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(
         prog="clean.py",
-        description="Clean .cache, .build, .config, and .config.old files and directories recursively."
+        description=f"Clean {CLEAN_PATTERNS} files and directories recursively."
     )
     parser.parse_args()
     clean_directory(Path("."))
