@@ -14,3 +14,6 @@ autoconf.h
 # clangd
 compile_commands.json
 
+# editors
+.zed
+.vscode

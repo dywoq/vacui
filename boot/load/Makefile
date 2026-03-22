@@ -4,7 +4,7 @@
 CC ?= gcc
 CFLAGS  ?= -Wall \
 	-Wextra \
-	-Iinclude \
+	-I../../include \
 	--std=gnu23 \
 	-Wstack-usage=16384 \
 	-Wframe-larger-than=16384 \
@@ -50,13 +50,13 @@ dirs:
 	@$(foreach m, $(MODULES), mkdir -p $(BUILD)/$(m);)
 
 config:
-	@echo " PYTHON .scripts/kconfig/boot-load-gen.py"
-	@$(PYTHON) ./scripts/kconfig/boot-load-gen.py
+	@echo " PYTHON scripts/kconfig/boot-gen.py"
+	@cd ../../ && $(PYTHON) ./scripts/kconfig/boot-gen.py
 
 menuconfig:
 	@kconfig-mconf Kconfig
-	@echo " PYTHON ./scripts/kconfig/boot-load-gen.py"
-	@$(PYTHON) ./scripts/kconfig/boot-load-gen.py
+	@echo " PYTHON scripts/kconfig/boot-gen.py"
+	@cd ../../ && $(PYTHON) ./scripts/kconfig/boot-gen.py
 
 clean:
 	@echo " RM $(BUILD)"
