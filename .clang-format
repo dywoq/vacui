@@ -1,0 +1,29 @@
+IndentWidth: 8
+
+AccessModifierOffset: -4
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+AlignEscapedNewlines: Left
+AlignOperands: true
+AlignTrailingComments: false
+
+BreakBeforeBraces: Linux
+AllowShortBlocksOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+
+ColumnLimit: 80
+
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+SpaceBeforeParens: Always
+SpaceAfterCStyleCast: false
+SpaceInEmptyParentheses: false
+SpaceBeforeAssignmentOperators: true
+
+PointerAlignment: Right
+
+SortIncludes: true
