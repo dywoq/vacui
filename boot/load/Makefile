@@ -5,6 +5,7 @@ CC ?= gcc
 CFLAGS  ?= -Wall \
 	-Wextra \
 	-Iinclude \
+	-I../../include \
 	--std=gnu23 \
 	-Wstack-usage=16384 \
 	-Wframe-larger-than=16384 \
@@ -19,10 +20,10 @@ AS ?= as
 ASFLAGS := --32
 
 LD ?= ld
-LDFLAGS := -T kernel.ld -nostdlib
+LDFLAGS := -T load.ld -nostdlib
 
 BUILD = .build
-TARGET  ?= $(BUILD)/kernel.bin
+TARGET  ?= $(BUILD)/load.bin
 PYTHON := python3
 
 MODULES := hub
@@ -50,14 +51,15 @@ dirs:
 	@$(foreach m, $(MODULES), mkdir -p $(BUILD)/$(m);)
 
 config:
-	@echo " PYTHON ./scripts/kconfig/kernel-gen.py"
-	@$(PYTHON) ./scripts/kconfig/kernel-gen.py
+	@echo " PYTHON .scripts/kconfig/boot-load-gen.py"
+	@$(PYTHON) ./scripts/kconfig/boot-load-gen.py
 
 menuconfig:
 	@kconfig-mconf Kconfig
-	@echo " PYTHON ./scripts/kconfig/kernel-gen.py"
-	@$(PYTHON) ./scripts/kconfig/kernel-gen.py
+	@echo " PYTHON ./scripts/kconfig/boot-load-gen.py"
+	@$(PYTHON) ./scripts/kconfig/boot-load-gen.py
 
 clean:
 	@echo " RM $(BUILD)"
-	@rm -rf $(BUILD) include/zero/kernel/autoconf.h
+	@rm -rf $(BUILD) include/zero/boot/load/autoconf.h
+
