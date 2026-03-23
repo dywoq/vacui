@@ -7,7 +7,7 @@
 #include <zero/types.h>
 
 struct boot_vid_info {
-        word_t mode;
+        word_t vga_mode;
         word_t width;
         word_t height;
 };
