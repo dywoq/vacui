@@ -71,11 +71,11 @@ setup_boot_info:
 setup_boot_video_info:
         ; Push used registers to stack
         push ax
-        
+
         mov word [boot_video_data], 0x13
         mov word [boot_video_data + 2], 320
         mov word [boot_video_data + 4], 200
-        
+
         xor ah, ah
         mov ax, word [boot_video_data]
         int 0x10
