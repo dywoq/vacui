@@ -4,12 +4,12 @@
 #ifndef _ZERO_BOOT_INFO_H
 #define _ZERO_BOOT_INFO_H
 
-#include <stdint.h>
+#include <zero/types.h>
 
 struct boot_vid_info {
-        uint16_t mode;
-        uint16_t width;
-        uint16_t height;
+        word_t mode;
+        word_t width;
+        word_t height;
 };
 
 struct boot_info {
