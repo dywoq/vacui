@@ -3,6 +3,6 @@
 
 mainmenu "Zero config"
 
-source "drivers/Kconfig"
+source "drvs/Kconfig"
 source "hub/Kconfig"
 

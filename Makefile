@@ -31,7 +31,7 @@ TARGET  ?= $(BUILD)/kernel.bin
 PYTHON := python3
 
 MODULES := hub \
-	   drivers/video
+	   drvs/vid
 
 SRCS_C := $(foreach m, $(MODULES), $(wildcard $(m)/*.c))
 SRCS_AS := $(foreach m, $(MODULES), $(wildcard $(m)/*.S))
