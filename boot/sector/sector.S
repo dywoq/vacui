@@ -15,12 +15,12 @@ _start:
 
         mov ah, 0x42
         mov dl, 0x80
-        mov si, kernel_dap
+        mov si, load_dap
         int 0x13
 
         jmp 0x0800:0x0
 
-kernel_dap:
+load_dap:
         db 16
         db 0
         dw 2
@@ -28,6 +28,6 @@ kernel_dap:
         dw 0x0800
         dq 1
 
-times 512-($-$$) db 0
+times 510-($-$$) db 0
 dw 0xaa55
 
