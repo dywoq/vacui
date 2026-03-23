@@ -20,9 +20,46 @@ _start:
         in al, 0x92
         or al, 2
         out 0x92, al
+        
+%include "dap.S"
+        
+        ; Load kernel DAP
+        mov ah, 0x42
+        mov dl, 0x80
+        mov si, kernel_dap
+        int 0x13
+
+        ; Setup GDT pointer to table
+        cli
+        lgdt [gdt_ptr]
+
+        ; Set PE bit in CR0
+        mov eax, cr0
+        or al, 1
+        mov cr0, eax
+
+        ; Far jump to pm_main
+        jmp 0x08:pm_start
 
         hlt
 
+bits 32
+%include "gdt.S"
+
+pm_start:
+        mov ax, 0x10
+        mov ds, ax
+        mov es, ax
+        mov fs, ax
+        mov gs, ax
+        mov ss, ax
+
+        mov esp, 0x90000
+
+        mov ebx, boot_info
+        jmp 0x10000
+
+bits 16
 setup_boot_info:
         call setup_boot_video_info
         ret
@@ -33,34 +70,25 @@ setup_boot_info:
 ; Registers (pushed/popped): bx, ax
 setup_boot_video_info:
         ; Push used registers to stack
-        push bx
         push ax
         
-        mov bx, boot_info + BootInfo.video
-        mov word [bx + BootVideoInfo.mode], 0x13
-        mov ax, word [bx + BootVideoInfo.mode]
+        mov word [boot_video_data], 0x13
+        mov word [boot_video_data + 2], 320
+        mov word [boot_video_data + 4], 200
+        
         xor ah, ah
+        mov ax, word [boot_video_data]
         int 0x10
-
-        ; Change resolution
-        mov word [bx + BootVideoInfo.width], 320
-        mov word [bx + BootVideoInfo.height], 200
 
         ; Pop used registers
         pop ax
-        pop bx
         ret
 
-kernel_dap:
-        db 16
-        db 0
-        dw 2
-        dw 0x0
-        dw 0x1000
-        dq 2
-
-section .bss
-boot_info resb BootInfo_size
-
-%include "boot.S"
-
+section .data
+boot_video_data:
+    dw 0 
+    dw 0
+    dw 0
+    
+boot_info:
+    dd boot_video_data
