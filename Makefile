@@ -30,7 +30,8 @@ BUILD = .build
 TARGET  ?= $(BUILD)/kernel.bin
 PYTHON := python3
 
-MODULES := hub
+MODULES := hub \
+	   drivers/video
 
 SRCS_C := $(foreach m, $(MODULES), $(wildcard $(m)/*.c))
 SRCS_AS := $(foreach m, $(MODULES), $(wildcard $(m)/*.S))
