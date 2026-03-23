@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include <zero/boot/info.h>
 
-void hub (struct zr_boot_info *info)
+void hub (struct boot_info *info)
 {
         auto video_info = info->video;
         if (video_info->mode == 0x13) {

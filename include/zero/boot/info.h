@@ -6,14 +6,14 @@
 
 #include <stdint.h>
 
-struct zr_boot_video_info {
+struct boot_vid_info {
         uint16_t mode;
         uint16_t width;
         uint16_t height;
 };
 
-struct zr_boot_info {
-        struct zr_boot_video_info *video;
+struct boot_info {
+        struct boot_vid_info *vid;
 };
 
 #endif
