@@ -15,3 +15,7 @@ Documentation/
 -- -- -- xyz.md
 ```
 It also works with sub-modules.
+
+# Navigation
+## Boot loader
+- [`zero/boot/info.h`](./boot/info)
