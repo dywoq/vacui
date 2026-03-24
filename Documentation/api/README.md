@@ -19,7 +19,3 @@ It also works with sub-modules.
 # Navigation
 ## Boot loader
 - [`zero/boot/info.h`](./boot/info)
-## Drivers
-### Video
-- [`zero/drvs/vid/color.h`](./drvs/vid/color)
-- [`zero/drvs/vid/iface.h`](./drvs/vid/iface)
