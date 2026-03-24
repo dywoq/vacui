@@ -22,3 +22,4 @@ It also works with sub-modules.
 ## Drivers
 ### Video
 - [`zero/drvs/vid/color.h`](./drvs/vid/color)
+- [`zero/drvs/vid/iface.h`](./drvs/vid/iface)
