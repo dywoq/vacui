@@ -3,16 +3,19 @@
 
 #include <stdint.h>
 #include <zero/boot/info.h>
+#include <zero/drvs/vid/reg.h>
+
+// Initializes subsystems.
+void ss_init (void)
+{
+        // Drivers
+        drvs_vid_allreg ();
+        drvs_vid_init ();
+}
 
 void hub (struct boot_info *info)
 {
-        auto video_info = info->vid;
-        if (video_info->vga_mode == 0x13) {
-                volatile auto vram = (uint16_t *)0xA0000;
-                vram[2 * video_info->width + 2] = 5;
-                vram[2 * video_info->width + 3] = 5;
-        }
-
+        ss_init ();
         while (true)
                 asm volatile ("hlt\n");
 }
