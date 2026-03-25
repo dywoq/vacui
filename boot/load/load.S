@@ -72,10 +72,12 @@ setup_boot_video_info:
         ; Push used registers to stack
         push ax
 
+        ; Set values
         mov word [boot_video_data], 0x13
         mov word [boot_video_data + 2], 320
         mov word [boot_video_data + 4], 200
 
+        ; Change VGA mode to [boot_video_data]
         xor ah, ah
         mov ax, word [boot_video_data]
         int 0x10
@@ -86,9 +88,9 @@ setup_boot_video_info:
 
 section .data
 boot_video_data:
-    dw 0 
-    dw 0
-    dw 0
+    dw 0 ; VGA Mode 
+    dw 0 ; Width
+    dw 0 ; Height
     
 boot_info:
-    dd boot_video_data
+    dd boot_video_data ; Video info
