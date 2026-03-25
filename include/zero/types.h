@@ -2,7 +2,7 @@
 // A part of https://github.com/dywoq/zero
 
 #ifndef _ZERO_TYPES_H
-#define _ZEOR_TYPES_H
+#define _ZERO_TYPES_H
 
 typedef signed char byte_t;
 typedef unsigned char ubyte_t;
