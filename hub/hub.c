@@ -3,19 +3,13 @@
 
 #include <stdint.h>
 #include <zero/boot/info.h>
-#include <zero/drvs/vid/reg.h>
 
-// Initializes subsystems.
-void ss_init (void)
-{
-        // Drivers
-        drvs_vid_allreg ();
-        drvs_vid_init ();
-}
+
+
 
 void hub (struct boot_info *info)
 {
-        ss_init ();
+
         while (true)
                 asm volatile ("hlt\n");
 }
