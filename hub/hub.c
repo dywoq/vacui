@@ -9,7 +9,7 @@ void hub (struct boot_info *info)
 {
         struct video_handle *handle = video_new ();
         video_draw_pixel (handle, 3, 3, 234);
-        video_draw_pixel(handle, 3, 4, 124);
+        video_draw_pixel (handle, 3, 4, 124);
         while (true)
                 asm volatile ("hlt\n");
 }
