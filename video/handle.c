@@ -31,5 +31,7 @@ usize_t video_height (struct video_handle *handle)
 void video_draw_pixel (struct video_handle *handle, usize_t x, usize_t y,
                        ubyte_t col)
 {
+        if (x >= handle->width || y >= handle->height)
+                return;
         handle->vram[y * handle->width + x] = col;
 }
