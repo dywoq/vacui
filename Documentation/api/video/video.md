@@ -5,15 +5,15 @@ It's tied to VGA Mode 320x200 0x13 mode.
 ## `video_width
 **Signature**:
 ```c
-usize_t video_width (void);
+extern usize_t video_width;
 ```
-**Description**: Returns the maximum resolution width of video screen.
+**Description**: The maximum resolution width of video screen.
 ## `video_height`
 **Signature**:
 ```c
-usize_t video_height (void);
+extern usize_t video_height;
 ```
-**Description**: Returns the maximum resolution height of video screen.
+**Description**: The maximum resolution height of video screen.
 ## `video_draw_pixel`
 **Signature**:
 ```c
