@@ -1,8 +1,8 @@
 // Copyright 2026 dywoq - Apache License 2.0
 // A part of https://github.com/dywoq/zero
 
-#ifndef _ZERO_VIDEO_HANDLE_H
-#define _ZERO_VIDEO_HANDLE_H
+#ifndef _ZERO_VIDEO_VIDEO_H
+#define _ZERO_VIDEO_VIDEO_H
 
 #include <zero/types.h>
 
