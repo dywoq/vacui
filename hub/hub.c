@@ -16,7 +16,7 @@ void hub (struct boot_info *info)
         int y = 6;
         for (usize_t i = 0; i < info->mem_map->entries_count; i++) {
                 auto mem_entry = info->mem_map->entries[i];
-                video_draw_pixel(3, y, mem_entry->type);
+                video_draw_pixel (3, y, mem_entry->type);
                 y++;
         }
 

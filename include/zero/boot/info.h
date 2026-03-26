@@ -29,8 +29,8 @@ struct boot_mem_entry {
 };
 
 struct [[gnu::packed]] boot_mem_map {
-       udword_t entries_count;
-       struct boot_mem_entry* entries[];
+        udword_t entries_count;
+        struct boot_mem_entry *entries[];
 };
 
 struct [[gnu::packed]] boot_info {
