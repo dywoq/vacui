@@ -19,3 +19,5 @@ It also works with sub-modules.
 # Navigation
 ## Boot loader
 - [`zero/boot/info.h`](./boot/info)
+## Video
+- [zero/video/video.h](./video/video) 
