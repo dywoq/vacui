@@ -2,15 +2,10 @@
 // A part of https://github.com/dywoq/zero
 
 #include <zero/boot/info.h>
-#include <zero/video/video.h>
 
 void hub (struct boot_info *info)
 {
-        if (info->mode->mode == BOOT_MODE_GUI) {
-                video_draw_pixel (3, 3, 234);
-                video_draw_pixel (3, 4, 124);
-        }
-
+        boot_info_inst = info;
         while (true)
                 asm volatile ("hlt\n");
 }

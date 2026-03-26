@@ -49,4 +49,6 @@ struct [[gnu::packed]] boot_info {
         struct boot_mode_info *mode;
 };
 
+static struct boot_info *boot_info_inst = nullptr;
+
 #endif
