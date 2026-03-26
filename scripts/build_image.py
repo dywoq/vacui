@@ -27,10 +27,10 @@ def main():
     os.makedirs(BUILD_DIR)
 
     print("Building boot sector...")
-    run_cmd(["make", "-C", BOOT_SECTOR_DIR])
+    run_cmd(["make", "clean", "all", "-C", BOOT_SECTOR_DIR])
 
     print("Building boot loader...")
-    run_cmd(["make", "-C", BOOT_LOAD_DIR])
+    run_cmd(["make", "clean", "all", "-C", BOOT_LOAD_DIR])
 
     print("Building kernel...")
     run_cmd(["make"])

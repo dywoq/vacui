@@ -34,9 +34,19 @@ struct [[gnu::packed]] boot_mem_map {
         struct boot_mem_entry *entries[];
 };
 
+enum boot_mode_type {
+        BOOT_MODE_TROOT = 0,
+        BOOT_MODE_GUI = 1,
+};
+
+struct boot_mode_info {
+       enum boot_mode_type mode; 
+};
+
 struct [[gnu::packed]] boot_info {
         struct boot_vid_info *vid;
         struct boot_mem_map *mem_map;
+        struct boot_mode_info *mode;
 };
 
 #endif

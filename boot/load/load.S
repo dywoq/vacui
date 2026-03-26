@@ -14,7 +14,11 @@ _start:
         mov sp, 0x8000
         sti
 
-        call setup_boot_info 
+        ; Block execution and ask for mode
+        call block_and_ask_for_mode
+
+        ; Setup boot info
+        call setup_boot_info
 
         ; Setup A20 gate
         in al, 0x92
@@ -62,6 +66,7 @@ pm_start:
 bits 16
 %include "mem.S"
 %include "video.S"
+%include "mode.S"
 
 section .text
 setup_boot_info:
@@ -72,4 +77,5 @@ setup_boot_info:
 section .data
 boot_info:
     dd boot_video_data ; Video info
-    dd boot_mem_map ; Memory map 
+    dd boot_mem_map ; Memory map
+    dd boot_mode_info ; Mode info

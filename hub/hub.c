@@ -6,18 +6,9 @@
 
 void hub (struct boot_info *info)
 {
-        video_draw_pixel (3, 3, 234);
-        video_draw_pixel (3, 4, 124);
-
-        if (info->mem_map->entries_count > 1) {
-                video_draw_pixel (3, 5, 6);
-        }
-
-        int y = 6;
-        for (usize_t i = 0; i < info->mem_map->entries_count; i++) {
-                auto mem_entry = info->mem_map->entries[i];
-                video_draw_pixel (3, y, mem_entry->type);
-                y++;
+        if (info->mode->mode == BOOT_MODE_GUI) {
+                video_draw_pixel (3, 3, 234);
+                video_draw_pixel (3, 4, 124);
         }
 
         while (true)
