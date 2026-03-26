@@ -18,6 +18,7 @@ enum boot_mem_entry_type : udword_t {
         BOOT_MEM_ENTRY_ACPI,
         BOOT_MEM_ENTRY_NVS,
         BOOT_MEM_ENTRY_UNUSABLE,
+        BOOT_MEM_ENTRY_DISABLED = 7,
 };
 
 struct boot_mem_entry {
@@ -25,7 +26,7 @@ struct boot_mem_entry {
         udword_t base_address_high;
         udword_t length_low;
         udword_t length_high;
-        udword_t type;
+        enum boot_mem_entry_type type;
 };
 
 struct [[gnu::packed]] boot_mem_map {
