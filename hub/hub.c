@@ -1,7 +1,6 @@
 // Copyright 2026 dywoq - Apache License 2.0
 // A part of https://github.com/dywoq/zero
 
-#include <stdint.h>
 #include <zero/boot/info.h>
 #include <zero/video/video.h>
 
