@@ -6,8 +6,8 @@
 
 #include <zero/types.h>
 
-usize_t video_width (void);
-usize_t video_height (void);
+extern usize_t video_width;
+extern usize_t video_height;
 void video_draw_pixel (usize_t x, usize_t y, ubyte_t col);
 
 #endif

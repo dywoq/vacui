@@ -12,8 +12,30 @@ struct boot_vid_info {
         uword_t height;
 };
 
-struct boot_info {
+enum boot_mem_entry_type : udword_t {
+        BOOT_MEM_ENTRY_RAM = 1,
+        BOOT_MEM_ENTRY_RESERVED,
+        BOOT_MEM_ENTRY_ACPI,
+        BOOT_MEM_ENTRY_NVS,
+        BOOT_MEM_ENTRY_UNUSABLE,
+};
+
+struct boot_mem_entry {
+        udword_t base_address_low;
+        udword_t base_address_high;
+        udword_t length_low;
+        udword_t length_high;
+        udword_t type;
+};
+
+struct [[gnu::packed]] boot_mem_map {
+       udword_t entries_count;
+       struct boot_mem_entry* entries[];
+};
+
+struct [[gnu::packed]] boot_info {
         struct boot_vid_info *vid;
+        struct boot_mem_map *mem_map;
 };
 
 #endif

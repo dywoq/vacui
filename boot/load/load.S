@@ -14,7 +14,7 @@ _start:
         mov sp, 0x8000
         sti
 
-        call setup_boot_info
+        call setup_boot_info 
 
         ; Setup A20 gate
         in al, 0x92
@@ -60,15 +60,19 @@ pm_start:
         jmp 0x10000
 
 bits 16
+%include "mem.S"
+
+section .text
 setup_boot_info:
-        call setup_boot_video_info
+        call boot_video_info_setup
+        call boot_mem_setup
         ret
 
 ; Setups a boot video information, 
 ; calling bios interuption which changes video mode to 0x13.
 ;
 ; Registers (pushed/popped): bx, ax
-setup_boot_video_info:
+boot_video_info_setup:
         ; Push used registers to stack
         push ax
 
@@ -94,3 +98,4 @@ boot_video_data:
     
 boot_info:
     dd boot_video_data ; Video info
+    dd boot_mem_map ; Memory map 
