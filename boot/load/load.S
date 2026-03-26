@@ -61,6 +61,7 @@ pm_start:
 
 bits 16
 %include "mem.S"
+%include "video.S"
 
 section .text
 setup_boot_info:
@@ -68,34 +69,7 @@ setup_boot_info:
         call boot_mem_setup
         ret
 
-; Setups a boot video information, 
-; calling bios interuption which changes video mode to 0x13.
-;
-; Registers (pushed/popped): bx, ax
-boot_video_info_setup:
-        ; Push used registers to stack
-        push ax
-
-        ; Set values
-        mov word [boot_video_data], 0x13
-        mov word [boot_video_data + 2], 320
-        mov word [boot_video_data + 4], 200
-
-        ; Change VGA mode to [boot_video_data]
-        xor ah, ah
-        mov ax, word [boot_video_data]
-        int 0x10
-
-        ; Pop used registers
-        pop ax
-        ret
-
 section .data
-boot_video_data:
-    dw 0 ; VGA Mode 
-    dw 0 ; Width
-    dw 0 ; Height
-    
 boot_info:
     dd boot_video_data ; Video info
     dd boot_mem_map ; Memory map 
