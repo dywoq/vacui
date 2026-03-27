@@ -23,5 +23,7 @@ It also works with sub-modules.
 - [zero/vid/text.h](./vid/text.md) 
 ## TerminalRoot (`troot`)
 - [zero/troot/entry.h](./troot/entry.md) 
+- [zero/troot/cursor.h](./troot/cursor.md) 
+- [zero/troot/print.h](./troot/print.md) 
 # Drivers
 - [zero/drvs/port.h](./drvs/port.md) 
