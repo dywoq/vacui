@@ -20,4 +20,4 @@ It also works with sub-modules.
 ## Boot loader
 - [`zero/boot/info.h`](./boot/info)
 ## Video
-- [zero/video/video.h](./video/video) 
+- [zero/vid/text.h](./vid/text.md) 
