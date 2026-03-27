@@ -1,6 +1,7 @@
 # Copyright 2026 dywoq - Apache License 2.0
 # A part of https://github.com/dywoq/zero
 
+import argparse
 import os
 import subprocess
 import shutil
@@ -18,6 +19,11 @@ def run_cmd(cmd: list[str], cwd: str | None = None) -> None:
 
 
 def main():
+    parser = argparse.ArgumentParser(
+        prog="image.py",
+        description="Build boot sector, boot loader, kernel and create a disk image."
+    )
+    parser.parse_args()
     script_dir = os.path.dirname(os.path.abspath(__file__))
     project_root = os.path.dirname(script_dir)
     os.chdir(project_root)

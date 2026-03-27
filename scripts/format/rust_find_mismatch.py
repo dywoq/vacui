@@ -1,6 +1,7 @@
 # Copyright 2026 dywoq - Apache License 2.0
 # A part of https://github.com/dywoq/zero
 
+import argparse
 import subprocess
 import sys
 from pathlib import Path
@@ -22,6 +23,11 @@ def run_clippy(cargo_dir: Path) -> tuple[int, str]:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(
+        prog="rust_find_mismatch.py",
+        description="Check if Rust projects have formatting mismatches using cargo clippy."
+    )
+    parser.parse_args()
     root = Path(__file__).resolve().parent.parent.parent
     cargo_dirs = find_cargo_dirs(root)
     

@@ -1,6 +1,7 @@
 # Copyright 2026 dywoq - Apache License 2.0
 # A part of https://github.com/dywoq/zero
 
+import argparse
 import subprocess
 import sys
 from pathlib import Path
@@ -24,6 +25,11 @@ def check_formatting(file_path: Path) -> tuple[int, str]:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(
+        prog="c_find_mismatch.py",
+        description="Check if C/C++ files have formatting mismatches using clang-format."
+    )
+    parser.parse_args()
     root = Path(__file__).resolve().parent.parent.parent
     files = find_c_files(root)
 

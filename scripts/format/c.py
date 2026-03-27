@@ -1,6 +1,7 @@
 # Copyright 2026 dywoq - Apache License 2.0
 # A part of https://github.com/dywoq/zero
 
+import argparse
 import subprocess
 from pathlib import Path
 
@@ -18,6 +19,11 @@ def format_file(file_path: Path) -> None:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(
+        prog="c.py",
+        description="Find and format C/C++ source files using clang-format."
+    )
+    parser.parse_args()
     root = Path(__file__).parent.parent.parent
     files = find_c_files(root)
     for f in files:
