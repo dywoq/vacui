@@ -32,7 +32,8 @@ PYTHON := python3
 
 MODULES := hub \
 	   vid \
-	   troot
+	   troot \
+	   drvs
 
 SRCS_C := $(foreach m, $(MODULES), $(wildcard $(m)/*.c))
 SRCS_AS := $(foreach m, $(MODULES), $(wildcard $(m)/*.S))
