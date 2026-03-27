@@ -6,15 +6,17 @@ import sys
 from pathlib import Path
 
 
-def find_cargo_dirs(root: Path) -> list[Path]:
-    cargo_files = [f for f in root.rglob("Cargo.toml") if "target" not in f.parts]
-    return sorted({f.parent for f in cargo_files})
+def find_c_files(root: Path) -> list[Path]:
+    patterns = ["**/*.h", "**/*.c"]
+    files = []
+    for pattern in patterns:
+        files.extend(root.glob(pattern))
+    return sorted(files)
 
 
-def run_clippy(cargo_dir: Path) -> tuple[int, str]:
+def check_formatting(file_path: Path) -> tuple[int, str]:
     result = subprocess.run(
-        ["cargo", "clippy", "--all-targets", "--", "-D", "warnings"],
-        cwd=cargo_dir,
+        ["clang-format", "--dry-run", "--Werror", str(file_path)],
         capture_output=True,
         text=True,
     )
@@ -23,19 +25,19 @@ def run_clippy(cargo_dir: Path) -> tuple[int, str]:
 
 def main() -> None:
     root = Path(__file__).resolve().parent.parent.parent
-    cargo_dirs = find_cargo_dirs(root)
-    
-    if not cargo_dirs:
-        print("No Cargo.toml found")
+    files = find_c_files(root)
+
+    if not files:
+        print("No .c/.h files found")
         return
 
     failed = False
-    for cargo_dir in cargo_dirs:
-        returncode, output = run_clippy(cargo_dir)
-        
+    for f in files:
+        returncode, output = check_formatting(f)
+
         if output.strip():
             print(output)
-            
+
         if returncode != 0:
             failed = True
 
