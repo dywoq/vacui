@@ -77,3 +77,10 @@ struct [[gnu::packed]] boot_info {
 **Fields**:
 - `vid`: Video information.
 - `mem_map`: Memory map information.
+## `boot_info_inst`
+**Signature**:
+```c
+static struct boot_info *boot_info_inst = nullptr;
+```
+**Description**:
+A static instance of `boot_info` struct. It's initially null until `hub` kernel entry explicitly sets it. Must be read-only and not modified during the kernel lifetime.
