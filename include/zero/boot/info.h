@@ -34,12 +34,12 @@ struct [[gnu::packed]] boot_mem_map {
         struct boot_mem_entry *entries[];
 };
 
-enum boot_mode_type {
+enum boot_mode_type : ubyte_t {
         BOOT_MODE_TROOT = 0,
         BOOT_MODE_GUI = 1,
 };
 
-struct boot_mode_info {
+struct [[gnu::packed]] boot_mode_info {
        enum boot_mode_type mode; 
 };
 
