@@ -1,6 +1,9 @@
 ; Copyright 2026 dywoq - Apache License 2.0
 ; A part of https://github.com/dywoq/zero
 
+%ifndef _BOOT_LOAD_MEM_S
+%define _BOOT_LOAD_MEM_S
+
 ; Gets a memory map using E820 method, iterating
 ; over memory map entries and storing in boot_mem_map.
 ;
@@ -46,3 +49,4 @@ section .bss
 boot_mem_buffer: 
         resb 800 ; 20 bytes each entry * 40 entries
 
+%endif

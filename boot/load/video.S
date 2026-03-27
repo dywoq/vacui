@@ -1,6 +1,9 @@
 ; Copyright 2026 dywoq - Apache License 2.0
 ; A part of https://github.com/dywoq/zero
 
+%ifndef _BOOT_LOAD_VIDEO_S
+%define _BOOT_LOAD_VIDEO_S
+
 section .text
 
 ; Setups a boot video information, 
@@ -46,3 +49,5 @@ boot_video_data:
     dw 0 ; VGA Mode 
     dw 0 ; Width
     dw 0 ; Height
+
+%endif
