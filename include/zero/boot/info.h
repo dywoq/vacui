@@ -6,7 +6,7 @@
 
 #include <zero/types.h>
 
-struct boot_vid_info {
+struct [[gnu::packed]] boot_vid_info {
         uword_t vga_mode;
         uword_t width;
         uword_t height;
@@ -21,7 +21,7 @@ enum boot_mem_entry_type : udword_t {
         BOOT_MEM_ENTRY_DISABLED = 7,
 };
 
-struct boot_mem_entry {
+struct [[gnu::packed]] boot_mem_entry {
         udword_t base_address_low;
         udword_t base_address_high;
         udword_t length_low;
@@ -40,7 +40,7 @@ enum boot_mode_type : ubyte_t {
 };
 
 struct [[gnu::packed]] boot_mode_info {
-       enum boot_mode_type mode; 
+        enum boot_mode_type mode;
 };
 
 struct [[gnu::packed]] boot_info {
