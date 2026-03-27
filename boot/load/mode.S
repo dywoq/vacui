@@ -5,7 +5,7 @@ section .data
 __mode_S_ENABLE_TERMINAL_MODE_ROOT db "Enable TerminalRoot mode? (y/n)"
 
 boot_mode_info:
-        db 0 ; 0 = troot, 1 = GUI
+        db 0 ; 0 = TerminalRoot, 1 = GUI
 
 section .text
 block_and_ask_for_mode:
@@ -21,7 +21,7 @@ block_and_ask_for_mode:
         jmp .print_loop
 ; Pauses and waits for the key (int 0x16 blocks the execution).
 ; If y => TerminalRoot mode (troot)
-; If n => Graphical user interface mode
+; If n => Graphical user interface mode (GUI)
 .pause:
         xor ah, ah
         int 0x16
