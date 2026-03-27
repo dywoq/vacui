@@ -1,6 +1,9 @@
 ; Copyright 2026 dywoq - Apache License 2.0
 ; A part of https://github.com/dywoq/zero
 
+%ifndef _BOOT_LOAD_MODE_S
+%define _BOOT_LOAD_MODE_S
+
 section .data
 __mode_S_ENABLE_TERMINAL_MODE_ROOT db "Enable TerminalRoot mode? (y/n)"
 
@@ -36,3 +39,5 @@ block_and_ask_for_mode:
 .turn_gui:
         mov [boot_mode_info], 1
         ret
+
+%endif

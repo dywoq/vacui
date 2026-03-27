@@ -1,8 +1,10 @@
 ; Copyright 2026 dywoq - Apache License 2.0
 ; A part of https://github.com/dywoq/zero
 
-; Each GDT entry weights 8 bytes
+%ifndef _BOOT_LOAD_GDT_S
+%define _BOOT_LOAD_GDT_S
 
+; Each GDT entry weights 8 bytes
 gdt_start:
         ; Null descriptor
         dq 0
@@ -28,3 +30,4 @@ gdt_ptr:
         dw gdt_end - gdt_start - 1
         dd gdt_start
 
+%endif
