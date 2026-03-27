@@ -7,17 +7,18 @@
 
 #define VRAM_ 0xB8000
 
-void vid_text_putc (char ch, ubyte_t fg_color, ubyte_t bg_color, ubyte_t row,
-                    ubyte_t col)
+struct vid_text_pos vid_text_putc (char ch, ubyte_t fg_color, ubyte_t bg_color,
+                                   ubyte_t row, ubyte_t col)
 {
         int index = (row * vid_text_width + col) * 2;
         volatile ubyte_t *vram = (ubyte_t *)VRAM_;
         vram[index] = ch;
         vram[index + 1] = (bg_color << 4) | fg_color;
+        return (struct vid_text_pos){.row = row + 1, .col = col + 1};
 }
 
-void vid_text_put (const char *str, ubyte_t fg_color, ubyte_t bg_color,
-                   ubyte_t row, ubyte_t col)
+struct vid_text_pos vid_text_put (const char *str, ubyte_t fg_color,
+                                  ubyte_t bg_color, ubyte_t row, ubyte_t col)
 {
         ubyte_t col_idx = col;
         ubyte_t row_idx = row;
@@ -31,4 +32,5 @@ void vid_text_put (const char *str, ubyte_t fg_color, ubyte_t bg_color,
                 vid_text_putc (ch, fg_color, bg_color, row_idx, col_idx);
                 col_idx++;
         }
+        return (struct vid_text_pos){.row = row_idx, .col = col_idx};
 }

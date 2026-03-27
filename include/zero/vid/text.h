@@ -6,12 +6,17 @@
 
 #include <zero/types.h>
 
+struct vid_text_pos {
+        ubyte_t row;
+        ubyte_t col;
+};
+
 static constexpr usize_t vid_text_width = 80;
 static constexpr usize_t vid_text_height = 25;
 
-void vid_text_putc (char ch, ubyte_t fg_color, ubyte_t bg_color, ubyte_t row,
-                    ubyte_t col);
-void vid_text_put (const char *str, ubyte_t fg_color, ubyte_t bg_color,
-                   ubyte_t row, ubyte_t col);
+struct vid_text_pos vid_text_putc (char ch, ubyte_t fg_color, ubyte_t bg_color,
+                                   ubyte_t row, ubyte_t col);
+struct vid_text_pos vid_text_put (const char *str, ubyte_t fg_color,
+                                  ubyte_t bg_color, ubyte_t row, ubyte_t col);
 
 #endif
