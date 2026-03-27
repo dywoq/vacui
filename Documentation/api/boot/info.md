@@ -6,7 +6,7 @@ The boot information is stored in `EBX` register as pointer after the boot loade
 ## `boot_vid_info`
 **Signature**:
 ```c
-struct boot_vid_info {
+struct [[gnu::packed]] boot_vid_info {
         uword_t mode;
         uword_t width;
         uword_t height;
@@ -40,7 +40,7 @@ enum boot_mem_entry_type : udword_t {
 ## `boot_mem_entry`
 **Signature**:
 ```c
-struct boot_mem_entry {
+struct [[gnu::packed]] boot_mem_entry {
         udword_t base_address_low;
         udword_t base_address_high;
         udword_t length_low;
