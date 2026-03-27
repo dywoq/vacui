@@ -21,7 +21,6 @@ def main() -> None:
     root = Path(__file__).parent.parent.parent
     files = find_c_files(root)
     for f in files:
-        print(f"Formatting {f}")
         format_file(f)
 
 
