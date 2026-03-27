@@ -21,3 +21,5 @@ It also works with sub-modules.
 - [`zero/boot/info.h`](./boot/info)
 ## Video
 - [zero/vid/text.h](./vid/text.md) 
+## TerminalRoot (`troot`)
+- [zero/troot/entry.h](./troot/entry.md) 

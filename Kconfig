@@ -5,4 +5,5 @@ mainmenu "Zero config"
 
 source "drvs/Kconfig"
 source "hub/Kconfig"
+source "troot/Kconfig"
 
