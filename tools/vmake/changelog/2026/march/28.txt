@@ -1,5 +1,0 @@
-	March 28 2026 Changelog
-
-1. The project was created and initialized.
-* Author: github.com/dywoq dywoq.contact@gmail.com
-* Extended description: <none>
