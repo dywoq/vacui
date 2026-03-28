@@ -1,0 +1,4 @@
+	vmake: March 28 2026 Changelog
+
+1. Initialize vmake workspace and project.
+* dywoq dywoq.contact@gmail.com github.com/dywoq
