@@ -1,2 +1,13 @@
 # Documentaton
 .obsidian/
+
+# MSVC
+Debug/
+Release/
+*.ncb
+*.opt
+*.plg
+*.aps
+
+# Misc
+RECYCLED/
