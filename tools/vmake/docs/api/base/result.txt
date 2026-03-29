@@ -1,0 +1,94 @@
+	base/vmake.base.docdef.h header
+
+- Description
+The base/vmake.base.docdef.h header contains 
+self-documentating macro definitions.
+
+- Symbols
+----------------------------------------------
+	Struct Result
+
+namespace vacui {
+	namespace make {
+		struct Result {
+			char *message;
+			bool ok;
+		};
+	}
+}
+
+Represents the result structure with a pointer
+to message and boolean flag.
+
+Must be freed by the function who got
+an allocated pointer to Result.
+
+Fields:
+- message: A pointer to message.
+- ok: A boolean flag which indicates, whether
+it's an error or not. It's useful 
+if message is NULLand you don't have any sources.
+
+----------------------------------------------
+	Function MakeResult
+
+namespace vacui {
+	namespace make {
+		Result* 
+		MakeResult(
+			IN const char *message);
+	}
+}
+
+Allocates a pointer to Result and duplicates
+message, storing duplicate in Result.
+
+Marks ok flag to false.
+
+Parameters:
+- message: A message to duplicate.
+
+Failures:
+- Returns NULL if it failed to allocate Result.
+- Returns allocated pointer to Result with NULL
+message, if it failed to duplicate message.
+----------------------------------------------
+	Function ResultOk
+
+namespace vacui {
+	namespace make {
+		Result*
+		ResultOk(
+			void);
+	}
+}
+
+Allocates a pointer to Result, setting the flag
+ok to true, and returns it.
+message Field is set to NULL.
+
+Use it if you want to indicate success of your
+operation.
+
+Failures:
+- Returns NULL if it failed to allocate Result.
+----------------------------------------------
+	Function FreeResult
+
+namespace vacui {
+	namespace make {
+		void
+		FreeResult(
+			OUT Result *result);
+	}
+}	
+
+Frees an allocated pointer to Result and 
+its message, setting pointer to NULL.
+result Parameter becomes unusable.
+
+Returns if result is already NULL and freed.
+
+Parameters:
+- result: A pointer to free.
+----------------------------------------------

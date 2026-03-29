@@ -1,0 +1,33 @@
+	base/vmake.base.docdef.h header
+
+- Description
+The base/vmake.base.docdef.h header contains 
+self-documentating macro definitions.
+
+- Symbols
+----------------------------------------------
+	Macro IN
+
+#ifndef IN
+#define IN
+#endif
+
+Marks the parameter as immutable input.
+----------------------------------------------
+	Macro OUT
+
+#ifndef OUT
+#define OUT
+#endif
+
+Marks the parameter as output, which can be
+modified by the function.
+----------------------------------------------
+	Macro OPT
+#ifndef OPT
+#define OPT
+#endif
+
+Marks the parameter as optional, which can be
+set to NULL.
+----------------------------------------------

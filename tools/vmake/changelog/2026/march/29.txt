@@ -1,0 +1,32 @@
+	vmake: March 29 2026 Changelog
+
+------------------------------------------------
+Create header files:
+	+ base/vmake,base.result.h
+	+ base/vmake.base.docdef.h
+* dywoq dywoq.contact@gmail.com github.com/dywoq
+------------------------------------------------
+New symbols:
+	- base/vmake.base.result.h
+		+ vacui::make::Result		
+		+ vacui::make::MakeResult
+		+ vacui::make::FreeResult
+	- base/vmake.base.docdef.h
+		+ IN
+		+ OUT
+		+ OPT
+* dywoq dywoq.contact@gmail.com github.com/dywoq
+------------------------------------------------
+Added API documentation for following headers:
+	- base/vmake.base.result.h
+		docs/api/base/result.txt
+	- base/vmake.base.docdef,h
+		docs/api/base/docdef.txt
+* dywoq dywoq.contact@gmail.com github.com/dywoq
+------------------------------------------------
+Remove Revisions fields in source/header files.
+
+It's useless, because VMake already stores
+changelogs and they're frequently updated.
+* dywoq dywoq.contact@gmail.com github.com/dywoq
+------------------------------------------------
