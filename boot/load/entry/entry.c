@@ -3,8 +3,10 @@
 
 #include <zero/types.h>
 
-void entry() {
-        while (true) {
-                __asm volatile ("hlt\n");
-        }
+void entry()
+{
+    while (true)
+    {
+        __asm volatile("hlt\n");
+    }
 }

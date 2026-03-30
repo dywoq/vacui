@@ -1,11 +1,5 @@
-BasedOnStyle: LLVM
-IndentWidth: 8
-AlignAfterOpenBracket: true
-AlignArrayOfStructures: Left 
-AlignEscapedNewlines: Left
-AllowShortFunctionsOnASingleLine: All
-AllowShortLambdasOnASingleLine: All
-AllowShortNamespacesOnASingleLine: false
+BasedOnStyle: Microsoft
+IndentWidth: 4
 BinPackArguments: false
 BinPackParameters: AlwaysOnePerLine
 NamespaceIndentation: All
