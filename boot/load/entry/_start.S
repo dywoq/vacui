@@ -1,9 +1,10 @@
-# Copyright 2026 dywoq - Apache License 2.0
-# A part of https://github.com/dywoq/zero
+// Copyright 2026 dywoq - Apache License 2.0
+// A part of https://github.com/dywoq/zero
 
 .code16
 .section .start
 .global _start
+.extern entry
 
 _start:
         cli

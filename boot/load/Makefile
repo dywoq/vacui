@@ -31,7 +31,7 @@ TARGET  ?= $(BUILD)/load.bin
 GEN_KCONFIG := scripts/gen-kconfig.py
 PYTHON := python3
 
-MODULES := entry
+MODULES := entry bios
 
 SRCS_C := $(foreach m, $(MODULES), $(wildcard $(m)/*.c))
 SRCS_AS := $(foreach m, $(MODULES), $(wildcard $(m)/*.S))
