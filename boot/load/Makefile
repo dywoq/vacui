@@ -17,7 +17,9 @@ CXXFLAGS  ?= -Wall \
 	-fno-unwind-tables \
     	-fno-ident \
     	-ffunction-sections \
-    	-fdata-sections
+    	-fdata-sections \
+	-fno-rtti \
+	-fno-exceptions
 	
 ASM ?= as
 ASMFLAGS := --32
@@ -31,7 +33,7 @@ TARGET  ?= $(BUILD)/load.bin
 GEN_KCONFIG := scripts/gen-kconfig.py
 PYTHON := python3
 
-MODULES := entry
+MODULES := entry bios
 
 SRCS_CXX := $(foreach m, $(MODULES), $(wildcard $(m)/*.cxx))
 SRCS_AS := $(foreach m, $(MODULES), $(wildcard $(m)/*.S))
