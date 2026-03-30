@@ -2,5 +2,4 @@
 # A part of https://github.com/dywoq/zero
 
 mainmenu "Zero Load Stage config"
-source "entry/Kconfig"
 

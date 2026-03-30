@@ -1,12 +1,12 @@
 # Copyright 2026 dywoq - Apache License 2.0
 # A part of https://github.com/dywoq/zero
 
-CC ?= gcc
-CFLAGS  ?= -Wall \
+CXX ?= g++
+CXXFLAGS  ?= -Wall \
 	-Wextra \
 	-Iinclude \
 	-I../../shared/include \
-	--std=gnu23 \
+	--std=gnu++2c \
 	-m32 \
 	-fno-pic \
 	-fno-pie \
@@ -31,11 +31,11 @@ TARGET  ?= $(BUILD)/load.bin
 GEN_KCONFIG := scripts/gen-kconfig.py
 PYTHON := python3
 
-MODULES := entry bios
+MODULES := entry
 
-SRCS_C := $(foreach m, $(MODULES), $(wildcard $(m)/*.c))
+SRCS_CXX := $(foreach m, $(MODULES), $(wildcard $(m)/*.cxx))
 SRCS_AS := $(foreach m, $(MODULES), $(wildcard $(m)/*.S))
-OBJS := $(patsubst %.c, $(BUILD)/%.o, $(SRCS_C)) \
+OBJS := $(patsubst %.cxx, $(BUILD)/%.o, $(SRCS_CXX)) \
 	$(patsubst %.S, $(BUILD)/%.o, $(SRCS_AS))
 
 all: config $(TARGET)
@@ -47,9 +47,9 @@ $(TARGET): $(OBJS)
 	@objcopy -O binary $@.elf $@
 	@rm $@.elf
 
-$(BUILD)/%.o: %.c | dirs
-	@echo " CC $<"
-	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+$(BUILD)/%.o: %.cxx | dirs
+	@echo " CXX $<"
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(BUILD)/%.o: %.S | dirs
 	@echo " ASM $<"

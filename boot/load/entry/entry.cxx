@@ -3,12 +3,11 @@
 
 __asm(".code16");
 
-#include <bios/video.h>
-#include <zero/types.h>
+#include <zero/types.hxx>
 
-void entry()
+extern "C" void
+Entry()
 {
-    bios_video_mode_set(0x13);
     while (true)
     {
         __asm volatile("hlt\n" : : :);

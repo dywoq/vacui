@@ -16,4 +16,4 @@ _start:
         movw %ax, %sp
         sti
 
-        call entry
+        call Entry

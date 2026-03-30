@@ -3,4 +3,5 @@ IndentWidth: 4
 BinPackArguments: false
 BinPackParameters: AlwaysOnePerLine
 NamespaceIndentation: All
-
+IndentExternBlock: NoIndent
+AlwaysBreakAfterReturnType: All
