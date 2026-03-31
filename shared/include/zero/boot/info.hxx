@@ -38,10 +38,16 @@ extern "C" struct Zr_BootInfoMemory
     struct Zr_BootInfoMemoryMapEntry *entries[];
 };
 
+extern "C" struct Zr_BootInfoMode
+{
+    zero::UWord mode;
+};
+
 extern "C" struct Zr_BootInfo
 {
     struct Zr_BootInfoVideo *video;
     struct Zr_BootInfoMemory *memory;
+    struct Zr_BootInfoMode *mode;
 };
 
 #endif
