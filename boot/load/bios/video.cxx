@@ -12,7 +12,8 @@ namespace zero::boot::bios
     void
     SetVideoMode(UWord mode)
     {
-        __asm volatile("movw %0, %%ax\n"
+        __asm volatile("xorb %%ah, %%ah\n"
+                       "movw %0, %%ax\n"
                        "int $0x10\n"
                        :
                        : "r"(mode)
