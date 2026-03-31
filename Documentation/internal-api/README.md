@@ -16,3 +16,6 @@ boot/load/         -> Documentation/internal-api/
 -- -- bios/        -> -- -- bios/
 -- -- -- video.hxx -> -- -- -- video.md
 ```
+# Navigation
+## Subsystem
+- [Boot Load stage (boot/load)](./boot-load/README.md)
