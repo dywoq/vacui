@@ -17,7 +17,7 @@ namespace zero::boot::bios
                        "int $0x10\n"
                        :
                        : "r"(mode)
-                       : "ax");
+                       : "ax", "ah");
         currentVideoMode_ = mode;
     }
 
