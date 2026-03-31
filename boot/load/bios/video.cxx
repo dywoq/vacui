@@ -7,6 +7,8 @@ __asm(".code16");
 
 namespace zero::boot::bios
 {
+    static UWord currentVideoMode_ = 0x03;
+
     void
     SetVideoMode(UWord mode)
     {
@@ -15,5 +17,12 @@ namespace zero::boot::bios
                        :
                        : "r"(mode)
                        : "ax");
+        currentVideoMode_ = mode;
+    }
+
+    UWord
+    GetVideoMode()
+    {
+        return currentVideoMode_;
     }
 } // namespace zero::boot::bios

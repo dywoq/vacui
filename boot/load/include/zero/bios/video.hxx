@@ -10,6 +10,9 @@ namespace zero::boot::bios
 {
     void
     SetVideoMode(UWord mode);
+
+    UWord
+    GetVideoMode();
 } // namespace zero::boot::bios
 
 #endif
