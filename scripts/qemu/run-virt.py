@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-# Copyright 2026 BellusTM - Apache License 2.0
-# A part of https://github.com/bellustm/vacui
+# Copyright 2026 dywoq - Apache License 2.0
+# A part of https://github.com/dywoq/vacui
 
 import subprocess
 import sys

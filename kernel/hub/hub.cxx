@@ -1,5 +1,5 @@
-// Copyright 2026 BellusTM - Apache License 2.0
-// A part of https://github.com/bellustm/vacui
+// Copyright 2026 dywoq - Apache License 2.0
+// A part of https://github.com/dywoq/vacui
 
 #include <vacui/kernel/base/print.hxx>
 #include <vacui/kernel/hub/panic.hxx>
