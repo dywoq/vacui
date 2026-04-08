@@ -38,7 +38,7 @@ GEN_KCONFIG := scripts/gen-kconfig.py
 PYTHON := python3
 
 MODULES := hub utility base \
-	   devices
+	   devices task
 
 SRCS_CXX := $(foreach m, $(MODULES), $(wildcard $(m)/*.cxx))
 SRCS_AS := $(foreach m, $(MODULES), $(wildcard $(m)/*.S))

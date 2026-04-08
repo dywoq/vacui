@@ -5,4 +5,5 @@ source "hub/Kconfig"
 source "utility/Kconfig"
 source "base/Kconfig"
 source "devices/Kconfig"
+source "task/Kconfig"
 
