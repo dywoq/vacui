@@ -1,0 +1,4 @@
+# Copyright 2026 BellusTM - Apache License 2.0
+# A part of https://github.com/bellustm/vacui
+
+obj-y += hub/ utility/ base/

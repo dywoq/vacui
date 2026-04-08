@@ -1,0 +1,14 @@
+# Copyright 2026 BellusTM - Apache License 2.0
+# A part of https://github.com/bellustm/vacui
+
+menu "Hub"
+
+config HUB_DEBUG
+        bool "Hub debugging"
+        default y
+        depends on UTILITY_DEBUG 
+        help
+                Enables debug features for hub module.
+                Depends on CONFIG_UTILITY_DEBUG option.
+
+endmenu

@@ -1,0 +1,7 @@
+CompileFlags:
+  Add: [--std=c++26]
+
+Index:
+  Background: Skip
+Diagnostics:
+  UnusedIncludes: None

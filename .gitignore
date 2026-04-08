@@ -1,19 +1,15 @@
-# temp
+# Temp directories
+.tmp
 .build
+.cache
 
-# kconfig
+# Python
+__pycache__
+
+# Autoconfiguration
+autoconf.h
 .config
 .config.*
 
-# cache files
-.cache
-
-# autoconf
-autoconf.h
-
-# clangd
+# Clangd
 compile_commands.json
-
-# editors
-.zed
-.vscode

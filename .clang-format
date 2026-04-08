@@ -1,7 +1,19 @@
 BasedOnStyle: Microsoft
 IndentWidth: 4
-BinPackArguments: false
-BinPackParameters: AlwaysOnePerLine
+BreakAfterReturnType: All
+BreakBeforeCloseBracketFunction: true
+BreakBeforeTemplateCloser: true
+FixNamespaceComments: true
+IncludeBlocks: Regroup
+IndentExternBlock: AfterExternBlock
+IndentRequiresClause: true
+KeepEmptyLines:
+   AtEndOfFile: true
+   AtStartOfBlock: false
+   AtStartOfFile: false
 NamespaceIndentation: All
-IndentExternBlock: NoIndent
-AlwaysBreakAfterReturnType: All
+RemoveEmptyLinesInUnwrappedLines: true
+ShortNamespaceLines: 0
+SortIncludes:
+   Enabled: true
+BinPackParameters: AlwaysOnePerLine

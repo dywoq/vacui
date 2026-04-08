@@ -1,0 +1,13 @@
+# Copyright 2026 BellusTM - Apache License 2.0
+# A part of https://github.com/bellustm/vacui
+
+menu "Utility"
+
+config UTILITY_DEBUG
+        bool "Debug mode (ON/OFF)"
+        default y
+        help
+                If it's on, the debug features (such as logging) are enabled.
+
+endmenu
+
