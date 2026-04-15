@@ -1,9 +1,0 @@
-# Copyright 2026 dywoq - Apache License 2.0
-# A part of https://github.com/dywoq/vacui
-
-source "hub/Kconfig"
-source "utility/Kconfig"
-source "base/Kconfig"
-source "devices/Kconfig"
-source "task/Kconfig"
-
