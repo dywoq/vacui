@@ -28,3 +28,5 @@ to
 
 This works recursively.
 
+The only exception is a directory 'shared', which has the documentation
+of the shared headers in the root's include directory.
