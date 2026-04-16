@@ -8,11 +8,23 @@ headers.
 The structure of documentation of internal API mirrors
 the OS part's 'include' directory:
 
+from
+
+| - <part of OS>/
+| - - <subsystem>/
+| - - - include/
+| - - - - vacui/
+| - - - - - <part of OS>/
+| - - - - - - <subsystem>/
+| - - - - - - - <header>.h
+
+to
+
 | docs/
 | - api/
 | - - <part of OS>/
 | - - - <subsystem>/
-| - - - - header.h
+| - - - - <header>.h
 
 This works recursively.
 
