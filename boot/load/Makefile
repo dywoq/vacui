@@ -4,9 +4,8 @@
 C := gcc
 CFLAGS := -Wall \
     -Wextra \
-    -Iinclude \
-    -I../include \
-    --std=gnu23 \
+    -Iinclude  \
+    -std=gnu23 \
     -fno-pic \
     -fno-pie \
     -fno-stack-protector \
@@ -16,13 +15,14 @@ CFLAGS := -Wall \
     -fno-unwind-tables \
     -fno-ident \
     -ffunction-sections \
-    -fdata-sections 
+    -fdata-sections \
+    -m32
 
-ASM := as
-ASMFLAGS := --32
+ASM := nasm
+ASMFLAGS := -f elf32
 
 LD := ld
-LDFLAGS  := -T kernel.ld -nostdlib --gc-sections
+LDFLAGS  := -m elf_i386 -T linker.ld -nostdlib --gc-sections
 
 OBJCOPY ?= objcopy
 
@@ -32,12 +32,12 @@ TARGET  ?= $(BUILD)/kernel.bin
 GEN_KCONFIG := scripts/gen-kconfig.py
 PYTHON := python3
 
-MODULES := entry
+MODULES := hub
 
 SRCS_C := $(foreach m, $(MODULES), $(wildcard $(m)/*.c))
-SRCS_AS := $(foreach m, $(MODULES), $(wildcard $(m)/*.S))
-OBJS := $(patsubst %.c, $(BUILD)/%.o, $(SRCS_CXX)) \
-	$(patsubst %.S, $(BUILD)/%.o, $(SRCS_AS))
+SRCS_ASM := $(foreach m, $(MODULES), $(wildcard $(m)/*.S))
+OBJS := $(patsubst %.c, $(BUILD)/%.o, $(SRCS_C)) \
+	$(patsubst %.S, $(BUILD)/%.o, $(SRCS_ASM))
 
 # ----------- Building --------------
 all: config $(TARGET)
@@ -50,11 +50,11 @@ $(TARGET): $(OBJS)
 
 $(BUILD)/%.o: %.c | dirs
 	@echo " C 	 $<"
-	@$(C) $(CFLAGS) -c $< -o $@
+	$(C) $(CFLAGS) -c $< -o $@
 
 $(BUILD)/%.o: %.S | dirs
 	@echo " ASM 	 $<"
-	@$(ASM) $(ASMFLAGS) $< -o $@
+	@$(ASM) $(ASMFLAGS) -o $@ $<
 
 dirs:
 	@$(foreach m, $(MODULES), mkdir -p $(BUILD)/$(m);)
