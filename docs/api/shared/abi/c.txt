@@ -1,0 +1,16 @@
+        == vacui/abi/c.h header ==
+
+The 'vacui/abi/c.h' header contains the functionality,
+that is associated with C ABI.
+
+-------------------------------------------------
+        == Macro VACUI_ABI_EXTERN_C ==
+
+| 
+| #define VACUI_ABI_EXTERN_C    
+|
+
+Expands to the 'extern "C"' if __cplusplus macro is defined.
+It's used to keep ABI stable, so C++/Rust normally access
+C functions.
+
