@@ -12,7 +12,8 @@ Start:
         mov es, ax 
         mov ds, ax 
         mov ss, ax 
-        mov sp, 0x9999 
+        mov sp, 0x7BFF
+        mov esp, 0x7BFF
         sti 
 
         call Hub

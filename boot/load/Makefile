@@ -16,7 +16,8 @@ CFLAGS := -Wall \
     -fno-ident \
     -ffunction-sections \
     -fdata-sections \
-    -m32
+    -m32 \
+    -Wstack-usage=30464
 
 ASM := nasm
 ASMFLAGS := -f elf32
@@ -27,7 +28,7 @@ LDFLAGS  := -m elf_i386 -T linker.ld -nostdlib --gc-sections
 OBJCOPY ?= objcopy
 
 BUILD = .build
-TARGET  ?= $(BUILD)/kernel.bin
+TARGET  ?= $(BUILD)/load.bin
 
 GEN_KCONFIG := scripts/gen-kconfig.py
 PYTHON := python3
@@ -50,7 +51,7 @@ $(TARGET): $(OBJS)
 
 $(BUILD)/%.o: %.c | dirs
 	@echo " C 	 $<"
-	$(C) $(CFLAGS) -c $< -o $@
+	@$(C) $(CFLAGS) -c $< -o $@
 
 $(BUILD)/%.o: %.S | dirs
 	@echo " ASM 	 $<"

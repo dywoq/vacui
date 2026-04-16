@@ -14,5 +14,5 @@ autoconf.h
 # Clangd
 compile_commands.json
 
-#
-*.err
+# Images
+*.img
