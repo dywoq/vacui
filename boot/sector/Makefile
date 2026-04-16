@@ -1,8 +1,8 @@
 # Copyright 2026 dywoq - Apache License 2.0
 # A part of https://github.com/dywoq/vacui
 
-ASM := uasm
-ASMFLAGS := -bin
+ASM := nasm
+ASMFLAGS := -f bin
 
 BUILD := .build
 TARGET := $(BUILD)/sector.bin
@@ -13,7 +13,7 @@ all: $(TARGET)
 
 $(TARGET): $(BUILD)
 	@echo " ASM   $(TARGET)"
-	@$(ASM) $(ASMFLAGS) -Fo $(TARGET) $(SECTOR)
+	@$(ASM) $(ASMFLAGS) -o $(TARGET) $(SECTOR)
 
 $(BUILD):
 	@echo " MKDIR $(BUILD)"
