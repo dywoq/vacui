@@ -3,17 +3,15 @@
 
 bits 16 
 section .start 
-global Start 
-extern Hub 
+global _start 
+extern hub 
 
-Start: 
-        cli 
-        xor ax, ax 
+_start: 
+        cli xor ax, ax 
         mov es, ax 
         mov ds, ax 
         mov ss, ax 
-        mov sp, 0x7BFF
-        mov esp, 0x7BFF
+        mov sp, 0x7BFF 
+        mov esp, 0x7BFF 
         sti 
-
-        call Hub
+        call hub

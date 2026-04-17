@@ -16,7 +16,7 @@
 ;
 ; Parameters:
 ;      * si: A pointer to string.
-PrintStr:
+print_str:
 .loop:
         cmp [si], 0
         je .return

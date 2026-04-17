@@ -1,7 +1,7 @@
 /* Copyright 2026 dywoq - Apache License 2.0
  * A part of https://github.com/dywoq/vacui */
 
-ENTRY(Start)
+ENTRY(_start)
 OUTPUT_FORMAT(elf32-i386)
 
 SECTIONS

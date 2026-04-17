@@ -6,6 +6,7 @@ CFLAGS := -Wall \
     -Wextra \
     -Iinclude  \
     -I../../include/ \
+    -I../include/ \
     -std=gnu23 \
     -fno-pic \
     -fno-pie \
@@ -34,7 +35,7 @@ TARGET  ?= $(BUILD)/load.bin
 GEN_KCONFIG := scripts/gen-kconfig.py
 PYTHON := python3
 
-MODULES := hub bios
+MODULES := hub
 
 SRCS_C := $(foreach m, $(MODULES), $(wildcard $(m)/*.c))
 SRCS_ASM := $(foreach m, $(MODULES), $(wildcard $(m)/*.S))

@@ -4,7 +4,7 @@
 bits 16
 org 0x7c00
 
-Start: 
+_start: 
         cli
         xor ax, ax
         mov es, ax
@@ -14,15 +14,15 @@ Start:
         sti
         
         mov ah, 0x42
-        mov si, LoadDap
+        mov si, load_dap
         mov dl, 0x80
         int 0x13
-        jc .diskError
+        jc .disk_error
         
         jmp 0x0800:0x0
-.diskError:
+.disk_error:
         mov si, ERROR_DISK_ERROR_FAILED_GETTING_LOAD_STAGE
-        call PrintStr
+        call print_str
         jmp .loop
 .loop:
         hlt
@@ -35,7 +35,7 @@ ERROR_DISK_ERROR_FAILED_GETTING_LOAD_STAGE:
         db "DISK ERROR: Failed to get 'Load stage'", 0
 
 ; The disk address pockets.
-LoadDap:
+load_dap:
         db 16
         db 0
         dw 2
