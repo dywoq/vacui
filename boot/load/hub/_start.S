@@ -7,7 +7,8 @@ global _start
 extern hub 
 
 _start: 
-        cli xor ax, ax 
+        cli 
+        xor ax, ax 
         mov es, ax 
         mov ds, ax 
         mov ss, ax 
