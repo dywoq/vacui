@@ -1,4 +1,4 @@
-BasedOnStyle: Microsoft
+BasedOnStyle: LLVM 
 IndentWidth: 4
 BreakBeforeCloseBracketFunction: true
 BreakBeforeTemplateCloser: true
@@ -16,3 +16,4 @@ ShortNamespaceLines: 0
 SortIncludes:
    Enabled: true
 BinPackParameters: AlwaysOnePerLine
+BreakBeforeBraces: Attach
