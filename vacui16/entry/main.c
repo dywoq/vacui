@@ -1,3 +1,6 @@
-void _start() {
+void 
+Entry(
+	void) 
+{
 	while (true);
 }
