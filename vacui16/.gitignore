@@ -3,14 +3,6 @@
 .build
 .cache
 
-# Python
-__pycache__
-
-# Autoconfiguration
-autoconf.h
-.config
-.config.*
-
 # Clangd
 compile_commands.json
 
