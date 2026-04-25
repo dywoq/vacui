@@ -8,3 +8,9 @@ compile_commands.json
 
 # Images
 *.img
+
+# Object files
+*.o
+
+# Xmake
+.xmake
