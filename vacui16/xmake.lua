@@ -6,8 +6,8 @@ target("kernel")
 	set_kind("binary")
 	set_policy("check.auto_ignore_flags", false)
 	add_files(
-		"entry/*.c",
-		"entry/*.S",
+		"hub/*.c",
+		"hub/*.S",
 		
 		"bios/*.c"
 	)
