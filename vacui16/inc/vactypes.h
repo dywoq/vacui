@@ -12,6 +12,9 @@
  * 	Apr-26 9:44 AM 2026
  * 	- Creation date
  *
+ * 	Apr-26 10:29 AM 2026
+ * 	- Add VAC_VOID type alias.
+ * 	- Make VAC_PVOID use VAC_VOID*, instead of just void *. 
  * Authors:
  * 	dywoq dywoq.contact@gmail.com
  */
@@ -28,6 +31,7 @@ typedef unsigned short 		VAC_USHORT;
 typedef unsigned int 		VAC_UINT;
 typedef unsigned long long 	VAC_ULONG;
 
-typedef void *			VAC_PVOID;
+typedef void			VAC_VOID;
+typedef VAC_VOID *		VAC_PVOID;
 
 #endif
