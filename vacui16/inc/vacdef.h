@@ -8,10 +8,6 @@
  * Module description:
  * 	Definition macros
  *
- * History:
- * 	Apr-26 9:50 AM 2026
- * 	- Creation date
- *
  * Authors:
  * 	dywoq dywoq.contact@gmail.com
  */

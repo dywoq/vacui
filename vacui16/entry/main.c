@@ -8,10 +8,6 @@
  * Module description:
  * 	A kernel entry file
  *
- * History:
- * 	Apr-25 10:12PM 2026
- * 	- Creation date
- *
  * Authors:
  * 	dywoq dywoq.contact@gmail.com
  */

@@ -8,9 +8,9 @@
 ; Module description:
 ;	A CRT0 code of kernel 	
 ;
-; History:
-; 	Apr-25 2026
-;	- Creation date
+; Authors:
+;	dywoq dywoq.contact@gmail.com
+;
 
 bits 16 
 section .start

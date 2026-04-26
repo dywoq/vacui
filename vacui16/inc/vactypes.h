@@ -8,13 +8,6 @@
  * Module description:
  * 	Shortcut types, integral types
  *
- * History:
- * 	Apr-26 9:44 AM 2026
- * 	- Creation date
- *
- * 	Apr-26 10:29 AM 2026
- * 	- Add VAC_VOID type alias.
- * 	- Make VAC_PVOID use VAC_VOID*, instead of just void *. 
  * Authors:
  * 	dywoq dywoq.contact@gmail.com
  */

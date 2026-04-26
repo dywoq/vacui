@@ -8,10 +8,6 @@
  * Module description:
  * 	Master header of BIOS
  *
- * History:
- * 	Apr-26 10:03 AM 2026
- * 	- Creation date
- *
  * Authors:
  * 	dywoq dywoq.contact@gmail.com
  */
