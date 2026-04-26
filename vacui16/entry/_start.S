@@ -23,6 +23,7 @@ _start:
 	mov ds, ax
 	mov ss, ax
 	mov sp, 0x7bff
+	mov esp, 0x7bff
 	sti
 
 	call Entry

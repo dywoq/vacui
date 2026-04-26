@@ -7,7 +7,9 @@ target("kernel")
 	set_policy("check.auto_ignore_flags", false)
 	add_files(
 		"entry/*.c",
-		"entry/*.S"
+		"entry/*.S",
+		
+		"bios/*.c"
 	)
 	set_toolset("as", "nasm")
 	set_toolset("ld", "ld")

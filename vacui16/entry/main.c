@@ -11,10 +11,15 @@
  * Authors:
  * 	dywoq dywoq.contact@gmail.com
  */
-	
+
+__asm(".code16gcc");
+
+#include <biosvid.h>
+
 void 
 Entry(
 	void) 
 {
+	BiosTeletypePrint("Hi!\n\r");
 	while (true);
 }
