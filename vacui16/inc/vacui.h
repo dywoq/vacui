@@ -14,6 +14,7 @@
 #ifndef _VACUI_H
 #define _VACUI_H
 
+#include <vacpanic.h>
 #include <vactypes.h>
 #include <vacdef.h>
 
