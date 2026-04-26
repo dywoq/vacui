@@ -14,6 +14,6 @@
 #ifndef _BIOS_H
 #define _BIOS_H
 
-
+#include <biosvid.h>
 
 #endif
