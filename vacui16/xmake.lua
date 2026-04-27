@@ -8,8 +8,6 @@ target("kernel")
 	add_files(
 		"hub/*.c",
 		"hub/*.S",
-		
-		"bios/*.c"
 	)
 	set_toolset("as", "nasm")
 	set_toolset("ld", "ld")
