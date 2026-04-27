@@ -3,17 +3,16 @@
  * A part of https://github.com/dywoq/vacui
  *
  * Module name:
- * 	biosvid.h
+ * 	bios/vid.c
  *
  * Module description:
- * 	Thin wrappers around BIOS video serivces interrupt
+ * 	An implementation of biosvid.h header
  *
  * Authors:
  * 	dywoq dywoq.contact@gmail.com
  */
 
-#ifndef _BIOSVID_H
-#define _BIOSVID_H
+__asm(".code16gcc");
 
 #include <vqtypes.h>
 #include <vqdef.h>
@@ -23,6 +22,12 @@ BiosTeletypeOutput(
 	IN BYTE character,
 	IN BYTE pageNumber,
 	IN BYTE attribute
-	);
+	)
+{
+	__asm volatile(
+		"int $0x10\n"
+		:
+		: "a" ((0x0E << 8) | character), "b" ((pageNumber << 8) | attribute)
+		: "cc", "memory");
+}
 
-#endif

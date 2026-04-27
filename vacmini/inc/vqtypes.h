@@ -20,10 +20,10 @@ typedef short		SHORT;
 typedef int		INT;
 typedef long long	LONG;
 
-typedef unsigned BYTE 	UBYTE;
-typedef unsigned SHORT	USHORT;
-typedef unsigned INT	UINT;
-typedef unsigned LONG	ULONG;
+typedef unsigned char 		UBYTE;
+typedef unsigned short		USHORT;
+typedef unsigned int		UINT;
+typedef unsigned long long	ULONG;
 
 typedef void		VOID;
 typedef VOID*		PVOID;

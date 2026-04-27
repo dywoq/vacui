@@ -14,9 +14,14 @@
 
 __asm(".code16gcc");
 
+#include <biosvid.h>
+
 void 
 Entry(
 	void) 
 {
+	
+	BiosTeletypeOutput('A', 0, 0x07);
+
 	while (true);
 }
