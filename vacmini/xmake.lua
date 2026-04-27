@@ -7,8 +7,7 @@ target("kernel")
 	set_policy("check.auto_ignore_flags", false)
 	add_files(
 		"hub/*.c",
-		"hub/*.S",
-	)
+		"hub/*.S")
 	set_toolset("as", "nasm")
 	set_toolset("ld", "ld")
 
