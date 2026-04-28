@@ -20,8 +20,6 @@ void
 Entry(
 	void) 
 {
-	
-	BiosTeletypeOutput('A', 0, 0x07);
-
+	BiosSetVidMode(BIOS_VID_X320_200);
 	while (true);
 }

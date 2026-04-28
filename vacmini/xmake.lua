@@ -13,10 +13,10 @@ target("kernel")
 	set_toolset("as", "nasm")
 	set_toolset("ld", "ld")
 
-	add_cflags("-Wall", "-Wextra", "-std=gnu23", "-fno-pic", "-fno-pie",
+	add_cflags("-Wall", "-Werror", "-std=gnu23", "-fno-pic", "-fno-pie",
 		"-fno-stack-protector", "-ffreestanding", "-nostdlib", "-fno-asynchronous-unwind-tables",
 		"-fno-unwind-tables", "-fno-ident", "-ffunction-sections", "-fdata-sections",
 		"-m32", "-Wstack-usage=30464")
 	add_asflags("-f elf32")
-	add_ldflags("-nostdlib", "--gc-sections", "-T linker.ld", "-m elf_i386")
+	add_ldflags("-nostdlib", "--gc-sections", "-T linker.ld", "-m elf_i386", "-no-warn-rwx-segments")
 	add_includedirs("inc")

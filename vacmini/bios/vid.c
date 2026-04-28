@@ -16,6 +16,17 @@ __asm(".code16gcc");
 
 #include <vqtypes.h>
 #include <vqdef.h>
+#include <biosvid.h>
+
+VOID
+BiosSetVidMode(
+	IN BIOS_VIDMODE newMode)
+{
+	__asm volatile("int $0x10\n"
+			:
+			: "a" ((0x00 << 8) | newMode)
+			: "cc", "memory");
+}
 
 VOID
 BiosTeletypeOutput(

@@ -14,6 +14,7 @@
 
 bits 16 
 section .start
+global _start
 extern Entry
 
 _start:
