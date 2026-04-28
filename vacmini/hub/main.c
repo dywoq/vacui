@@ -15,11 +15,12 @@
 __asm(".code16gcc");
 
 #include <biosvid.h>
+#include <vqprint.h>
 
 void 
 Entry(
 	void) 
 {
-	BiosSetVidMode(BIOS_VID_X320_200);
+	Print("Hi!\n");
 	while (true);
 }
