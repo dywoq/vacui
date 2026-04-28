@@ -15,11 +15,12 @@
 __asm(".code16gcc");
 
 #include <biosvid.h>
-#include <vqprint.h>
+#include <vqpanic.h>
 
 void 
 Entry(
 	void) 
 {
+	Panic("Hi!");
 	while (true);
 }
