@@ -21,6 +21,5 @@ void
 Entry(
 	void) 
 {
-	Print("Hi!\n");
 	while (true);
 }

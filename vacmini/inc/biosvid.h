@@ -18,8 +18,8 @@
 #include <vqtypes.h>
 #include <vqdef.h>
 
+/* Video mode management */
 typedef USHORT BIOS_VIDMODE;
-
 #define BIOS_VID_X80_25 	(BIOS_VIDMODE)0x03
 #define BIOS_VID_X320_200	(BIOS_VIDMODE)0x13
 
@@ -28,6 +28,7 @@ BiosSetVidMode(
 	IN BIOS_VIDMODE newMode
 	);
 
+/* Teletype functions */
 VOID
 BiosTeletypeOutput(
 	IN BYTE character,
