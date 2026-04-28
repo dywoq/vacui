@@ -15,17 +15,19 @@
 #ifndef _VQTYPES_H
 #define _VQTYPES_H
 
-typedef char		BYTE;
-typedef short		SHORT;
-typedef int		INT;
-typedef long long	LONG;
+typedef char			BYTE;
+typedef short			SHORT;
+typedef int			INT;
+typedef long long		LONG;
 
 typedef unsigned char 		UBYTE;
 typedef unsigned short		USHORT;
 typedef unsigned int		UINT;
 typedef unsigned long long	ULONG;
 
-typedef void		VOID;
-typedef VOID*		PVOID;
+typedef void			VOID;
+typedef VOID*			PVOID;
+
+typedef const char *		C_STR;
 
 #endif
