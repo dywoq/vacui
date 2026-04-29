@@ -1,5 +1,6 @@
 AlignAfterOpenBracket: BlockIndent
-BinPackParameters: false
-AllowAllParametersOfDeclarationOnNextLine: false
-BreakAfterOpenBracketFunction: true
-ColumnLimit: 70
+BinPackParameters: AlwaysOnePerLine
+AlignConsecutiveAssignments: 
+   Enabled: true
+AlignConsecutiveDeclarations:
+    Enabled: true
