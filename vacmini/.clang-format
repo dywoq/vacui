@@ -5,3 +5,9 @@ AlignConsecutiveAssignments:
 AlignConsecutiveDeclarations:
   Enabled: true
 IndentWidth: 4
+
+BreakBeforeBraces: Custom
+BraceWrapping:
+   AfterFunction: true
+   AfterExternBlock: true
+

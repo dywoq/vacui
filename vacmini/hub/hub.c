@@ -6,7 +6,8 @@
 
 __asm(".code16gcc");
 
-[[noreturn]] void hub() {
+[[noreturn]] void hub()
+{
     while (true)
         ;
 }
