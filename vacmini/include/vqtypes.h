@@ -18,4 +18,3 @@ typedef long long          vq_i64_t;
 typedef unsigned long long vq_u64_t;
 
 #endif
- 
