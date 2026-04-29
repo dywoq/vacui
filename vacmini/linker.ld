@@ -1,4 +1,4 @@
-ENTRY(_start)
+ENTRY(startup)
 OUTPUT_FORMAT(elf32-i386)
 
 SECTIONS
