@@ -26,4 +26,14 @@ typedef struct [[gnu::packed]] _BIOS_DAP {
 	ULONG start;
 } BIOS_DAP, *PBIOS_DAP;
 
+typedef struct [[gnu::packed]] _BIOS_EXTENDED_RESULT {
+	UBYTE errorCode;
+} BIOS_EXTENDED_RESULT, *PBIOS_EXTENDED_RESULT;
+
+BIOS_EXTENDED_RESULT
+BiosExtendedRead(
+	UBYTE driveNumber,
+	PBIOS_DAP dap
+	);
+
 #endif
