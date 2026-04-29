@@ -1,6 +1,7 @@
 AlignAfterOpenBracket: BlockIndent
 BinPackParameters: AlwaysOnePerLine
-AlignConsecutiveAssignments: 
-   Enabled: true
+AlignConsecutiveAssignments:
+  Enabled: true
 AlignConsecutiveDeclarations:
-    Enabled: true
+  Enabled: true
+IndentWidth: 4
