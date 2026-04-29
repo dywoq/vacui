@@ -1,9 +1,5 @@
-;
 ; Copyright 2026 dywoq - Apache License 2.0
 ; A part of https://github.com/dywoq/vacui
-;
-; Module name:
-; 	sector.S
 ;
 ; Module description:
 ; 	A boot sector of 'vacui16'. It's loaded at 0x7c00, and it must fit 
@@ -11,10 +7,6 @@
 ;	
 ;	The boot sector loads a kernel, using extended read and its 
 ;	Disk Address Packet.
-;
-; History:
-; 	Apr-25 2026
-;	- Creation date
 
 bits 16
 org 0x7c00
