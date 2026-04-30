@@ -14,6 +14,7 @@ target("vqboot_primary")
 	set_policy("check.auto_ignore_flags", false)
 	set_toolset("as", "nasm")
 	set_toolset("ld", "ld")
+	add_includedirs("include")
 
 	add_cflags("-Wall", "-Werror", "-std=gnu23", "-fno-pic", "-fno-pie",
 		"-fno-stack-protector", "-ffreestanding", "-nostdlib", "-fno-asynchronous-unwind-tables",
@@ -29,6 +30,7 @@ target("vqkrnl")
 	set_policy("check.auto_ignore_flags", false)
 	set_toolset("as", "nasm")
 	set_toolset("ld", "ld")
+	add_includedirs("include")
 
 	add_cflags("-Wall", "-Werror", "-std=gnu23", "-fno-pic", "-fno-pie",
 		"-fno-stack-protector", "-ffreestanding", "-nostdlib", "-fno-asynchronous-unwind-tables",
