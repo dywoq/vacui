@@ -20,8 +20,8 @@ SECTIONS
                 *(.bss .bss.*)
                 *(COMMON)
                 _bss_end = .;
-        } 
- 
+        }
+
         /DISCARD/ :
         {
                 *(.eh_frame)
