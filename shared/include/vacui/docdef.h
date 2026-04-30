@@ -3,7 +3,7 @@
 //
 // Description:
 //
-// The self documentation-purpose macros
+// The self documenting macros
 
 #ifndef _VACUI_DOCDEF_H
 #define _VACUI_DOCDEF_H
