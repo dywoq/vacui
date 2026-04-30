@@ -8,6 +8,8 @@
 ; Since the hardware starts the boot sector, and the boot sector 
 ; must fit into 512 bytes, we load the primary boot stage.
 
+db 'VQ'
+
 bits 16
 org 0x7c00
 
