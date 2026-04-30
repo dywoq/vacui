@@ -22,7 +22,7 @@ target("vqboot_primary")
 	add_asflags("-f elf32")
 	add_ldflags("-nostdlib", "--gc-sections", "-T boot/primary/linker.ld", "-m elf_i386", "-no-warn-rwx-segments")
 
-	vac_add_module("boot/primary/hub")
+	vac_add_module("boot/primary/entry")
 
 target("vqkrnl")
 	set_kind("binary")
@@ -36,3 +36,5 @@ target("vqkrnl")
 		"-m32", "-Wstack-usage=30464")
 	add_asflags("-f elf32")
 	add_ldflags("-nostdlib", "--gc-sections", "-T krnl/linker.ld", "-m elf_i386", "-no-warn-rwx-segments")
+
+	vac_add_module("krnl/entry")
