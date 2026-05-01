@@ -7,8 +7,11 @@
 
 __asm(".code16gcc");
 
+#include <bios/video.h>
+
 [[noreturn]] void entry()
 {
+    bios_teletype_output('A', 1);
     while (true)
         __asm volatile("hlt");
 }
