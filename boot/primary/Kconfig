@@ -1,0 +1,3 @@
+menuconfig "Vacui Boot Primary stage"
+
+endconfig
