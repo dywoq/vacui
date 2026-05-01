@@ -10,5 +10,6 @@ func Root() *cobra.Command {
 		Use:   "kconfig",
 		Short: "KConfig files management",
 	}
+	root.AddCommand(Gen())
 	return root
 }
