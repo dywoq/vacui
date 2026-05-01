@@ -10,5 +10,5 @@ __asm(".code16gcc");
 [[noreturn]] void entry()
 {
     while (true)
-        ;
+        __asm volatile("hlt");
 }
