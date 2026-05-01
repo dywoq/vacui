@@ -15,6 +15,10 @@ typedef struct vq_boot_info_time {
     vac_ubyte_t hours;
     vac_ubyte_t minutes;
     vac_ubyte_t seconds;
+    vac_ubyte_t century;
+    vac_ubyte_t year;
+    vac_ubyte_t month;
+    vac_ubyte_t day;
     vac_ubyte_t daylight_savings_flag;
 } vq_boot_info_time_t;
 
