@@ -4,6 +4,7 @@
 package cmd
 
 import (
+	"github.com/dywoq/vacui/tools/vacuicli/internal/cmd/build"
 	"github.com/dywoq/vacui/tools/vacuicli/internal/cmd/kconfig"
 	"github.com/spf13/cobra"
 )
@@ -14,5 +15,6 @@ func Root() *cobra.Command {
 		Short: "Manage Vacui source code much easier",
 	}
 	root.AddCommand(kconfig.Root())
+	root.AddCommand(build.Root())
 	return root
 }
