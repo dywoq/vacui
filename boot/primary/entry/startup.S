@@ -11,6 +11,8 @@ section .start alloc exec
 global startup
 extern entry
 
+db 'VQ'
+
 startup:
     cli
     xor ax, ax
