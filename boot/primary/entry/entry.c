@@ -7,11 +7,11 @@
 
 __asm(".code16gcc");
 
-#include <bios/video.h>
+#include <base/print.h>
 
 [[noreturn]] void entry()
 {
-    bios_teletype_output('A', 1);
+    base_print_raw("| Boot Primary stage is started\n\r");
     while (true)
         __asm volatile("hlt");
 }

@@ -25,6 +25,7 @@ target("vqboot_primary")
 
 	vac_add_module("boot/primary/entry")
 	vac_add_module("boot/primary/bios")
+	vac_add_module("boot/primary/base")
 
 target("vqkrnl")
 	set_kind("binary")
