@@ -1,6 +1,6 @@
 # Copyright 2026 dywoq - Apache License 2.0
 # A part of https://github.com/dywoq/vacui
 
-menuconfig "Vacui Boot Primary stage"
+menu "Boot primary stage"
 
-endconfig
+endmenu
