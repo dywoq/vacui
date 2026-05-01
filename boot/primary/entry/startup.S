@@ -7,7 +7,7 @@
 ; Calls a entry function from C-side.
 
 bits 16
-section .start
+section .start alloc exec
 global startup
 extern entry
 
