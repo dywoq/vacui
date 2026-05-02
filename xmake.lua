@@ -14,7 +14,7 @@ target("vqboot_primary")
 	set_policy("check.auto_ignore_flags", false)
 	set_toolset("as", "nasm")
 	set_toolset("ld", "ld")
-	add_includedirs("include", "shared/include", "boot/primary/include/generated")
+	add_includedirs("include", "shared/include", "boot/primary/include")
 
 	add_cflags("-Wall", "-Werror", "-std=gnu23", "-fno-pic", "-fno-pie",
 		"-fno-stack-protector", "-ffreestanding", "-nostdlib", "-fno-asynchronous-unwind-tables",
@@ -26,13 +26,14 @@ target("vqboot_primary")
 	vac_add_module("boot/primary/entry")
 	vac_add_module("boot/primary/bios")
 	vac_add_module("boot/primary/base")
+	vac_add_module("boot/primary/debug")
 
 target("vqkrnl")
 	set_kind("binary")
 	set_policy("check.auto_ignore_flags", false)
 	set_toolset("as", "nasm")
 	set_toolset("ld", "ld")
-	add_includedirs("include", "shared/include", "krnl/include/generated")
+	add_includedirs("include", "shared/include", "krnl/include/")
 
 	add_cflags("-Wall", "-Werror", "-std=gnu23", "-fno-pic", "-fno-pie",
 		"-fno-stack-protector", "-ffreestanding", "-nostdlib", "-fno-asynchronous-unwind-tables",
