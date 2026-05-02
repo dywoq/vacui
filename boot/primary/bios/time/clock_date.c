@@ -9,12 +9,16 @@
 __asm(".code16gcc");
 
 #include <bios/time.h>
+#include <debug/debug.h>
 #include <vacui/types.h>
 
 bool bios_clock_date_get_rt(bios_clock_date_t *date)
 {
-    if (!date)
+    debug_raw("Getting clock date\n\r");
+    if (!date) {
+        debug_raw("Parameter date is null\n\r");
         return false;
+    }
 
     vac_uint_t ecx = 0;
     vac_uint_t edx = 0;
@@ -26,8 +30,10 @@ bool bios_clock_date_get_rt(bios_clock_date_t *date)
         : "a"((0x04 << 8))
         : "cc", "memory"
     );
-    if (cf)
+    if (cf) {
+        debug_raw("Carry flag is set\n\r");
         return false;
+    }
 
     // Take high/low bits of ECX/EDX registers
     date->century = (vac_ubyte_t)(ecx & (0xFF << 8)) >> 8;
@@ -35,5 +41,6 @@ bool bios_clock_date_get_rt(bios_clock_date_t *date)
     date->month   = (vac_ubyte_t)(edx & (0xFF << 8)) >> 8;
     date->day     = (vac_ubyte_t)(edx & 0xFF);
 
+    debug_raw("Successfully retrieved clock date\n\r");
     return true;
 }
