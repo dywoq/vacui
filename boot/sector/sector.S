@@ -2,10 +2,10 @@
 ; A part of https://github.com/dywoq/vacui
 ;
 ; Description:
-; 
+;
 ; A boot sector.
 ;
-; Since the hardware starts the boot sector, and the boot sector 
+; Since the hardware starts the boot sector, and the boot sector
 ; must fit into 512 bytes, we load the primary boot stage.
 
 db 'VQ'
@@ -26,19 +26,13 @@ startup:
     mov ax, 0x03
     int 0x10
 
-    mov si, START_MSG
-    call print
-
-    mov si, LOADING_PRIMARY_BOOT_STAGE
-    call print
-
     mov ah, 0x42
     mov si, primary_boot_dap
     int 0x13
     jc .disk_error
 
     jmp 0x0800:0x0
-    
+
 .disk_error:
     mov si, ERROR_OCCURED_MSG
     call print
@@ -75,10 +69,8 @@ primary_boot_dap:
     dq 1
 
 ; Info messages
-START_MSG db '| vqboot_sector is loaded', 10, 13, 0
-LOADING_PRIMARY_BOOT_STAGE db '| Loading Primary Boot stage...', 10, 13, 0
-ERROR_OCCURED_MSG db '| ERROR OCCURED:', 10, 13, 0
-REBOOT_SHUTDOWN_PC_MSG db '| You can safely shutdown/reboot your PC.', 10, 13, 0
+ERROR_OCCURED_MSG db 'ERROR OCCURED:', 10, 13, 0
+REBOOT_SHUTDOWN_PC_MSG db 'You can safely shutdown/reboot your PC.', 10, 13, 0
 
 ; Errors
 DISK_ERROR_FAILED_TO_LOAD_PRIMARY_BOOT_STAGE db '   Failed to load Primary Boot stage', 10, 13, 0
