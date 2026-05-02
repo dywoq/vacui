@@ -69,7 +69,7 @@ print:
 primary_boot_dap:
     db 16
     db 0
-    dw 2
+    dw 3
     dw 0x0
     dw 0x0800
     dq 1
