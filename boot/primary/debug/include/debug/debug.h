@@ -3,7 +3,7 @@
 //
 // Description:
 //
-// Debug print macros, that are expanded if CONFIG_BASE_DEBUG_STATUS is 1.
+// Debug print macros, that are expanded if CONFIG_DEBUG_ON is 1.
 
 #ifndef _DEBUG_DEBUG_H
 #define _DEBUG_DEBUG_H
