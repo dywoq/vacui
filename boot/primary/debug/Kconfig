@@ -3,7 +3,7 @@
 
 menu "Debugging"
 
-config BASE_DEBUG_STATUS
+config DEBUG_ON
     bool "Debugging status (on/off)"
     help
         Manages debugging mode in the boot primary stage.
