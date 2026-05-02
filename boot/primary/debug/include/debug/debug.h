@@ -11,10 +11,10 @@
 #include <base/print.h>
 #include <generated/config.h>
 
-#if CONFIG_BASE_DEBUG_STATUS
-#define base_debug_raw(str) base_print_raw("| DEBUG: " str)
+#if CONFIG_DEBUG_ON
+#define debug_raw(str) base_print_raw("| DEBUG: " str)
 #else
-#define base_debug_raw()
+#define debug_raw(str)
 #endif
 
 #endif
