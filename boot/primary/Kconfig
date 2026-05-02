@@ -3,4 +3,6 @@
 
 menu "Boot primary stage"
 
+source "debug/Kconfig"
+
 endmenu
