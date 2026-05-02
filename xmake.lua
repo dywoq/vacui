@@ -23,11 +23,6 @@ target("vqboot_primary")
 	add_asflags("-f elf32")
 	add_ldflags("-nostdlib", "--gc-sections", "-T boot/primary/linker.ld", "-m elf_i386", "-no-warn-rwx-segments")
 
-	vac_add_module("boot/primary/core")
-	vac_add_module("boot/primary/bios")
-	vac_add_module("boot/primary/base")
-	vac_add_module("boot/primary/debug")
-
 target("vqkrnl")
 	set_kind("binary")
 	set_policy("check.auto_ignore_flags", false)
