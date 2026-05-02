@@ -1,0 +1,18 @@
+# Copyright 2026 dywoq - Apache License 2.0
+# A part of https://github.com/dywoq/vacui
+
+menu "Debugging"
+
+config BASE_DEBUG_STATUS
+    bool "Debugging status (on/off)"
+    help
+        Manages debugging mode in the boot primary stage.
+
+        If it's enabled:
+        - the debug messages are enabled and go into
+        final build leading to the larger binary size;
+        - base_debug_* macros are expanded
+
+        It's recommended to use it only in non-production builds.
+
+endmenu
