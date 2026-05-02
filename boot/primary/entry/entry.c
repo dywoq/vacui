@@ -3,7 +3,7 @@
 //
 // Description:
 //
-// Kernel entry function.
+// Boot primary entry function.
 
 __asm(".code16gcc");
 
