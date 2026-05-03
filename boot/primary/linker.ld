@@ -1,4 +1,4 @@
-ENTRY(startup)
+ENTRY(stub)
 OUTPUT_FORMAT(elf32-i386)
 
 SECTIONS
