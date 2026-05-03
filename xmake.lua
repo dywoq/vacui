@@ -24,6 +24,7 @@ target("vqboot_primary")
 	add_ldflags("-nostdlib", "--gc-sections", "-T boot/primary/linker.ld", "-m elf_i386", "-no-warn-rwx-segments")
 
 	vac_add_module("boot/primary/hub")
+	vac_add_module("boot/primary/bios")
 
 target("vqkrnl")
 	set_kind("binary")

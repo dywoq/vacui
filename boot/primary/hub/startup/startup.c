@@ -5,6 +5,9 @@
 //
 // Startup function of vqboot_primary.
 
+__asm(".code16gcc");
+
+#include <bios/video.h>
 #include <vacui/types.h>
 
 void startup()
