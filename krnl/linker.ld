@@ -2,7 +2,7 @@ ENTRY(startup)
 
 SECTIONS
 {
-        . = 0x10000;
+        . = 0x80200000;
         .start : {
                 KEEP(*(.start))
         }
