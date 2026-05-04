@@ -11,8 +11,23 @@
 
 #include <vacui/types.h>
 
-typedef struct vq_boot_info {
+typedef enum vq_boot_mem_entry_enum : vac_uint_t {
+    VQ_BOOT_MEM_ENTRY_AVAILABLE = 0x01,
+    VQ_BOOT_MEM_ENTRY_RESERVED  = 0x02,
+    VQ_BOOT_MEM_ENTRY_ACPI      = 0x03,
+    VQ_BOOT_MEM_ENTRY_ACPI_NVS  = 0x04,
+} vq_boot_mem_entry_enum_t;
 
+typedef struct vq_boot_mem_entry {
+    vac_uint_t               address_low;
+    vac_uint_t               address_high;
+    vac_uint_t               length_low;
+    vac_uint_t               length_high;
+    vq_boot_mem_entry_enum_t type;
+} vq_boot_mem_entry_t;
+
+typedef struct vq_boot_info {
+    vq_boot_mem_entry_t *entries[];
 } vq_boot_info_t;
 
 #endif
