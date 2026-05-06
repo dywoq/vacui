@@ -53,7 +53,7 @@ target("vqkrnl")
     add_asflags("-march=rv64gc", "-mabi=lp64d", { force = true })
     add_asflags("-march=rv64gc", "-mabi=lp64d", { force = true })
 
-    add_cflags("-Wall", "-Werror", "-std=c++26", "-fno-pic", "-fno-pie",
+    add_cxxflags("-Wall", "-Werror", "-std=c++26", "-fno-pic", "-fno-pie",
 		"-fno-stack-protector", "-ffreestanding", "-nostdlib", "-fno-asynchronous-unwind-tables",
 		"-fno-unwind-tables", "-fno-ident", "-ffunction-sections", "-fdata-sections",
 		"-Wstack-usage=30464", "-fno-exceptions", "-fno-rtti")
