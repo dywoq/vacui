@@ -15,7 +15,6 @@ set_config("builddir", ".build/")
 ---
 --- The source files are found recursively.
 local function vac_module_add(module)
-    add_includedirs(path.join(module, "include"))
     add_files(path.join(module, "**.cxx"))
     add_files(path.join(module, "**.S"))
 end
