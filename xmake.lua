@@ -56,7 +56,7 @@ target("vqkrnl")
     add_cflags("-Wall", "-Werror", "-std=c++26", "-fno-pic", "-fno-pie",
 		"-fno-stack-protector", "-ffreestanding", "-nostdlib", "-fno-asynchronous-unwind-tables",
 		"-fno-unwind-tables", "-fno-ident", "-ffunction-sections", "-fdata-sections",
-		"-Wstack-usage=30464")
+		"-Wstack-usage=30464", "-fno-exceptions", "-fno-rtti")
 
     add_ldflags("-nostdlib", "--gc-sections", "-T krnl/linker.ld", "-no-warn-rwx-segments", { force = true })
 
