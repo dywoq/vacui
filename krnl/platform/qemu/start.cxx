@@ -8,7 +8,7 @@
 // The source file setups the necessary information to provide for the main
 // kernel. and jumps to the main kernel.
 
-void qemu_entry()
+extern "C" void qemu_entry()
 {
     extern void hub();
     hub();

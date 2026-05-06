@@ -16,7 +16,7 @@ set_config("builddir", ".build/")
 --- The source files are found recursively.
 local function vac_module_add(module)
     add_includedirs(path.join(module, "include"))
-    add_files(path.join(module, "**.c"))
+    add_files(path.join(module, "**.cxx"))
     add_files(path.join(module, "**.S"))
 end
 
@@ -53,7 +53,7 @@ target("vqkrnl")
     add_asflags("-march=rv64gc", "-mabi=lp64d", { force = true })
     add_asflags("-march=rv64gc", "-mabi=lp64d", { force = true })
 
-    add_cflags("-Wall", "-Werror", "-std=gnu23", "-fno-pic", "-fno-pie",
+    add_cflags("-Wall", "-Werror", "-std=c++26", "-fno-pic", "-fno-pie",
 		"-fno-stack-protector", "-ffreestanding", "-nostdlib", "-fno-asynchronous-unwind-tables",
 		"-fno-unwind-tables", "-fno-ident", "-ffunction-sections", "-fdata-sections",
 		"-Wstack-usage=30464")

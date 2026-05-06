@@ -5,7 +5,7 @@
 //
 // Generic entry function of kernel
 
-void hub()
+extern "C" void hub()
 {
     while (1)
         __asm volatile("wfi\n");
