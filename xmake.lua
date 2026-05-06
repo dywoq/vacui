@@ -48,7 +48,7 @@ target("vqkrnl")
     set_kind("binary")
     set_toolchains("riscv64-elf-gcc")
 
-    add_includedirs("include")
+    add_includedirs("krnl/include")
     
     add_cflags("-march=rv64gc", "-mabi=lp64d", "-mcmodel=medany", { force = true })
     add_asflags("-march=rv64gc", "-mabi=lp64d", { force = true })
