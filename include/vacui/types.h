@@ -2,7 +2,7 @@
 // A part of https://github.com/dywoq/vacui
 //
 // Description:
-// 
+//
 // Shortcut types
 
 #ifndef _VACUI_TYPES_H
@@ -18,6 +18,6 @@ namespace vacui {
     using ushort_t = unsigned short;
     using uint_t   = unsigned int;
     using ulong_t  = unsigned long long;
-}
+} // namespace vacui
 
 #endif

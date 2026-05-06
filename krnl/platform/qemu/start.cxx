@@ -8,6 +8,8 @@
 // The source file setups the necessary information to provide for the main
 // kernel. and jumps to the main kernel.
 
+#include <vacui/types.h>
+
 extern "C" void qemu_entry()
 {
     extern void hub();

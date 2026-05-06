@@ -11,3 +11,4 @@ BraceWrapping:
    AfterFunction: true
    AfterExternBlock: true
 
+NamespaceIndentation: All
