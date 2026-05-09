@@ -4,7 +4,7 @@
 #ifndef _VACUI_PRIMARY_BIOS_H
 #define _VACUI_PRIMARY_BIOS_H
 
-#include <vacui/primary/ld.h>
+#define __bios [[gnu::section(".bios")]]
 
 __bios void bios_tt_output(char ch);
 
