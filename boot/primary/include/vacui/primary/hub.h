@@ -9,4 +9,7 @@
 // print functions
 __hub void hub_puts(const char *str);
 
+// panic
+[[noreturn]] __hub void hub_panic(const char *msg);
+
 #endif
