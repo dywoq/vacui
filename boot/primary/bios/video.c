@@ -7,25 +7,28 @@ __asm(".code16gcc");
 
 __bios void bios_tt_output(char ch)
 {
-  __asm volatile("int $0x10\n" : : "a"((0x0E << 8) | ch) : "cc", "memory");
+        __asm volatile("int $0x10\n"
+                       :
+                       : "a"((0x0E << 8) | ch)
+                       : "cc", "memory");
 }
 
 __bios void bios_set_vid_mode(unsigned char mode)
 {
-  __asm volatile("int $0x10\n" : : "a"(mode) : "cc", "memory");
+        __asm volatile("int $0x10\n" : : "a"(mode) : "cc", "memory");
 }
 
 [[nodiscard]] __bios bool
 bios_get_vbe(struct bios_vbe_info *vbe, unsigned char *status)
 {
-  if (!vbe || !status)
-    return false;
-  unsigned int eax;
-  __asm volatile("int $0x10"
-                 : "=a"(eax)
-                 : "a"(0x4f00), "D"(vbe)
-                 : "cc", "memory");
-  unsigned char supported = eax & 0xFF;
-  *status = (eax >> 8) & 0xFF;
-  return *status == 0x00 && supported == 0x4f;
+        if (!vbe || !status)
+                return false;
+        unsigned int eax;
+        __asm volatile("int $0x10"
+                       : "=a"(eax)
+                       : "a"(0x4f00), "D"(vbe)
+                       : "cc", "memory");
+        unsigned char supported = eax & 0xFF;
+        *status = (eax >> 8) & 0xFF;
+        return *status == 0x00 && supported == 0x4f;
 }

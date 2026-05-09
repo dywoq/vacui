@@ -8,14 +8,14 @@ __asm(".code16gcc");
 
 [[noreturn]] __hub void hub_panic(const char *msg)
 {
-  bios_set_vid_mode(0x03);
+        bios_set_vid_mode(0x03);
 
-  hub_puts("Vacui panics: ");
-  hub_puts(msg);
-  hub_puts("\n\r");
+        hub_puts("Vacui panics: ");
+        hub_puts(msg);
+        hub_puts("\n\r");
 
-  hub_puts("Halting.\n\r");
+        hub_puts("Halting.\n\r");
 
-  while (true)
-    __asm volatile("hlt\n");
+        while (true)
+                __asm volatile("hlt\n");
 }

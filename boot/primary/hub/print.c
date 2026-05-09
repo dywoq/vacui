@@ -8,6 +8,6 @@ __asm(".code16gcc");
 
 __hub void hub_puts(const char *str)
 {
-  for (const char *p = str; *p != '\0'; ++p)
-    bios_tt_output(*p);
+        for (const char *p = str; *p != '\0'; ++p)
+                bios_tt_output(*p);
 }

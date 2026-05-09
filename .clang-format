@@ -1,4 +1,4 @@
-IndentWidth: 2
+IndentWidth: 8
 AlignAfterOpenBracket: BlockIndent
 BreakBeforeBraces: Custom
 BraceWrapping:
@@ -6,3 +6,4 @@ BraceWrapping:
    AfterExternBlock: true
 
 NamespaceIndentation: All
+AllowShortFunctionsOnASingleLine: None
