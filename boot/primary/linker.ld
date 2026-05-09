@@ -8,6 +8,10 @@ SECTIONS
         .start : {
                 KEEP(*(.start))
         }
+        
+        .hub : {
+                KEEP(*(.hub))
+        }
 
         .text : {
                 *(.text .text.*)
