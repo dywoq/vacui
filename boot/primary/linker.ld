@@ -12,6 +12,10 @@ SECTIONS
         .text : {
                 *(.text .text.*)
         }
+        
+        .bios : {
+                KEEP(*(.bios))
+        }
 
         .rodata : { *(.rodata .rodata.*) }
         .data   : { *(.data .data.*) }
