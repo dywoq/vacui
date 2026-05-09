@@ -3,7 +3,7 @@
 
 __asm(".code16gcc");
 
-void stage_two()
+void primary()
 {
     while (1)
         __asm volatile("hlt\n");

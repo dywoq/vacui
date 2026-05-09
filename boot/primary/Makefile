@@ -11,7 +11,7 @@ LDFLAGS  := -m elf_i386 -T linker.ld -nostdlib --gc-sections
 
 # Target folders
 BUILD := .build
-TARGET := $(BUILD)/stage2.bin
+TARGET := $(BUILD)/primary.bin
 
 # Modules
 MODULES := entry

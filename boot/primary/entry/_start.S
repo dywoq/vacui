@@ -3,7 +3,7 @@
 
 .section .start, "ax", @progbits
 .code16
-.extern stage_two
+.extern primary
 .globl _start
 
 _start:
@@ -21,4 +21,4 @@ _start:
     sti
 
     // Jump to C-side
-    call stage_two
+    call primary
