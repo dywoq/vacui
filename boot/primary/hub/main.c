@@ -6,7 +6,7 @@
 
 __asm(".code16gcc");
 
-static struct bios_dpa kernel_dap_ = {
+struct bios_dpa kernel_dap_ = {
     .size = 16,
     .reserved = 0,
     .sections = 2,
@@ -15,13 +15,32 @@ static struct bios_dpa kernel_dap_ = {
     .start = 2,
 };
 
-void primary()
+struct bios_vbe_info vbe_info_ = {};
+
+static void get_vbe_info()
+{
+  unsigned char status = 0;
+  if (!bios_get_vbe(&vbe_info_, &status)) {
+    hub_panic("Failed to get VBE info");
+  }
+  hub_puts("Successfully got VBE info\n\r");
+}
+
+static void load_kernel()
 {
   bool ok = bios_disk_extread(&kernel_dap_, 0x80);
   if (!ok && bios_disk_getstatus() != 0) {
     hub_panic("Failed to load kernel");
   }
   hub_puts("Successfully loaded kernel\n\r");
+}
+
+void primary()
+{
+  hub_puts("Loading kernel\n\r");
+
+  get_vbe_info();
+  load_kernel();
 
   while (1)
     __asm volatile("hlt\n");
