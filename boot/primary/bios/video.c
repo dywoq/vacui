@@ -9,3 +9,8 @@ __bios void bios_tt_output(char ch)
 {
   __asm volatile("int $0x10\n" : : "a"((0x0E << 8) | ch) : "cc", "memory");
 }
+
+__bios void bios_set_vid_mode(unsigned char mode)
+{
+  __asm volatile("int $0x10\n" : : "a"(mode) : "cc", "memory");
+}

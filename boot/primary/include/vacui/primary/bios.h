@@ -8,6 +8,7 @@
 
 // video
 __bios void bios_tt_output(char ch);
+__bios void bios_set_vid_mode(unsigned char mode);
 
 // disk
 struct [[gnu::packed]] bios_dpa {
