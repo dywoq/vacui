@@ -7,7 +7,7 @@ __asm(".code16gcc");
 
 void primary()
 {
-  hub_put("Hi!\n\r");
+  hub_puts("Hi!\n\r");
   while (1)
     __asm volatile("hlt\n");
 }

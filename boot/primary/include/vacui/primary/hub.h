@@ -7,6 +7,6 @@
 #define __hub [[gnu::section(".hub")]]
 
 // print functions
-__hub void hub_put(const char *str);
+__hub void hub_puts(const char *str);
 
 #endif
