@@ -1,5 +1,3 @@
-AlignAfterOpenBracket: BlockIndent
-BinPackParameters: AlwaysOnePerLine
 AlignConsecutiveAssignments:
   Enabled: true
 AlignConsecutiveDeclarations:
