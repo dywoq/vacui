@@ -19,7 +19,8 @@ struct [[gnu::packed]] bios_dpa {
   unsigned short segment;
   unsigned long long start;
 };
-__bios unsigned char bios_disk_getstatus(unsigned char drive);
 __bios bool bios_disk_extread(struct bios_dpa *dpa, unsigned char drive);
+__bios void bios_disk_setstatus(unsigned char code);
+__bios unsigned char bios_disk_getstatus();
 
 #endif

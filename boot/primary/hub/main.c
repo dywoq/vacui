@@ -8,7 +8,7 @@ __asm(".code16gcc");
 
 static struct bios_dpa kernel_dap = {
     .size = 16,
-    .reserved = -5,
+    .reserved = 0,
     .sections = 2,
     .offset = 0x1000,
     .segment = 0x0,
@@ -18,7 +18,7 @@ static struct bios_dpa kernel_dap = {
 void primary()
 {
   bool ok = bios_disk_extread(&kernel_dap, 0x80);
-  if (!ok) {
+  if (!ok && bios_disk_getstatus() != 0) {
     hub_panic("Failed to load kernel");
   }
   hub_puts("Successfully loaded kernel\n\r");
