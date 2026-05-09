@@ -7,7 +7,8 @@ __asm(".code16gcc");
 
 static unsigned char code_ = 0;
 
-__bios bool bios_disk_extread(struct bios_dpa *dpa, unsigned char drive)
+[[nodiscard]] __bios bool
+bios_disk_extread(struct bios_dpa *dpa, unsigned char drive)
 {
   if (!dpa)
     return false;
@@ -24,4 +25,4 @@ __bios bool bios_disk_extread(struct bios_dpa *dpa, unsigned char drive)
 
 __bios void bios_disk_setstatus(unsigned char code) { code_ = code; }
 
-__bios unsigned char bios_disk_getstatus() { return code_; }
+[[nodiscard]] __bios unsigned char bios_disk_getstatus() { return code_; }
