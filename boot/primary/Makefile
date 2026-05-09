@@ -24,7 +24,7 @@ OBJS := $(patsubst %.c, $(BUILD)/%.o, $(SRCS_C)) \
 
 all: $(TARGET)
 
-$(TARGET): $(BUILD)/entry/_start.o $(OBJS)
+$(TARGET): $(OBJS)
 	$(LD) $(LDFLAGS) $^ -o $@.elf
 	$(OBJCOPY) -O binary -S $@.elf $@
 
