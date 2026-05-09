@@ -1,9 +1,5 @@
-AlignConsecutiveAssignments:
-  Enabled: true
-AlignConsecutiveDeclarations:
-  Enabled: true
 IndentWidth: 2
-
+AlignAfterOpenBracket: BlockIndent
 BreakBeforeBraces: Custom
 BraceWrapping:
    AfterFunction: true
