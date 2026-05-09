@@ -3,7 +3,7 @@
 
 __asm(".code16gcc");
 
-#include <vacui/primary/ld.h>
+#include <vacui/primary/bios.h>
 
 __bios void bios_tt_output(char ch)
 {
