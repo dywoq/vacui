@@ -5,7 +5,7 @@ LD := ld
 OBJCOPY := objcopy
 
 # Flags
-CFLAGS := -fno-pie -fno-pic -Iinclude/ -nostdlib --std=c23 -m16
+CFLAGS := -fno-pie -fno-pic -Iinclude/ -I../../include/ -nostdlib --std=c23 -m16
 ASFLAGS := --32
 LDFLAGS  := -m elf_i386 -T linker.ld -nostdlib --gc-sections
 

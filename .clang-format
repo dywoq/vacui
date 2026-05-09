@@ -4,7 +4,7 @@ AlignConsecutiveAssignments:
   Enabled: true
 AlignConsecutiveDeclarations:
   Enabled: true
-IndentWidth: 4
+IndentWidth: 2
 
 BreakBeforeBraces: Custom
 BraceWrapping:

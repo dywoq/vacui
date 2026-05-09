@@ -5,6 +5,6 @@ __asm(".code16gcc");
 
 void primary()
 {
-    while (1)
-        __asm volatile("hlt\n");
+  while (1)
+    __asm volatile("hlt\n");
 }
