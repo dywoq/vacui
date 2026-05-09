@@ -3,6 +3,8 @@
 
 __asm(".code16gcc");
 
+#include <vacui/primary/bios.h>
+
 void primary()
 {
   while (1)
