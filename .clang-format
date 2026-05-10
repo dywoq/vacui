@@ -13,3 +13,5 @@ SpaceBeforeParensOptions:
   AfterControlStatements: true
   AfterFunctionDefinitionName: true
   BeforeNonEmptyParentheses: true
+
+ColumnLimit: 80

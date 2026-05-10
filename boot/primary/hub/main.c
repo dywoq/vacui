@@ -1,11 +1,11 @@
 // Copyright dywoq 2026 - Apache License 2.0
 // https://github.com/dywoq/vacui
 
+__asm (".code16gcc");
+
 #include <vacui/bootinfo.h>
 #include <vacui/primary/bios.h>
 #include <vacui/primary/hub.h>
-
-__asm (".code16gcc");
 
 struct bios_dpa kernel_dap_ = {
     .size = 16,
@@ -16,18 +16,7 @@ struct bios_dpa kernel_dap_ = {
     .start = 2,
 };
 
-struct bios_vbe_info vbe_info_ = {};
 struct boot_info boot_info_ = {};
-
-static void init_vbe_info_ ()
-{
-        unsigned char status = 0;
-        if (!bios_get_vbe (&vbe_info_, &status))
-                hub_panic ("Failed to get VBE info");
-        if (vbe_info_.signature[0] != 'V' && vbe_info_.signature[1] != 'B' &&
-            vbe_info_.signature[2] != 'E' && vbe_info_.signature[3] != '2')
-                hub_panic ("No 'VBE2' signature found in VBE information\n\r");
-}
 
 static void load_kernel_dap_ ()
 {
@@ -62,7 +51,6 @@ repeat:
 void primary ()
 {
         ask_for_kernel_mode_();
-        init_vbe_info_();
         load_kernel_dap_();
 
         while (1)
