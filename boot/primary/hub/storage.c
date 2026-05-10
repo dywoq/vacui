@@ -1,6 +1,8 @@
 // Copyright dywoq 2026 - Apache License 2.0
 // https://github.com/dywoq/vacui
 
+__asm (".code16gcc");
+
 #include <vacui/bootinfo.h>
 #include <vacui/primary/bios.h>
 
