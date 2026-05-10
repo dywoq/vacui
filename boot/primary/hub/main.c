@@ -35,8 +35,6 @@ static void load_kernel()
 
 void primary()
 {
-        hub_puts("Loading kernel\n\r");
-
         get_vbe_info();
         load_kernel();
 
