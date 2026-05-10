@@ -14,7 +14,7 @@ BUILD := .build
 TARGET := $(BUILD)/primary.bin
 
 # Modules
-MODULES := hub bios
+MODULES := hub bios pm
 
 # Sources
 SRCS_C := $(foreach m, $(MODULES), $(wildcard $(m)/*.c)) 

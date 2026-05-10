@@ -35,7 +35,7 @@ hang:
 primary_dap:
     .byte 16
     .byte 0
-    .word 4
+    .word 5
     .word 0x0
     .word 0x0800
     .quad 1

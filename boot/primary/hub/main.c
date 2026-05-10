@@ -6,6 +6,7 @@ __asm (".code16gcc");
 #include <vacui/bootinfo.h>
 #include <vacui/primary/bios.h>
 #include <vacui/primary/hub.h>
+#include <vacui/primary/pm.h>
 
 #define VGA_MODES_STR_GRAPHICS_COUNT 5
 #define VGA_MODES_STR_TEXT_COUNT 2
@@ -128,8 +129,14 @@ void primary ()
         if (hub_boot_info.kernel_mode == BOOT_KERNEL_RECOVERY)
                 ask_for_vga_mode_recovery_();
         load_kernel_dap_();
-        
         bios_set_vid_mode (hub_boot_info.video->vga_mode);
+
+        pm_set_gdt_entry (0, 0, 0, 0);            // null
+        pm_set_gdt_entry (0, 0xFFFFF, 0x9A, 0xC); // kernel code
+        pm_set_gdt_entry (0, 0xFFFFF, 0x92, 0xC); // kernel data
+        pm_set_gdt_entry (0, 0xFFFFF, 0xFA, 0xC); // user code
+        pm_set_gdt_entry (0, 0xFFFFF, 0xF2, 0xC); // user data
+
         while (1)
                 __asm volatile ("hlt\n");
 }
