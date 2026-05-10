@@ -35,7 +35,7 @@ hang:
 primary_dap:
     .byte 16
     .byte 0
-    .word 2
+    .word 3
     .word 0x0
     .word 0x0800
     .quad 1
@@ -57,7 +57,7 @@ print_str_return:
 
 // Errors
 err_loading_primary_failed:
-    .ascii "error: Failed to load primary stage\n\r"
+    .ascii "Failed to load primary stage\n\r"
     .byte 0
 
 .org 510
