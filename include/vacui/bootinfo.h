@@ -24,6 +24,9 @@ enum boot_vga_mode : unsigned char {
 
 struct boot_video {
         enum boot_vga_mode vga_mode;
+        unsigned short width;
+        unsigned short height;
+        volatile unsigned char *fb_ptr;
 };
 
 struct boot_info {
