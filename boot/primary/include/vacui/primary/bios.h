@@ -46,4 +46,7 @@ bios_disk_extread(struct bios_dpa *dpa, unsigned char drive);
 __bios void bios_disk_setstatus(unsigned char code);
 [[nodiscard]] __bios unsigned char bios_disk_getstatus();
 
+// keyboard
+__bios void bios_get_keystroke(char *scan_code, char *ascii_char);
+
 #endif
