@@ -5,8 +5,8 @@
 #define _VACUI_BOOTINFO_H
 
 enum boot_kernel_mode : unsigned char {
+        BOOT_KERNEL_NORMAL = 1,
         BOOT_KERNEL_RECOVERY,
-        BOOT_KERNEL_NORMAL,
 };
 
 struct boot_info {
