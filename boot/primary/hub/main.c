@@ -17,26 +17,29 @@ struct bios_dpa kernel_dap_ = {
 
 struct bios_vbe_info vbe_info_ = {};
 
-static void get_vbe_info()
+static void init_vbe_info_()
 {
         unsigned char status = 0;
         if (!bios_get_vbe(&vbe_info_, &status))
                 hub_panic("Failed to get VBE info");
-        hub_puts("Successfully got VBE info\n\r");
+        if (vbe_info_.signature[0] != 'V' && vbe_info_.signature[1] != 'B' &&
+            vbe_info_.signature[2] != 'E' && vbe_info_.signature[3] != '2')
+                hub_panic("No 'VBE2' signature found in VBE information\n\r");
+        hub_puts("Initialized VBE information\n\r");
 }
 
-static void load_kernel()
+static void load_kernel_dap_()
 {
         bool ok = bios_disk_extread(&kernel_dap_, 0x80);
         if (!ok && bios_disk_getstatus() != 0)
-                hub_panic("Failed to load kernel");
-        hub_puts("Successfully loaded kernel\n\r");
+                hub_panic("Failed to load kernel with its Disk Address Packet");
+        hub_puts("Loaded kernel with its Disk Address Packet\n\r");
 }
 
 void primary()
 {
-        get_vbe_info();
-        load_kernel();
+        init_vbe_info_();
+        load_kernel_dap_();
 
         while (1)
                 __asm volatile("hlt\n");
