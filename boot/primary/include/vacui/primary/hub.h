@@ -4,12 +4,12 @@
 #ifndef _VACUI_PRIMARY_HUB_H
 #define _VACUI_PRIMARY_HUB_H
 
-#define __hub [[gnu::section(".hub")]]
+#define __hub [[gnu::section (".hub")]]
 
 // print functions
-__hub void hub_puts(const char *str);
+__hub void hub_puts (const char *str);
 
 // panic
-[[noreturn]] __hub void hub_panic(const char *msg);
+[[noreturn]] __hub void hub_panic (const char *msg);
 
 #endif

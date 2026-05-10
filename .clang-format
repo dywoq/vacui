@@ -7,3 +7,9 @@ BraceWrapping:
 
 NamespaceIndentation: All
 AllowShortFunctionsOnASingleLine: None
+
+SpaceBeforeParens: Custom
+SpaceBeforeParensOptions:
+  AfterControlStatements: true
+  AfterFunctionDefinitionName: true
+  BeforeNonEmptyParentheses: true

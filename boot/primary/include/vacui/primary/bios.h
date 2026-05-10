@@ -4,7 +4,7 @@
 #ifndef _VACUI_PRIMARY_BIOS_H
 #define _VACUI_PRIMARY_BIOS_H
 
-#define __bios [[gnu::section(".bios")]]
+#define __bios [[gnu::section (".bios")]]
 
 // video
 struct [[gnu::packed]] bios_vbe_info {
@@ -24,11 +24,11 @@ struct [[gnu::packed]] bios_vbe_info {
         unsigned char oem_scratchpad[256];
 };
 
-__bios void bios_tt_output(char ch);
-__bios void bios_set_vid_mode(unsigned char mode);
+__bios void bios_tt_output (char ch);
+__bios void bios_set_vid_mode (unsigned char mode);
 
 [[nodiscard]] __bios bool
-bios_get_vbe(struct bios_vbe_info *vbe, unsigned char *status);
+bios_get_vbe (struct bios_vbe_info *vbe, unsigned char *status);
 
 // disk
 struct [[gnu::packed]] bios_dpa {
@@ -41,12 +41,12 @@ struct [[gnu::packed]] bios_dpa {
 };
 
 [[nodiscard]] __bios bool
-bios_disk_extread(struct bios_dpa *dpa, unsigned char drive);
+bios_disk_extread (struct bios_dpa *dpa, unsigned char drive);
 
-__bios void bios_disk_setstatus(unsigned char code);
+__bios void bios_disk_setstatus (unsigned char code);
 [[nodiscard]] __bios unsigned char bios_disk_getstatus();
 
 // keyboard
-__bios void bios_get_keystroke(char *scan_code, char *ascii_char);
+__bios void bios_get_keystroke (char *scan_code, char *ascii_char);
 
 #endif
