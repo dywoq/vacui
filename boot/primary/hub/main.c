@@ -27,7 +27,6 @@ static void init_vbe_info_()
         if (vbe_info_.signature[0] != 'V' && vbe_info_.signature[1] != 'B' &&
             vbe_info_.signature[2] != 'E' && vbe_info_.signature[3] != '2')
                 hub_panic("No 'VBE2' signature found in VBE information\n\r");
-        hub_puts("Initialized VBE information\n\r");
 }
 
 static void load_kernel_dap_()
@@ -35,7 +34,6 @@ static void load_kernel_dap_()
         bool ok = bios_disk_extread(&kernel_dap_, 0x80);
         if (!ok && bios_disk_getstatus() != 0)
                 hub_panic("Failed to load kernel with its Disk Address Packet");
-        hub_puts("Loaded kernel with its Disk Address Packet\n\r");
 }
 
 static void ask_for_kernel_mode_()
