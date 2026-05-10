@@ -59,9 +59,9 @@ repeat:
 
 void primary()
 {
+        ask_for_kernel_mode_();
         init_vbe_info_();
         load_kernel_dap_();
-        ask_for_kernel_mode_();
 
         while (1)
                 __asm volatile("hlt\n");
