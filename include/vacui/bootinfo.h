@@ -11,23 +11,15 @@ enum boot_kernel_mode : unsigned char {
 
 enum boot_vga_mode : unsigned char {
         // Graphics Modes
-        BOOT_VGA_320X200_4_COLORS = 0x04,
-        BOOT_VGA_320X200_4_COLORS_GRAY = 0x05,
-        BOOT_VGA_640X200_2_COLORS = 0x06,
         BOOT_VGA_320X200_16_COLORS = 0x0D,
         BOOT_VGA_640X200_16_COLORS = 0x0E,
-        BOOT_VGA_640X350_MONOCHROME = 0x0F,
         BOOT_VGA_640X350_16_COLORS = 0x10,
-        BOOT_VGA_640X480_2_COLORS = 0x11,
         BOOT_VGA_640X480_16_COLORS = 0x12,
         BOOT_VGA_320X200_256_COLORS = 0x13,
 
         // Text Modes
-        BOOT_VGA_40X25_TEXT_GRAY = 0x00,
         BOOT_VGA_40X25_TEXT_16_COLORS = 0x01,
-        BOOT_VGA_80X25_TEXT_GRAY = 0x02,
         BOOT_VGA_80X25_TEXT_16_COLORS = 0x03,
-        BOOT_VGA_80X25_TEXT_MONOCHROME = 0x07
 };
 
 struct boot_video {
