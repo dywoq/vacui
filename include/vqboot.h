@@ -18,7 +18,7 @@ https://github.com/dywoq/vacui
  * - The kernel is 32-bit.
  * - The memory layout must match.
  */
-static_assert(sizeof(void *) == 4, "size of pointer must be 4 bytes");
+static_assert (sizeof (void *) == 4, "size of pointer must be 4 bytes");
 
 enum boot_kernel_mode : ubyte_t {
     BOOT_KERNEL_NORMAL = 0,
