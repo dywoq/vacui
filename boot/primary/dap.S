@@ -9,9 +9,9 @@ bits 16
 kernel_dap:
     db 16
     db 0
-    dw 2
+    dw 1
     dw 0x0
     dw 0x1000
-    dw 2
+    dq 2
 
 %endif
