@@ -21,19 +21,23 @@ _start:
 
     jmp 0x0800:0x0
 .failed_to_load:
-    mov si, [FAILED_TO_LOAD_PRIMARY_STAGE]
+    mov si, FAILED_TO_LOAD_PRIMARY_STAGE
     call print_str
+    jmp .halt
 .halt:
     hlt
     jmp .halt
 
 print_str:
-    cld
 .loop:
+    cmp [si], 0
+    je .return
     lodsb
-    test al, al
-    jz .return
-    mov ah, 0x0E
+    mov ah, 0x0e
+    cmp al, 0
+    jne .interrupt
+    je .return
+.interrupt:
     int 0x10
     jmp .loop
 .return:
