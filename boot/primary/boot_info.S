@@ -11,10 +11,15 @@ boot_kernel_mode:
 %define BOOT_VGA_640_200_16_COLORS 0x0E 
 boot_video:
     db 0 ; vga mode 
-    
+
+boot_mm:
+    dd 0 ; entries count
+    dd 0 ; memory entries
+
 boot_info:
     dd boot_kernel_mode
     dd boot_video
+    dd boot_mm
 
 ; Blocks CPU execution and asks the user for kernel mode.
 ; After getting the input it puts the info into boot_kernel_mode.
@@ -72,6 +77,47 @@ get_vga_mode:
 .return:
     ret
 
+; Gets the memory map, using E820 method. 
+; In case of success, it writes entries count and a pointer to memory map buffer to boot_mm.
+; 
+; Halts and prints error message if it fails to get memory map. 
+get_mm_map:
+    xor ebx, ebx
+    xor bp, bp
+    mov di, boot_mm_map_buffer
+.loop:
+    mov eax, 0xE820
+    mov edx, 0x534D4150
+    mov ecx, 20
+    int 0x15
+    jc .error
+    cmp eax, 0x534D4150
+    jne .error
+
+    add di, 20
+    inc bp
+
+    cmp bp, 40
+    je .finish
+
+    test ebx, ebx
+    jnz .loop
+.finish:
+    movzx eax, bp
+    mov dword [boot_mm], eax
+    mov dword [boot_mm + 4], boot_mm_map_buffer
+    ret
+.error:
+    mov si, FAILED_TO_GET_MEMORY_MAP
+    call print_str
+.halt:
+    hlt
+    jmp .halt
+
+; Memory map buffer
+boot_mm_map_buffer:
+    resb 800 ; 20 bytes * 40 entries
+
 ; Messages
 SELECT_KERNEL_MODE_MSG db 'Select kernel mode [0 - Normal, 1 - Recovery]', 13, 10, 0
 KERNEL_MODE_NORMAL db '* Normal mode is selected', 13, 10, 0
@@ -80,5 +126,7 @@ KERNEL_MODE_RECOVERY db '* Recovery mode is selected', 13, 10, 0
 SELECT_VGA_MODE db 'Select VGA mode [0 - 320x200 16 colors, 1 - 640x200 16 colors]', 13, 10, 0
 VGA_320_200_16_COLORS_MSG db '* 320x200 16 colors mode is selected', 13, 10, 0
 VGA_640_200_16_COLORS_MSG db '* 640x200 16 colors mode is selected', 13, 10, 0
+
+FAILED_TO_GET_MEMORY_MAP db 'ERROR: Failed to get memory map', 13, 10, 0
 
 %endif
