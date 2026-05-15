@@ -25,12 +25,22 @@ enum boot_kernel_mode : ubyte_t {
     BOOT_KERNEL_RECOVERY,
 };
 
+enum boot_vga_mode : ubyte_t {
+    BOOT_VGA_320_200_16_COLORS = 0x0D,
+    BOOT_VGA_640_200_16_COLORS = 0x0E,
+};
+
 struct boot_kernel_mode_info {
     enum boot_kernel_mode kernel_mode;
 };
 
+struct boot_video_info {
+    enum boot_vga_mode vga_mode;
+};
+
 struct boot_info {
     boot_kernel_mode_info *mode_info;
+    boot_video_info *video_info;
 };
 
 #endif
