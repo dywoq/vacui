@@ -7,8 +7,7 @@
 boot_kernel_mode:
     db 0 ; kernel_mode
 
-%define BOOT_VGA_320_200_16_COLORS 0x0D
-%define BOOT_VGA_640_200_16_COLORS 0x0E 
+%define BOOT_VGA_320_200_256_COLORS 0x13
 boot_video:
     db 0 ; vga mode
     times 3 db 0 ; padding
@@ -58,49 +57,30 @@ get_kernel_mode:
 ; Blocks CPU execution and asks the user for VGA mode.
 ; Works similar as get_kernel_mode 
 get_vga_mode:
-    ; 0 - BOOT_VGA_320_200_16_COLORS
-    ; 1 - BOOT_VGA_640_200_16_COLORS
+    ; 0 - BOOT_VGA_320_200_256_COLORS
     mov si, SELECT_VGA_MODE
     call print_str
 .loop:
     mov ah, 0x00
     int 0x16
     cmp al, '0'
-    je .mode_320_200_16_colors
-    cmp al, '1'
-    je .mode_640_200_16_colors
+    je .mode_320_200_256_colors
     jmp .loop
-.mode_320_200_16_colors:
-    mov si, VGA_320_200_16_COLORS_MSG
+.mode_320_200_256_colors:
+    mov si, VGA_320_200_256_COLORS_MSG
     call print_str
 
-    mov byte [boot_video], BOOT_VGA_320_200_16_COLORS
+    mov byte [boot_video], BOOT_VGA_320_200_256_COLORS
 
     mov ah, 0x0
-    mov al, BOOT_VGA_320_200_16_COLORS
+    mov al, BOOT_VGA_320_200_256_COLORS
     int 0x10
 
     mov dword [boot_video + 4], 320
     mov dword [boot_video + 8], 200
-    mov word [boot_video + 12], 16
+    mov word [boot_video + 12], 256
     mov dword [boot_video + 16], 0xA0000    
     
-    jmp .return
-.mode_640_200_16_colors:
-    mov si, VGA_640_200_16_COLORS_MSG
-    call print_str
-
-    mov byte [boot_video], BOOT_VGA_640_200_16_COLORS
-
-    mov ah, 0x0
-    mov al, BOOT_VGA_640_200_16_COLORS
-    int 0x10
-
-    mov dword [boot_video + 4], 640
-    mov dword [boot_video + 8], 200
-    mov word [boot_video + 12], 16
-    mov dword [boot_video + 16], 0xA0000
-
     jmp .return
 .return:
     ret
@@ -151,9 +131,8 @@ SELECT_KERNEL_MODE_MSG db 'Select kernel mode [0 - Normal, 1 - Recovery]', 13, 1
 KERNEL_MODE_NORMAL db '* Normal mode is selected', 13, 10, 0
 KERNEL_MODE_RECOVERY db '* Recovery mode is selected', 13, 10, 0
 
-SELECT_VGA_MODE db 'Select VGA mode [0 - 320x200 16 colors, 1 - 640x200 16 colors]', 13, 10, 0
-VGA_320_200_16_COLORS_MSG db '* 320x200 16 colors mode is selected', 13, 10, 0
-VGA_640_200_16_COLORS_MSG db '* 640x200 16 colors mode is selected', 13, 10, 0
+SELECT_VGA_MODE db 'Select VGA mode [0 - 320x200 256 colors]', 13, 10, 0
+VGA_320_200_256_COLORS_MSG db '* 320x200 256 colors mode is selected', 13, 10, 0
 
 FAILED_TO_GET_MEMORY_MAP db 'ERROR: Failed to get memory map', 13, 10, 0
 
