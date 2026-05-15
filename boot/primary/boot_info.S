@@ -68,11 +68,17 @@ get_vga_mode:
     mov si, VGA_320_200_16_COLORS_MSG
     call print_str
     mov byte [boot_video], BOOT_VGA_320_200_16_COLORS
+    mov ah, 0x0
+    mov al, BOOT_VGA_320_200_16_COLORS
+    int 0x10
     jmp .return
 .mode_640_200_16_colors:
     mov si, VGA_640_200_16_COLORS_MSG
     call print_str
     mov byte [boot_video], BOOT_VGA_640_200_16_COLORS
+    mov ah, 0x0
+    mov al, BOOT_VGA_640_200_16_COLORS
+    int 0x10
     jmp .return
 .return:
     ret
