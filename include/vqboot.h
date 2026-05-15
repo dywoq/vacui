@@ -13,7 +13,7 @@ https://github.com/dywoq/vacui
  * - The primary bootloader defines boot information struct fields
  * as DWORD pointers (boot/primary/boot_info.S):
  *      boot_info:
-            dd boot_video_mode
+            dd boot_kernel_mode
             ; ...
  * - The kernel is 32-bit.
  * - The memory layout must match.
