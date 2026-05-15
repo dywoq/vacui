@@ -27,6 +27,7 @@ enum boot_kernel_mode : ubyte_t {
 
 enum boot_vga_mode : ubyte_t {
     BOOT_VGA_320_200_256_COLORS = 0x13,
+    BOOT_VGA_80_25_16_COLORS = 0x03,
 };
 
 enum boot_mm_entry_type : uint_t {

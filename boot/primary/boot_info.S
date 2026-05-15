@@ -8,6 +8,7 @@ boot_kernel_mode:
     db 0 ; kernel_mode
 
 %define BOOT_VGA_320_200_256_COLORS 0x13
+%define BOOT_VGA_80_25_16_COLORS 0x03
 boot_video:
     db 0 ; vga mode
     times 3 db 0 ; padding
@@ -57,6 +58,10 @@ get_kernel_mode:
 ; Blocks CPU execution and asks the user for VGA mode.
 ; Works similar as get_kernel_mode 
 get_vga_mode:
+    ; Skip the choice if it's recovery mode
+    cmp [boot_kernel_mode], 1
+    je .mode_if_recovery_mode
+
     ; 0 - BOOT_VGA_320_200_256_COLORS
     mov si, SELECT_VGA_MODE
     call print_str
@@ -81,6 +86,19 @@ get_vga_mode:
     mov word [boot_video + 12], 256
     mov dword [boot_video + 16], 0xA0000    
     
+    jmp .return
+.mode_if_recovery_mode:
+    mov byte [boot_video], BOOT_VGA_80_25_16_COLORS
+
+    mov ah, 0x0
+    mov al, BOOT_VGA_80_25_16_COLORS
+    int 0x10
+
+    mov dword [boot_video + 4], 80
+    mov dword [boot_video + 8], 25
+    mov word [boot_video + 12], 16
+    mov dword [boot_video + 16], 0xB8000
+
     jmp .return
 .return:
     ret
