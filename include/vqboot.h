@@ -30,6 +30,28 @@ enum boot_vga_mode : ubyte_t {
     BOOT_VGA_640_200_16_COLORS = 0x0E,
 };
 
+enum boot_mm_entry_type : uint_t {
+    BOOT_MM_ENTRY_RAM = 1,
+    BOOT_MM_ENTRY_RESERVED,
+    BOOT_MM_ENTRY_ACPI,
+    BOOT_MM_ENTRY_NVS,
+    BOOT_MM_ENTRY_UNUSABLE,
+    BOOT_MM_ENTRY_DISABLED = 7
+};
+
+struct boot_mm_entry {
+    uint_t base_address_low;
+    uint_t base_address_high;
+    uint_t length_low;
+    uint_t length_high;
+    enum boot_mm_entry_type type;
+};
+
+struct [[gnu::packed]] boot_mm_info {
+    uint_t entries_count;
+    struct boot_mm_entry *entires[];
+};
+
 struct boot_kernel_mode_info {
     enum boot_kernel_mode kernel_mode;
 };
@@ -41,6 +63,7 @@ struct boot_video_info {
 struct boot_info {
     boot_kernel_mode_info *mode_info;
     boot_video_info *video_info;
+    boot_mm_info *mm;
 };
 
 #endif
