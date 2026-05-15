@@ -1,6 +1,7 @@
 ; Copyright 2026 dywoq - Apache License 2.0
 ; https://github.com/dywoq/vacui
 
+org 0x7c00
 bits 16
 
 _start:
