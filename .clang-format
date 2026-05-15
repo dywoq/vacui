@@ -8,10 +8,6 @@ BraceWrapping:
 NamespaceIndentation: All
 AllowShortFunctionsOnASingleLine: None
 
-SpaceBeforeParens: Custom
-SpaceBeforeParensOptions:
-  AfterControlStatements: true
-  AfterFunctionDefinitionName: true
-  BeforeNonEmptyParentheses: true
-
 ColumnLimit: 80
+AlwaysBreakAfterReturnType: All
+BreakAfterAttributes: Always
