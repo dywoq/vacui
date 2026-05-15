@@ -58,6 +58,10 @@ struct boot_kernel_mode_info {
 
 struct boot_video_info {
     enum boot_vga_mode vga_mode;
+    uint_t width;
+    uint_t height;
+    ushort_t colors_count;
+    volatile ubyte_t *ptr;
 };
 
 struct boot_info {

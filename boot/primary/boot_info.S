@@ -10,7 +10,13 @@ boot_kernel_mode:
 %define BOOT_VGA_320_200_16_COLORS 0x0D
 %define BOOT_VGA_640_200_16_COLORS 0x0E 
 boot_video:
-    db 0 ; vga mode 
+    db 0 ; vga mode
+    times 3 db 0 ; padding
+    dd 0 ; width
+    dd 0 ; height
+    dw 0 ; colors count
+    times 2 db 0 ; padding
+    dd 0 ; pointer
 
 boot_mm:
     dd 0 ; entries count
@@ -67,18 +73,34 @@ get_vga_mode:
 .mode_320_200_16_colors:
     mov si, VGA_320_200_16_COLORS_MSG
     call print_str
+
     mov byte [boot_video], BOOT_VGA_320_200_16_COLORS
+
     mov ah, 0x0
     mov al, BOOT_VGA_320_200_16_COLORS
     int 0x10
+
+    mov dword [boot_video + 4], 320
+    mov dword [boot_video + 8], 200
+    mov word [boot_video + 12], 16
+    mov dword [boot_video + 16], 0xA0000    
+    
     jmp .return
 .mode_640_200_16_colors:
     mov si, VGA_640_200_16_COLORS_MSG
     call print_str
+
     mov byte [boot_video], BOOT_VGA_640_200_16_COLORS
+
     mov ah, 0x0
     mov al, BOOT_VGA_640_200_16_COLORS
     int 0x10
+
+    mov dword [boot_video + 4], 640
+    mov dword [boot_video + 8], 200
+    mov word [boot_video + 12], 16
+    mov dword [boot_video + 16], 0xA0000
+
     jmp .return
 .return:
     ret
