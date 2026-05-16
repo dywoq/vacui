@@ -2,3 +2,6 @@
 compile_commands.json
 *.img
 .xmake
+vqautoconf.h
+.config.*
+.config
