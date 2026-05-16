@@ -11,10 +11,12 @@
  * 0-127;
  *
  * - 16 colors (specified in 'VAL_COLOR' enumeration).
+ * 
+ * Part of Vacui VQ installer.
  */
 
-#ifndef _VQVAL_H
-#define _VQVAL_H
+#ifndef _VQINSTVAL_H
+#define _VQINSTVAL_H
 
 #include <vqdef.h>
 

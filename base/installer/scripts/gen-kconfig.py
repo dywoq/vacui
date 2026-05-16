@@ -6,7 +6,7 @@ import argparse
 import os
 import sys
 
-autoconf_path = "inc/vqautoconf.h"
+autoconf_path = "inc/autoconf.h"
 config_path = ".config"
 
 def main():
