@@ -13,11 +13,11 @@
 #define DRAW_TO_TEXT_BUF_(                                                     \
     row, column, character, foregroundColor, backgroundColor                   \
 )                                                                              \
-    (((volatile USHORT *)0xb8000)[column * COLUMNS_ + row] =                   \
+    (((volatile USHORT *)0xb8000)[row * COLUMNS_ + column] =                   \
          (character) | (foregroundColor << 8) | (backgroundColor << 12))
 
 #define DRAW_TO_TEXT_BUF_BG_(row, column, character, bg_color)                 \
-    (((volatile USHORT *)0xb8000)[column * COLUMNS_ + row] =                   \
+    (((volatile USHORT *)0xb8000)[row * COLUMNS_ + column] =                   \
          (character) | ((bg_color) << 12))
 
 void
