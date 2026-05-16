@@ -3,4 +3,6 @@
 
 menu "Vacui VQ installer"
 
+source "val/Kconfig"
+
 endmenu

@@ -4,7 +4,7 @@
 %ifndef _PRINT_S
 %define _PRINT_S
 
-print_str:
+PrintStr:
 .loop:
     cmp [si], 0
     je .return

@@ -6,7 +6,7 @@
 
 bits 16
 
-installer_dap:
+InstallerDap:
     db 16
     db 0
     dw 1

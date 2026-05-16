@@ -7,7 +7,7 @@ bits 16
 ; Contains the primary stage code of bootloader, which enables protected mode
 ; and jumps to the main installer point.
 
-_start:
+PreStartup:
     cli
     xor ax, ax
     mov es, ax
@@ -20,7 +20,7 @@ _start:
     int 0x10
 
     mov si, GREETING_MSG
-    call print_str
+    call PrintStr
 
     ; Enable A20 gate
     in al, 0x92
@@ -29,23 +29,23 @@ _start:
 
     mov ah, 0x42
     mov dl, 0x80
-    mov si, installer_dap
+    mov si, InstallerDap
     int 0x13
-    jc .disk_error
+    jc .diskError
 
     ; Enable protected mode and jump to pm_start
     cli
-    lgdt [gdt_ptr]
+    lgdt [GdtPtr]
     mov eax, cr0
     or al, 1
     mov cr0, eax
-    jmp 0x08:pm_start
+    jmp 0x08:PmStart
 
     jmp .halt
 
-.disk_error:
+.diskError:
     mov si, FAILED_TO_LOAD_KERNEL
-    call print_str
+    call PrintStr
 .halt:
     hlt
     jmp .halt
@@ -58,7 +58,7 @@ FAILED_TO_LOAD_KERNEL db 'ERROR: Failed to load installer', 13, 10, 0
 
 bits 32
 %include "gdt.S"
-pm_start:
+PmStart:
     mov ax, 0x10
     mov ds, ax
     mov es, ax

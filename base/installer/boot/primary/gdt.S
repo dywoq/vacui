@@ -4,7 +4,7 @@
 %ifndef _GDT_S
 %define _GDT_S
 
-gdt_start:
+GdtStart:
     ; Null descriptor
     dq 0
 
@@ -23,10 +23,10 @@ gdt_start:
     db 10010010b
     db 11001111b
     db 0x00
-gdt_end:
+GdtEnd:
 
-gdt_ptr:
-    dw gdt_end - gdt_start - 1
-    dd gdt_start
+GdtPtr:
+    dw GdtEnd - GdtStart - 1
+    dd GdtStart
 
 %endif

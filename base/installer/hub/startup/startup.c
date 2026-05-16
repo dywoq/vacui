@@ -7,7 +7,7 @@
 
 [[noreturn]]
 void
-startup()
+Startup()
 {
     while (1)
         __asm volatile("hlt\n");

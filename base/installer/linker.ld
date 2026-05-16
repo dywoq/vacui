@@ -2,14 +2,14 @@
 /* A part of https://github.com/dywoq/zero */
 
 OUTPUT_ARCH(i386)
-ENTRY(_start)
+ENTRY(PreStartup)
 
 SECTIONS
 {
     . = 0x10000;
 
     .text : {
-        *(.start)
+        KEEP(*(.start))
         *(.text .text.*)
     }
 

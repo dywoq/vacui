@@ -1,13 +1,15 @@
+BasedOnStyle: Microsoft
 IndentWidth: 4
 AlignAfterOpenBracket: BlockIndent
 BreakBeforeBraces: Custom
 BraceWrapping:
-   AfterFunction: true
-   AfterExternBlock: true
+    AfterFunction: true
+    AfterExternBlock: true
 
 NamespaceIndentation: All
 AllowShortFunctionsOnASingleLine: None
 
 ColumnLimit: 80
-AlwaysBreakAfterReturnType: All
+BreakAfterReturnType: All
 BreakAfterAttributes: Always
+BinPackParameters: AlwaysOnePerLine

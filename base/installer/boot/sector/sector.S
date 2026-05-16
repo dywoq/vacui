@@ -4,7 +4,7 @@
 org 0x7c00
 bits 16
 
-_start:
+Startup:
     cli
     xor ax, ax
     mov es, ax
@@ -15,20 +15,20 @@ _start:
 
     mov ah, 0x42
     mov dl, 0x80
-    mov si, primary_dap
+    mov si, PrimaryDap
     int 0x13
-    jc .failed_to_load
+    jc .failedToLoad
 
     jmp 0x0800:0x0
-.failed_to_load:
+.failedToLoad:
     mov si, FAILED_TO_LOAD_PRIMARY_STAGE
-    call print_str
+    call PrintStr
     jmp .halt
 .halt:
     hlt
     jmp .halt
 
-print_str:
+PrintStr:
 .loop:
     cmp [si], 0
     je .return
@@ -43,7 +43,7 @@ print_str:
 .return:
     ret
 
-primary_dap:
+PrimaryDap:
     db 16
     db 0
     dw 4
