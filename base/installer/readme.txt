@@ -12,4 +12,4 @@ The Vacui VQ installer is split into two parts:
     to the disk.
 - vqos_data.iso:
     This ISO file contains the executable of kernel and its bootloader.
-    As said in vqinstaller.img, they're copied to the disk.
+    As said in vqinstaller.img, they're unpacked and copied to the disk.

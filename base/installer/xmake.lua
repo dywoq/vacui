@@ -37,6 +37,18 @@ function vqinstaller_setup_build_type()
     end
 end
 
+option("vqinstaller_val")
+    set_values("vga_0x03")
+    set_default("vga_0x03")
+option_end()
+function vqinstaller_setup_val()
+    local val = get_config("vqinstaller_val")
+    if not val then
+        return
+    end
+    vqinstaller_add_module(path.join("val", val))
+end
+
 target("installer")
     set_toolchains("custom-gcc")
     add_cflags("-std=gnu23", "-fno-pie", "-fno-pic",
@@ -47,6 +59,7 @@ target("installer")
     add_asflags("-f elf32", { force = true })
 
     vqinstaller_setup_build_type()
+    vqinstaller_setup_val()
 
     vqinstaller_add_module("hub")
 target_end()
