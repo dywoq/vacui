@@ -20,7 +20,24 @@ toolchain("custom-gcc")
     set_toolset("as", "nasm")
 toolchain_end()
 
-target("vqinstaller")
+option("vqinstaller_build_type")
+    set_values("debug", "release")
+    set_default("debug")
+option_end()
+function vqinstaller_setup_build_type()
+    local val = get_config("vqinstaller_build_type")
+    if not val then
+        return
+    end
+
+    if val == "debug" then
+        add_defines("DEBUG", { force = true })
+    elseif val == "releese" then
+        add_defines("RELEASE", { force = true })
+    end
+end
+
+target("installer")
     set_toolchains("custom-gcc")
     add_cflags("-std=gnu23", "-fno-pie", "-fno-pic",
         "-Wextra", "-m32", "-fno-stack-protector",
@@ -28,6 +45,8 @@ target("vqinstaller")
     add_ldflags("-T linker.ld", "-nostdlib", "-s",
         "--build-id=none", "-m", "elf_i386", "--gc-sections", { force = true })
     add_asflags("-f elf32", { force = true })
+
+    vqinstaller_setup_build_type()
 
     vqinstaller_add_module("hub")
 target_end()
