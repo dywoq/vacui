@@ -2,7 +2,8 @@
  * Copyright 2026 dywoq - Apache License 2.0
  * https://github.com/dywoq/vacui
  *
- * An implementation of vqinstmetadata.h
+ * This header contains the functions to get the installer's metadata
+ * in strings.
  */
 
 #ifndef _VQINSTMETADATA_H
