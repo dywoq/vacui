@@ -19,9 +19,6 @@ PreStartup:
     mov ax, 0x03
     int 0x10
 
-    mov si, GREETING_MSG
-    call PrintStr
-
     ; Enable A20 gate
     in al, 0x92
     or al, 2
@@ -53,7 +50,6 @@ PreStartup:
 %include "print.S"
 %include "dap.S"
 
-GREETING_MSG db '* Vacui VQ 1.0 installer | Copyright 2026 dywoq - Apache License 2.0', 13, 10, 13, 10, 0
 FAILED_TO_LOAD_KERNEL db 'ERROR: Failed to load installer', 13, 10, 0
 
 bits 32
