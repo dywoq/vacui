@@ -4,8 +4,8 @@
 ; The lowest entry point of installer
 
 section .start
-global PreStartup
-extern Startup
+global Startup
+extern Hub
 
-PreStartup:
-    call Startup
+Startup:
+    call Hub

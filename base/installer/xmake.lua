@@ -61,6 +61,6 @@ target("installer")
     vqinstaller_setup_build_type()
     vqinstaller_setup_val()
 
-    vqinstaller_add_module("startup")
+    vqinstaller_add_module("hub")
     vqinstaller_add_module("base")
 target_end()

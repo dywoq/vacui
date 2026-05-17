@@ -2,7 +2,7 @@
 /* A part of https://github.com/dywoq/zero */
 
 OUTPUT_ARCH(i386)
-ENTRY(PreStartup)
+ENTRY(Startup)
 
 SECTIONS
 {
