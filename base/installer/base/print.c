@@ -11,8 +11,8 @@
 #include <vqdef.h>
 #include <vqinstval.h>
 
-static VAL_COLOR foregroundColor_ = VAL_BLACK;
-static VAL_COLOR backgroundColor_ = VAL_BRIGHT_WHITE;
+static VAL_COLOR foregroundColor_ = VAL_BRIGHT_WHITE;
+static VAL_COLOR backgroundColor_ = VAL_BLACK;
 
 void
 PrintSetBgColor(VAL_COLOR color)
