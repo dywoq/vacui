@@ -56,3 +56,15 @@ PrintStrFixed(
         currentColumn++;
     }
 }
+
+void
+PrintCharFixed(
+    char character,
+    USIZE row,
+    USIZE column
+)
+{
+    ValDrawCharacter(
+        character, row, column, foregroundColor_, backgroundColor_
+    );
+}
