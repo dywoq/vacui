@@ -62,4 +62,15 @@ PrintStrFixed(
     USIZE column
 );
 
+/*
+ * Prints a character at fixed position (row, column), using the set foreground
+ * and background colors.
+ */
+void
+PrintCharFixed(
+    char character,
+    USIZE row,
+    USIZE column
+);
+
 #endif

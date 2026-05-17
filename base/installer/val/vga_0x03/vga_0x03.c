@@ -68,9 +68,9 @@ ValGetColumns()
 void
 ValClear(VAL_COLOR color)
 {
-    for (USIZE i = 0; i < COLUMNS_; i++)
+    for (USIZE i = 0; i < ROWS_; i++)
     {
-        for (USIZE j = 0; j < ROWS_; j++)
+        for (USIZE j = 0; j < COLUMNS_; j++)
         {
             DRAW_TO_TEXT_BUF_BG_(i, j, ' ', color);
         }
