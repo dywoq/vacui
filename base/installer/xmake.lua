@@ -13,6 +13,13 @@ function vqinstaller_add_module(folder)
     add_files(asm_sources)
 end
 
+function vqinstaller_add_module_no_inc(folder)
+    local c_sources = path.join(folder, "**.c")
+    local asm_sources = path.join(folder, "**.S")
+    add_files(c_sources)
+    add_files(asm_sources)
+end
+
 toolchain("custom-gcc")
     set_kind("standalone")
     set_toolset("cc", "gcc")
@@ -61,6 +68,7 @@ target("installer")
     vqinstaller_setup_build_type()
     vqinstaller_setup_val()
 
-    vqinstaller_add_module("hub")
-    vqinstaller_add_module("base")
+    vqinstaller_add_module_no_inc("hub")
+    vqinstaller_add_module_no_inc("base")
+    vqinstaller_add_module_no_inc("metadata")
 target_end()
