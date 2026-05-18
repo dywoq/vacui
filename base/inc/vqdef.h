@@ -6,8 +6,8 @@
  * A part of shared library.
  */
 
-#ifndef _VACDEF_H
-#define _VACDEF_H
+#ifndef _VQDEF_H
+#define _VQDEF_H
 
 typedef char BYTE;
 typedef short SHORT;
