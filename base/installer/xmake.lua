@@ -67,8 +67,4 @@ target("installer")
 
     vqinstaller_setup_build_type()
     vqinstaller_setup_val()
-
-    vqinstaller_add_module_no_inc("hub")
-    vqinstaller_add_module_no_inc("base")
-    vqinstaller_add_module_no_inc("metadata")
 target_end()
