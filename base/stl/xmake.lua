@@ -2,6 +2,8 @@ set_config("buildir", ".build")
 
 function vq_add_module(folder)
     local inc_dir = path.join(folder, "inc")
+    local c_sources = path.join(folder, "**.c")
+    add_files(c_sources)
     add_includedirs(inc_dir)
 end
 
@@ -19,5 +21,4 @@ target("vqstl")
     add_includedirs("inc", "../inc")
 
     vq_add_module("str")
-    vq_add_sub_module(path.join("str", "len"))
 target_end()
