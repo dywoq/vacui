@@ -31,9 +31,15 @@ typedef struct _BAL_MM_INFO
     BAL_MM_REGION *regions[];
 } BAL_MM_INFO;
 
+typedef struct _BAL_METADATA
+{
+    const char *title;
+} BAL_METADATA;
+
 typedef struct _BAL_INFO
 {
-    BAL_MM_INFO mmInfo;
+    BAL_METADATA *metadata;
+    BAL_MM_INFO *mmInfo;
 } BAL_INFO;
 
 #endif
