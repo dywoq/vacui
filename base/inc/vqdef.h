@@ -16,4 +16,6 @@ typedef unsigned short USHORT;
 typedef unsigned int UINT;
 typedef unsigned long long ULONG;
 
+typedef UINT USIZE;
+
 #endif /* _VQDEF_H */
