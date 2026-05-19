@@ -1,3 +1,10 @@
+/*
+ * Copyright 2026 dywoq - Apache License 2.0
+ * https://github.com/dywoq/vacui
+ *
+ * An implementation of getting string length.
+ */
+
 #include <vqstlstr.h>
 
 [[nodiscard]]
