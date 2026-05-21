@@ -34,7 +34,7 @@ struct bal_info_mm_info {
     struct bal_info_mm_entry *entries[];
 };
 
-struct bal_info_info {
+struct bal_info {
     struct bal_info_metadata *metadata;
     struct bal_info_mm_info *mm_info;
 };
