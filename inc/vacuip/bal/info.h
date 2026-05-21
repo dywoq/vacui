@@ -7,6 +7,9 @@
 //      Layer) information. BAL must pass the information to AAL through the
 //      defined structs.
 //
+//      The BAL information is NEVER accessed directly by generic kernel code.
+//      AAL's PAL processes BAL and gives
+//
 
 #ifndef _VACUIP_BAL_INFO_H
 #define _VACUIP_BAL_INFO_H
@@ -30,7 +33,11 @@ struct bal_info_mm_entry {
 };
 
 struct bal_info_mm_info {
-    ushort_t mm_count;
+    ushort_t entries_count;
+    // Some AALs/PALs don't have unified memory map (such as RISC-V).
+    // PAL reads it and builds its own custom memory map,
+    // which is already handed over to the generic kernel.
+    bool entries_present;
     struct bal_info_mm_entry *entries[];
 };
 
