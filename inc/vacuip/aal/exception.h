@@ -11,9 +11,18 @@
 #include "../types.h"
 #include "privilege.h"
 
+// Generic exception codes
+enum aal_exception_code : uint_t {
+    AAL_EXCEPTION_PAGE_FAULT = 0,
+    AAL_EXCEPTION_DATA_ACCESS_FAULT,
+    AAL_EXCEPTION_ILLEGAL_INSTRUCTION,
+    AAL_EXCEPTION_SOFTWARE_BREAKPOINT,
+    AAL_EXCEPTION_ALIGNMENT_FAULT,
+};
+
 // A generic exception information.
 struct aal_exception_info {
-    uint_t what;
+    aal_exception_code what;
     uint_t where;
     uint_t bad_memory_address;
     enum aal_privilege previous_privilege;
@@ -26,9 +35,10 @@ typedef void (*aal_exception_handler)(struct aal_exception_info *info);
 // An exception abstraction layer with function pointers,
 // which allow you to set handler for various exceptions.
 struct aal_exception_layer {
-    void (*set_page_fault_handler)(aal_exception_handler handler);
-    void (*set_protection_fault)(aal_exception_handler handler);
-    void (*set_illegal_instr_fault)(aal_exception_handler handler);
+    void (*set_handler)(
+        enum aal_exception_code code,
+        aal_exception_handler handler
+    );
 };
 
 #endif
