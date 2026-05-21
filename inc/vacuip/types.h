@@ -1,8 +1,8 @@
 // Copyright 2026 dywoq - Apache License 2.0
 // https://github.com/dywoq/vacui
 
-#ifndef _VACUI_TYPES_H
-#define _VACUI_TYPES_H
+#ifndef _VACUIP_TYPES_H
+#define _VACUIP_TYPES_H
 
 typedef char vac_byte_t;
 typedef short vac_short_t;
