@@ -34,9 +34,10 @@ struct bal_info_mm_entry {
 
 struct bal_info_mm_info {
     ushort_t entries_count;
-    // Some AALs/PALs don't have unified memory map (such as RISC-V).
-    // PAL reads it and builds its own custom memory map,
-    // which is already handed over to the generic kernel.
+    // If it's false, this means BAL completely skipped the process of fetching
+    // memory map. For example: Unlike x86, RISC-V, and other plates do not have
+    // unified memory map. PAL manages it, creates its own custom memory map and
+    // provides it to the generic kernel.
     bool entries_present;
     struct bal_info_mm_entry *entries[];
 };
