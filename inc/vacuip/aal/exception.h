@@ -9,13 +9,14 @@
 #define _VACUIP_AAL_EXCEPTION_H
 
 #include "../types.h"
+#include "privilege.h"
 
 // A generic exception information.
 struct aal_exception_info {
     uint_t what;
     uint_t where;
     uint_t bad_memory_address;
-    uint_t previous_privilege_code;
+    enum aal_privilege previous_privilege;
 };
 
 // A unified type alias for exception handler. It's passed a generic exception
