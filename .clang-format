@@ -10,6 +10,4 @@ NamespaceIndentation: All
 AllowShortFunctionsOnASingleLine: None
 
 ColumnLimit: 80
-BreakAfterReturnType: All
-BreakAfterAttributes: Always
 BinPackParameters: AlwaysOnePerLine
