@@ -4,13 +4,13 @@
 #ifndef _VACUIP_TYPES_H
 #define _VACUIP_TYPES_H
 
-typedef char vac_byte_t;
-typedef short vac_short_t;
-typedef int vac_int_t;
-typedef long long vac_long_t;
-typedef signed char vac_ubyte_t;
-typedef signed short vac_ushort_t;
-typedef signed int vac_uint_t;
-typedef signed long long vac_ulong_t;
+typedef char byte_t;
+typedef short short_t;
+typedef int int_t;
+typedef long long long_t;
+typedef signed char ubyte_t;
+typedef signed short ushort_t;
+typedef signed int uint_t;
+typedef signed long long ulong_t;
 
 #endif
