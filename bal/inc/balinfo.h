@@ -11,10 +11,10 @@
 //      AAL's PAL processes BAL and gives
 //
 
-#ifndef _VACUIP_BAL_INFO_H
-#define _VACUIP_BAL_INFO_H
+#ifndef _BALINFO_H
+#define _BALINFO_H
 
-#include "../types.h"
+#include <vqtypes.h>
 
 struct bal_info_metadata {
     const char *name;
