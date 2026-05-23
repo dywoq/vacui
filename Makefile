@@ -2,11 +2,8 @@
 # https://github.com/dywoq/vacui
 
 # Manage toolset
-TOOLSET ?= i386
-include toolset/$(TOOLSET).mk
+CONFIG ?= i386
+include config/$(CONFIG).mk
 
-all:
-	make -C bal/$(TOOLSET)
-
-clean:
-	make clean -C bal/$(TOOLSET)
+all: bal
+clean: bal_clean

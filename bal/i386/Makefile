@@ -2,7 +2,9 @@
 # https://github.com/dywoq/vacui
 
 all:
-	make -C sector
-
+	make clean all -C sector
+	make -C primary
+	
 clean:
 	make clean -C sector
+	make clean -C primary
