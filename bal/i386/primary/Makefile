@@ -1,7 +1,8 @@
 # Copyright 2026 dywoq - Apache License 2.0
 # https://github.com/dywoq/vacui
 
-CFLAGS := -m32 -nostdlib -c -fno-pie -fno-pic -fno-stack-protector -std=gnu23
+CFLAGS := -m32 -nostdlib -c -fno-pie -fno-pic -fno-stack-protector -std=gnu23 \
+			-Iinc -I../../../inc -I../../inc
 LDFLAGS := --gc-sections -nostdlib -s -T primary.ld
 
 BUILD = .build
