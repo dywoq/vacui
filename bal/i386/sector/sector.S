@@ -12,11 +12,13 @@ _start:
     mov %ax, %ss
     mov $0x7c00, %sp
     sti
+    
     mov $0x42, %ah
     mov $primary_dap, %si
-    int $0x10
+    int $0x13
     jc disk_error
-    ljmp $0x1000, $0
+
+    ljmp $0x1000, $0x0
 disk_error:
     mov $ERR_FAILED_TO_LOAD_PRIMARY_STAGE, %si
     call print_str
@@ -42,7 +44,7 @@ primary_dap:
     .byte 16
     .byte 0
     .word 2
-    .word 0
+    .word 0x0
     .word 0x1000
     .quad 1
 
@@ -51,5 +53,5 @@ ERR_FAILED_TO_LOAD_PRIMARY_STAGE:
     .ascii "BAL i386: Failed to load boot primary stage\n\r"
     .byte 0
 
-.fill 510 - (. - _start), 1, 0
+.org 510
 .word 0xaa55
