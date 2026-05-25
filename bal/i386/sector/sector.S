@@ -18,7 +18,7 @@ _start:
     int $0x13
     jc disk_error
 
-    ljmp $0x1000, $0x0
+    ljmp $0x0800, $0x0
 disk_error:
     mov $ERR_FAILED_TO_LOAD_PRIMARY_STAGE, %si
     call print_str
@@ -45,7 +45,7 @@ primary_dap:
     .byte 0
     .word 2
     .word 0x0
-    .word 0x1000
+    .word 0x0800
     .quad 1
 
 // Error messages
