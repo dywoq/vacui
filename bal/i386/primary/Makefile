@@ -2,8 +2,8 @@
 # https://github.com/dywoq/vacui
 
 CFLAGS := -m32 -nostdlib -c -fno-pie -fno-pic -fno-stack-protector -std=gnu23 \
-			-Iinc -I../../../inc -I../../inc
-LDFLAGS := --gc-sections -nostdlib -s -T primary.ld
+			-Iinc -I../../../inc -I../../inc -Os
+LDFLAGS := --gc-sections -nostdlib -s -T primary.ld -flto
 
 BUILD = .build
 TARGET  ?= $(BUILD)/primary.bin
