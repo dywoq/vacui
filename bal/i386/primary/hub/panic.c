@@ -9,7 +9,7 @@ __asm(".code16gcc");
 void hpanic(const char *msg)
 {
     bios_set_video_mode(0x03);
-    hprint("[Vacui x86 BAL] Panicking:\n\r");
+    hprint("[Vacui i386 BAL] Panicking:\n\r");
     hprint(msg);
     while (true)
         __asm volatile("hlt\n");

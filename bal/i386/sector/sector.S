@@ -50,7 +50,7 @@ primary_dap:
 
 // Error messages
 ERR_FAILED_TO_LOAD_PRIMARY_STAGE:
-    .ascii "BAL i386: Failed to load boot primary stage\n\r"
+    .ascii "[Vacui i386 BAL] Disk Error: Failed to load boot primary stage\n\r"
     .byte 0
 
 .org 510
