@@ -42,9 +42,15 @@ struct bal_info_mm_info {
     struct bal_info_mm_entry *entries[];
 };
 
+enum bal_info_kernel_mode : ubyte_t {
+    BAL_INFO_KERNEL_NORMAL = 0,
+    BAL_INFO_KERNEL_RECOVERY,
+};
+
 struct bal_info {
     struct bal_info_metadata *metadata;
     struct bal_info_mm_info *mm_info;
+    enum bal_info_kernel_mode kernel_mode;
 };
 
 #endif
