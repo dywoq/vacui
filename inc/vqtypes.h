@@ -4,13 +4,13 @@
 #ifndef _VQTYPES_H
 #define _VQTYPES_H
 
-typedef char byte_t;
-typedef short short_t;
-typedef int int_t;
-typedef long long long_t;
-typedef signed char ubyte_t;
-typedef signed short ushort_t;
-typedef signed int uint_t;
-typedef signed long long ulong_t;
+typedef signed char byte_t;
+typedef signed short short_t;
+typedef signed int int_t;
+typedef signed long long long_t;
+typedef unsigned char ubyte_t;
+typedef unsigned short ushort_t;
+typedef unsigned int uint_t;
+typedef unsigned long long ulong_t;
 
 #endif
