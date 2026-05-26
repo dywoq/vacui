@@ -9,5 +9,6 @@
 #include <vqtypes.h>
 
 void hprint(const byte_t *str);
+[[noreturn]] void hpanic(const char *msg);
 
 #endif
