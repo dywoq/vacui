@@ -1,7 +1,7 @@
 // Copyright 2026 dywoq - Apache License 2.0
 // https://github.com/dywoq/vacui
 
-#include "bios.h"
+#include <bios.h>
 #include <hub.h>
 
 __asm(".code16gcc");
