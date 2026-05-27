@@ -8,7 +8,7 @@
 
 #include <vqtypes.h>
 
-void hprint(const byte_t *str);
+void hprint(const char *str);
 [[noreturn]] void hpanic(const char *msg);
 
 #endif
