@@ -6,7 +6,7 @@ __asm(".code16gcc");
 #include <balinfo.h>
 #include <hub.h>
 
-struct bal_info *boot_info_ = {};
+static struct bal_info *boot_info_ = {};
 
 [[noreturn]] void hub()
 {
