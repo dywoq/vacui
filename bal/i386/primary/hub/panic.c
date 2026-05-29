@@ -12,6 +12,9 @@ hpanic(const char *msg)
     bios_set_video_mode(0x03);
     hprint("[Vacui i386 BAL] Panicking:\n\r");
     hprint(msg);
+
+    __asm volatile("cli\n");
+
     while (true)
         __asm volatile("hlt\n");
 }
