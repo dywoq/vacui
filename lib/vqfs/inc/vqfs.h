@@ -22,6 +22,7 @@ struct [[gnu::packed]] vqfs_header {
 };
 
 #define VQFS_ENTRY_OFFSETS_MAX_SIZE 1024
+
 struct vqfs_entry_offsets {
     ulong_t entries_offsets[VQFS_ENTRY_OFFSETS_MAX_SIZE];
 };
