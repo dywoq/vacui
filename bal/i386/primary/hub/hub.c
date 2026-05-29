@@ -29,7 +29,8 @@ static ulong_t gdt_[3] = {};
 
 // Description:
 //
-//      Setups a temporary Global Descriptor Table.
+//      Initializes a temporary Global Descriptor Table
+//      without loading it with lgdt.
 static void gdt_init_()
 {
     // Null entry
