@@ -7,7 +7,7 @@ LDFLAGS := --gc-sections -nostdlib -s -T primary.ld -flto
 
 BUILD = .build
 TARGET  ?= $(BUILD)/primary.bin
-MODULES := hub
+MODULES := hub gdt
 
 SRCS_C := $(foreach m, $(MODULES), $(wildcard $(m)/*.c))
 SRCS_AS := $(foreach m, $(MODULES), $(wildcard $(m)/*.S))
