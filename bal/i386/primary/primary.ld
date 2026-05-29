@@ -16,6 +16,10 @@ SECTIONS
         *(.text .text.*)
     }
 
+    .hub : {
+        KEEP(*(.hub))
+    }
+
     .gdt : {
         KEEP(*(.gdt))
     }

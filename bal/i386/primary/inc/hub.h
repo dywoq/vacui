@@ -2,11 +2,15 @@
 // https://github.com/dywoq/vacui
 //
 // Description:
+//
 //      This module contains the bootloader hub functionality.
+
 #ifndef _HUB_H
 #define _HUB_H
 
 #include <vqtypes.h>
+
+#define HUBAPI [[gnu::section(".bub")]]
 
 // Description:
 //
@@ -16,7 +20,7 @@
 // Parameters:
 //
 //      - str: A string to print. Must be null-terminated.
-void hprint(const char *str);
+HUBAPI void hprint(const char *str);
 
 // Description:
 //
@@ -26,6 +30,6 @@ void hprint(const char *str);
 // Parameters:
 //
 //      - str: The panic message. Must be null-terminated.
-[[noreturn]] void hpanic(const char *msg);
+HUBAPI [[noreturn]] void hpanic(const char *msg);
 
 #endif

@@ -84,7 +84,7 @@ static void final_stage_load()
         hpanic("Failed to load bootloader final stage");
 }
 
-[[noreturn]] void hub()
+HUBAPI [[noreturn]] void hub()
 {
     final_stage_load();
     gdt_init_();
