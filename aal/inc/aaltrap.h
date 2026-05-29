@@ -1,9 +1,9 @@
 // Copyright 2026 dywoq - Apache License 2.0
 // https://github.com/dywoq/vacui
 //
-// Module description:
+// Description:
 //
-//      This module defines the AAL trap abstraction layer structs.
+//      Defines the AAL trap abstraction layer structs.
 //      WARNING: It doesn't contain exceptions layer, only
 //      process-caused traps. The exception layer is defined in
 //      <aalexc.h>.
@@ -13,9 +13,14 @@
 
 #include <vqtypes.h>
 
-// A type alias for trap handler.
+// Description:
+//
+//      A type alias for trap handler.
 typedef void (*aal_trap_handler_t)(void *data);
 
+// Description:
+//
+//      Defines an error enumerations. Returned by aal_trap_layer functions.
 enum aal_trap_err : ushort_t {
     AAL_TRAP_OK = 0,
 
@@ -26,13 +31,20 @@ enum aal_trap_err : ushort_t {
     AAL_TRAP_LIMIT_REACHED,
 };
 
+// Description:
+//
+//      Unified generic AAL traps management layer.
 struct aal_trap_layer {
-    // Sets a trap handler.
-    // The AAL uses this formula to decide where to put a trap handler:
+    // Description:
     //
-    //      Position = Base software ID number + id
+    //      Sets a trap handler.
+    //      The AAL uses this formula to decide where to put a trap handler:
     //
-    // See `aal_trap_err` for errors.
+    //              Position = Base software ID number + id
+    //
+    // Return:
+    //
+    //      See `aal_trap_err` for errors.
     enum aal_trap_err (*set_handler)(
         ubyte_t id,
         aal_trap_handler_t handler
