@@ -33,6 +33,7 @@ struct vqfs_entry_offsets {
 #define VQFS_ENTRY_FLAG_DIR 1 << 4
 #define VQFS_ENTRY_FLAG_FILE 1 << 5
 #define VQFS_ENTRY_HAS_FLAG(num, flag) ((num & flag) != 0)
+
 struct [[gnu::packed]] vqfs_entry {
     char filename[8];
     char extension[3];
