@@ -27,7 +27,7 @@
 //
 //      A Disk Address Packet. It's used in extended disk functionality,
 //      such as read and write.
-struct bios_dpa {
+struct bios_dap {
     ubyte_t size;
     ubyte_t reserved;
     ushort_t sectors_count;
