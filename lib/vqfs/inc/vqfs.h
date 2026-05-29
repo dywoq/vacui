@@ -41,7 +41,7 @@ struct [[gnu::packed]] vqfs_entry {
     ubyte_t flags;
     uint_t blocks_offsets[128];
     uint_t file_size;
-    char pad[49];
+    char pad[496];
 };
 
 #endif
