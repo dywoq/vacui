@@ -14,7 +14,8 @@
 // Description:
 //
 //      Generic exception codes
-enum aal_exc_code : uint_t {
+enum aal_exc_code : uint_t
+{
     AAL_EXC_PAGE_FAULT = 0,
     AAL_EXC_DATA_ACCESS_FAULT,
     AAL_EXC_ILLEGAL_INSTRUCTION,
@@ -25,7 +26,8 @@ enum aal_exc_code : uint_t {
 // Description:
 //
 //      A generic exception information.
-struct aal_exc_info {
+struct aal_exc_info
+{
     enum aal_exc_code what;
     uint_t where;
     uint_t bad_memory_address;
@@ -42,7 +44,8 @@ typedef void (*aal_exc_handler)(struct aal_exc_info *info);
 //
 //      An exception abstraction layer with function pointers,
 //      which allow you to set handler for various exceptions.
-struct aal_exc_layer {
+struct aal_exc_layer
+{
     void (*set_handler)(
         enum aal_exc_code code,
         aal_exc_handler handler

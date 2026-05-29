@@ -6,7 +6,8 @@ __asm(".code16gcc");
 #include <bios.h>
 #include <hub.h>
 
-HUBAPI void hpanic(const char *msg)
+HUBAPI void
+hpanic(const char *msg)
 {
     bios_set_video_mode(0x03);
     hprint("[Vacui i386 BAL] Panicking:\n\r");

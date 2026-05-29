@@ -6,9 +6,11 @@ __asm(".code16gcc");
 #include <bios.h>
 #include <hub.h>
 
-HUBAPI void hprint(const char *str)
+HUBAPI void
+hprint(const char *str)
 {
-    for (const char *p = str; *p != '\0'; ++p) {
+    for (const char *p = str; *p != '\0'; ++p)
+    {
         bios_teletype_putch(*p);
     }
 }

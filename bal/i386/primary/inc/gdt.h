@@ -27,7 +27,8 @@
 //      using bitwise OR:
 //
 //          flag = (Access Byte << 8) | Flags
-GDTAPI ulong_t gdt_make_entry(
+GDTAPI ulong_t
+gdt_make_entry(
     uint_t base,
     uint_t limit,
     ushort_t flag

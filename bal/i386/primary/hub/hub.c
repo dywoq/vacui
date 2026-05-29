@@ -28,7 +28,8 @@ __asm(".code16gcc");
 //      - This GDT is overwritten by kernel's GDT later.
 static ulong_t gdt_[3] = {0};
 
-static struct [[gnu::packed]] {
+static struct [[gnu::packed]]
+{
     ushort_t limit;
     uint_t base;
 } gdt_ptr_ = {0};
@@ -37,7 +38,8 @@ static struct [[gnu::packed]] {
 //
 //      Initializes a temporary Global Descriptor Table
 //      without loading it with lgdt.
-static void gdt_init_()
+static void
+gdt_init_()
 {
     // Null entry
     gdt_[0] = gdt_make_entry(0, 0, 0);
@@ -50,7 +52,8 @@ static void gdt_init_()
 // Description:
 //
 //      Loads the Global Descriptor Table pointer into GDT register.
-static void gdt_load_()
+static void
+gdt_load_()
 {
     gdt_ptr_.limit = sizeof(gdt_) - 1;
     gdt_ptr_.base = (ulong_t)gdt_;
@@ -76,7 +79,8 @@ struct bios_dap final_stage_dap_ = {
 //
 //      Panics if carry flag is set after extended read operation, and does not
 //      return.
-static void final_stage_load()
+static void
+final_stage_load()
 {
     bool carry_flag;
     bios_extended_read(&final_stage_dap_, 0x80, carry_flag);
@@ -84,7 +88,9 @@ static void final_stage_load()
         hpanic("Failed to load bootloader final stage");
 }
 
-HUBAPI [[noreturn]] void hub()
+HUBAPI [[noreturn]]
+void
+hub()
 {
     final_stage_load();
     gdt_init_();

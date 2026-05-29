@@ -1,13 +1,13 @@
-BasedOnStyle: LLVM
+BasedOnStyle: microsoft
 IndentWidth: 4
 AlignAfterOpenBracket: BlockIndent
 BreakBeforeBraces: Custom
 BraceWrapping:
     AfterFunction: true
     AfterExternBlock: true
-
 NamespaceIndentation: All
 AllowShortFunctionsOnASingleLine: None
-
 ColumnLimit: 80
 BinPackParameters: AlwaysOnePerLine
+AlwaysBreakAfterReturnType: All
+BreakAfterAttributes: Always

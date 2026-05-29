@@ -22,7 +22,8 @@
 //
 //      A VQ filesystem header information, containing necessary information for
 //      manipulating entries and their data. The structure fully equals to 4KiB.
-struct [[gnu::packed]] vqfs_header {
+struct [[gnu::packed]] vqfs_header
+{
     char signature[4];
     uint_t entry_offsets_offset;
     char pad[4088];
@@ -34,7 +35,8 @@ struct [[gnu::packed]] vqfs_header {
 //
 //      Table of VQ filesystem entries offsets. The structure fully
 //      equals to 4KiB.
-struct vqfs_entry_offsets {
+struct vqfs_entry_offsets
+{
     ulong_t entries_offsets[VQFS_ENTRY_OFFSETS_MAX_SIZE];
 };
 
@@ -60,7 +62,8 @@ struct vqfs_entry_offsets {
 //      - If entry is a directory, then blocks_offsets will contain indexes
 //      of its files and sub-directories inside array of entries offsets
 //      in vqfs_entry_offsets.
-struct [[gnu::packed]] vqfs_entry {
+struct [[gnu::packed]] vqfs_entry
+{
     char filename[8];
     char extension[3];
     ubyte_t flags;

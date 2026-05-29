@@ -21,7 +21,8 @@ typedef void (*aal_trap_handler_t)(void *data);
 // Description:
 //
 //      Defines an error enumerations. Returned by aal_trap_layer functions.
-enum aal_trap_err : ushort_t {
+enum aal_trap_err : ushort_t
+{
     AAL_TRAP_OK = 0,
 
     // The given ID overflows the limit.
@@ -34,7 +35,8 @@ enum aal_trap_err : ushort_t {
 // Description:
 //
 //      Unified generic AAL traps management layer.
-struct aal_trap_layer {
+struct aal_trap_layer
+{
     // Description:
     //
     //      Sets a trap handler.

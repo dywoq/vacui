@@ -6,14 +6,16 @@ __asm(".code16gcc");
 #include <gdt.h>
 #include <vqtypes.h>
 
-GDTAPI ulong_t gdt_make_entry(
+GDTAPI ulong_t
+gdt_make_entry(
     uint_t base,
     uint_t limit,
     ushort_t flag
 )
 {
     // Null entry skip
-    if (base == 0 && limit == 0 && flag == 0) {
+    if (base == 0 && limit == 0 && flag == 0)
+    {
         return 0;
     }
     ulong_t entry = 0;
