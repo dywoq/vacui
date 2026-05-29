@@ -9,13 +9,24 @@
 
 #include <vqtypes.h>
 
-// Video service
+//
+// Video services
+//
+
 #define bios_teletype_putch(ch)                                                \
     __asm volatile("int $0x10\n" : : "a"((0x0e << 8) | ch) : "cc", "memory")
+
 #define bios_set_video_mode(mode)                                              \
     __asm volatile("int $0x10\n" : : "a"((0x0 << 8) | mode) : "cc", "memory")
 
+//
 // Disk services
+//
+
+// Description:
+//
+//      A Disk Address Packet. It's used in extended disk functionality,
+//      such as read and write.
 struct bios_dpa {
     ubyte_t size;
     ubyte_t reserved;
@@ -24,6 +35,7 @@ struct bios_dpa {
     ushort_t segment;
     ulong_t lba_start;
 };
+
 #define bios_extended_read(dpa, drive_number, carry_flag)                      \
     __asm volatile("int $0x13\n"                                               \
                    : "=@ccc"(carry_flag)                                       \

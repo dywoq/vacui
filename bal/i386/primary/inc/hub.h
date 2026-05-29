@@ -2,13 +2,30 @@
 // https://github.com/dywoq/vacui
 //
 // Description:
-//      This module contains the hub functionality.
+//      This module contains the bootloader hub functionality.
 #ifndef _HUB_H
 #define _HUB_H
 
 #include <vqtypes.h>
 
+// Description:
+//
+//      Prints a string into the screen, using teletype output
+//      macro wrapper from bios.h
+//
+// Parameters:
+//
+//      - str: A string to print. Must be null-terminated.
 void hprint(const char *str);
+
+// Description:
+//
+//      Causes the bootloader to panic, printing a panic message into the screen
+//      (hprint).
+//
+// Parameters:
+//
+//      - str: The panic message. Must be null-terminated.
 [[noreturn]] void hpanic(const char *msg);
 
 #endif
