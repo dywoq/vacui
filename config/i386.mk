@@ -15,6 +15,7 @@ bal: $(I386_BUILD_DIR)
 	cp bal/i386/sector/.build/sector.bin .build/i386/sector.bin
 	cp bal/i386/primary/.build/primary.bin .build/i386/primary.bin
 bal_clean:
+	make clean -C bal/i386
 	rm $(I386_BUILD_DIR) -fr
 $(I386_BUILD_DIR):
 	mkdir -p $(I386_BUILD_DIR)
