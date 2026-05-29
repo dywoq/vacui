@@ -25,7 +25,12 @@ __asm(".code16gcc");
 //              Kernel mode data segment
 //
 //      - This GDT is overwritten by kernel's GDT later.
-static ulong_t gdt_[3] = {};
+static ulong_t gdt_[3] = {0};
+
+static struct [[gnu::packed]] {
+    ushort_t limit;
+    uint_t base;
+} gdt_ptr_ = {0};
 
 // Description:
 //
@@ -41,9 +46,20 @@ static void gdt_init_()
     gdt_[2] = gdt_make_entry(0, 0xFFFFF, (0x92 << 8) | 0xC);
 }
 
+// Description:
+//
+//      Loads the Global Descriptor Table pointer into GDT register.
+static void gdt_load_()
+{
+    gdt_ptr_.limit = sizeof(gdt_) - 1;
+    gdt_ptr_.base = (ulong_t)gdt_;
+    __asm volatile("lgdt %0" : : "m"(gdt_) : "cc", "memory");
+}
+
 [[noreturn]] void hub()
 {
     gdt_init_();
+    gdt_load_();
     while (1)
         __asm volatile("hlt\n");
 }
