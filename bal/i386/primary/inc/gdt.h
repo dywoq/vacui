@@ -10,6 +10,8 @@
 
 #include <vqtypes.h>
 
+#define GDTAPI [[gnu::section(".gdt")]]
+
 // Description:
 //
 //      Transforms the given parameters into one unified 64-bit address,
@@ -25,7 +27,7 @@
 //      using bitwise OR:
 //
 //          flag = (Access Byte << 8) | Flags
-ulong_t gdt_make_entry(
+GDTAPI ulong_t gdt_make_entry(
     uint_t base,
     uint_t limit,
     ushort_t flag

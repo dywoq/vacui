@@ -7,13 +7,17 @@ ENTRY(_start)
 SECTIONS
 {
     . = 0x8000;
-    
+
     .start : {
         KEEP(*(.start .start.*))
     }
 
     .text : {
         *(.text .text.*)
+    }
+
+    .gdt : {
+        KEEP(*(.gdt))
     }
 
     .rodata : { *(.rodata .rodata.*) }
