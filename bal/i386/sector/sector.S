@@ -24,6 +24,7 @@ _start:
     int 0x13
     jc .disk_error
 
+    mov dl, [drive_number]
     jmp 0x8000:0x0
 
 .disk_error:
