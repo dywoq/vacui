@@ -11,3 +11,6 @@ ColumnLimit: 80
 BinPackParameters: AlwaysOnePerLine
 AlwaysBreakAfterReturnType: All
 BreakAfterAttributes: Always
+AlignConsecutiveDeclarations: Consecutive
+AlignConsecutiveAssignments: Consecutive
+AlignConsecutiveMacros: Consecutive

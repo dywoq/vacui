@@ -15,10 +15,8 @@
 //      Defines a AAL tier enumeration. Tier word is synonym to:
 //          Rings (x86-specific)
 //          Privileges
-enum aal_tier : ubyte_t
-{
-    AAL_TIER_KERNEL = 0,
-    AAL_TIER_USER,
-};
+typedef ubyte_t aal_tier_t;
+#define AAL_TIER_KERNEL (aal_tier_t)0
+#define AAL_TIER_USER   (aal_tier_t)1
 
 #endif

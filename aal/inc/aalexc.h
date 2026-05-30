@@ -14,24 +14,22 @@
 // Description:
 //
 //      Generic exception codes
-enum aal_exc_code : uint_t
-{
-    AAL_EXC_PAGE_FAULT = 0,
-    AAL_EXC_DATA_ACCESS_FAULT,
-    AAL_EXC_ILLEGAL_INSTRUCTION,
-    AAL_EXC_SOFTWARE_BREAKPOINT,
-    AAL_EXC_ALIGNMENT_FAULT,
-};
+typedef uint_t aal_exc_code_t;
+#define AAL_EXC_PAGE_FAULT          (aal_exc_code_t)0
+#define AAL_EXC_DATA_ACCESS_FAULT   (aal_exc_code_t)1
+#define AAL_EXC_ILLEGAL_INSTRUCTION (aal_exc_code_t)2
+#define AAL_EXC_SOFTWARE_BREAKPOINT (aal_exc_code_t)3
+#define AAL_EXC_ALIGNMENT_FAULT     (aal_exc_code_t)4
 
 // Description:
 //
 //      A generic exception information.
 struct aal_exc_info
 {
-    enum aal_exc_code what;
-    uint_t where;
-    uint_t bad_memory_address;
-    enum aal_tier previous_tier;
+    aal_exc_code_t what;
+    uint_t         where;
+    uint_t         bad_memory_address;
+    aal_tier_t     previous_tier;
 };
 
 // Description:
@@ -47,7 +45,7 @@ typedef void (*aal_exc_handler)(struct aal_exc_info *info);
 struct aal_exc_layer
 {
     void (*set_handler)(
-        enum aal_exc_code code,
+        aal_exc_code_t  code,
         aal_exc_handler handler
     );
 };
