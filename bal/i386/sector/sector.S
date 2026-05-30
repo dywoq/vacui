@@ -25,7 +25,7 @@ _start:
     jc .disk_error
 
     mov dl, [drive_number]
-    jmp 0x8000:0x0
+    jmp 0x0800:0x0
 
 .disk_error:
     mov si, MSG_FAILED_TO_LOAD_PRIMARY_STAGE
@@ -68,7 +68,7 @@ primary_dap:
     db 0
     dw 2
     dw 0x0
-    dw 0x8000
+    dw 0x0800
     dq 1
 
 ; Description:
