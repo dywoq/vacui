@@ -3,8 +3,8 @@
 
 all:
 	make clean all -C sector
-	make -C primary
-	make -C final
+	make clean all -C primary
+	make all -C final
 	
 clean:
 	make clean -C sector
