@@ -9,6 +9,7 @@
 #ifndef _VQFS_H
 #define _VQFS_H
 
+#include <vqcmpext.h>
 #include <vqtypes.h>
 
 // Description:
@@ -22,11 +23,11 @@
 //
 //      A VQ filesystem header information, containing necessary information for
 //      manipulating entries and their data. The structure fully equals to 4KiB.
-struct [[gnu::packed]] vqfs_header
+struct _PACKED vqfs_header
 {
-    char signature[4];
+    char   signature[4];
     uint_t entry_offsets_offset;
-    char pad[4088];
+    char   pad[4088];
 };
 
 #define VQFS_ENTRY_OFFSETS_MAX_SIZE 1024
@@ -43,10 +44,10 @@ struct vqfs_entry_offsets
 // Entry flags
 #define VQFS_ENTRY_FLAG_READABLE 1 << 0
 #define VQFS_ENTRY_FLAG_WRITABLE 1 << 1
-#define VQFS_ENTRY_FLAG_SYSTEM 1 << 2
-#define VQFS_ENTRY_FLAG_HIDDEN 1 << 3
-#define VQFS_ENTRY_FLAG_DIR 1 << 4
-#define VQFS_ENTRY_FLAG_FILE 1 << 5
+#define VQFS_ENTRY_FLAG_SYSTEM   1 << 2
+#define VQFS_ENTRY_FLAG_HIDDEN   1 << 3
+#define VQFS_ENTRY_FLAG_DIR      1 << 4
+#define VQFS_ENTRY_FLAG_FILE     1 << 5
 
 // Description:
 //
@@ -62,14 +63,14 @@ struct vqfs_entry_offsets
 //      - If entry is a directory, then blocks_offsets will contain indexes
 //      of its files and sub-directories inside array of entries offsets
 //      in vqfs_entry_offsets.
-struct [[gnu::packed]] vqfs_entry
+struct _PACKED vqfs_entry
 {
-    char filename[8];
-    char extension[3];
+    char    filename[8];
+    char    extension[3];
     ubyte_t flags;
-    uint_t blocks_offsets[128];
-    uint_t file_size;
-    char pad[496];
+    uint_t  blocks_offsets[128];
+    uint_t  file_size;
+    char    pad[496];
 };
 
 #endif
