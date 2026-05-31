@@ -1,8 +1,12 @@
 # Copyright 2026 dywoq - Apache License 2.0
 # https://github.com/dywoq/vacui
 
-CFLAGS := -m32 -nostdlib -c -fno-pie -fno-pic -fno-stack-protector -std=c90 \
-			-Iinc -I../../../inc -I../../inc -Os
+CFLAGS := -m32 -nostdlib -c -fno-pie -fno-pic -fno-stack-protector -Os -std=c90 \
+			-Iinc \
+			-I../../../inc \
+			-I../../inc \
+			-I../../../drivers/i386/video/inc
+
 LDFLAGS := --gc-sections -nostdlib -s -T final.ld -flto
 ASFLAGS := -f elf32
 
