@@ -10,5 +10,4 @@ AllowShortFunctionsOnASingleLine: None
 ColumnLimit: 80
 BinPackParameters: AlwaysOnePerLine
 AlignConsecutiveDeclarations: Consecutive
-AlignConsecutiveAssignments: Consecutive
 AlignConsecutiveMacros: Consecutive
