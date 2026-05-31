@@ -10,12 +10,8 @@ Description:
 #include <vqcmpext.h>
 #include <vqtypes.h>
 
-_NORETURN void
-hub()
+_SECTION(".start") _NORETURN void hub()
 {
-    volatile ubyte_t *vram = (volatile ubyte_t *)0xb8000;
-    vram[0 * 80 + 0]       = ' ';
-
     while (1)
         __asm volatile("hlt\n");
 }
