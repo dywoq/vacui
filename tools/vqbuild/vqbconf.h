@@ -115,7 +115,7 @@ namespace vqbuild
         Description:
 
             Returns the configuration values, filled by parse function.
-            Fills configuration values lazily.
+            Fills configuration values only once.
 
         Exceptions:
 
