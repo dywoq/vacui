@@ -13,6 +13,7 @@ Description:
 #include <exception>
 #include <fstream>
 #include <map>
+#include <sstream>
 #include <string>
 
 namespace vqbuild
@@ -38,7 +39,11 @@ namespace vqbuild
 
         virtual const char *what() const throw()
         {
-            return msg_.c_str();
+            std::stringstream total_msg;
+            total_msg << "vqbuild::config_exception: " << msg_;
+            static std::string str = total_msg.str();
+            return str.c_str();
+            ;
         }
     };
 
@@ -81,6 +86,7 @@ namespace vqbuild
         void parse(std::ifstream &file)
         {
             std::string line = "";
+            std::string accumulated_line = "";
             while (std::getline(file, line))
             {
                 line = trim_(line);
@@ -89,16 +95,35 @@ namespace vqbuild
                     continue;
                 }
 
-                size_t delimiter_pos = line.find('=');
-                if (delimiter_pos == std::string::npos)
+                if (line[line.length() - 1] == '\\')
+                {
+                    std::string stripped_line =
+                        trim_(line.substr(0, line.length() - 1));
+                    accumulated_line += stripped_line;
+                    accumulated_line += " ";
                     continue;
+                }
+                else
+                {
+                    accumulated_line += line;
+                }
 
-                std::string key = trim_(line.substr(0, delimiter_pos));
-                std::string value = trim_(line.substr(delimiter_pos + 1));
+                size_t delimiter_pos = accumulated_line.find('=');
+                if (delimiter_pos == std::string::npos)
+                {
+                    accumulated_line = "";
+                    continue;
+                }
+
+                std::string key =
+                    trim_(accumulated_line.substr(0, delimiter_pos));
+                std::string value =
+                    trim_(accumulated_line.substr(delimiter_pos + 1));
 
                 if (!key.empty())
                 {
                     keys_[key] = value;
+                    accumulated_line = "";
                 }
             }
             parsed_ = true;

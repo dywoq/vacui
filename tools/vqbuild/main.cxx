@@ -8,15 +8,16 @@ Description:
 */
 
 #include "vqbconf.h"
+#include "vqbrun.h"
 #include <fstream>
 #include <iostream>
 
 int main()
 {
-    std::ifstream file("CONFIG");
+    std::ifstream file("config");
     if (!file.is_open())
     {
-        std::cerr << "Failed to open CONFIG file" << std::endl;
+        std::cerr << "Failed to open \"config\" file" << std::endl;
         return 1;
     }
 
@@ -24,12 +25,9 @@ int main()
     {
         vqbuild::config conf;
         conf.parse(file);
-
-        std::cout << "SOURCES: " << conf.get_sources() << std::endl;
-        std::cout << "TARGET: " << conf.get_target() << std::endl;
-        std::cout << "KIND: " << conf.get_kind() << std::endl;
+        vqbuild::run(conf, "./");
     }
-    catch (const vqbuild::config_exception &e)
+    catch (const std::exception &e)
     {
         std::cout << e.what() << std::endl;
     }
