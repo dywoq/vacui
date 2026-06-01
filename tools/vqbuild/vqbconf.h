@@ -81,6 +81,9 @@ namespace vqbuild
             Parses given file content, skipping comments (that start with #)
             and appends key and its value into underlying map.
 
+            Handles multi-line lists. To create multi-line list, use '\'
+            character at the end of line to continue the list.
+
             Skips the key if it's empty.
         */
         void parse(std::ifstream &file)
