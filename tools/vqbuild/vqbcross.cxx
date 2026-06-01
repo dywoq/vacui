@@ -38,7 +38,7 @@ namespace vqbuild
     */
     typedef std::map<architecture_t, compiler_set> compiler_sets_t_;
     static compiler_sets_t_                        compiler_sets_;
-    bool compiler_sets_initialized_ = false;
+    static bool compiler_sets_initialized_ = false;
 
 #define ARCH_LIST_COUNT_ 1
     static architecture_t arch_list_[ARCH_LIST_COUNT_] = {ARCHITECTURE_I386};
