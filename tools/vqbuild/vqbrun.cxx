@@ -52,19 +52,22 @@ namespace vqbuild
         std::stringstream makefile_cmd;
         makefile_cmd << "make " << "-C " << folder << " TARGET=\""
                      << conf_vals.target << "\" KIND=\"" << conf_vals.kind
-                     << "\"" << " SOURCES=\"" << conf_vals.sources << "\"";
+                     << "\"" << " SOURCES=\"" << conf_vals.sources << "\""
+                     << " OBJECTS_DIR=\"" << conf_vals.objects_dir << "\" ";
         std::string makefile_cmd_str = makefile_cmd.str();
 
-        int code = std::system(makefile_cmd_str.c_str());
-        if (code < 0)
-        {
-            std::stringstream err_msg;
-            err_msg << "Failed to run \"" << makefile_cmd_str.c_str()
-                    << "\" command (exit code: " << code << ")";
-            std::string err_msg_str = err_msg.str();
-            const char *err_msg_c_str = err_msg_str.c_str();
-            throw run_exception(err_msg_c_str);
-        }
+std::cout << makefile_cmd_str << std::endl;
+        
+        // int code = std::system(makefile_cmd_str.c_str());
+        // if (code < 0)
+        // {
+        //     std::stringstream err_msg;
+        //     err_msg << "Failed to run \"" << makefile_cmd_str.c_str()
+        //             << "\" command (exit code: " << code << ")";
+        //     std::string err_msg_str = err_msg.str();
+        //     const char *err_msg_c_str = err_msg_str.c_str();
+        //     throw run_exception(err_msg_c_str);
+        // }
     }
 
 } // namespace vqbuild

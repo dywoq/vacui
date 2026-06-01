@@ -47,6 +47,8 @@ namespace vqbuild
         std::string kind;
         /* SOURCES in config */
         std::string sources;
+        /* OBJECTS_DIR in config */
+        std::string objects_dir;
     };
 
     /*
