@@ -157,7 +157,7 @@ namespace vqbuild
 
             Returns whether parse() command successfully or not.
         */
-        bool parsed() throw()
+        bool parsed() const throw()
         {
             return parsed_;
         }
