@@ -8,7 +8,7 @@ and linking target.
 
 Usage:
 
-    vqbuild [Directory with program you want to build] [architecture]
+    vqbuild [Directory with config file] [architecture]
 
             Building
 
