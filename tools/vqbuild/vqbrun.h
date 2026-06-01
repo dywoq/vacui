@@ -11,6 +11,7 @@ Description:
 #define _VQBRUN_H
 
 #include "vqbconf.h"
+#include "vqbcross.h"
 
 namespace vqbuild
 {
@@ -46,8 +47,9 @@ namespace vqbuild
         - If folder path is empty
     */
     void run(
-        config            &conf,
-        const std::string &folder
+        config             &conf,
+        const compiler_set &compiler_set,
+        const std::string  &folder
     );
 } // namespace vqbuild
 

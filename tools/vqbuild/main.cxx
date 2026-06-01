@@ -8,6 +8,7 @@ Description:
 */
 
 #include "vqbconf.h"
+#include "vqbcross.h"
 #include "vqbrun.h"
 #include <fstream>
 #include <iostream>
@@ -40,9 +41,11 @@ int main(
 
     try
     {
+        vqbuild::compiler_set compiler_set =
+            vqbuild::get_compiler_set(vqbuild::ARCHITECTURE_I386);
         vqbuild::config conf;
         conf.parse(file);
-        vqbuild::run(conf, dir);
+        vqbuild::run(conf, compiler_set, dir);
     }
     catch (const std::exception &e)
     {
