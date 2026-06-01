@@ -36,6 +36,22 @@ namespace vqbuild
     /*
     Description:
 
+        Static snapshot of configuration values, received from configuration
+        parser.
+    */
+    struct config_values
+    {
+        /* TARGET in config */
+        std::string target;
+        /* KIND in config */
+        std::string kind;
+        /* SOURCES in config */
+        std::string sources;
+    };
+
+    /*
+    Description:
+
         A configuration class. Responsible for parsing configuration file
         and reading its fields.
     */
@@ -44,6 +60,9 @@ namespace vqbuild
       private:
         std::map<std::string, std::string> keys_;
         bool                               parsed_;
+
+        config_values config_values_;
+        bool          config_values_initialized_;
 
         std::string trim_(const std::string &str)
         {
@@ -73,39 +92,6 @@ namespace vqbuild
         /*
         Description:
 
-            Returns a value from SOURCES key.
-
-        Exceptions:
-
-            vqbuild::config_exception - If you didn't run parse function
-        */
-        std::string get_sources();
-
-        /*
-        Description:
-
-            Returns a value from TARGET key.
-
-        Exceptions:
-
-            vqbuild::config_exception - If you didn't run parse function
-        */
-        std::string get_target();
-
-        /*
-        Description:
-
-            Returns a value from KIND key.
-
-        Exceptions:
-
-            vqbuild::config_exception - If you didn't run parse function
-        */
-        std::string get_kind();
-
-        /*
-        Description:
-
             Returns whether parse() command successfully or not.
         */
         bool parsed() const throw();
@@ -116,10 +102,7 @@ namespace vqbuild
             Checks the presence of required keys that GNU Make needs
             for compilation and linking the target.
 
-            The required keys:
-            - TARGET
-            - KIND
-            - SOURCES
+            You can see the required keys in config_values struct
 
         Exceptions:
 
@@ -127,6 +110,20 @@ namespace vqbuild
             - If you didn't run parse function
         */
         bool has_required_keys();
+
+        /*
+        Description:
+
+            Returns the configuration values, filled by parse function.
+            Fills configuration values lazily.
+
+        Exceptions:
+
+            vqbuild::config_exception:
+            - If you didn't run parse function
+            - If required keys are missing
+        */
+        const config_values &get_config_values();
     };
 } // namespace vqbuild
 

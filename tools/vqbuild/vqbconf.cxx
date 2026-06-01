@@ -8,7 +8,6 @@ Description:
 */
 
 #include "vqbconf.h"
-#include <exception>
 #include <fstream>
 #include <map>
 #include <sstream>
@@ -33,7 +32,8 @@ namespace vqbuild
     /* config class */
     config::config()
         : keys_(),
-          parsed_(false)
+          parsed_(false),
+          config_values_initialized_(false)
     {
     }
 
@@ -82,27 +82,6 @@ namespace vqbuild
         parsed_ = true;
     }
 
-    std::string config::get_sources()
-    {
-        if (!parsed_)
-            throw config_exception("parse() function is not ran");
-        return keys_["SOURCES"];
-    }
-
-    std::string config::get_target()
-    {
-        if (!parsed_)
-            throw config_exception("parse() function is not ran");
-        return keys_["TARGET"];
-    }
-
-    std::string config::get_kind()
-    {
-        if (!parsed_)
-            throw config_exception("parse() function is not ran");
-        return keys_["KIND"];
-    }
-
     bool config::parsed() const throw()
     {
         return parsed_;
@@ -112,7 +91,9 @@ namespace vqbuild
     /*
     Description:
 
-        Required keys table
+        Required keys table.
+        Every time new field is added in config_values, you need to updated
+        required keys table
     */
     static const char *required_keys_[REQUIRED_KEYS_COUNT_] = {
         "TARGET", "SOURCES", "KIND"
@@ -132,5 +113,24 @@ namespace vqbuild
                 return false;
         }
         return true;
+    }
+
+    const config_values &config::get_config_values()
+    {
+        if (!parsed_)
+            throw config_exception("parse() function is not ran");
+
+        if (!has_required_keys())
+            throw config_exception("config is missing required keys");
+
+        if (!config_values_initialized_)
+        {
+            config_values_.target = keys_["TARGET"];
+            config_values_.kind = keys_["KIND"];
+            config_values_.sources = keys_["SOURCES"];
+            config_values_initialized_ = true;
+        }
+
+        return config_values_;
     }
 } // namespace vqbuild

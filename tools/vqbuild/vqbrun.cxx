@@ -8,6 +8,7 @@ Description:
 */
 
 #include "vqbrun.h"
+#include "vqbconf.h"
 #include <cstdlib>
 #include <iostream>
 #include <sstream>
@@ -46,19 +47,12 @@ namespace vqbuild
             throw run_exception("folder path is empty");
         }
 
-        std::string target = conf.get_target();
-        std::string kind = conf.get_kind();
-        std::string sources = conf.get_sources();
-
-        if (target.empty() || kind.empty() || sources.empty())
-        {
-            throw run_exception("TARGET, KIND or SOURCES is empty");
-        }
+        const config_values &conf_vals = conf.get_config_values();
 
         std::stringstream makefile_cmd;
-        makefile_cmd << "make " << "-C " << folder << " TARGET=\"" << target
-                     << "\" KIND=\"" << kind << "\"" << " SOURCES=\"" << sources
-                     << "\"";
+        makefile_cmd << "make " << "-C " << folder << " TARGET=\""
+                     << conf_vals.target << "\" KIND=\"" << conf_vals.kind
+                     << "\"" << " SOURCES=\"" << conf_vals.sources << "\"";
         std::string makefile_cmd_str = makefile_cmd.str();
 
         int code = std::system(makefile_cmd_str.c_str());

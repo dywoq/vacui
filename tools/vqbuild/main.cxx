@@ -8,6 +8,7 @@ Description:
 */
 
 #include "vqbconf.h"
+#include "vqbrun.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -41,13 +42,7 @@ int main(
     {
         vqbuild::config conf;
         conf.parse(file);
-        if (!conf.has_required_keys())
-        {
-            std::cerr
-                << "Some of required keys in 'config' file are missing"
-                << std::endl;
-            return 1;
-        }
+        vqbuild::run(conf, dir);
     }
     catch (const std::exception &e)
     {
