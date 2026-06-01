@@ -16,3 +16,8 @@ After you installed them, go to tools/vqbuild directory and run:
         make all
 
 The binary will be in new .build directory.
+
+            License
+
+Copyright 2026 dywoq - Apache License 2.0
+https://github.com/dywoq/vacui
