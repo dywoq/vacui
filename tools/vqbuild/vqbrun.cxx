@@ -51,13 +51,13 @@ namespace vqbuild
 
         std::stringstream makefile_cmd;
         makefile_cmd << "make " << "-C " << folder << " TARGET=\""
-                     << conf_vals.target << "\" KIND=\"" << conf_vals.kind
-                     << "\"" << " SOURCES=\"" << conf_vals.sources << "\""
+                     << conf_vals.target << "\"" << " SOURCES=\""
+                     << conf_vals.sources << "\""
                      << " OBJECTS_DIR=\"" << conf_vals.objects_dir << "\" ";
         std::string makefile_cmd_str = makefile_cmd.str();
 
-std::cout << makefile_cmd_str << std::endl;
-        
+        std::cout << makefile_cmd_str << std::endl;
+
         // int code = std::system(makefile_cmd_str.c_str());
         // if (code < 0)
         // {

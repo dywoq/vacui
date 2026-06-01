@@ -87,7 +87,7 @@ namespace vqbuild
         return parsed_;
     }
 
-#define REQUIRED_KEYS_COUNT_ 4 
+#define REQUIRED_KEYS_COUNT_ 3
     /*
     Description:
 
@@ -96,7 +96,7 @@ namespace vqbuild
         required keys table
     */
     static const char *required_keys_[REQUIRED_KEYS_COUNT_] = {
-        "TARGET", "SOURCES", "KIND", "OBJECTS_DIR"
+        "TARGET", "SOURCES", "OBJECTS_DIR"
     };
 
     bool config::has_required_keys()
@@ -126,9 +126,8 @@ namespace vqbuild
         if (!config_values_initialized_)
         {
             config_values_.target = keys_["TARGET"];
-            config_values_.kind = keys_["KIND"];
-            config_values_.sources = keys_["SOURCES"];
             config_values_.objects_dir = keys_["OBJECTS_DIR"];
+            config_values_.sources = keys_["SOURCES"];
             config_values_initialized_ = true;
         }
 
