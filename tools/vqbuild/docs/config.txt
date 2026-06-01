@@ -1,0 +1,38 @@
+_______________________________________________________________________________
+                        Configuration - Required keys
+
+- TARGET: Target name you want to get.
+
+- SOURCES: Source files (C/C++).
+
+- OBJECTS_DIR: In this directory, compiled object files go there.
+
+- BUILD_DIR: Build directory with target.
+
+If any of required keys are missing - vqbuild reports it and terminates its
+execution. If you encounter this error, it's because you didn't add
+one of required keys.
+
+_______________________________________________________________________________
+                            Configuration - Syntax
+
+The syntax is simple and "key=value" based. Its features:
+
+- Supports comments. They start with '#' character:
+
+    # This is a comment! :>
+
+- Supports multi-line values:
+
+    SOURCES = foo.cxx x.cxx \
+            y.cxx \
+            z.cxx
+
+Example of configuration:
+
+    TARGET = foo.elf
+    SOURCES = main.cxx \
+            module.cxx \
+            foo.cxx
+    OBJECTS_DIR = .objs
+    BUILD_DIR = .build
