@@ -151,6 +151,16 @@ namespace vqbuild
                 throw config_exception("parse() function is not ran");
             return keys_["KIND"];
         }
+
+        /*
+        Description:
+
+            Returns whether parse() command successfully or not.
+        */
+        bool parsed() throw()
+        {
+            return parsed_;
+        }
     };
 } // namespace vqbuild
 
