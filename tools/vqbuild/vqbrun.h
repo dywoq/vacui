@@ -4,7 +4,7 @@ https://github.com/dywoq/vacui
 
 Description:
 
-
+    Contains functionality for running Makefiles with configuration
 */
 
 #ifndef _VQBRUN_H
