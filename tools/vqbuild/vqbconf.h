@@ -109,6 +109,24 @@ namespace vqbuild
             Returns whether parse() command successfully or not.
         */
         bool parsed() const throw();
+
+        /*
+        Description:
+
+            Checks the presence of required keys that GNU Make needs
+            for compilation and linking the target.
+
+            The required keys:
+            - TARGET
+            - KIND
+            - SOURCES
+
+        Exceptions:
+
+            vqbuild::config_exception:
+            - If you didn't run parse function
+        */
+        bool has_required_keys();
     };
 } // namespace vqbuild
 

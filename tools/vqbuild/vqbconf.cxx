@@ -8,7 +8,9 @@ Description:
 */
 
 #include "vqbconf.h"
+#include <exception>
 #include <fstream>
+#include <map>
 #include <sstream>
 
 namespace vqbuild
@@ -104,5 +106,31 @@ namespace vqbuild
     bool config::parsed() const throw()
     {
         return parsed_;
+    }
+
+#define REQUIRED_KEYS_COUNT_ 3
+    /*
+    Description:
+
+        Required keys table
+    */
+    static const char *required_keys_[REQUIRED_KEYS_COUNT_] = {
+        "TARGET", "SOURCES", "KIND"
+    };
+
+    bool config::has_required_keys()
+    {
+        if (!parsed_)
+            throw config_exception("parse() function is not ran");
+        using namespace std;
+        map<std::string, std::string>::iterator end = keys_.end();
+        for (size_t i = 0; i < REQUIRED_KEYS_COUNT_; i++)
+        {
+            map<std::string, std::string>::iterator val =
+                keys_.find(required_keys_[i]);
+            if (val == end)
+                return false;
+        }
+        return true;
     }
 } // namespace vqbuild

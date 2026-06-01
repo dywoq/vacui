@@ -8,7 +8,6 @@ Description:
 */
 
 #include "vqbconf.h"
-#include "vqbrun.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -26,7 +25,7 @@ int main(
         return 1;
     }
 
-    const char *dir = argv[1];
+    const char       *dir = argv[1];
     std::stringstream config;
     config << dir << "/" << "config";
     std::string   config_str = config.str();
@@ -42,7 +41,13 @@ int main(
     {
         vqbuild::config conf;
         conf.parse(file);
-        vqbuild::run(conf, dir);
+        if (!conf.has_required_keys())
+        {
+            std::cerr
+                << "Some of required keys in 'config' file are missing"
+                << std::endl;
+            return 1;
+        }
     }
     catch (const std::exception &e)
     {
