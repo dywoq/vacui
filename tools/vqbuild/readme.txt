@@ -1,16 +1,19 @@
-            vqbuild
+_______________________________________________________________________________
+                                vqbuild
 
 The vqbuild - is a C/C++ build orchestrator. It reads 'config' file in target
 directory and gives its parameters to Make, which handles the compilation
 and linking target.
 
-            Usage
+_______________________________________________________________________________
+                                Usage
 
 Usage:
 
     vqbuild [Directory with config file] [architecture]
 
-            Building
+_______________________________________________________________________________
+                                Building
 
 To build vqbuild, you need to have installed:
 - GNU Make
@@ -23,11 +26,13 @@ After you installed them, go to tools/vqbuild directory and run:
 
 The binary will be in new .build directory.
 
-            Documentation
+_______________________________________________________________________________
+                            Documentation
 
 You can see vqbuild documentation in docs/ folder.
 
-            License
+_______________________________________________________________________________
+                            License
 
 Copyright 2026 dywoq - Apache License 2.0
 https://github.com/dywoq/vacui
