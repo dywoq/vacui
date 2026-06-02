@@ -68,8 +68,9 @@ namespace vqbuild
         if (!compiler_sets_initialized_)
         {
             compiler_sets_ = compiler_sets_t_();
-            compiler_sets_[ARCHITECTURE_I386] =
-                (compiler_set){.cc = "gcc", .cxx = "g++", .linker = "ld"};
+            compiler_sets_[ARCHITECTURE_I386] = (compiler_set){
+                .cc = "gcc", .cxx = "g++", .linker = "ld", .ar = "ar"
+            };
             compiler_sets_initialized_ = true;
         }
     }

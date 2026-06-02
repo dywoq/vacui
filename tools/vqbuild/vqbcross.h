@@ -26,6 +26,7 @@ namespace vqbuild
         std::string cc;
         std::string cxx;
         std::string linker;
+        std::string ar;
     };
 
     /*

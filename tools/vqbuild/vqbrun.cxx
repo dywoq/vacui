@@ -84,6 +84,7 @@ namespace vqbuild
         cmd << " CC=\"" << compiler_set.cc << "\"";
         cmd << " CXX=\"" << compiler_set.cxx << "\"";
         cmd << " LINKER=\"" << compiler_set.linker << "\"";
+        cmd << " AR=\"" << compiler_set.ar << "\"";
 
         /* Put config values */
         cmd << " TARGET=\"" << conf_values.target << "\"";
