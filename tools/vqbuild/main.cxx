@@ -43,9 +43,7 @@ int main(
     {
         vqbuild::compiler_set compiler_set =
             vqbuild::get_compiler_set(vqbuild::ARCHITECTURE_I386);
-        vqbuild::config conf;
-        conf.parse(file);
-        vqbuild::run(conf, compiler_set, dir);
+        vqbuild::run(compiler_set, dir);
     }
     catch (const std::exception &e)
     {

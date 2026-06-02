@@ -10,8 +10,9 @@ Description:
 #ifndef _VQBRUN_H
 #define _VQBRUN_H
 
-#include "vqbconf.h"
 #include "vqbcross.h"
+#include <exception>
+#include <string>
 
 namespace vqbuild
 {
@@ -32,22 +33,7 @@ namespace vqbuild
         virtual const char *what() const throw();
     };
 
-    /*
-    Description:
-
-        Runs a Makefile in the given folder path, using the configuration
-        values.
-
-    Exceptions:
-
-        vqbuild::run_exception:
-        - If SOURCES, TARGET or KIND string is empty
-        - If configuration is not parsed
-        - If it failed to run Makefile
-        - If folder path is empty
-    */
     void run(
-        config             &conf,
         const compiler_set &compiler_set,
         const std::string  &folder
     );

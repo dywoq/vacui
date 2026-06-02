@@ -96,7 +96,7 @@ namespace vqbuild
         required keys table
     */
     static const char *required_keys_[REQUIRED_KEYS_COUNT_] = {
-        "TARGET", "SOURCES", "OBJECTS_DIR", "BUILD_DIR", "DIRS"
+        "TARGET", "SOURCES", "OBJECTS_DIR", "BUILD_DIR", "DEPENDENCIES"
     };
 
     bool config::has_required_keys()
