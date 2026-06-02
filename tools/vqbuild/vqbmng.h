@@ -4,11 +4,11 @@ https://github.com/dywoq/vacui
 
 Description:
 
-    Contains functionality for running Makefiles with configuration
+    Contains functionality for managing Makefiles with configuration
 */
 
-#ifndef _VQBRUN_H
-#define _VQBRUN_H
+#ifndef _VQBMNG_H
+#define _VQBMNG_H
 
 #include "vqbcross.h"
 #include <exception>

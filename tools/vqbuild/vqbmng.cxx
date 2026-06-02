@@ -4,10 +4,10 @@ https://github.com/dywoq/vacui
 
 Description:
 
-    An implementation of vqbrun.cxx
+    An implementation of vqbmng.h
 */
 
-#include "vqbrun.h"
+#include "vqbmng.h"
 #include "vqbconf.h"
 #include <cstdlib>
 #include <fstream>
