@@ -4,7 +4,7 @@ https://github.com/dywoq/vacui
 
 Description:
 
-    Commands struct declarations and management
+    Command struct declarations and handlers
 */
 
 #ifndef _VQBCMD_H
@@ -55,6 +55,15 @@ namespace vqbuild
         {
         }
     };
+
+    /*
+    Description:
+
+        Handler of build command
+    */
+    vqbuild::cmd_status_code cmd_build(
+        const std::vector<vqbuild::arg> &arguments
+    );
 } // namespace vqbuild
 
 #endif

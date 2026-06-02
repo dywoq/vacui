@@ -7,12 +7,11 @@ Description:
     Main function of vqbuild utility
 */
 
-#include "vqbconf.h"
-#include "vqbcross.h"
-#include "vqbrun.h"
-#include <fstream>
+#include "vqbarg.h"
+#include "vqbcmd.h"
+#include <cstddef>
 #include <iostream>
-#include <sstream>
+#include <vector>
 
 static void print_usage_()
 {
@@ -42,27 +41,46 @@ int main(
         return 1;
     }
 
-    const char       *dir = argv[1];
-    std::stringstream config;
-    config << dir << "/" << "config";
-    std::string   config_str = config.str();
-    std::ifstream file(config_str.c_str());
-    if (!file.is_open())
+    /* Initialize commands array */
+    std::vector<vqbuild::cmd> cmds;
+    cmds.push_back(vqbuild::cmd("build", vqbuild::cmd_build));
+
+    /* Find the given command, and output error if it's wrong */
+    std::string                               given_cmd = argv[1];
+    std::vector<vqbuild::cmd>::const_iterator begin = cmds.begin();
+    std::vector<vqbuild::cmd>::const_iterator end = cmds.end();
+    vqbuild::cmd                              found_cmd("", NULL);
+    bool                                      ok = false;
+    while (begin != end)
     {
-        std::cerr << "Failed to open \"" << config_str
-                  << "\" configuration file" << std::endl;
+        if (begin->name == given_cmd)
+        {
+            ok = true;
+            found_cmd = *begin;
+            break;
+        }
+        begin++;
+    }
+    if (!ok)
+    {
+        std::cerr << "Failed to find command with \"" << given_cmd << "\" name"
+                  << std::endl;
         return 1;
     }
 
+    /* Parse arguments and run command with
+        these parsed arguments */
     try
     {
-        vqbuild::compiler_set compiler_set =
-            vqbuild::get_compiler_set(vqbuild::ARCHITECTURE_I386);
-        vqbuild::run(compiler_set, dir);
+        std::vector<vqbuild::arg> args = vqbuild::parse_args(argc, argv);
+        vqbuild::cmd_status_code  status_code = found_cmd.handler(args);
+        if (status_code == vqbuild::CMD_STATUS_ERR)
+            std::cerr << given_cmd << ": Command failed" << std::endl;
     }
     catch (const std::exception &e)
     {
-        std::cout << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
+        return 1;
     }
 
     return 0;

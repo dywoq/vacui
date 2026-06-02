@@ -5,7 +5,7 @@ CXX := g++
 CXXFLAGS := -std=c++98
 
 SOURCES := main.cxx vqbconf.cxx vqbrun.cxx vqbcross.cxx \
-		vqbarg.cxx
+		vqbarg.cxx vqbcmd.cxx
 
 BUILD := .build
 TARGET := $(BUILD)/vqbuild
