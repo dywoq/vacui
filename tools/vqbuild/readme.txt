@@ -1,9 +1,11 @@
 _______________________________________________________________________________
                                 vqbuild
 
-The vqbuild - is a C/C++ build orchestrator. It reads 'config' file in target
-directory and gives its parameters to Make, which handles the compilation
-and linking target.
+The vqbuild - is a C/C++ build orchestrator, made specifically for Vacui 
+codebase. 
+
+It reads 'config' file in target directory and gives its parameters to Make, 
+which handles building target.
 
 _______________________________________________________________________________
                                 Usage
