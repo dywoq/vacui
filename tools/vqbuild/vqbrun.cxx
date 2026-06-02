@@ -54,7 +54,8 @@ namespace vqbuild
         makefile_cmd << "make " << "-C " << folder << " TARGET=\""
                      << conf_vals.target << "\"" << " SOURCES=\""
                      << conf_vals.sources << "\""
-                     << " OBJECTS_DIR=\"" << conf_vals.objects_dir << "\"";
+                     << " OBJECTS_DIR=\"" << conf_vals.objects_dir << "\""
+                     << " BUILD_DIR=\"" << conf_vals.build_dir << "\"";
         makefile_cmd << " CC=\"" << compiler_set.cc << "\"" << " CXX=\""
                      << compiler_set.cxx << "\" LINKER=\""
                      << compiler_set.linker << "\"";
