@@ -14,6 +14,22 @@ Description:
 #include <iostream>
 #include <sstream>
 
+static void print_usage_()
+{
+    std::cerr << "Usage: " << std::endl;
+    std::cerr << "  vqbuild [command] [arguments...]" << std::endl;
+}
+
+static void print_info_()
+{
+    std::cerr << std::endl
+              << "The vqbuild - is a C/C++ build orchestrator, made "
+                 "specifically for Vacui codebase. "
+              << std::endl;
+    std::cerr << "Copyright 2026 dywoq - Apache License 2.0" << std::endl;
+    std::cerr << "https://github.com/dywoq/vacui" << std::endl;
+}
+
 int main(
     int   argc,
     char *argv[]
@@ -21,9 +37,8 @@ int main(
 {
     if (argc == 1)
     {
-        std::cerr << "Specify directory in arguments, where you need to build "
-                     "your target."
-                  << std::endl;
+        print_usage_();
+        print_info_();
         return 1;
     }
 
