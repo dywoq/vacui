@@ -4,7 +4,7 @@
 CXX := g++
 CXXFLAGS := -std=c++98
 
-SOURCES := main.cxx vqbconf.cxx vqbrun.cxx vqbcross.cxx \
+SOURCES := main.cxx vqbconf.cxx vqbmng.cxx vqbcross.cxx \
 		vqbarg.cxx vqbcmd.cxx
 
 BUILD := .build
