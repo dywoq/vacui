@@ -9,6 +9,9 @@ _______________________________________________________________________________
 
 - BUILD_DIR: Build directory with target.
 
+- DEPENDENCIES: List of dependencies. If this list is not empty,
+                vqbuild builds them  first before the main target.
+
 If any of required keys are missing - vqbuild reports it and terminates its
 execution. If you encounter this error, it's because you didn't add
 one of required keys.
