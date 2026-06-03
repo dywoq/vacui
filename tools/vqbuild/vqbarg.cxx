@@ -211,16 +211,16 @@ namespace vqbuild
     }
 
     bool is_argument_present(
-        const std::string &name,
-        arg_type           type,
-        const std::vector<arg>  &arguments
+        const std::string      &name,
+        arg_type                type,
+        const std::vector<arg> &arguments
     )
     {
         if (arguments.empty())
             return false;
         std::vector<arg>::const_iterator begin = arguments.begin();
         std::vector<arg>::const_iterator end = arguments.end();
-        bool                       ok = false;
+        bool                             ok = false;
         while (begin != end)
         {
             if (name == begin->name)
@@ -235,5 +235,44 @@ namespace vqbuild
         }
 
         return ok;
+    }
+
+    arg get_argument(
+        const std::string      &name,
+        arg_type                type,
+        const std::vector<arg> &arguments
+    )
+    {
+        if (arguments.empty())
+            throw arg_exception("Arguments list is empty");
+
+        std::vector<arg>::const_iterator begin = arguments.begin();
+        std::vector<arg>::const_iterator end = arguments.end();
+
+        arg argument;
+
+        bool ok = false;
+        while (begin != end)
+        {
+            if (name == begin->name)
+            {
+                if (begin->type == type)
+                {
+                    ok = true;
+                    argument = *begin;
+                    break;
+                }
+            }
+            begin++;
+        }
+
+        if (!ok)
+        {
+            throw arg_exception(
+                "Failed to find argument with given parameters"
+            );
+        }
+
+        return argument;
     }
 } // namespace vqbuild

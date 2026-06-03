@@ -94,14 +94,30 @@ namespace vqbuild
     Description:
 
         Checks whether the argument present with provided name and type
-	in given arguments list.
+    in given arguments list.
 
-	Immediately returns false if arguments list is empty
+    Immediately returns false if arguments list is empty
     */
     bool is_argument_present(
-        const std::string &name,
-        arg_type           type,
-	const std::vector<arg> &arguments
+        const std::string      &name,
+        arg_type                type,
+        const std::vector<arg> &arguments
+    );
+
+    /*
+    Description:
+
+        Finds an argument in arguments list, using provided name and type.
+
+    Exceptions:
+        vqbuild::arg_exception:
+    	- If it failed to find argument with these parameters
+    	- If arguments list is empty
+    */
+    arg get_argument(
+        const std::string      &name,
+        arg_type                type,
+        const std::vector<arg> &arguments
     );
 } // namespace vqbuild
 
