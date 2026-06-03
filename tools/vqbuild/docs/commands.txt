@@ -1,0 +1,16 @@
+_______________________________________________________________________________
+			Commands - Basics
+
+1. The vqbuild commands follow the same pattern:
+	vqbuild [command] [command arguments...]
+
+_______________________________________________________________________________
+			Commands - build
+
+This commands builds the specified directory, running Makefile inside this.
+Example:
+	vqbuild build -dir="app"
+
+Required arguments:
+
+	- dir: A directory with 'config' file and Makefile.
