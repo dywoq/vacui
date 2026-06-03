@@ -5,4 +5,4 @@ compile_commands.json
 autoconf.h
 .config.*
 .config
-*.o
+.objs
