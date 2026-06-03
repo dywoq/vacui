@@ -89,6 +89,20 @@ namespace vqbuild
         int   argc,
         char *argv[]
     );
+
+    /*
+    Description:
+
+        Checks whether the argument present with provided name and type
+	in given arguments list.
+
+	Immediately returns false if arguments list is empty
+    */
+    bool is_argument_present(
+        const std::string &name,
+        arg_type           type,
+	const std::vector<arg> &arguments
+    );
 } // namespace vqbuild
 
 #endif

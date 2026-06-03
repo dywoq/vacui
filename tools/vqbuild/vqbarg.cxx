@@ -209,4 +209,31 @@ namespace vqbuild
 
         return args;
     }
+
+    bool is_argument_present(
+        const std::string &name,
+        arg_type           type,
+        const std::vector<arg>  &arguments
+    )
+    {
+        if (arguments.empty())
+            return false;
+        std::vector<arg>::const_iterator begin = arguments.begin();
+        std::vector<arg>::const_iterator end = arguments.end();
+        bool                       ok = false;
+        while (begin != end)
+        {
+            if (name == begin->name)
+            {
+                if (begin->type == type)
+                {
+                    ok = true;
+                    break;
+                }
+            }
+            begin++;
+        }
+
+        return ok;
+    }
 } // namespace vqbuild
