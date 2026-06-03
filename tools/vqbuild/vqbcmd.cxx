@@ -25,25 +25,17 @@ namespace vqbuild
             return vqbuild::CMD_STATUS_ERR;
         }
 
-        /* Fill dir string and find it */
-        std::string                               dir;
-        std::vector<vqbuild::arg>::const_iterator begin = arguments.begin();
-        std::vector<vqbuild::arg>::const_iterator end = arguments.end();
-        while (begin != end)
+        /* Fill needed arguments */
+        std::string dir;
+        try
         {
-            if (begin->name == "dir")
-            {
-                if (begin->type == vqbuild::ARG_STR)
-                {
-                    dir = begin->value.str;
-                    break;
-                }
-                else
-                {
-                    std::cerr << "-dir argument is not a string" << std::endl;
-                    return vqbuild::CMD_STATUS_ERR;
-                }
-            }
+            arg dir_argument = get_argument("dir", ARG_STR, arguments);
+            dir = dir_argument.value.str;
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << "build: " << e.what() << std::endl;
+            return vqbuild::CMD_STATUS_ERR;
         }
 
         /* Begin building process */
