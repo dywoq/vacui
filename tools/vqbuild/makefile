@@ -8,7 +8,7 @@ BUILD_DIR := .build
 OBJS_DIR := .objs
 TARGET := $(BUILD_DIR)/vqbuild
 
-MODULES := hub
+MODULES := hub lex
 
 SRCS := $(foreach module, $(MODULES), $(wildcard $(module)/*.cxx))
 OBJS := $(SRCS:%.cxx=$(OBJS_DIR)/%.o)
