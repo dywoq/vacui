@@ -2,7 +2,7 @@
 # A part of https://github.com/dywoq/vacui
 
 CXX := g++
-CXXFLAGS := --std=gnu++23 -c -Wall -Werror -Iinc
+CXXFLAGS := --std=gnu++98 -c -Wall -Werror -Iinc
 
 BUILD_DIR := .build
 OBJS_DIR := .objs
