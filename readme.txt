@@ -14,7 +14,7 @@ responsible for collecting generic boot information.
 - Platform Abstraction Layer (PAL): Hides the platform-dependent code, such as
 timers, interrupts, and memory.
 
-These Abstraction Layers talk to 
+These Abstraction Layers talk to each other through Abstraction Layers always.
 
 _______________________________________________________________________________
                             Contact
