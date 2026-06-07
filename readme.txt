@@ -1,9 +1,9 @@
 _______________________________________________________________________________
                             Vacui VQ
 
-Vacui VQ (VQ - Via Quarter, it's used as prefix in private codebase) - a hybrid
-operating system. Its primary feature is Abstraction Layers, that make kernel
-portable:
+Vacui VQ Extended (VQ - Via Quarter, it's used as prefix in private codebase) -
+a hybrid operating system, an extended version of Vacui VQ Mini. Its primary
+feature is Abstraction Layers, that make kernel portable:
 
 - Architecture Abstraction Layer (AAL): Hides the details of
 architecture.
