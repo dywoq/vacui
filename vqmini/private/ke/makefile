@@ -4,14 +4,14 @@
 NASM := nasm
 NASMFLAGS := -f bin
 
-SECTOR := sector.S
+INIT := init.S
 BUILD := .build
-TARGET := $(BUILD)/sector.bin
+TARGET := $(BUILD)/vqke.bin
 
 all: $(TARGET)
 
 $(TARGET): $(BUILD)
-	$(NASM) $(NASMFLAGS) $(SECTOR) -o $(TARGET)
+	$(NASM) $(NASMFLAGS) $(INIT) -o $(TARGET)
 
 $(BUILD):
 	mkdir -p $(BUILD)

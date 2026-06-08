@@ -30,7 +30,11 @@ BtSector:
     int 0x13
     jc .failedToLoadKernel
 
+    ;
+    ; Provide drive number and perform far jump
+    ;
     mov dl, [DriveNumber]
+    jmp 0x1000:0x0
 
 .failedToLoadKernel:
 
