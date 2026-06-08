@@ -18,6 +18,6 @@ Startup:
     mov sp, 0x7bff ; ~30 KiB
     sti
     
-    call KeHub  
+    call HubEntry  
 
-%include "ke/hub.S"
+%include "hub/entry.S"

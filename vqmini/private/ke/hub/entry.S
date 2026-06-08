@@ -3,19 +3,19 @@
 ;
 ; Description:
 ;
-;       Kernel hub function
+;       Hub entry function
 ;
 
-%ifndef _KE_HUB_S
-%define _KE_HUB_S
+%ifndef _HUB_ENTRY_S
+%define _HUB_ENTRY_S
 
-KeHub:
+HubEntry:
 
     push bp
     mov bp, sp
 
     mov ah, 0x0e
-    mov al, 'A'
+    mov al, 'B'
     int 0x10
 
 .loop:
