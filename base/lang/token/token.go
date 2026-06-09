@@ -1,18 +1,18 @@
 // Copyright 2026 dywoq - Apache License 2.0
 // https://github.com/dywoq/vacui
 
-package lang
+package token
 
 type Kind string
 
-type TokenPos struct {
+type Pos struct {
 	Line int `json:"line"`
 	Col  int `json:"col"`
 	Idx  int `json:"idx"`
 }
 
-type Token struct {
-	Literal string   `json:"literal"`
-	Kind    Kind     `json:"kind"`
-	Pos     TokenPos `json:"pos"`
+type T struct {
+	Literal string `json:"literal"`
+	Kind    Kind   `json:"kind"`
+	Pos     Pos    `json:"pos"`
 }
