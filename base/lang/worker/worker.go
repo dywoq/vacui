@@ -4,11 +4,9 @@
 // Package worker defines the worker standard structs, which must be
 // used in all worker function types.
 //
-// The worker is a modular small function, which works with X information
-// and returns transformed, modified, or generated Y output. Its purpose 
-// is to break complex scanning, parsing process into small, reusable units.
-//
-// This is an alternative to parse, tokenize god functions.
+// Worker processes input and returns output along with result struct.
+// This is an alternative to big complex functions with nested
+// parsing/scanning logic.
 package worker
 
 type State uint64
