@@ -9,6 +9,8 @@
 // parsing/scanning logic.
 package worker
 
+import "errors"
+
 type State uint64
 
 type Result struct {
@@ -17,8 +19,13 @@ type Result struct {
 }
 
 var (
-	StateOk  State = 1 << 0
-	StateErr State = 1 << 1
+	StateOk      State = 1 << 0
+	StateErr     State = 1 << 1
+	StateNoMatch State = 1 << 2
+)
+
+var (
+	ErrNoWorkers = errors.New("no workers")
 )
 
 func Ok() *Result {
@@ -27,4 +34,8 @@ func Ok() *Result {
 
 func Err(err error) *Result {
 	return &Result{Err: err, State: StateErr}
+}
+
+func NoMatch() *Result {
+	return &Result{Err: nil, State: StateNoMatch}
 }

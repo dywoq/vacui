@@ -15,6 +15,7 @@ type Context interface {
 	FileContent() []rune
 	Advance()
 	Idx() int
+	Eof() bool
 }
 
 // Worker uses the given [Context] implementation to
