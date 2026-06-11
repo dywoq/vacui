@@ -1,0 +1,30 @@
+BasedOnStyle: microsoft
+
+# Column limit
+ColumnLimit: 80
+
+# Indentation
+IndentWidth: 4
+IndentPPDirectives: AfterHash
+
+# Alignment
+AlignConsecutiveAssignments:
+    Enabled: true
+    AcrossEmptyLines: false
+    AcrossComments: true
+AlignConsecutiveMacros:
+    Enabled: false
+AlignEscapedNewlines: LeftWithLastLine
+AlignTrailingComments: 
+     Kind: Always
+     AlignPPAndNotPP: false
+
+# BinPack
+BinPackParameters: AlwaysOnePerLine
+
+# Breaking
+BreakAfterReturnType: All
+BreakAfterAttributes: Always
+BreakArrays: true
+BreakBeforeCloseBracketFunction: true
+BreakAfterOpenBracketFunction: true
