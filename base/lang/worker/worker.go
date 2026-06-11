@@ -1,10 +1,10 @@
 // Copyright 2026 dywoq - Apache License 2.0
 // https://github.com/dywoq/vacui
 
-// Package worker defines the worker standard structs, which must be
+// Package worker defines worker types, which must be
 // used in all worker function types.
 //
-// Worker processes input and returns output along with result struct.
+// Worker processes input and returns output along with its result.
 // This is an alternative to big complex functions with nested
 // parsing/scanning logic.
 package worker
