@@ -8,8 +8,25 @@ Description:
 
 */
 
+#include <stdio.h>
+#include <vqberr.h>
+
 int
 main()
 {
+
+    VQBERR *error = VqbFormatErr("Hi! %d", 2);
+    if (error)
+    {
+        printf(
+            "Error message: %s\n", error->message ? error->message : "<null>"
+        );
+        VqbDestroyErr(error);
+    }
+    else
+    {
+        printf("No error\n");
+    }
+
     return 0;
 }

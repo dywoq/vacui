@@ -7,7 +7,9 @@ CFLAGS := --std=c99 -Iinc
 BUILD := .build
 TARGET := $(BUILD)/vqbuild
 
-MODULES := init
+MODULES := init \
+            err
+
 SRCS := $(foreach m, $(MODULES), $(wildcard $(m)/*.c))
 OBJS := $(SRCS:%.c=$(BUILD)/%.o)
 
