@@ -31,7 +31,12 @@ Description:
     Returns a new allocated instance of VQBERR struct,
     copying the message to the underlying struct.
 
-    Returns null if it fails to allocate VQBERR or copy message
+    Returns null if
+    - it fails to allocate VQBERR
+
+    The function returns the instance with null message if:
+    - fails to copy message
+    - message is null
 
 Parameters:
 
@@ -46,8 +51,13 @@ Description:
     Returns a new allocated instance of VQBERR struct,
     formatting message with provided format arguments.
 
-    Returns null if it fails to allocate VQBERR, or instance with null message
-    to get format message length or format message itself
+    Returns null if:
+    - it fails to allocate VQBERR
+
+    The function returns the instance with null message if:
+    - to get format message length
+    - format message
+    - fmt parameter is null
 
 Parameters:
 

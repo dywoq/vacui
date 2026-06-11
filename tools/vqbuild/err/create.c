@@ -23,13 +23,18 @@ VqbCreateErrMsg(const char *message)
         return NULL;
     }
 
+    if (!message)
+    {
+        return err;
+    }
+
     size_t len   = strlen(message) + 1;
     err->message = malloc(len);
     if (!err->message)
     {
         return err;
     }
-    
+
     strncpy(err->message, message, len);
     return err;
 }
@@ -42,6 +47,11 @@ VqbFormatErr(
 {
     VQBERR *err = malloc(sizeof(VQBERR));
     if (!err)
+    {
+        return NULL;
+    }
+
+    if (!fmt)
     {
         return NULL;
     }
