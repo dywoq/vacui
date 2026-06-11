@@ -25,7 +25,7 @@ $(BUILD)/%.o: %.c
 
 dirs:
 	mkdir -p $(BUILD)
-	$(foreach m, $(MODULES), mkdir -p $(BUILD)/$(m))
+	$(foreach m, $(MODULES), mkdir -p $(BUILD)/$(m);)
 
 clean:
 	rm -fr $(BUILD)
