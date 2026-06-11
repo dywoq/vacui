@@ -20,3 +20,8 @@ type Context interface {
 // Worker uses the given [Context] implementation to
 // return token to scanner.
 type Worker func(c Context) (*token.T, *worker.Result)
+
+// WorkerAppender defines a method for appending workers.
+type WorkerAppender interface {
+	AppendWorker(w Worker) error
+}
