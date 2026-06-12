@@ -8,8 +8,6 @@ Description:
 
 */
 
-#include <stdarg.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <vqberr.h>
@@ -28,58 +26,13 @@ VqbCreateErrMsg(const char *message)
         return err;
     }
 
-    size_t messageLength   = strlen(message) + 1;
-    err->message = malloc(messageLength);
+    size_t messageLength = strlen(message) + 1;
+    err->message         = malloc(messageLength);
     if (!err->message)
     {
         return err;
     }
 
     strncpy(err->message, message, messageLength);
-    return err;
-}
-
-VQBERR *
-VqbFormatErr(
-    const char *fmt,
-    ...
-)
-{
-    VQBERR *err = malloc(sizeof(VQBERR));
-    if (!err)
-    {
-        return NULL;
-    }
-
-    if (!fmt)
-    {
-        return NULL;
-    }
-
-    va_list args;
-    va_start(args, fmt);
-    int size = vsnprintf(NULL, 0, fmt, args);
-    va_end(args);
-    if (size < 0)
-    {
-        return err;
-    }
-
-    char *buffer = malloc(size + 1);
-    if (!buffer)
-    {
-        return err;
-    }
-
-    va_list args2;
-    va_start(args2, fmt);
-    size = vsnprintf(buffer, size + 1, fmt, args2);
-    va_end(args2);
-    if (size < 0)
-    {
-        return err;
-    }
-
-    err->message = buffer;
     return err;
 }
