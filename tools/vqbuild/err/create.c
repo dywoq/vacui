@@ -28,14 +28,14 @@ VqbCreateErrMsg(const char *message)
         return err;
     }
 
-    size_t len   = strlen(message) + 1;
-    err->message = malloc(len);
+    size_t messageLength   = strlen(message) + 1;
+    err->message = malloc(messageLength);
     if (!err->message)
     {
         return err;
     }
 
-    strncpy(err->message, message, len);
+    strncpy(err->message, message, messageLength);
     return err;
 }
 
@@ -65,21 +65,21 @@ VqbFormatErr(
         return err;
     }
 
-    char *buf = malloc(size + 1);
-    if (!buf)
+    char *buffer = malloc(size + 1);
+    if (!buffer)
     {
         return err;
     }
 
-    va_list args_2;
-    va_start(args_2, fmt);
-    size = vsnprintf(buf, size + 1, fmt, args_2);
-    va_end(args_2);
+    va_list args2;
+    va_start(args2, fmt);
+    size = vsnprintf(buffer, size + 1, fmt, args2);
+    va_end(args2);
     if (size < 0)
     {
         return err;
     }
 
-    err->message = buf;
+    err->message = buffer;
     return err;
 }
