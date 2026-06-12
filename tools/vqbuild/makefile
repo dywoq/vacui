@@ -8,9 +8,7 @@ BUILD := .build
 TARGET := $(BUILD)/vqbuild
 
 MODULES := init \
-            err \
-            tok \
-            lex
+            err
 
 SRCS := $(foreach m, $(MODULES), $(wildcard $(m)/*.c))
 OBJS := $(SRCS:%.c=$(BUILD)/%.o)
