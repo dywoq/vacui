@@ -25,4 +25,5 @@ VqbDestroyErr(VQBERR *err)
     }
 
     free(err);
+    err = NULL;
 }
