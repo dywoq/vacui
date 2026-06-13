@@ -28,3 +28,6 @@ BreakAfterAttributes: Always
 BreakArrays: true
 BreakBeforeCloseBracketFunction: true
 BreakAfterOpenBracketFunction: true
+
+# Indentation
+NamespaceIndentation: All
