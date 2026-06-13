@@ -18,114 +18,22 @@ namespace vqbuild
 {
     namespace config
     {
-        struct ConfigField
+        /*
+        Description:
+
+            Config field struct information in config fields map
+        */
+        struct ConfigFieldInfo
         {
-            virtual ~ConfigField()
-            {
-            }
-
-            virtual const std::string
-            GetName() const = 0;
-
-            virtual bool
-            IsRequired() const throw() = 0;
-        };
-
-        struct TargetConfigField : public ConfigField
-        {
-            const std::string
-            GetName() const
-            {
-                return "TARGET";
-            }
-
-            bool
-            IsRequired() const throw()
-            {
-                return true;
-            }
-        };
-
-        struct KindConfigField : public ConfigField
-        {
-            const std::string
-            GetName() const
-            {
-                return "KIND";
-            }
-
-            bool
-            IsRequired() const throw()
-            {
-                return true;
-            }
-        };
-
-        struct SourcesConfigField : public ConfigField
-        {
-            const std::string
-            GetName() const
-            {
-                return "SOURCES";
-            }
-
-            bool
-            IsRequired() const throw()
-            {
-                return true;
-            }
-        };
-
-        struct DependenciesConfigField : public ConfigField
-        {
-            const std::string
-            GetName() const
-            {
-                return "DEPENDENCIES";
-            }
-
-            bool
-            IsRequired() const throw()
-            {
-                return true;
-            }
-        };
-
-        struct BuildDirConfigField : public ConfigField
-        {
-            const std::string
-            GetName() const
-            {
-                return "BUILD_DIR";
-            }
-
-            bool
-            IsRequired() const throw()
-            {
-                return true;
-            }
-        };
-
-        struct ObjectsDirConfigField : public ConfigField
-        {
-            const std::string
-            GetName() const
-            {
-                return "OBJECTS_DIR";
-            }
-
-            bool
-            IsRequired() const throw()
-            {
-                return true;
-            }
+            bool required;
+            ConfigFieldInfo(bool required) throw();
         };
 
         /*
         Description:
 
             Exception class, thrown by config management functions
-        
+
         */
         class ConfigException : public std::exception
         {
