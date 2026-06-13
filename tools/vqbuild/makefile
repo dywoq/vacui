@@ -7,7 +7,8 @@ CXXFLAGS := --std=c++98 -Iinc
 BUILD := .build
 TARGET := $(BUILD)/vqbuild
 
-MODULES := init 
+MODULES := 	init \
+			conf
 
 SRCS := $(foreach m, $(MODULES), $(wildcard $(m)/*.cxx))
 OBJS := $(SRCS:%.cxx=$(BUILD)/%.o)
