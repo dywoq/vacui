@@ -1,28 +1,26 @@
 # Copyright 2026 dywoq - Apache License 2.0
 # https://github.com/dywoq/vacui
 
-CC := gcc
-CFLAGS := --std=c99 -Iinc
+CXX := g++
+CXXFLAGS := --std=c++98 -Iinc
 
 BUILD := .build
 TARGET := $(BUILD)/vqbuild
 
-MODULES := init \
-            err \
-            util/str
+MODULES := init 
 
-SRCS := $(foreach m, $(MODULES), $(wildcard $(m)/*.c))
-OBJS := $(SRCS:%.c=$(BUILD)/%.o)
+SRCS := $(foreach m, $(MODULES), $(wildcard $(m)/*.cxx))
+OBJS := $(SRCS:%.cxx=$(BUILD)/%.o)
 
 .PHONY: all clean dirs
 
 all: dirs $(TARGET)
 
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(TARGET)
 
-$(BUILD)/%.o: %.c
-	$(CC) $(CFLAGS) $< -o $@ -c
+$(BUILD)/%.o: %.cxx
+	$(CXX) $(CXXFLAGS) $< -o $@ -c
 
 dirs:
 	mkdir -p $(BUILD)
