@@ -9,16 +9,15 @@ import (
 	"os/exec"
 	"path"
 	"path/filepath"
-	"strings"
 
 	"github.com/dywoq/vacui/tools/vqbuild/config"
 )
 
-// Build parses the config file in folder and executes "make" command,
-// providing config values to it. It builds the target.
+// Clean parses the config file in folder and executes "make" command,
+// providing config values to it. It cleans build artifacts.
 //
-// The function recursively calls Build function, if there are dependencies.
-func Build(folder string) error {
+// The function recursively calls [Clean] function, if there are dependencies.
+func Clean(folder string) error {
 	p := config.NewParser()
 
 	// Join paths
@@ -44,7 +43,7 @@ func Build(folder string) error {
 		return err
 	}
 
-	// Build dependencies before the main target
+	// Clean dependencies before the main target
 	if v.Depends != nil {
 		for _, depend := range *v.Depends {
 			if depend == folder {
@@ -52,7 +51,7 @@ func Build(folder string) error {
 			}
 
 			subfolder := filepath.Join(folder, depend)
-			err := Build(subfolder)
+			err := Clean(subfolder)
 			if err != nil {
 				return err
 			}
@@ -60,7 +59,7 @@ func Build(folder string) error {
 	}
 
 	// Run make command
-	cmdName, cmdArgs := genMakeCommand("all", true, folder, v)
+	cmdName, cmdArgs := genMakeCommand("clean", true, folder, v)
 	cmd := exec.Command(cmdName, cmdArgs...)
 	output, err := cmd.CombinedOutput()
 	if err != nil {
@@ -68,19 +67,4 @@ func Build(folder string) error {
 	}
 
 	return nil
-}
-
-func genMakeCommand(makeCommand string, specifyFolder bool, folder string, v *config.Values) (string, []string) {
-	args := []string{
-		makeCommand,
-		strings.Join([]string{"TARGET=", v.Target}, ""),
-		strings.Join([]string{"KIND=", v.Kind}, ""),
-		strings.Join([]string{"SOURCES=", strings.Join(v.Sources, " ")}, ""),
-	}
-
-	if specifyFolder {
-		args = append(args, "-C", folder)
-	}
-
-	return "make", args
 }

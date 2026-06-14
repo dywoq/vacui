@@ -5,14 +5,15 @@ package cmd
 
 import (
 	"github.com/dywoq/vacui/tools/vqbuild/internal/cmd/build"
+	"github.com/dywoq/vacui/tools/vqbuild/internal/cmd/clean"
 	"github.com/spf13/cobra"
 )
 
 func Root() *cobra.Command {
 	root := &cobra.Command{
-		Use: "vqbuild",
+		Use:   "vqbuild",
 		Short: "Build orchestrator, made specifically for Vacui codebase",
 	}
-	root.AddCommand(build.Cmd())
+	root.AddCommand(build.Cmd(), clean.Cmd())
 	return root
 }
