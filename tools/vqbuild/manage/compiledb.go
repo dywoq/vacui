@@ -47,8 +47,6 @@ func CompileDb(folder string) error {
 	cmd := exec.Command("bear", bearArgs...)
 	cmd.Dir = folder
 
-	fmt.Println(cmd.Args, cmd.Dir)
-
 	output, err := cmd.CombinedOutput()
 	if err != nil {
 		return fmt.Errorf("%v:\n%s", err, string(output))

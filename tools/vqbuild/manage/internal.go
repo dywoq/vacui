@@ -36,7 +36,7 @@ func getConfigValues(folder string) (*config.Values, error) {
 	p := config.NewParser()
 
 	// Join paths
-	configPath := path.Join(folder, "vqbuild")
+	configPath := path.Join(folder, "module")
 
 	// Open file and read it
 	f, err := os.Open(configPath)
