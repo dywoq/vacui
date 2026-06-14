@@ -3,11 +3,16 @@
 
 package cmd
 
-import "github.com/spf13/cobra"
+import (
+	"github.com/dywoq/vacui/tools/vqbuild/internal/cmd/run"
+	"github.com/spf13/cobra"
+)
 
 func Root() *cobra.Command {
 	root := &cobra.Command{
+		Use: "vqbuild",
 		Short: "Build orchestrator, made specifically for Vacui codebase",
 	}
+	root.AddCommand(run.Cmd())
 	return root
 }
