@@ -9,6 +9,9 @@ func Cmd() *cobra.Command {
 	root := &cobra.Command{
 		Use:   "run",
 		Short: "Parse config files and run Makefile with its config variables",
+		Run:   func(cmd *cobra.Command, args []string) {
+			
+		},
 	}
 	return root
 }
