@@ -2,7 +2,7 @@ ______________________________________________________________________________
                             Commands
 
 - build:
-    Reads the configuration file in given folder ("" file)
+    Reads the configuration file in given folder
     and runs the Makefile, providing the config parameters to it
     and building the target:
 
@@ -18,7 +18,7 @@ ______________________________________________________________________________
         vqbuild build [folder] [args]
 
 - clean:
-    Reads the configuration file in given folder ("" file)
+    Reads the configuration file in given folder
     and runs the Makefile, providing the config parameters to it.
     It cleans the build artifacts:
 
@@ -35,7 +35,7 @@ ______________________________________________________________________________
         vqbuild clean [folder] [args]
     
 - compiledb:
-    Reads the configuration file in given folder ("" file)
+    Reads the configuration file in given folder
     and runs the Makefile, providing the config parameters to it.
     It generates the compile_commands.json, using the Bear command:
 
