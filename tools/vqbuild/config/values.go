@@ -12,7 +12,7 @@ type Values struct {
 	Target  string
 	Kind    string
 	Sources []string
-	Depends []string
+	Depends *[]string
 }
 
 // NewValues checks if the map has required keys,
@@ -22,7 +22,7 @@ func NewValues(m map[string]string) (*Values, error) {
 		"TARGET":  VarInfo{Required: true},
 		"KIND":    VarInfo{Required: true},
 		"SOURCES": VarInfo{Required: true},
-		"DEPENDS": VarInfo{Required: true},
+		"DEPENDS": VarInfo{Required: false},
 	}
 	if missingRequired, ok := HasRequiredVars(m, gm); !ok {
 		return nil, fmt.Errorf("missing required vars: %v", missingRequired)
@@ -31,6 +31,10 @@ func NewValues(m map[string]string) (*Values, error) {
 	v.Target = m["TARGET"]
 	v.Kind = m["KIND"]
 	v.Sources = strings.Split(m["SOURCES"], " ")
-	v.Depends = strings.Split(m["DEPENDS"], " ")
+	if _, ok := m["DEPENDS"]; ok {
+		depends := strings.Split(m["DEPENDS"], "")
+		v.Depends = &depends
+	}
+
 	return v, nil
 }
