@@ -12,10 +12,12 @@ import (
 	"sync/atomic"
 )
 
+// Parser is responsible for parsing configuration files
+// and giving map of parsed keys.
 type Parser struct {
-	on          atomic.Bool
-	mu          sync.Mutex
-	fileContent []rune
+	on      atomic.Bool
+	mu      sync.Mutex
+	content []rune
 }
 
 var (
@@ -27,6 +29,8 @@ func NewParser() *Parser {
 	return &Parser{}
 }
 
+// Read reads the content from r and writes it
+// to the underlying slice.
 func (p *Parser) Read(r io.Reader) error {
 	if p.on.Load() {
 		return ErrParserOn
@@ -37,7 +41,7 @@ func (p *Parser) Read(r io.Reader) error {
 	if err != nil {
 		return err
 	}
-	p.fileContent = []rune(string(content))
+	p.content = []rune(string(content))
 	return nil
 }
 
@@ -84,11 +88,13 @@ func (p *Parser) trim(s string) string {
 	return strings.Trim(s, " \n\t")
 }
 
+// Parse parses the given content, returning the map of config keys
+// and values.
 func (p *Parser) Parse() (map[string]string, error) {
 	p.mu.Lock()
 	defer p.mu.Unlock()
 
-	if len(p.fileContent) == 0 {
+	if len(p.content) == 0 {
 		return nil, ErrFileContentEmpty
 	}
 
@@ -99,7 +105,7 @@ func (p *Parser) Parse() (map[string]string, error) {
 	currentKey := ""
 	lineNumber := 1
 
-	for line := range strings.SplitSeq(string(p.fileContent), "\n") {
+	for line := range strings.SplitSeq(string(p.content), "\n") {
 		if hashPos := strings.Index(line, "#"); hashPos != -1 || len(line) == 0 {
 			lineNumber++
 			continue
@@ -114,9 +120,9 @@ func (p *Parser) Parse() (map[string]string, error) {
 				lineNumber++
 				continue
 			}
-			
+
 			keyValue.WriteString(trimmedLine)
-			
+
 			if isConfigKey {
 				expandedValue, err := p.expandVariableReferences(keyValue.String(), m)
 				if err != nil {
@@ -126,7 +132,7 @@ func (p *Parser) Parse() (map[string]string, error) {
 				keyValue.Reset()
 				isConfigKey = false
 			}
-			
+
 			lineNumber++
 			continue
 		}
@@ -136,14 +142,14 @@ func (p *Parser) Parse() (map[string]string, error) {
 			isConfigKey = true
 			currentKey = p.trim(line[0:equalPos])
 			valuePart := p.trim(line[equalPos+1:])
-			
+
 			isParsingMultiline = p.isMultiline(valuePart)
 			if isParsingMultiline {
 				keyValue.WriteString(p.cutOffSlash(valuePart))
 				lineNumber++
 				continue
 			}
-			
+
 			keyValue.WriteString(valuePart)
 		}
 
@@ -156,7 +162,7 @@ func (p *Parser) Parse() (map[string]string, error) {
 			keyValue.Reset()
 			isConfigKey = false
 		}
-		
+
 		lineNumber++
 	}
 
