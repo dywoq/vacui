@@ -71,6 +71,19 @@ func (p *Parser) expandVariableReferences(value string, m map[string]string) (st
 	return b.String(), nil
 }
 
+func (p *Parser) isMultiline(value string) bool {
+	return strings.HasSuffix(value, "\\")
+}
+
+func (p *Parser) cutOffSlash(value string) string {
+	res, _ := strings.CutSuffix(value, "\\")
+	return res
+}
+
+func (p *Parser) trim(s string) string {
+	return strings.Trim(s, " \n\t")
+}
+
 func (p *Parser) Parse() (map[string]string, error) {
 	p.mu.Lock()
 	defer p.mu.Unlock()
@@ -81,40 +94,70 @@ func (p *Parser) Parse() (map[string]string, error) {
 
 	var keyValue strings.Builder
 	m := map[string]string{}
+	isParsingMultiline := false
+	isConfigKey := false
+	currentKey := ""
 	lineNumber := 1
 
 	for line := range strings.SplitSeq(string(p.fileContent), "\n") {
-		if len(line) == 0 {
+		if hashPos := strings.Index(line, "#"); hashPos != -1 || len(line) == 0 {
 			lineNumber++
 			continue
 		}
 
-		if hashPos := strings.Index(line, "#"); hashPos != -1 {
+		if isParsingMultiline {
+			trimmedLine := p.trim(line)
+			isParsingMultiline = p.isMultiline(trimmedLine)
+
+			if isParsingMultiline {
+				keyValue.WriteString(p.cutOffSlash(trimmedLine))
+				lineNumber++
+				continue
+			}
+			
+			keyValue.WriteString(trimmedLine)
+			
+			if isConfigKey {
+				expandedValue, err := p.expandVariableReferences(keyValue.String(), m)
+				if err != nil {
+					return nil, err
+				}
+				m[currentKey] = expandedValue
+				keyValue.Reset()
+				isConfigKey = false
+			}
+			
 			lineNumber++
 			continue
 		}
-		
+
 		equalPos := strings.Index(line, "=")
 		if equalPos != -1 {
-			key := strings.Trim(line[0:equalPos], " \n\t")
-			keyValue.WriteString(strings.Trim(line[equalPos+1:], " \n\t"))
+			isConfigKey = true
+			currentKey = p.trim(line[0:equalPos])
+			valuePart := p.trim(line[equalPos+1:])
+			
+			isParsingMultiline = p.isMultiline(valuePart)
+			if isParsingMultiline {
+				keyValue.WriteString(p.cutOffSlash(valuePart))
+				lineNumber++
+				continue
+			}
+			
+			keyValue.WriteString(valuePart)
+		}
 
+		if isConfigKey {
 			expandedValue, err := p.expandVariableReferences(keyValue.String(), m)
 			if err != nil {
 				return nil, err
 			}
+			m[currentKey] = expandedValue
 			keyValue.Reset()
-			keyValue.WriteString(expandedValue)
-
-			m[key] = keyValue.String()
-
-			keyValue.Reset()
-			lineNumber++
-
-			continue
+			isConfigKey = false
 		}
-	
-		return nil, fmt.Errorf("cannot parse the %d line:\n%d | %s", lineNumber, lineNumber, line)
+		
+		lineNumber++
 	}
 
 	return m, nil
