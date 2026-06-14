@@ -4,6 +4,8 @@
 package manage
 
 import (
+	"os"
+	"path"
 	"strings"
 
 	"github.com/dywoq/vacui/tools/vqbuild/config"
@@ -28,4 +30,33 @@ func genMakeCommand(makeCommand string, specifyFolder bool, folder string, v *co
 	}
 
 	return "make", args
+}
+
+func getConfigValues(folder string) (*config.Values, error) {
+	p := config.NewParser()
+
+	// Join paths
+	configPath := path.Join(folder, "vqbuild")
+
+	// Open file and read it
+	f, err := os.Open(configPath)
+	if err != nil {
+		return nil, err
+	}
+	err = p.Read(f)
+	if err != nil {
+		return nil, err
+	}
+
+	// Get the config map and its values
+	m, err := p.Parse()
+	if err != nil {
+		return nil, err
+	}
+	v, err := config.NewValues(m)
+	if err != nil {
+		return nil, err
+	}
+
+	return v, nil
 }

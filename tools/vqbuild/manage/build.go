@@ -5,12 +5,8 @@ package manage
 
 import (
 	"fmt"
-	"os"
 	"os/exec"
-	"path"
 	"path/filepath"
-
-	"github.com/dywoq/vacui/tools/vqbuild/config"
 )
 
 // Build parses the config file in folder and executes "make" command,
@@ -18,27 +14,7 @@ import (
 //
 // The function recursively calls Build function, if there are dependencies.
 func Build(folder string) error {
-	p := config.NewParser()
-
-	// Join paths
-	configPath := path.Join(folder, "vqbuild")
-
-	// Open file and read it
-	f, err := os.Open(configPath)
-	if err != nil {
-		return err
-	}
-	err = p.Read(f)
-	if err != nil {
-		return err
-	}
-
-	// Get the config map and its values
-	m, err := p.Parse()
-	if err != nil {
-		return err
-	}
-	v, err := config.NewValues(m)
+	v, err := getConfigValues(folder)
 	if err != nil {
 		return err
 	}
