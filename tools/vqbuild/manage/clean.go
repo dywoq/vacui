@@ -35,7 +35,7 @@ func Clean(folder string, arch string) error {
 	}
 
 	// Run make command
-	cmdName, cmdArgs := genMakeCommand("all", true, folder, v)
+	cmdName, cmdArgs := genMakeCommand("clean", true, folder, v)
 	additionalCmdArgs := []string{genMakeCommandJoin("ARCH=", arch)}
 	cmdArgs = append(cmdArgs, additionalCmdArgs...)
 	

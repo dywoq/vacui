@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"os"
 	"strings"
 	"sync"
 	"sync/atomic"
@@ -65,11 +66,17 @@ func (p *Parser) expandVariableReferences(value string, m map[string]string) (st
 		}
 		keyNameEnd := idx
 		keyName := value[keyNameStart:keyNameEnd]
-		if _, ok := m[keyName]; !ok {
+		if _, ok := m[keyName]; ok {
+			keyValue := m[keyName]
+			b.WriteString(keyValue)
+		} else if !ok {
+			keyValue := os.Getenv(keyName)
+			if len(keyValue) != 0 {
+				b.WriteString(keyValue)
+			}
+		} else {
 			return "", fmt.Errorf("cannot find key %q", keyName)
 		}
-		keyValue := m[keyName]
-		b.WriteString(keyValue)
 		idx++
 	}
 	return b.String(), nil
