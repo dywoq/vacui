@@ -9,7 +9,6 @@ import (
 	"os/exec"
 	"path"
 	"path/filepath"
-	"strings"
 
 	"github.com/dywoq/vacui/tools/vqbuild/config"
 )
@@ -70,17 +69,3 @@ func Build(folder string) error {
 	return nil
 }
 
-func genMakeCommand(makeCommand string, specifyFolder bool, folder string, v *config.Values) (string, []string) {
-	args := []string{
-		makeCommand,
-		strings.Join([]string{"TARGET=", v.Target}, ""),
-		strings.Join([]string{"KIND=", v.Kind}, ""),
-		strings.Join([]string{"SOURCES=", strings.Join(v.Sources, " ")}, ""),
-	}
-
-	if specifyFolder {
-		args = append(args, "-C", folder)
-	}
-
-	return "make", args
-}
