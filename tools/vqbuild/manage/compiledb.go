@@ -9,6 +9,8 @@ import (
 	"path/filepath"
 )
 
+// CompileDb parses the configuration, and generates compile commands
+// database file.
 func CompileDb(folder string) error {
 	v, err := getConfigValues(folder)
 	if err != nil {
