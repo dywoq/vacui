@@ -8,7 +8,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/dywoq/vacui/tools/vqbuild/config"
+	"github.com/dywoq/vacui/tools/vqbuild/internal/config"
 )
 
 func genMakeCommandJoin(strs ...string) string {

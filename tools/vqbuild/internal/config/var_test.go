@@ -6,7 +6,7 @@ package config_test
 import (
 	"testing"
 
-	"github.com/dywoq/vacui/tools/vqbuild/config"
+	"github.com/dywoq/vacui/tools/vqbuild/internal/config"
 )
 
 func TestHasRequiredVars(t *testing.T) {

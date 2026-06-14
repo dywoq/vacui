@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 
-	"github.com/dywoq/vacui/tools/vqbuild/manage"
+	"github.com/dywoq/vacui/tools/vqbuild/internal/manage"
 	"github.com/spf13/cobra"
 )
 
