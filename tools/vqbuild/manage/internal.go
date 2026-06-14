@@ -9,12 +9,18 @@ import (
 	"github.com/dywoq/vacui/tools/vqbuild/config"
 )
 
+func genMakeCommandJoin(strs ...string) string {
+	return strings.Join(strs, "")
+}
+
 func genMakeCommand(makeCommand string, specifyFolder bool, folder string, v *config.Values) (string, []string) {
 	args := []string{
 		makeCommand,
-		strings.Join([]string{"TARGET=", v.Target}, ""),
-		strings.Join([]string{"KIND=", v.Kind}, ""),
-		strings.Join([]string{"SOURCES=", strings.Join(v.Sources, " ")}, ""),
+		genMakeCommandJoin("TARGET=", v.Target),
+		genMakeCommandJoin("KIND=", v.Kind),
+		genMakeCommandJoin("SOURCES=", strings.Join(v.Sources, " ")),
+		genMakeCommandJoin("BUILD_DIR=", v.BuildDir),
+		genMakeCommandJoin("OBJECTS_DIR=", v.ObjectsDir),
 	}
 
 	if specifyFolder {
