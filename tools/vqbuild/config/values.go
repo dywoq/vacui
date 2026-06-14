@@ -32,7 +32,7 @@ func NewValues(m map[string]string) (*Values, error) {
 	v.Kind = m["KIND"]
 	v.Sources = strings.Split(m["SOURCES"], " ")
 	if _, ok := m["DEPENDS"]; ok {
-		depends := strings.Split(m["DEPENDS"], "")
+		depends := strings.Split(m["DEPENDS"], " ")
 		v.Depends = &depends
 	}
 
