@@ -11,7 +11,7 @@ import (
 
 // CompileDb parses the configuration, and generates compile commands
 // database file.
-func CompileDb(folder string) error {
+func CompileDb(folder string, arch string) error {
 	v, err := getConfigValues(folder)
 	if err != nil {
 		return err
@@ -25,7 +25,7 @@ func CompileDb(folder string) error {
 			}
 
 			subfolder := filepath.Join(folder, depend)
-			err := CompileDb(subfolder)
+			err := CompileDb(subfolder, arch)
 			if err != nil {
 				return err
 			}
@@ -41,8 +41,10 @@ func CompileDb(folder string) error {
 	// 		[bear -- make clean all TARGET=testapp KIND=app SOURCES=main.cxx] test
 	// 		Failed to generate compile_commands.json file in "test": exit status 2:
 	// 		make: *** No rule to make target 'clean all'.  Stop.
-	cmdName, cmdArgs := genMakeCommand("", false, folder, v)
-
+	cmdName, cmdArgs := genMakeCommand("all", true, folder, v)
+	additionalCmdArgs := []string{genMakeCommandJoin("ARCH=", arch)}
+	cmdArgs = append(cmdArgs, additionalCmdArgs...)
+	
 	// Run bear command to generate compile commands
 	bearArgs := append([]string{"--", cmdName}, cmdArgs...)
 	bearArgs = append(bearArgs, "clean", "all")

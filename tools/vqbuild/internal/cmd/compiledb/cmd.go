@@ -5,7 +5,6 @@ package compiledb
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/dywoq/vacui/tools/vqbuild/manage"
 	"github.com/spf13/cobra"
@@ -16,13 +15,20 @@ func Cmd() *cobra.Command {
 		Use:   "compiledb [folder]",
 		Short: "Generate compile_commands.json file (C/C++ ONLY)",
 		Args:  cobra.ExactArgs(1),
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			folder := args[0]
-			err := manage.CompileDb(folder)
+
+			arch, err := cmd.Flags().GetString("arch")
 			if err != nil {
-				fmt.Fprintf(os.Stderr, "Failed to generate compile_commands.json file in %q: %v\n", folder, err)
-				os.Exit(1)
+				return err
 			}
+
+			err = manage.CompileDb(folder, arch)
+			if err != nil {
+				return fmt.Errorf("Failed to generate compile_commands.json file in %q: %v\n", folder, err)
+			}
+
+			return nil
 		},
 	}
 	return root

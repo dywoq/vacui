@@ -13,7 +13,7 @@ import (
 // providing config values to it. It cleans build artifacts.
 //
 // The function recursively calls [Clean] function, if there are dependencies.
-func Clean(folder string) error {
+func Clean(folder string, arch string) error {
 	v, err := getConfigValues(folder)
 	if err != nil {
 		return err
@@ -27,7 +27,7 @@ func Clean(folder string) error {
 			}
 
 			subfolder := filepath.Join(folder, depend)
-			err := Clean(subfolder)
+			err := Clean(subfolder, arch)
 			if err != nil {
 				return err
 			}
@@ -35,7 +35,10 @@ func Clean(folder string) error {
 	}
 
 	// Run make command
-	cmdName, cmdArgs := genMakeCommand("clean", true, folder, v)
+	cmdName, cmdArgs := genMakeCommand("all", true, folder, v)
+	additionalCmdArgs := []string{genMakeCommandJoin("ARCH=", arch)}
+	cmdArgs = append(cmdArgs, additionalCmdArgs...)
+	
 	cmd := exec.Command(cmdName, cmdArgs...)
 	output, err := cmd.CombinedOutput()
 	if err != nil {

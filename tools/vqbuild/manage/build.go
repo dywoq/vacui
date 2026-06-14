@@ -13,7 +13,7 @@ import (
 // providing config values to it. It builds the target.
 //
 // The function recursively calls Build function, if there are dependencies.
-func Build(folder string) error {
+func Build(folder, arch string) error {
 	v, err := getConfigValues(folder)
 	if err != nil {
 		return err
@@ -27,7 +27,7 @@ func Build(folder string) error {
 			}
 
 			subfolder := filepath.Join(folder, depend)
-			err := Build(subfolder)
+			err := Build(subfolder, arch)
 			if err != nil {
 				return err
 			}
@@ -36,6 +36,9 @@ func Build(folder string) error {
 
 	// Run make command
 	cmdName, cmdArgs := genMakeCommand("all", true, folder, v)
+	additionalCmdArgs := []string{genMakeCommandJoin("ARCH=", arch)}
+	cmdArgs = append(cmdArgs, additionalCmdArgs...)
+	
 	cmd := exec.Command(cmdName, cmdArgs...)
 	output, err := cmd.CombinedOutput()
 	if err != nil {
@@ -44,4 +47,3 @@ func Build(folder string) error {
 
 	return nil
 }
-
