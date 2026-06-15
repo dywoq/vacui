@@ -16,11 +16,52 @@ module:
     OBJECTS_DIR = $(BUILD_DIR)/objs
 
     # optional
-    DEPENDS = xyz
+    DEPENDS = xyz/
 
 3. Write your Makefile, which handles the compilation of target (objects,
-linking, creating build, objects directory), or use ready one (if you have):
+linking, creating build, objects directory), or use ready 
+template (if you have):
 
 makefile:
+    # Include template
     include makefile.def
+
+______________________________________________________________________________
+                    How to write Makefile template
+
+1. Makefile is given these configuration options, which you can use to 
+build target (more in docs/config.txt):
+
+    TARGET, SOURCES, BUILD_DIR, OBJECTS_DIR,
+    ARCH
+
+2. Makefile template example for compilation C++ user-programs:
+
+foo/makefile.def:
+    OBJECTS := $(SOURCES:%.cxx=$(OBJECTS_DIR)/%.o)
+
+    CC := gcc
+    CXX := g++
+    LD := $(CXX)
     
+    all: $(BUILD_DIR) $(OBJECTS_DIR) $(TARGET)
+    
+    $(TARGET): $(OBJECTS)
+    	$(LD) $(OBJECTS) -o $(TARGET)
+    
+    $(OBJECTS_DIR)/%.o: %.cxx
+    	$(CXX) $(CXXFLAGS) -c -o $@ $<
+    
+    $(BUILD_DIR):
+    	mkdir -p $(BUILD_DIR)
+    $(OBJECTS_DIR):
+    	mkdir -p $(OBJECTS_DIR)
+    
+    clean:
+    	rm $(BUILD_DIR) -fr
+    	rm $(OBJECTS_DIR) -fr
+
+3. And then, you can include your own template in your "makefile" file:
+
+foo/makefile:
+    include makefile.def 
