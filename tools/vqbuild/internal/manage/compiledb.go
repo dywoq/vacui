@@ -41,7 +41,7 @@ func CompileDb(folder string, arch string) error {
 	// 		[bear -- make clean all TARGET=testapp KIND=app SOURCES=main.cxx] test
 	// 		Failed to generate compile_commands.json file in "test": exit status 2:
 	// 		make: *** No rule to make target 'clean all'.  Stop.
-	cmdName, cmdArgs := genMakeCommand("all", true, folder, v)
+	cmdName, cmdArgs := genMakeCommand("", false, folder, v)
 	additionalCmdArgs := []string{genMakeCommandJoin("ARCH=", arch)}
 	cmdArgs = append(cmdArgs, additionalCmdArgs...)
 	

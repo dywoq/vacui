@@ -31,5 +31,7 @@ func Cmd() *cobra.Command {
 			return nil
 		},
 	}
+	root.Flags().String("arch", "x86-64", "Specify architecture")
+
 	return root
 }
