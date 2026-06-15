@@ -14,6 +14,11 @@ vqbuild is only responsible for orchestrating build process - it doesn't:
 All compilation is handled by Makefile. 
 
 ______________________________________________________________________________
+                             Documentation
+
+To see the documentation, go to docs/ folder.
+
+______________________________________________________________________________
                               Requirements
 
 To run any command, make sure you have installed:

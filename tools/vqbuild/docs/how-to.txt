@@ -1,0 +1,26 @@
+______________________________________________________________________________
+                        How to make and build module
+
+1. Create a "module" configuration file in your directory:
+
+    mkdir foo
+    touch module
+
+2. Follow the documentation in docs/config.txt to put required/optional 
+config keys. Example config:
+
+module:
+    TARGET = foo
+    SOURCES = main.cxx add.cxx
+    BUILD_DIR = .build
+    OBJECTS_DIR = $(BUILD_DIR)/objs
+
+    # optional
+    DEPENDS = xyz
+
+3. Write your Makefile, which handles the compilation of target (objects,
+linking, creating build, objects directory), or use ready one (if you have):
+
+makefile:
+    include makefile.def
+    
