@@ -10,7 +10,6 @@ import (
 
 type Values struct {
 	Target     string
-	Kind       string
 	Sources    []string
 	BuildDir   string
 	ObjectsDir string
@@ -22,7 +21,6 @@ type Values struct {
 func NewValues(m map[string]string) (*Values, error) {
 	gm := GuideMap{
 		"TARGET":      VarInfo{Required: true},
-		"KIND":        VarInfo{Required: true},
 		"SOURCES":     VarInfo{Required: true},
 		"BUILD_DIR":   VarInfo{Required: true},
 		"OBJECTS_DIR": VarInfo{Required: true},
@@ -33,7 +31,6 @@ func NewValues(m map[string]string) (*Values, error) {
 	}
 	v := &Values{}
 	v.Target = m["TARGET"]
-	v.Kind = m["KIND"]
 	v.Sources = strings.Split(m["SOURCES"], " ")
 	v.BuildDir = m["BUILD_DIR"]
 	v.ObjectsDir = m["OBJECTS_DIR"]

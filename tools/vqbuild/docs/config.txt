@@ -50,7 +50,6 @@ vqbuild checks for required keys before starting any command. Following keys
 are required in your module config:
 
 - TARGET: The target name.
-- KIND: The target kind, which is used by your Makefile.
 - SOURCES: The source files to compile by Makefile.
 - BUILD_DIR: The build directory, where to put your target.
 - OBJECTS_DIR: The C/C++ objects directory.

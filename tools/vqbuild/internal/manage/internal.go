@@ -19,7 +19,6 @@ func genMakeCommand(makeCommand string, specifyFolder bool, folder string, v *co
 	args := []string{
 		makeCommand,
 		genMakeCommandJoin("TARGET=", v.Target),
-		genMakeCommandJoin("KIND=", v.Kind),
 		genMakeCommandJoin("SOURCES=", strings.Join(v.Sources, " ")),
 		genMakeCommandJoin("BUILD_DIR=", v.BuildDir),
 		genMakeCommandJoin("OBJECTS_DIR=", v.ObjectsDir),
