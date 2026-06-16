@@ -11,7 +11,6 @@ The Makefile templates in this directory must support the following
 architectures and use these compilers:
 
     x86-64:
-        - C compiler:   x86_64-linux-gnu-g++
-        - Object copy:  x86_64-linux-gnu-objcopy
-        - C++ compiler: x86_64-linux-gnu-g++
-        - Linker:		x86_64-linux-gnu-ld
+        - C compiler:   gcc
+        - C++ compiler: g++
+        - Linker:		ld
