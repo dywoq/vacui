@@ -3,7 +3,7 @@
 #
 # Description:
 #
-# 		Makefile template, it's used for bare-metal programs.
+# 		Makefile template, it's used for bare-metal libraries.
 # 		The features:
 #
 # 			- C/C++ Standard library is not linked completely.
@@ -21,9 +21,7 @@
 #
 # 		CXXFLAGS 	= Additional C++ compiler flags
 #
-# 		LDFLAGS 	= Additional linker flags
-#
-# 		LDSCRIPT 	= Linker script
+# 		ARFLAGS 	= Archive flags
 #
 
 OBJECTS := $(SOURCES:%.cxx=$(OBJECTS_DIR)/%.cxx.o)
@@ -37,7 +35,7 @@ endif
 all: $(BUILD_DIR) $(OBJECTS_DIR) $(TARGET)
 
 $(TARGET): $(OBJECTS)
-	$(LD) -T $(LDSCRIPT) $(OBJECTS) -o $(TARGET)
+	$(AR) rcs $(TARGET) $(OBJECTS)
 
 $(OBJECTS_DIR)/%.cxx.o: %.cxx
 	$(CXX) $(CXXFLAGS) $< -fno-pic -fno-pie -fno-stack-protector \

@@ -14,3 +14,4 @@ architectures and use these compilers:
         - C compiler:   gcc
         - C++ compiler: g++
         - Linker:		ld
+        - Archive:      ar
