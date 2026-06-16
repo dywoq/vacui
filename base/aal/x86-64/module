@@ -1,0 +1,11 @@
+# Copyright 2026 dywoq - Apache License 2.0
+# https://gothub.com/dywoq/vacui
+# 
+# Description:
+#
+#       AAL x86-64 module
+
+BUILD_DIR = .build
+OBJECTS_DIR = $(BUILD_DIR)/objs
+TARGET = $(BUILD_DIR)/libaalx86-64.a
+SOURCES = foo.cxx
