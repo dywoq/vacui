@@ -2,15 +2,19 @@
 # https://github.com/dywoq
 
 CXX := clang++
-CXXFLAGS := -Iinc -std=c++98 -Werror -Wall
+CXXFLAGS := -Iinc -std=c++98 -Werror 
 
 BUILD_DIR := .build
 OBJECTS_DIR := .objs
 TARGET := $(BUILD_DIR)/vqbuild
 
-MODULES := startup
+MODULES := startup \
+	   util
+
 SOURCES := $(foreach m, $(MODULES), $(wildcard $(m)/*.cxx))
-OBJECTS := $(foreach m, $(MODULES), $(SOURCES:$(m)/%.cxx=$(OBJECTS_DIR)/$(m)/%.o))
+OBJECTS := $(foreach m, $(MODULES), \
+    $(patsubst $(m)/%.cxx, $(OBJECTS_DIR)/$(m)/%.o, \
+        $(filter $(m)/%.cxx, $(SOURCES))))
 
 all: $(BUILD_DIR) $(OBJECTS_DIR) create_modules_dirs $(TARGET)
 
@@ -21,7 +25,7 @@ $(OBJECTS_DIR)/%.o: %.cxx
 	$(CXX) $(CXXFLAGS) -o $@ -c $< 
 
 create_modules_dirs:
-	$(foreach m, $(MODULES), mkdir -p $(OBJECTS_DIR)/$(m))
+	$(foreach m, $(MODULES), mkdir -p $(OBJECTS_DIR)/$(m);)
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 $(OBJECTS_DIR):
