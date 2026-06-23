@@ -8,13 +8,16 @@
 
 */
 
+#include <vqbutilstr.h>
 #include <iostream>
 
 int
 main()
 {
 
-    std::cout << "Hi!" << std::endl;
+    std::string str = " KEY=sdsdgs sdsd\n";
+    vqbuild::util::StrTrim(str, " \n\t");
+    std::cout << str << std::endl;
 
     return 0;
 }
