@@ -32,7 +32,7 @@ endif
 ifeq ($(ARCH), aarch64)
 	CC := aarch64-linux-gnu-gcc
 	CXX := aarch64-linux-gnu-g++
-	OBJ_COPY := aarch64-linux-gnu-objcopy
+	OBJCOPY := aarch64-linux-gnu-objcopy
 	LD := aarch64-linux-gnu-ld
 	ARCH_CORRECT := true
 endif
