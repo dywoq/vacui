@@ -10,6 +10,8 @@
 #ifndef _VQBSTRUTIL_H
 #define _VQBSTRUTIL_H
 
+#include <stddef.h>
+
 /*
     Description:
 
@@ -19,10 +21,10 @@
 
     Parameters:
 
-        - string: A pointer to the original null-terminated string.
+        - String: A pointer to the original null-terminated string.
 */
 char *
-VqbStrTrimLeft(char *string);
+VqbStrTrimLeft(char *String);
 
 /*
     Description:
@@ -32,16 +34,16 @@ VqbStrTrimLeft(char *string);
         underlying length for every whitespace character it finds.
 
         Once it hits a non-whitespace character, it places a null-terminator
-        at that position, cutting off the trailing spaces and returns 
+        at that position, cutting off the trailing spaces and returns
         an original string mutated pointer.
 
-        Returns null value if the given pointer to the original string is null.
+        Returns null value if the given pointer to the original String is null.
 
     Parameters:
 
-        - string: A pointer to the original null-terminated string.
+        - String: A pointer to the original null-terminated string.
 */
 char *
-VqbStrTrimRight(char *string);
+VqbStrTrimRight(char *String);
 
 #endif

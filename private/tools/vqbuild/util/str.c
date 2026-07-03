@@ -14,33 +14,33 @@
 /* Trim functions */
 
 char *
-VqbStrTrimLeft(char *string)
+VqbStrTrimLeft(char *String)
 {
-    if (!string)
+    if (!String)
     {
         return nullptr;
     }
 
-    while (*string != '\0' && isspace((unsigned char)*string))
+    while (*String != '\0' && isspace((unsigned char)*String))
     {
-        string++;
+        String++;
     }
 
-    return string;
+    return String;
 }
 
 char *
-VqbStrTrimRight(char *string)
+VqbStrTrimRight(char *String)
 {
-    if (string == NULL)
+    if (!String)
     {
         return nullptr;
     }
-    size_t length = strlen(string);
-    while (length > 0 && isspace((unsigned char)string[length - 1]))
+    size_t length = strlen(String);
+    while (length > 0 && isspace((unsigned char)String[length - 1]))
     {
         length--;
     }
-    string[length] = '\0';
-    return string;
+    String[length] = '\0';
+    return String;
 }
