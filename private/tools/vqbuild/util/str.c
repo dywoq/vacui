@@ -44,3 +44,28 @@ VqbStrTrimRight(char *String)
     String[length] = '\0';
     return String;
 }
+
+size_t
+VqbStrGetIndexOfChar(
+    const char *StringPtr,
+    char CharToFind
+)
+{
+    if (!StringPtr)
+    {
+        return -1;
+    }
+
+    size_t charIndex = 0;
+    for (const char *stringCurrentPtr = StringPtr; *stringCurrentPtr != '\0';
+         ++stringCurrentPtr)
+    {
+        if (CharToFind == *stringCurrentPtr)
+        {
+            return charIndex;
+        }
+        charIndex++;
+    }
+
+    return -1;
+}

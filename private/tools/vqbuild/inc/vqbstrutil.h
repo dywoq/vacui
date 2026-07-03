@@ -46,4 +46,26 @@ VqbStrTrimLeft(char *String);
 char *
 VqbStrTrimRight(char *String);
 
+/*
+    Description:
+
+        Finds the position of a character within string.
+	It scans the string forward by increasing a pointer.
+        Once the function finds the character, it returns an index
+        of the character.
+
+        Returns -1 if there's no the given character within the string,
+	or the given pointer to string is null.
+
+    Parameters:
+
+        - StringPtr: The pointer to the null-terminated string.
+        - CharToFind: The character to find.
+*/
+size_t
+VqbStrGetIndexOfChar(
+    const char *StringPtr,
+    char CharToFind
+);
+
 #endif
