@@ -19,7 +19,8 @@ TARGET := $(BUILD_DIR)/vqbuild
 #
 # Modules
 #
-MODULES := hub
+MODULES := hub \
+	   util
 
 SOURCES := $(foreach m, $(MODULES), $(wildcard $(m)/*.c))
 OBJECTS := $(foreach m, $(MODULES), \
