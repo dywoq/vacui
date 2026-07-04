@@ -18,9 +18,11 @@ AlignEscapedNewlines: LeftWithLastLine
 AlignTrailingComments: 
      Kind: Always
      AlignPPAndNotPP: false
+AlignAfterOpenBracket: BlockIndent
 
 # BinPack
 BinPackParameters: AlwaysOnePerLine
+BinPackArguments: false
 
 # Breaking
 BreakAfterReturnType: All
@@ -31,3 +33,6 @@ BreakAfterOpenBracketFunction: true
 
 # Indentation
 NamespaceIndentation: All
+
+# Misc
+AllowAllArgumentsOnNextLine: false

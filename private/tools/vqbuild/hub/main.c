@@ -7,51 +7,46 @@
         The vqbuild startup code
 */
 
-#include <errno.h>
+#include <stddef.h>
 #include <stdio.h>
 #include <vqbconf.h>
+
+static bool
+ConfigMapIterator_(
+    ptrdiff_t Index,
+    char **KeyPtr,
+    char **ValuePtr
+)
+{
+    if (Index == 2)
+    {
+        return false;
+    }
+    printf("[%zu] -> %s:%s\n", Index, *KeyPtr, *ValuePtr);
+    return true;
+}
 
 int
 main()
 {
-
-    /*
-     * Allocate a configuration parser
-     */
-    VQBCONF_PARSER_GUARD(configParser);
-    if (!configParser)
+    VQBCONF_MAP_GUARD(configMap);
+    if (!configMap)
     {
-        fprintf(
-            stderr, "Failed to allocate a pointer to VQBCONF_PARSER data.\n"
-        );
+        printf("Failed to allocate a pointer to VQBCONF_MAP data\n");
         return 1;
     }
 
-    /*
-     * Open file and store its stream pointer
-     * inside the configParser
-     */
-    const char *fileName = "VQBUILD";
-    FILE *fileStream     = nullptr;
-    fileStream           = fopen("VQBUILD", "r");
-    if (errno != 0)
+    char value[] = "Hi!";
+    VqbConfMapPut(configMap, "tmp", value);
+    VqbConfMapPut(configMap, "tmpp", "Hi!");
+    VqbConfMapPut(configMap, "hook", "this is a hook");
+
+    if (!VqbConfMapExists(configMap, "tmpsp"))
     {
-        fprintf(
-            stderr, "Failed to read \"%s\" file (errno: %d)\n", fileName, errno
-        );
-        return 1;
+        printf("tmpsp key doesn't exist\n");
     }
 
-    if (!VqbConfParserSetFStream(configParser, fileStream))
-    {
-        fprintf(stderr, "Failed to store a file stream pointer\n");
-        return 1;
-    }
-
-    /*
-     * Freeing-memory routine
-     */
-    fclose(fileStream);
+    VqbConfMapIterate(configMap, ConfigMapIterator_);
 
     return 0;
 }
