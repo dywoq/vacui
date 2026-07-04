@@ -10,7 +10,6 @@
 #ifndef _VQBCONF_H
 #define _VQBCONF_H
 
-#include <stdlib.h>
 #include <stdio.h>
 
 /*
@@ -50,9 +49,10 @@ VqbConfAllocParser(void);
 void
 VqbConfDestroyParser(VQBCONF_PARSER *ParserPtr);
 
-static inline void VqbConf__GuardCleanupParser(VQBCONF_PARSER **Parser)
+static inline void
+VqbConf__GuardCleanupParser(VQBCONF_PARSER **Parser)
 {
-       VqbConfDestroyParser(*Parser);
+    VqbConfDestroyParser(*Parser);
 }
 /*
     Description:
@@ -60,8 +60,8 @@ static inline void VqbConf__GuardCleanupParser(VQBCONF_PARSER **Parser)
         A macro guard which allocates a pointer to VQBCONF_PARSER data,
         and destroys the pointer when the variable goes out of scope.
 */
-#define VQBCONF_PARSER_GUARD(variableName)                   \
-    [[gnu::cleanup(VqbConf__GuardCleanupParser)]] \
+#define VQBCONF_PARSER_GUARD(variableName)              \
+    [[gnu::cleanup(VqbConf__GuardCleanupParser)]]       \
     VQBCONF_PARSER *variableName = VqbConfAllocParser()
 
 /*
