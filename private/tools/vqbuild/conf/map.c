@@ -1,3 +1,12 @@
+/*
+    Copyright 2026 dywoq - Apache License 2.0
+    https://github.com/dywoq/vacui
+
+    Description:
+
+        An implementation of configuration map
+*/
+
 #include <vqbconf.h>
 #define STB_DS_IMPLEMENTATION
 #include <stb_ds.h>
