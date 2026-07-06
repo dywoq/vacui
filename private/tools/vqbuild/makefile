@@ -4,8 +4,8 @@
 #
 # Compiler
 #
-CC := gcc
-CCFLAGS := -Iinc -std=c23 -Werror \
+CXX := g++
+CCFLAGS := -Iinc -std=c++23 -Werror \
 	-static-libgcc \
 	-static-libstdc++
 
@@ -19,18 +19,16 @@ TARGET := $(BUILD_DIR)/vqbuild
 #
 # Modules
 #
-MODULES := hub \
-	   util \
-	   conf
+MODULES := hub
 
-SOURCES := $(foreach m, $(MODULES), $(wildcard $(m)/*.c))
+SOURCES := $(foreach m, $(MODULES), $(wildcard $(m)/*.cxx))
 OBJECTS := $(foreach m, $(MODULES), \
-    $(patsubst $(m)/%.c, $(OBJECTS_DIR)/$(m)/%.o, \
-        $(filter $(m)/%.c, $(SOURCES))))
+    $(patsubst $(m)/%.cxx, $(OBJECTS_DIR)/$(m)/%.o, \
+        $(filter $(m)/%.cxx, $(SOURCES))))
 #
 # Add include directories
 #
-CCFLAGS += -Iinc/
+CXXFLAGS += -Iinc/
 
 #
 # Compilation
@@ -47,11 +45,11 @@ print_info:
 
 $(TARGET): $(OBJECTS)
 	@echo "	Linking		$(TARGET)"
-	@$(CC) $(OBJECTS) -o $(TARGET) $(CCFLAGS)
+	@$(CXX) $(OBJECTS) -o $(TARGET) $(CXXFLAGS)
 
-$(OBJECTS_DIR)/%.o: %.c
+$(OBJECTS_DIR)/%.o: %.cxx
 	@echo "	Compiling 	$<"
-	@$(CC) $(CCFLAGS) -o $@ -c $< 
+	@$(CXX) $(CXXFLAGS) -o $@ -c $< 
 
 create_modules_dirs:
 	@echo "	Creating module directories in objects directory"
