@@ -95,6 +95,18 @@ namespace vqbuild::config
         ConfigMap
         Parse(std::string_view FilePath);
     };
+
+    //
+    // Description:
+    //
+    //      Checks whether the ConfigB's key names match
+    //      with the ConfigA's.
+    //
+    bool
+    ConfigMapsMatch(
+        ConfigMap ConfigA,
+        ConfigMap ConfigB
+    ) noexcept;
 } // namespace vqbuild::config
 
 #endif

@@ -3,26 +3,27 @@
 // https://github.com/dywoq/vacui
 //
 
-#include <exception>
-#include <iostream>
 #include <print>
 #include <vqbconf.hxx>
 
 int
 main()
 {
-    try
+    vqbuild::config::ConfigMap ConfigA;
+    ConfigA["TARGET"]  = "A";
+    ConfigA["SOURCES"] = "B";
+
+    vqbuild::config::ConfigMap ConfigB;
+    ConfigB["TARGET"]  = "";
+    ConfigB["SOURCES"] = "";
+
+    if (vqbuild::config::ConfigMapsMatch(ConfigA, ConfigB))
     {
-        vqbuild::config::ConfigParser ConfigParser;
-        auto ConfigMap = ConfigParser.Parse("VQBUILD");
-        for (const auto Value : ConfigMap)
-        {
-            std::println("Map[\"{}\"] = \"{}\"", Value.first, Value.second);
-        }
+        std::println("Configuration maps match.");
     }
-    catch (const std::exception &Error)
+    else
     {
-        std::cout << Error.what() << std::endl;
+        std::println("Configuration maps do not match.");
     }
 
     return 0;
