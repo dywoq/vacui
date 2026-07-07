@@ -1,0 +1,11 @@
+{
+        "workspace": {
+                "library": ["${env:HOME}/.luarocks/share/lua/5.5"]
+        },
+        "completion": {
+                "displayContext": true
+        },
+        "hint": {
+             "arrayIndex": "Enable"   
+        }
+}
