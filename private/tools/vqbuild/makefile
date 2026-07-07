@@ -5,7 +5,7 @@
 # Compiler
 #
 CXX := g++
-CCFLAGS := -Iinc -std=c++23 -Werror \
+CXXFLAGS := -Iinc -std=c++23 -Werror \
 	-static-libgcc \
 	-static-libstdc++
 
@@ -19,7 +19,8 @@ TARGET := $(BUILD_DIR)/vqbuild
 #
 # Modules
 #
-MODULES := hub
+MODULES := hub \
+	   conf
 
 SOURCES := $(foreach m, $(MODULES), $(wildcard $(m)/*.cxx))
 OBJECTS := $(foreach m, $(MODULES), \
