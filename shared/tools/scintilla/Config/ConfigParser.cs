@@ -90,8 +90,11 @@ public class ConfigParser
         return configDictionary;
     }
 
-    private bool IsLineCommentOrEmpty_(ref StateManagement stateManagement) =>
-        stateManagement.CurrentLine.Length == 0 || stateManagement.CurrentLine.Contains('#');
+    private bool IsLineCommentOrEmpty_(ref StateManagement stateManagement)
+    {
+        string trimmed = stateManagement.CurrentLine.Trim();
+        return trimmed.Length == 0 || trimmed.StartsWith('#');
+    }
 
     private void GetEqualOperatorIndex_(ref StateManagement stateManagement)
     {
@@ -151,7 +154,7 @@ public class ConfigParser
             else
             {
                 stateManagement.SkipLineLoop = true;
-                var strippedBackslashLine = trimmedLine.TrimEnd('\\').ToString(); 
+                var strippedBackslashLine = trimmedLine.TrimEnd('\\').ToString();
                 stateManagement.ValueStringBuilder.Append(' ');
                 stateManagement.ValueStringBuilder.Append(strippedBackslashLine);
             }
