@@ -7,44 +7,97 @@ namespace Scintilla.Config;
 
 public class ConfigParser
 {
+    private class StateManagement
+    {
+        public string FilePath { get; set; } = "UNKNOWN";
+        public int CurrentLineNumber { get; set; }
+        public int EqualOperatorIndex { get; set; }
+        public StringBuilder KeyStringBuilder { get; set; } = new();
+        public StringBuilder ValueStringBuilder { get; set; } = new();
+        public string CurrentLine { get; set; } = "";
+        public bool SkipLineLoop { get; set; } = false;
+        public bool BreakLoop { get; set; } = false;
+
+        public void Reset()
+        {
+            FilePath = "";
+            CurrentLineNumber = 1;
+            ResetStringBuilders();
+            ResetLoopInfo();
+        }
+
+        public void ResetStringBuilders()
+        {
+            KeyStringBuilder.Clear();
+            ValueStringBuilder.Clear();
+        }
+
+        public void ResetLoopInfo()
+        {
+            SkipLineLoop = false;
+            BreakLoop = false;
+        }
+    }
+
     public Dictionary<string, string> Parse(string filePath)
     {
         var configDictionary = new Dictionary<string, string>();
-        var valueStringBuilder = new StringBuilder();
-        var keyStringBuilder = new StringBuilder();
-        var trimPattern = " \n\t";
-        var lineNumber = 0;
+        var stateManagement = new StateManagement();
         foreach (string line in File.ReadLines(filePath))
         {
-            if (line.Length == 0 || line.Contains('#'))
+            stateManagement.CurrentLine = line;
+            if (IsLineCommentOrEmpty_(ref stateManagement))
             {
-                lineNumber++;
+                stateManagement.CurrentLineNumber++;
                 continue;
             }
-
-            // Find equal operator and its index in the string
-            int equalOperatorIndex = line.IndexOf('=');
-            if (equalOperatorIndex == -1)
-            {
-                throw new Exception($"Failed to find an equal operator:\n\t {lineNumber} | {line}");
-            }
-
-            // Select sub-strings from the line, using equalOperatorIndex
-            // as the bridge
-            string keyName = line[0..equalOperatorIndex].ToString();
-            string partialValue = line[(equalOperatorIndex + 1)..].ToString();
-
-            // Store key and its value into the dictionary, along with trimming the strings.
-            keyStringBuilder.Append(keyName);
-            var finalKeyName = keyStringBuilder.ToString().Trim(trimPattern).ToString();
-            valueStringBuilder.Append(partialValue);
-            var finalValue = valueStringBuilder.ToString().Trim(trimPattern).ToString();
-
-            configDictionary[finalKeyName] = finalValue;
-            keyStringBuilder.Clear();
-            valueStringBuilder.Clear();
+            GetEqualOperatorIndex_(ref stateManagement);
+            GetKeyAndValue_(ref stateManagement);
+            TrimKeyAndValue_(ref stateManagement);
+            StoreKeyAndValue_(ref stateManagement, ref configDictionary);
         }
+
         return configDictionary;
     }
+
+    private bool IsLineCommentOrEmpty_(ref StateManagement stateManagement) =>
+        stateManagement.CurrentLine.Length == 0 || stateManagement.CurrentLine.Contains('#');
+
+    private void GetEqualOperatorIndex_(ref StateManagement stateManagement)
+    {
+        stateManagement.EqualOperatorIndex = stateManagement.CurrentLine.IndexOf('=');
+        if (stateManagement.EqualOperatorIndex == -1)
+        {
+            throw new Exception(MakeError_(ref stateManagement, "Failed to find an equal operator"));
+        }
+    }
+
+    private void GetKeyAndValue_(ref StateManagement stateManagement)
+    {
+        var key = stateManagement.CurrentLine[0..stateManagement.EqualOperatorIndex].ToString();
+        var value = stateManagement.CurrentLine[(stateManagement.EqualOperatorIndex + 1)..].ToString();
+        stateManagement.KeyStringBuilder.Append(key);
+        stateManagement.ValueStringBuilder.Append(value);
+    }
+
+    private void TrimKeyAndValue_(ref StateManagement stateManagement)
+    {
+        string trimPattern = " \n\t";
+        var trimmedKey = stateManagement.KeyStringBuilder.ToString().Trim(trimPattern);
+        var trimmedValue = stateManagement.ValueStringBuilder.ToString().Trim(trimPattern);
+        stateManagement.ResetStringBuilders();
+        stateManagement.KeyStringBuilder.Append(trimmedKey);
+        stateManagement.ValueStringBuilder.Append(trimmedValue);
+    }
+
+    private void StoreKeyAndValue_(ref StateManagement stateManagement, ref Dictionary<string, string> configDictionary)
+    {
+        var key = stateManagement.KeyStringBuilder.ToString();
+        var value = stateManagement.ValueStringBuilder.ToString();
+        configDictionary[key] = value;
+    }
+
+    private string MakeError_(ref StateManagement stateManagement, string errorMessage) =>
+        $"{errorMessage}\n\t {stateManagement.CurrentLineNumber} | ${stateManagement.CurrentLine}";
 }
 
