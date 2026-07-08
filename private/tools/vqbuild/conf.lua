@@ -21,7 +21,7 @@ end
 --- - unterminated multi-line value detected.
 ---
 --- @param filepath string
---- @return table? config_table
+--- @return table<string, string>? config_table
 --- @return string? errmsg
 function m.parse(filepath)
     local table_map = {}
@@ -112,6 +112,20 @@ function m.parse(filepath)
     end
 
     return table_map, nil
+end
+
+--- Checks whether keys from table_a exist in table_b.
+--- @param table_a table<string, string> 
+--- @param table_b table<string, string>
+--- @return boolean
+function m.match(table_a, table_b)
+    local pl_list = require "pl.List"
+    for key in pairs(table_a) do
+        if not pl_list.contains(table_b, key) then
+            return false
+        end
+    end
+    return true
 end
 
 return m
