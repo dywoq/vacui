@@ -10,13 +10,19 @@ public class ConfigParser
     private class StateManagement
     {
         public string FilePath { get; set; } = "UNKNOWN";
+
         public int CurrentLineNumber { get; set; }
+        public string CurrentLine { get; set; } = "";
+
         public int EqualOperatorIndex { get; set; }
+
         public StringBuilder KeyStringBuilder { get; set; } = new();
         public StringBuilder ValueStringBuilder { get; set; } = new();
-        public string CurrentLine { get; set; } = "";
+
         public bool SkipLineLoop { get; set; } = false;
         public bool BreakLoop { get; set; } = false;
+
+        public bool ParsingMultilineValue { get; set; } = false;
 
         public void Reset()
         {
@@ -37,6 +43,11 @@ public class ConfigParser
             SkipLineLoop = false;
             BreakLoop = false;
         }
+
+        public void ResetMultilineValueInfo()
+        {
+            ParsingMultilineValue = false;
+        }
     }
 
     public Dictionary<string, string> Parse(string filePath)
@@ -51,10 +62,29 @@ public class ConfigParser
                 stateManagement.CurrentLineNumber++;
                 continue;
             }
+
+            HandleMultilineValue_(ref stateManagement, ref configDictionary);
+            if (stateManagement.SkipLineLoop)
+            {
+                stateManagement.CurrentLineNumber++;
+                stateManagement.SkipLineLoop = false;
+                continue;
+            }
+
             GetEqualOperatorIndex_(ref stateManagement);
             GetKeyAndValue_(ref stateManagement);
             TrimKeyAndValue_(ref stateManagement);
+
+            SkipLineIfBackslashAtValueEnd_(ref stateManagement);
+            if (stateManagement.SkipLineLoop)
+            {
+                stateManagement.CurrentLineNumber++;
+                stateManagement.SkipLineLoop = false;
+                continue;
+            }
+
             StoreKeyAndValue_(ref stateManagement, ref configDictionary);
+            stateManagement.ResetStringBuilders();
         }
 
         return configDictionary;
@@ -88,6 +118,44 @@ public class ConfigParser
         stateManagement.ResetStringBuilders();
         stateManagement.KeyStringBuilder.Append(trimmedKey);
         stateManagement.ValueStringBuilder.Append(trimmedValue);
+    }
+
+    private void SkipLineIfBackslashAtValueEnd_(ref StateManagement stateManagement)
+    {
+        var value = stateManagement.ValueStringBuilder.ToString();
+        if (value.EndsWith('\\'))
+        {
+            stateManagement.SkipLineLoop = true;
+            stateManagement.ParsingMultilineValue = true;
+            var strippedBackslashValue = value.TrimEnd('\\').ToString();
+            stateManagement.ValueStringBuilder.Clear();
+            stateManagement.ValueStringBuilder.Append(strippedBackslashValue);
+        }
+    }
+
+    private void HandleMultilineValue_(ref StateManagement stateManagement, ref Dictionary<string, string> configDictionary)
+    {
+        if (stateManagement.ParsingMultilineValue)
+        {
+            var trimmedLine = stateManagement.CurrentLine.Trim(" \n\t");
+            if (!trimmedLine.EndsWith('\\'))
+            {
+                stateManagement.SkipLineLoop = true;
+                stateManagement.ParsingMultilineValue = false;
+                stateManagement.ValueStringBuilder.Append(' ');
+                stateManagement.ValueStringBuilder.Append(trimmedLine);
+                StoreKeyAndValue_(ref stateManagement, ref configDictionary);
+                stateManagement.ResetStringBuilders();
+                return;
+            }
+            else
+            {
+                stateManagement.SkipLineLoop = true;
+                var strippedBackslashLine = trimmedLine.TrimEnd('\\').ToString(); 
+                stateManagement.ValueStringBuilder.Append(' ');
+                stateManagement.ValueStringBuilder.Append(strippedBackslashLine);
+            }
+        }
     }
 
     private void StoreKeyAndValue_(ref StateManagement stateManagement, ref Dictionary<string, string> configDictionary)
