@@ -3,9 +3,5 @@
 
 public class Program
 {
-    static void Main()
-    {
-
-    }
+    static void Main() { }
 }
-
