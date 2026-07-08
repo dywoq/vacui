@@ -1,7 +1,12 @@
 # Scintilla
 
-The Scintilla is a private build system tool, used in development of the operating system Vacui, made specifically 
-to handle boilerplate tasks such as generating ISO image, building bootloader & kernel etc.
+The Scintilla is a private tool, used within Vacui operating system development. Its goal is to handle and centralize
+boilerplate tasks to make Vacui developer's life simpler, such as:
+    
+- building the operating system codebase, and managing the OS parts' dependencies;
+- formatting the codebase in one command;
+- writing configuration files in an unified syntax;
+- and more!
 
 # LICENSE 
 
