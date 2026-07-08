@@ -2,6 +2,7 @@
 // https://github.com/dywoq/vacui
 
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Scintilla.Config;
 
@@ -163,6 +164,7 @@ public class ConfigParser
 
     private void StoreKeyAndValue_(ref StateManagement stateManagement, ref Dictionary<string, string> configDictionary)
     {
+        HandleVariableExpansionInValue_(ref stateManagement, ref configDictionary);
         var key = stateManagement.KeyStringBuilder.ToString();
         var value = stateManagement.ValueStringBuilder.ToString();
         configDictionary[key] = value;
@@ -170,5 +172,41 @@ public class ConfigParser
 
     private string MakeError_(ref StateManagement stateManagement, string errorMessage) =>
         $"{errorMessage}\n\t {stateManagement.CurrentLineNumber} | ${stateManagement.CurrentLine}";
+
+    private void HandleVariableExpansionInValue_(ref StateManagement stateManagement, ref Dictionary<string, string> configDictionary)
+    {
+        var value = stateManagement.ValueStringBuilder.ToString();
+        var pattern = @"\$\{([^}]+)\}";
+        var matches = Regex.Matches(value, pattern);
+        for (int i = matches.Count - 1; i >= 0; i--)
+        {
+            var match = matches[i];
+            string varName = match.Groups[1].Value;
+            string resolvedValue;
+
+            if (configDictionary.TryGetValue(varName, out string? localVal))
+            {
+                resolvedValue = localVal;
+            }
+
+            else
+            {
+                string? envVal = Environment.GetEnvironmentVariable(varName);
+                if (envVal != null)
+                {
+                    resolvedValue = envVal;
+                }
+                else
+                {
+                    throw new Exception(MakeError_(ref stateManagement, $"Variable '{varName}' could not be resolved in local config or environment"));
+                }
+            }
+
+            value = value.Remove(match.Index, match.Length).Insert(match.Index, resolvedValue);
+        }
+
+        stateManagement.ValueStringBuilder.Clear();
+        stateManagement.ValueStringBuilder.Append(value);
+    }
 }
 
