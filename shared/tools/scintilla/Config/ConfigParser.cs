@@ -6,6 +6,10 @@ using System.Text.RegularExpressions;
 
 namespace Scintilla.Config;
 
+/// <summary>
+/// Class ConfigParser is responsible for parsing the configuration files,
+/// and returning the dictionary map with parsed keys and values.
+/// </summary>
 public class ConfigParser
 {
     private class StateManagement
@@ -51,6 +55,19 @@ public class ConfigParser
         }
     }
 
+    /// <summary>
+    /// Method Parse converts the configuration file into the dictionary, with support of multi-line values,
+    /// hash commentaries and expansion of config/environment variables.
+    /// </summary>
+    ///
+    /// <param name="filePath">a file path.</param>
+    /// 
+    /// <exception cref="Exception"> 
+    /// Thrown when:
+    /// - the equal operator wasn't found (if not parsing multi-line value);
+    /// - failed to find environment or config variable during a variable expansion;
+    /// - failed to open file.
+    /// </exception>
     public Dictionary<string, string> Parse(string filePath)
     {
         var configDictionary = new Dictionary<string, string>();
