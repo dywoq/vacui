@@ -188,7 +188,7 @@ public class ConfigParser
     }
 
     private string MakeError_(ref StateManagement stateManagement, string errorMessage) =>
-        $"{errorMessage}\n\t {stateManagement.CurrentLineNumber} | ${stateManagement.CurrentLine}";
+        $"{errorMessage}\n\t {stateManagement.CurrentLineNumber} | {stateManagement.CurrentLine}";
 
     private void HandleVariableExpansionInValue_(ref StateManagement stateManagement, ref Dictionary<string, string> configDictionary)
     {
