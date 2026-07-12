@@ -5,7 +5,7 @@
 ; Description:
 ;
 ;       This assembly contains a temporary Global Descriptor Table data
-;       and its pointe. It is used to survive protected mode transition only.
+;       and its pointer. It is used to survive protected mode transition only.
 ;
 
 %ifndef _GDT_S
