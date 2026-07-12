@@ -25,20 +25,22 @@ SectorStartup:
         ;
         mov ah, 0x42
         mov si, PrimaryDAP
+        mov dl, 0x80
         int 0x13
         jc .diskError
 
-        .diskError:
-        mov si, ERR_FailedToLoadPrimaryBootStage
-        call PrintStr
-
-        .halt:
-        hlt
-        
         ;
         ; Perform a far jump
         ;
         jmp 0x0800:0x0
+
+        .diskError:
+        mov si, ERR_FailedToLoadPrimaryBootStage
+        call PrintStr
+        jmp .halt
+
+        .halt:
+        hlt
 
 ;
 ; Description:
