@@ -4,7 +4,7 @@
 ;
 ; Description:
 ;
-;       This assembly file contains the printing functionality.
+;       This assembly file contains a printing functionality.
 ;
 
 %ifndef _PRINT_S

@@ -4,7 +4,7 @@
 ;
 ; Description:
 ;
-;        This assembly file a DAP of the bootloader final stage.
+;        This assembly file contains a DAP of the bootloader final stage.
 ;
 
 %ifndef _FINAL_DAP_S

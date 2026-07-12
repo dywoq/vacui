@@ -4,7 +4,7 @@
 ;
 ; Description:
 ;
-;       This assembly file contains the startup code of 
+;       This assembly file contains a startup code of 
 ;       the bootloader primary stage.
 ;
 
