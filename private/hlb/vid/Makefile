@@ -34,7 +34,7 @@ TARGET		:= $(BUILD_DIR)/libhlbvid.a
 #
 # Modules
 #
-MODULES :=
+MODULES := mode
 SOURCES := $(foreach m, $(MODULES), $(wildcard $(m)/*.c))
 SOURCES_ASM := $(foreach m, $(MODULES), $(wildcard $(m)/*.S)) 
 OBJECTS := $(foreach m, $(MODULES), $(SOURCES:$(m)/%.c=$(OBJS_DIR)/$(m)/%.o)) \
