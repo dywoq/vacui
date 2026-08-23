@@ -15,9 +15,9 @@ import (
 func GenerateCommand(m *config.Module) (cmd string, args []string) {
 	cmd = "make"
 	args = []string{
-		fmt.Sprintf("SOURCES=%q", strings.Join(m.General.Sources, " ")),
-		fmt.Sprintf("TARGET_PATH=%q", m.General.TargetPath),
-		fmt.Sprintf("OBJS_DIR=%q", m.General.ObjsDir),
+		fmt.Sprintf("SOURCES=%s", strings.Join(m.General.Sources, " ")),
+		fmt.Sprintf("TARGET_PATH=%s", m.General.TargetPath),
+		fmt.Sprintf("OBJS_DIR=%s", m.General.ObjsDir),
 	}
 	for key, value := range m.CustomInfo {
 		args = append(args, fmt.Sprintf("%s=%q", key, value))
