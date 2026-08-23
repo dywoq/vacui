@@ -25,7 +25,7 @@ BUILD_DIR 	:= .build
 #
 
 SECTOR 		:= sector.S
-SECTOR_OUTPUT	:= $(BUILD_DIR)/sector.bin
+SECTOR_OUTPUT	:= $(BUILD_DIR)/vqsector.bin
 
 #
 # Buiilding rules
