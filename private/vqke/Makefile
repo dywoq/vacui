@@ -14,7 +14,8 @@ CC 	:= gcc
 CFLAGS  := -std=c23 		\
 	-m32 			\
 	-ffreestanding 		\
-	-fno-pic 
+	-fno-pic		\
+	-Iinc
 
 LD := ld
 LDFLAGS := -T vqke.ld 	\
