@@ -11,11 +11,11 @@
 # Tools
 #
 CC 	:= gcc
-CFLAGS  := -std=c23 		\
+CFLAGS  := -std=c23 \
 	-m32 			\
-	-ffreestanding 		\
+	-ffreestanding 	\
 	-fno-pic		\
-	-Iinc			\
+	-I../inc		\
 	-I../../inc		\
 	-nostdinc
 
