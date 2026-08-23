@@ -19,6 +19,7 @@ typedef unsigned char      VQ_UBYTE;
 typedef unsigned short     VQ_USHORT;
 typedef unsigned int       VQ_UINT;
 typedef unsigned long long VQ_ULONG;
+typedef char               VQ_ASCIICHAR;
 
 #endif
 
