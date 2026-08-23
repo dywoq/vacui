@@ -11,14 +11,14 @@ import (
 	"github.com/dywoq/vacui/shared/tools/vacbuild/internal/crosscompile"
 )
 
-// GenerateCommand uses the provided module information to generate a Make
-// command name and arguments.
+// GenerateCommand wraps around the [GenerateCommandWithToolchain] function.
+// It provides [crosscompile.DefaultToolchain] as a cross-compilation toolchain.
 func GenerateCommand(m *config.Module) (string, []string) {
 	return GenerateCommandWithToolchain(m, crosscompile.DefaultToolchain())
 }
 
-// GenerateCommand uses the provided module information to generate a Make
-// command name and arguments.
+// GenerateCommand uses the provided module and toolchain information to 
+// generate a Make command name and arguments.
 func GenerateCommandWithToolchain(m *config.Module, t *crosscompile.Toolchain) (cmd string, args []string) {
 	cmd = "make"
 	args = []string{
