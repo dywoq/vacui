@@ -9,13 +9,14 @@ import (
 	"path"
 
 	"github.com/dywoq/vacui/shared/tools/vacbuild/internal/config"
+	"github.com/dywoq/vacui/shared/tools/vacbuild/internal/crosscompile"
 	"github.com/dywoq/vacui/shared/tools/vacbuild/internal/mmake"
 )
 
 // Module decodes the vacbuild.toml file in the directory. It recursively builds
 // dependencies if they are specified in the configuration. The function generates a
 // Make command and executes it with dir as the working directory.
-func Module(dir string) error {
+func ModuleWithToolchain(dir string, t *crosscompile.Toolchain) error {
 	moduleFile := path.Join(dir, "vacbuild.toml")
 	config, err := config.ParseModule(moduleFile)
 	if err != nil {
@@ -23,13 +24,13 @@ func Module(dir string) error {
 	}
 	if len(config.General.Dependencies) != 0 {
 		for _, d := range config.General.Dependencies {
-			err := Module(path.Join(dir, d))
+			err := ModuleWithToolchain(path.Join(dir, d), t)
 			if err != nil {
 				return fmt.Errorf("could not build a dependency: %v", err)
 			}
 		}
 	}
-	name, args := mmake.GenerateCommand(config)
+	name, args := mmake.GenerateCommandWithToolchain(config, t)
 	cmd := exec.Command(name, args...)
 	cmd.Dir = dir
 	output, err := cmd.CombinedOutput()
