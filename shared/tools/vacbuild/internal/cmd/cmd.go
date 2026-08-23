@@ -3,9 +3,16 @@
 
 package cmd
 
-import "github.com/spf13/cobra"
+import (
+	"github.com/dywoq/vacui/shared/tools/vacbuild/internal/cmd/build"
+	"github.com/spf13/cobra"
+)
 
 func Root() *cobra.Command {
-	root := &cobra.Command{}
+	root := &cobra.Command{
+		Use:   "vacbuild",
+		Short: "Build system used across Vacui components and programs (C/C++)",
+	}
+	root.AddCommand(build.Cmd())
 	return root
 }
