@@ -4,13 +4,9 @@
 package main
 
 import (
-	"log"
-
 	"github.com/dywoq/vacui/shared/tools/vacbuild/internal/cmd"
 )
 
 func main() {
-	if err := cmd.Root().Execute(); err != nil {
-		log.Fatalf("could not run a root command: %v\n", err)
-	}
+	cmd.Root().Execute()
 }

@@ -16,7 +16,10 @@ import (
 
 // GenerateInModule creates and generates a compilation database
 // (compile_commands.json) in the specified module directory. It also builds
-// the module.
+// the module. If the module type is [config.ModuleWorkspace], the function
+// recursively generates a compilation database in specified modules.
+// If the module has dependencies, the function recursively generates a 
+// compilation database in dependencies first.
 func GenerateInModule(dir string, toolchain string) error {
 	t, err := crosscompile.ParseToolchain(toolchain)
 	if err != nil {
@@ -25,7 +28,28 @@ func GenerateInModule(dir string, toolchain string) error {
 	m, err := config.ParseModule(path.Join(dir, "vacbuild.toml"))
 	if err != nil {
 		return err
+	}	
+	if m.General.Type == config.ModuleWorkspace {
+		if len(m.Workspace.Modules) != 0 {
+			for _, m := range m.Workspace.Modules {
+				err := GenerateInModule(path.Join(dir, m), toolchain)
+				if err != nil {
+					return fmt.Errorf("could not build a module from the list: %v", err)
+				}
+			}
+		}
+		return nil
 	}
+	
+	if len(m.General.Dependencies) != 0 {
+		for _, d := range m.General.Dependencies {
+			err := GenerateInModule(path.Join(dir, d), toolchain)
+			if err != nil {
+				return fmt.Errorf("could not build a dependency: %v", err)
+			}
+		}
+	}
+	
 	name, args := mmake.GenerateCommandWithToolchain(m, t)
 	cmd := exec.Command("bear", slices.Concat([]string{"--"}, []string{name}, args)...)
 	cmd.Dir = dir

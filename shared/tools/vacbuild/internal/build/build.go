@@ -13,24 +13,38 @@ import (
 	"github.com/dywoq/vacui/shared/tools/vacbuild/internal/mmake"
 )
 
-// Module decodes the vacbuild.toml file in the directory. It recursively builds
-// dependencies if they are specified in the configuration. The function generates a
-// Make command and executes it with dir as the working directory.
+// Module decodes the vacbuild.toml file in the directory. It generates a Make
+// command and executes it with dir as the working directory. It recursively
+// builds dependencies if they are specified in the configuration. If the module
+// type is [config.ModuleWorkspace], the function builds workspace modules recursively.
 func ModuleWithToolchain(dir string, t *crosscompile.Toolchain) error {
 	moduleFile := path.Join(dir, "vacbuild.toml")
-	config, err := config.ParseModule(moduleFile)
+	conf, err := config.ParseModule(moduleFile)
 	if err != nil {
 		return err
 	}
-	if len(config.General.Dependencies) != 0 {
-		for _, d := range config.General.Dependencies {
+
+	if conf.General.Type == config.ModuleWorkspace {
+		if len(conf.Workspace.Modules) != 0 {
+			for _, m := range conf.Workspace.Modules {
+				err := ModuleWithToolchain(path.Join(dir, m), t)
+				if err != nil {
+					return fmt.Errorf("could not build a module from the list: %v", err)
+				}
+			}
+		}
+		return nil
+	}
+
+	if len(conf.General.Dependencies) != 0 {
+		for _, d := range conf.General.Dependencies {
 			err := ModuleWithToolchain(path.Join(dir, d), t)
 			if err != nil {
 				return fmt.Errorf("could not build a dependency: %v", err)
 			}
 		}
 	}
-	name, args := mmake.GenerateCommandWithToolchain(config, t)
+	name, args := mmake.GenerateCommandWithToolchain(conf, t)
 	cmd := exec.Command(name, args...)
 	cmd.Dir = dir
 	output, err := cmd.CombinedOutput()
