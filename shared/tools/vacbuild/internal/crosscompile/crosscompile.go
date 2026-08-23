@@ -10,10 +10,23 @@ import (
 )
 
 type Toolchain struct {
-	CompilerC   string `toml:"compiler_c"`
-	CompilerCxx string `toml:"compiler_cxx"`
-	Linker      string `toml:"linker"`
-	Assembly    string `toml:"assembly"`
+	CompilerC               string   `toml:"compiler_c"`
+	CompilerCxx             string   `toml:"compiler_cxx"`
+	Linker                  string   `toml:"linker"`
+	Assembly                string   `toml:"assembly"`
+	AdditionalFlagsC        []string `toml:"additional_flags_c"`
+	AdditionalFlagsCxx      []string `toml:"additional_flags_cxx"`
+	AdditionalFlagsAssembly []string `toml:"additional_flags_assembly"`
+	AdditionalFlagsLinker   []string `toml:"additional_flags_linker"`
+}
+
+func DefaultToolchain() *Toolchain {
+	return &Toolchain{
+		CompilerC:   "gcc",
+		CompilerCxx: "g++",
+		Linker:      "gcc",
+		Assembly:    "nasm",
+	}
 }
 
 // ParseToolchain reads the file and decodes it, returning a filled [Toolchain].
