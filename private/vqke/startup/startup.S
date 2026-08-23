@@ -9,6 +9,7 @@
 
 bits 16
 global Startup
+extern StartupInitialize
 section .startup
 
 ;

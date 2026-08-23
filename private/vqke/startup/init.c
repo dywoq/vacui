@@ -4,10 +4,14 @@
 //
 // Routine Description
 //
-//      Kernel initialization routine
+//      Kernel initialization
 //
 
 void
 StartupInitialize()
 {
+    while (1)
+    {
+        __asm volatile("hlt\n");
+    }
 }
