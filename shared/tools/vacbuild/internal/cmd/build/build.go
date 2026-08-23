@@ -4,7 +4,7 @@
 package build
 
 import (
-	"log"
+	"fmt"
 
 	"github.com/dywoq/vacui/shared/tools/vacbuild/internal/build"
 	"github.com/dywoq/vacui/shared/tools/vacbuild/internal/crosscompile"
@@ -16,17 +16,18 @@ func Cmd() *cobra.Command {
 		Use:   "build [module-dir] [toolchain-path]",
 		Short: "Build your module",
 		Args:  cobra.ExactArgs(2),
-		Run: func(cmd *cobra.Command, args []string) {
+		RunE: func(cmd *cobra.Command, args []string) error {
 			moduleDir := args[0]
 			toolchainPath := args[1]
 			t, err := crosscompile.ParseToolchain(toolchainPath)
 			if err != nil {
-				log.Fatalf("could not parse the toolchain file: %v", err)
+				return fmt.Errorf("could not parse the toolchain file: %v", err)
 			}
 			err = build.ModuleWithToolchain(moduleDir, t)
 			if err != nil {
-				log.Fatalf("building the module failed: %v", err)
+				return fmt.Errorf("building the module failed: %v", err)
 			}
+			return nil
 		},
 	}
 	return cmd
