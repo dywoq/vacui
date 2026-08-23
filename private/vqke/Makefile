@@ -15,7 +15,8 @@ CFLAGS  := -std=c23 		\
 	-m32 			\
 	-ffreestanding 		\
 	-fno-pic		\
-	-Iinc
+	-Iinc			\
+	-I../inc
 
 LD := ld
 LDFLAGS := -T vqke.ld 	\
