@@ -11,17 +11,20 @@
 # Tools
 #
 CC 	:= gcc
-CFLAGS  := -std=c23 		\
-	-m32 			\
+CFLAGS  := -std=c23 	\
+	-m32 				\
 	-ffreestanding 		\
-	-fno-pic		\
-	-Iinc			\
-	-I../inc		\
+	-fno-pic			\
+	-Iinc				\
+	-I../inc			\
+	-I../hlb/inc		\
 	-nostdinc
 
 LD := ld
 LDFLAGS := -T vqke.ld 	\
-	-m elf_i386
+	-m elf_i386 \
+	-L../lib \
+	-lhlbvid
 
 ASM := nasm
 ASMFLAGS := -f elf32
