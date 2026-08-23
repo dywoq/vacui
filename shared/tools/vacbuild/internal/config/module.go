@@ -4,8 +4,6 @@
 package config
 
 import (
-	"os"
-
 	"github.com/BurntSushi/toml"
 )
 
@@ -23,11 +21,7 @@ type Module struct {
 // ParseModule reads the file and decodes it, returning a filled [Module].
 // The returned instance is filled only if the function decoded the file successfully.
 func ParseModule(file string) (*Module, error) {
-	bytes, err := os.ReadFile(file)
-	if err != nil {
-		return nil, err
-	}
 	var module *Module
-	_, err = toml.Decode(string(bytes), &module)
+	_, err := toml.DecodeFile(file, &module)
 	return module, err
 }
