@@ -16,6 +16,7 @@ SECTIONS
 
         .startup        : { KEEP(*(.startup)) }
         .text           : { *(.text) }
+        .text.bios      : { *(.text.bios) }
         .rodata         : { *(.rodata) }
         .data           : { *(.data) }
         .bss            : { *(.bss) }
