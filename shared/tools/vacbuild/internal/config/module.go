@@ -17,6 +17,7 @@ type Module struct {
 		ObjsDir      string   `toml:"objs_dir"`
 		Dependencies []string `toml:"dependencies"`
 	} `toml:"general"`
+	CustomInfo map[string]string `toml:"custom_info"`
 }
 
 // ParseModule reads the file and decodes it, returning a filled [Module].
