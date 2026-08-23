@@ -36,7 +36,7 @@ TARGET		:= $(BUILD_DIR)/vqke.bin
 #
 # Modules
 #
-MODULES := ke
+MODULES := startup 
 SOURCES := $(foreach m, $(MODULES), $(wildcard $(m)/*.c))
 SOURCES_ASM := $(foreach m, $(MODULES), $(wildcard $(m)/*.S)) 
 OBJECTS := $(foreach m, $(MODULES), $(SOURCES:$(m)/%.c=$(OBJS_DIR)/$(m)/%.o)) \
