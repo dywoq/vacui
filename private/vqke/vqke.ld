@@ -8,7 +8,7 @@
 */
 
 OUTPUT_ARCH(i386)
-ENTRY(BootEntry)
+ENTRY(Startup)
 
 SECTIONS
 {
