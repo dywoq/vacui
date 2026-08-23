@@ -12,20 +12,24 @@ type ModuleType string
 // Module contains the module configuration fields.
 type Module struct {
 	General struct {
-		TargetPath   string     `toml:"target_path"`
-		Sources      []string   `toml:"sources"`
-		ObjsDir      string     `toml:"objs_dir"`
-		Dependencies []string   `toml:"dependencies"`
-		Type         ModuleType `toml:"type"`
+		Type ModuleType `toml:"type"`
 	} `toml:"general"`
-	Workspace struct {
-		Modules []string `toml:"modules"`
+	Info struct {
+		Workspace struct {
+			Modules []string `toml:"modules"`
+		}
+		Regular struct {
+			TargetPath            string            `toml:"target_path"`
+			Sources               []string          `toml:"sources"`
+			ObjsDir               string            `toml:"objs_dir"`
+			Dependencies          []string          `toml:"dependencies"`
+			AdditionalMakeOptions map[string]string `toml:"additional_make_options"`
+		} `toml:"regular"`
 	}
-	CustomInfo map[string]string `toml:"custom_info"`
 }
 
 const (
-	ModuleModule    ModuleType = "module"
+	ModuleRegular   ModuleType = "regular"
 	ModuleWorkspace ModuleType = "workspace"
 )
 

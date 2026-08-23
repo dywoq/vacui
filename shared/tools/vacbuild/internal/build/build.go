@@ -25,8 +25,8 @@ func ModuleWithToolchain(dir string, t *crosscompile.Toolchain) error {
 	}
 
 	if conf.General.Type == config.ModuleWorkspace {
-		if len(conf.Workspace.Modules) != 0 {
-			for _, m := range conf.Workspace.Modules {
+		if len(conf.Info.Workspace.Modules) != 0 {
+			for _, m := range conf.Info.Workspace.Modules {
 				err := ModuleWithToolchain(path.Join(dir, m), t)
 				if err != nil {
 					return fmt.Errorf("could not build a module from the list: %v", err)
@@ -36,8 +36,8 @@ func ModuleWithToolchain(dir string, t *crosscompile.Toolchain) error {
 		return nil
 	}
 
-	if len(conf.General.Dependencies) != 0 {
-		for _, d := range conf.General.Dependencies {
+	if len(conf.Info.Regular.Dependencies) != 0 {
+		for _, d := range conf.Info.Regular.Dependencies {
 			err := ModuleWithToolchain(path.Join(dir, d), t)
 			if err != nil {
 				return fmt.Errorf("could not build a dependency: %v", err)

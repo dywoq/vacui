@@ -17,14 +17,14 @@ func GenerateCommand(m *config.Module) (string, []string) {
 	return GenerateCommandWithToolchain(m, crosscompile.DefaultToolchain())
 }
 
-// GenerateCommand uses the provided module and toolchain information to 
+// GenerateCommand uses the provided module and toolchain information to
 // generate a Make command name and arguments.
 func GenerateCommandWithToolchain(m *config.Module, t *crosscompile.Toolchain) (cmd string, args []string) {
 	cmd = "make"
 	args = []string{
-		fmt.Sprintf("SOURCES=%s", strings.Join(m.General.Sources, " ")),
-		fmt.Sprintf("TARGET_PATH=%s", m.General.TargetPath),
-		fmt.Sprintf("OBJS_DIR=%s", m.General.ObjsDir),
+		fmt.Sprintf("SOURCES=%s", strings.Join(m.Info.Regular.Sources, " ")),
+		fmt.Sprintf("TARGET_PATH=%s", m.Info.Regular.TargetPath),
+		fmt.Sprintf("OBJS_DIR=%s", m.Info.Regular.ObjsDir),
 		fmt.Sprintf("TOOLCHAIN_COMPILER_C=%s", t.CompilerC),
 		fmt.Sprintf("TOOLCHAIN_COMPILER_CXX=%s", t.CompilerCxx),
 		fmt.Sprintf("TOOLCHAIN_LINKER=%s", t.Linker),
@@ -34,7 +34,7 @@ func GenerateCommandWithToolchain(m *config.Module, t *crosscompile.Toolchain) (
 		fmt.Sprintf("TOOLCHAIN_ADDITIONAL_FLAGS_LINKER=%s", strings.Join(t.AdditionalFlagsLinker, " ")),
 		fmt.Sprintf("TOOLCHAIN_ADDITIONAL_FLAGS_ASSEMBLY=%s", strings.Join(t.AdditionalFlagsAssembly, " ")),
 	}
-	for key, value := range m.CustomInfo {
+	for key, value := range m.Info.Regular.AdditionalMakeOptions {
 		args = append(args, fmt.Sprintf("%s=%q", key, value))
 	}
 	return
