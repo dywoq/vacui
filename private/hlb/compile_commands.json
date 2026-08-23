@@ -1,0 +1,21 @@
+[
+  {
+    "file": "foo/main.c",
+    "arguments": [
+      "/usr/bin/gcc",
+      "-std=c23",
+      "-m32",
+      "-ffreestanding",
+      "-fno-pic",
+      "-I../inc",
+      "-I../../inc",
+      "-nostdinc",
+      "-c",
+      "-o",
+      ".objs/foo/main.o",
+      "foo/main.c"
+    ],
+    "directory": "/home/dywoq/Documents/Projects/vacui/private/hlb/vid",
+    "output": ".objs/foo/main.o"
+  }
+]
