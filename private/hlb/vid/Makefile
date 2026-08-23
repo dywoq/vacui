@@ -16,7 +16,7 @@ CFLAGS  := -std=c23 		\
 	-ffreestanding 		\
 	-fno-pic		\
 	-Iinc			\
-	-I../inc		\
+	-I../../inc		\
 	-nostdinc
 
 AR 		:= ar
