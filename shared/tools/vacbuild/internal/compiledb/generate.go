@@ -29,34 +29,33 @@ func GenerateInModule(dir string, toolchain string) error {
 	if err != nil {
 		return err
 	}
-	if m.General.Type == config.ModuleWorkspace {
-		if len(m.Info.Workspace.Modules) != 0 {
-			for _, m := range m.Info.Workspace.Modules {
-				err := GenerateInModule(path.Join(dir, m), toolchain)
-				if err != nil {
-					return fmt.Errorf("could not build a module from the list: %v", err)
-				}
+
+	switch m.General.Type {
+	case config.ModuleWorkspace:
+		for _, m := range m.Info.Workspace.Modules {
+			err := GenerateInModule(path.Join(dir, m), toolchain)
+			if err != nil {
+				return fmt.Errorf("could not build a module from the list: %v", err)
 			}
 		}
 		return nil
-	}
-
-	if len(m.Info.Regular.Dependencies) != 0 {
+	case config.ModuleRegular:
 		for _, d := range m.Info.Regular.Dependencies {
 			err := GenerateInModule(path.Join(dir, d), toolchain)
 			if err != nil {
 				return fmt.Errorf("could not build a dependency: %v", err)
 			}
 		}
+		name, args := mmake.GenerateCommandWithToolchain(m, t)
+		cmd := exec.Command("bear", slices.Concat([]string{"--"}, []string{name}, args)...)
+		cmd.Dir = dir
+		output, err := cmd.CombinedOutput()
+		if err != nil {
+			fmt.Printf("failed to generate the compilation database:\n%s\n", string(output))
+			return err
+		}
+		return nil
+	default:
+		return fmt.Errorf("unknown type in the module %q: %v", dir, m.General.Type)
 	}
-
-	name, args := mmake.GenerateCommandWithToolchain(m, t)
-	cmd := exec.Command("bear", slices.Concat([]string{"--"}, []string{name}, args)...)
-	cmd.Dir = dir
-	output, err := cmd.CombinedOutput()
-	if err != nil {
-		fmt.Printf("failed to generate the compilation database:\n%s\n", string(output))
-		return err
-	}
-	return nil
 }
