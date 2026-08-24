@@ -5,6 +5,7 @@ package cmd
 
 import (
 	"github.com/dywoq/vacui/shared/tools/vacbuild/internal/cmd/build"
+	"github.com/dywoq/vacui/shared/tools/vacbuild/internal/cmd/clean"
 	"github.com/dywoq/vacui/shared/tools/vacbuild/internal/cmd/compiledb"
 	"github.com/spf13/cobra"
 )
@@ -14,6 +15,6 @@ func Root() *cobra.Command {
 		Use:   "vacbuild",
 		Short: "Build system used across Vacui components and programs (C/C++)",
 	}
-	root.AddCommand(build.Cmd(), compiledb.Cmd())
+	root.AddCommand(build.Cmd(), compiledb.Cmd(), clean.Cmd())
 	return root
 }
