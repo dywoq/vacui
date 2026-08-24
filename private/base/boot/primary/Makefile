@@ -4,7 +4,7 @@
 # 
 # Module Description
 # 
-#       VQBoot sector stage Makefile
+#       VQBoot primary stage Makefile
 #
 
 LINKER_ENTRY_FUNCTION := PrimaryEntry
