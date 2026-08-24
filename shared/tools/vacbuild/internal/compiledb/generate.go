@@ -33,17 +33,19 @@ func GenerateInModule(dir string, toolchain string) error {
 	switch m.General.Type {
 	case config.ModuleWorkspace:
 		for _, m := range m.Info.Workspace.Modules {
-			err := GenerateInModule(path.Join(dir, m), toolchain)
+			finalPath := path.Join(dir, m)
+			err := GenerateInModule(finalPath, toolchain)
 			if err != nil {
-				return fmt.Errorf("could not build a module from the list: %v", err)
+				return fmt.Errorf("could not generate a compilation database in a module %q: %v", finalPath, err)
 			}
 		}
 		return nil
 	case config.ModuleRegular:
 		for _, d := range m.Info.Regular.Dependencies {
+			finalPath := path.Join(dir, d)
 			err := GenerateInModule(path.Join(dir, d), toolchain)
 			if err != nil {
-				return fmt.Errorf("could not build a dependency: %v", err)
+				return fmt.Errorf("could not generate a compilation database in a dependency %q: %v", finalPath, err)
 			}
 		}
 		name, args := mmake.GenerateCommandWithToolchain(m, t)

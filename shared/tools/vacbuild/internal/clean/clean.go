@@ -15,8 +15,8 @@ import (
 )
 
 // Module cleans build artifacts in the module, its dependencies and sub-modules
-// (if it is workspace) recursively. 
-// 
+// (if it is workspace) recursively.
+//
 // Module decodes the vacbuild.toml file in the directory. It generates a Make
 // command and executes it with dir as the working directory. It recursively
 // cleans dependencies if they are specified in the configuration. If the module
@@ -31,17 +31,19 @@ func ModuleWithToolchain(dir string, t *crosscompile.Toolchain) error {
 	switch conf.General.Type {
 	case config.ModuleWorkspace:
 		for _, m := range conf.Info.Workspace.Modules {
-			err := ModuleWithToolchain(path.Join(dir, m), t)
+			finalPath := path.Join(dir, m)
+			err := ModuleWithToolchain(finalPath, t)
 			if err != nil {
-				return fmt.Errorf("could not clean a module from the list: %v", err)
+				return fmt.Errorf("could not clean a module %q from the list: %v", finalPath, err)
 			}
 		}
 		return nil
 	case config.ModuleRegular:
 		for _, d := range conf.Info.Regular.Dependencies {
-			err := ModuleWithToolchain(path.Join(dir, d), t)
+			finalPath := path.Join(dir, d)
+			err := ModuleWithToolchain(finalPath, t)
 			if err != nil {
-				return fmt.Errorf("could not clean a dependency: %v", err)
+				return fmt.Errorf("could not clean a dependency %q: %v", finalPath, err)
 			}
 		}
 		name, args := mmake.GenerateCommandWithToolchain(conf, t)
