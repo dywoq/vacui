@@ -7,6 +7,8 @@
 //       VQBoot primary stage entry
 //
 
+__asm(".code16gcc");
+
 void
 PrimaryEntry()
 {
