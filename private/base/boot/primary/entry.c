@@ -9,9 +9,10 @@
 
 __asm(".code16gcc");
 
+#include <hlbdisk.h>
 #include <vqdef.h>
 
 void
-PrimaryEntry(USHORT DriveNumber)
+PrimaryEntry(HLB_DRIVE_NUMBER DriveNumber)
 {
 }
