@@ -1,0 +1,7 @@
+[general]
+type = "workspace"
+
+[info.workspace]
+modules = [
+    
+]
