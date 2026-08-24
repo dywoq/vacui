@@ -1,0 +1,8 @@
+[general]
+type = "workspace"
+
+[info.workspace]
+modules = [
+    "sector",
+    "primary"
+]

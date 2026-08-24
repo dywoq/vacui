@@ -1,0 +1,7 @@
+[general]
+type = "regular"
+
+[info.regular]
+target_path = "vqbootsector.bin"
+sources = []
+objs_dir = ".objs"
