@@ -17,13 +17,7 @@ typedef VQ_UBYTE HLB_VIDEO_MODE, *PHLB_VIDEO_MODE;
 //
 // Routine Description
 //
-//      Sets current video mode to the provided one.
-//
-// Parameters
-//
-//      NewVideoMode
-//      - The new video mode. It must match the video modes specified in the
-//      documentation.
+//      Sets current video mode to the provided one (NewVideoMode).
 //
 // BIOS Interrupt
 //
@@ -38,17 +32,29 @@ HlbSetVideoMode(HLB_VIDEO_MODE NewVideoMode);
 //
 //      Gets current video mode.
 //
-// Parameters
-//
-//      NewVideoMode
-//      - The new video mode. It must match the video mode values specified
-//      in the documentation.
-//
 // BIOS Interrupt
 //
 //      AH = 0x0F
 //
 HLB_VIDEO_MODE
 HlbGetVideoMode();
+
+//
+// Routine Description
+//
+//      Prints the provided character into the screen. It works only if
+//      the current mode is text mode.
+//
+// BIOS Interrupt
+//
+//      AH = 0x0E
+//      AL = Character
+//      BH = PageNumber
+//
+void
+HlbVideoTeletypeOutput(
+    VQ_ASCIICHAR Character,
+    VQ_UBYTE     PageNumber
+);
 
 #endif

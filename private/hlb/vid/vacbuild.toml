@@ -3,5 +3,8 @@ type = "regular"
 
 [info.regular]
 target_path = "../../lib/libhlbvid.a"
-sources = ["mode.c"]
+sources = [
+    "mode.c",
+    "teletype.c"
+]
 objs_dir = ".objs"
