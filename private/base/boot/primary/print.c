@@ -4,7 +4,7 @@
 //
 // Module Description
 //
-//      Printing functionality
+//      An implementation of the print.h header
 //
 
 __asm(".code16gcc");
