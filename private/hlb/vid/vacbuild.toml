@@ -1,0 +1,7 @@
+[general]
+type = "regular"
+
+[info.regular]
+target_path = "../../lib/libhlbvid.a"
+sources = ["mode.c"]
+objs_dir = ".objs"
