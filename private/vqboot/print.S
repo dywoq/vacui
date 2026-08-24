@@ -4,7 +4,7 @@
 ;
 ; Routine Description
 ;
-;       Provides printing functionality that relies on BIOS interrupts
+;       Provides printing functionality
 ;
 
 ;
