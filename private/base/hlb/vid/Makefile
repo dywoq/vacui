@@ -7,5 +7,6 @@
 # 		Hlb Video library Makefile
 # 
 
+FLAGS_C := -I../inc -I../../inc
 LIBRARY_TYPE := static
 include ../../../templates/x86_16-bare-metal-library.mk

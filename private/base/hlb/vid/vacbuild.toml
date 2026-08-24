@@ -10,7 +10,7 @@
 [general]
 type = "regular"
 
-[info.workspace]
+[info.regular]
 target_path = "libhlbvid.a"
-sources = []
+sources = ["main.c"]
 objs_dir = ".objs"
