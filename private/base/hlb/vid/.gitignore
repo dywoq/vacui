@@ -1,4 +1,0 @@
-*.a
-.objs
-.cache
-compile_commands.json
