@@ -24,33 +24,32 @@ func ModuleWithToolchain(dir string, t *crosscompile.Toolchain) error {
 		return err
 	}
 
-	if conf.General.Type == config.ModuleWorkspace {
-		if len(conf.Info.Workspace.Modules) != 0 {
-			for _, m := range conf.Info.Workspace.Modules {
-				err := ModuleWithToolchain(path.Join(dir, m), t)
-				if err != nil {
-					return fmt.Errorf("could not build a module from the list: %v", err)
-				}
+	switch conf.General.Type {
+	case config.ModuleWorkspace:
+		for _, m := range conf.Info.Workspace.Modules {
+			err := ModuleWithToolchain(path.Join(dir, m), t)
+			if err != nil {
+				return fmt.Errorf("could not build a module from the list: %v", err)
 			}
 		}
 		return nil
-	}
-
-	if len(conf.Info.Regular.Dependencies) != 0 {
+	case config.ModuleRegular:
 		for _, d := range conf.Info.Regular.Dependencies {
 			err := ModuleWithToolchain(path.Join(dir, d), t)
 			if err != nil {
 				return fmt.Errorf("could not build a dependency: %v", err)
 			}
 		}
+		name, args := mmake.GenerateCommandWithToolchain(conf, t)
+		cmd := exec.Command(name, args...)
+		cmd.Dir = dir
+		output, err := cmd.CombinedOutput()
+		if err != nil {
+			fmt.Printf("Failed to build the module %q:\n%s", dir, string(output))
+			return err
+		}
+		return nil
+	default:
+		return fmt.Errorf("unknown type in the module %q: %v", dir, conf.General.Type)
 	}
-	name, args := mmake.GenerateCommandWithToolchain(conf, t)
-	cmd := exec.Command(name, args...)
-	cmd.Dir = dir
-	output, err := cmd.CombinedOutput()
-	if err != nil {
-		fmt.Printf("Failed to build the module %q:\n%s", dir, string(output))
-		return err
-	}
-	return nil
 }
