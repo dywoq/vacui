@@ -1,7 +1,10 @@
 ______________________________________________________________________________
 
-                    Centralized libraries directory
+                        Libraries directory
 
-This folder consists of compiled internal Vacui libraries. It contains static 
-and dynamic libraries. It is used by all Vacui components to link libraries 
-easily.
+This directory is a centralized libraries store, used by internal Vacui
+components. Libraries configurations must automatically specify the target 
+path to the 'private/lib/libXXX.a' directory.
+
+The directory is needed to prevent internal components from specifying a lot
+of library paths.
