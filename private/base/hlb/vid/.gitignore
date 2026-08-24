@@ -1,0 +1,4 @@
+*.bin
+.objs
+.cache
+compile_commands.json
