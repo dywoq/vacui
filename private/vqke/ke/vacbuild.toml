@@ -1,0 +1,21 @@
+#
+# Copyright 2026 dywoq - Apache License 2.0
+# https://github.com/dywoq/vacui
+#
+# Routine Description
+#
+#       VQ Kernel engine vacbuild.toml file
+#
+
+[general]
+type = "regular"
+
+[info.regular]
+target_path = "ke"
+sources = [
+    "startup.c"
+]
+objs_dir = ".objs"
+dependencies = [
+    "../../hlb/vid"
+]

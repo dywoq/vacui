@@ -1,0 +1,16 @@
+#
+# Copyright 2026 dywoq - Apache License 2.0
+# https://github.com/dywoq/vacui
+#
+# Routine Description
+#
+#       VQ Kernel workspace config
+#
+
+[general]
+type = "workspace"
+
+[info.workspace]
+modules = [
+    "ke"
+]
