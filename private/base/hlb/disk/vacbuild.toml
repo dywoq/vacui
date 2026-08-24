@@ -12,5 +12,7 @@ type = "regular"
 
 [info.regular]
 target_path = "../../../lib/libbase_hlbdisk.a"
-sources = []
+sources = [
+    "opstatus.c"
+]
 objs_dir = ".objs"

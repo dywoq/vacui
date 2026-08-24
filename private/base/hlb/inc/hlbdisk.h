@@ -67,6 +67,7 @@ typedef enum _HLB_DISK_OPERATION_STATUS : UBYTE
     HLB_DISK_OPERATION_STATUS_REGISTER_ERROR = 0xE0,
     HLB_DISK_OPERATION_SENSE_OPERATION_FAILED = 0xFF,
 } HLB_DISK_OPERATION_STATUS;
+
 typedef USHORT HLB_DRIVE_NUMBER;
 
 //
@@ -84,5 +85,14 @@ typedef struct _HLB_DAP
     USHORT Segment;
     ULONG  LbaStart;
 } HLB_DAP;
+
+//
+// Routine Description
+//
+//      Provides the latest disk operation status. See more information:
+//      https://www.ctyme.com/intr/rb-0606.htm
+//
+HLB_DISK_OPERATION_STATUS
+HlbGetDiskOperationStatus();
 
 #endif
