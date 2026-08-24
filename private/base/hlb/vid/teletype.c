@@ -7,6 +7,8 @@
 //      Teletype functionality implementation
 //
 
+__asm(".code16gcc");
+
 #include <hlbvid.h>
 
 void
