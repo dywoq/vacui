@@ -12,7 +12,7 @@
 
 #include <vqdef.h>
 
-typedef VQ_USHORT HLB_VIDEO_MODE, *PHLB_VIDEO_MODE;
+typedef VQ_UBYTE HLB_VIDEO_MODE, *PHLB_VIDEO_MODE;
 
 //
 // Routine Description
