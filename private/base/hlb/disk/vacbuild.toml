@@ -11,6 +11,6 @@
 type = "regular"
 
 [info.regular]
-target_path = "../../../lib/libhlbdisk.a"
+target_path = "../../../lib/libbase_hlbdisk.a"
 sources = []
 objs_dir = ".objs"
