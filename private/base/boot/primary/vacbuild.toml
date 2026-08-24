@@ -19,5 +19,6 @@ sources = [
 ]
 objs_dir = ".objs"
 dependencies = [
-    "../../hlb/vid"
+    "../../hlb/vid",
+    "../../hlb/disk"
 ]

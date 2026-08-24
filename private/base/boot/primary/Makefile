@@ -12,7 +12,8 @@ FLAGS_C := -std=c23 \
 	-I../../hlb/inc
 
 FLAGS_LINKER := -L../../../lib \
-	-lhlbvid
+	-lbase_hlbvid \
+	-lbase_hlbdisk
 
 LINKER_ENTRY_FUNCTION := PrimaryStartup
 LINKER_ADDRESS := 0x8000
