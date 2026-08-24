@@ -56,4 +56,8 @@ $(OBJS_DIR)/%.o: %.cxx
 $(OBJS_DIR):
 	mkdir -p $(OBJS_DIR)
 
+clean:
+	@rm -fr $(OBJS_DIR)
+	@rm -fr $(TARGET_PATH)
+	
 endif
