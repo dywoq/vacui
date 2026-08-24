@@ -4,12 +4,14 @@
 //
 // Module Description
 //
-//      An implementation of the print.h header
+//      This source file is an implementation of the print.h header
 //
 
 __asm(".code16gcc");
 
 #include "print.h"
+
+#include <hlbvid.h>
 
 void
 PrimaryPrintMsg(const char *MessagePtr)
@@ -27,6 +29,6 @@ PrimaryPrintMsg(const char *MessagePtr)
 
 void
 PrimaryPrintChar(char Character)
-{
-    __asm volatile("int $0x10\n" : : "a"((0x0e << 8) | Character));
+{    
+    HlbVideoTeletypeOutput(Character);
 }

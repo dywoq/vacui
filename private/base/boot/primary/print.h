@@ -4,7 +4,7 @@
 //
 // Module Description
 //
-//      Printing functionality
+//      This header provides printing functionality.
 // 
 // Environment
 // 
@@ -15,10 +15,10 @@
 #define PRINT_H
 
 //
-// Module Description
+// Routine Description
 //
 //      Iterates over the string characters and prints them using
-//      PrimaryPrintChar function. Returns if it encountered a 
+//      PrimaryPrintChar function. Returns if it encounters a 
 //      null-terminator. Returns if MessagePtr is null.
 //
 // Parameters
@@ -31,7 +31,7 @@ void
 PrimaryPrintMsg(const char *MessagePtr);
 
 //
-// Module Description
+// Routine Description
 // 
 //      Generates a BIOS interrupt (Teletype Output) putting a character 
 //      into the AL register.
