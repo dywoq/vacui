@@ -7,7 +7,7 @@
 //      Implementation of video mode management functions
 //
 
-__asm(".code16");
+__asm(".code16gcc");
 
 #include <hlbvid.h>
 

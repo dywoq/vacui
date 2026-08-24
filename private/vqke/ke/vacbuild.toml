@@ -11,9 +11,10 @@
 type = "regular"
 
 [info.regular]
-target_path = "ke"
+target_path = "vqke.bin"
 sources = [
-    "startup.c"
+    "startup.S",
+    "init.c"
 ]
 objs_dir = ".objs"
 dependencies = [
