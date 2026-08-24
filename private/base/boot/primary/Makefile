@@ -7,4 +7,6 @@
 #       VQBoot sector stage Makefile
 #
 
+LINKER_ENTRY_FUNCTION := PrimaryEntry
+LINKER_ADDRESS := 0x8000
 include ../../../templates/x86_16-bare-metal-program.mk
