@@ -12,5 +12,5 @@ type = "regular"
 
 [info.regular]
 target_path = "libhlbvid.a"
-sources = ["main.c"]
+sources = ["mode.c"]
 objs_dir = ".objs"
