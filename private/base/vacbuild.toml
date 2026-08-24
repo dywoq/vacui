@@ -4,13 +4,14 @@
 #
 # Module Description
 #
-#       HLB workspace config
+#       Base workspace config
 #
 
 [general]
-type = "workspace"
-
-[info.workspace]
-modules = [
-    "vid"
-]
+ type = "workspace"
+ 
+ [info.workspace]
+ modules = [
+     "boot",
+     "hlb"
+ ]
