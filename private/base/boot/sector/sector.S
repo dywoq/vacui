@@ -19,6 +19,12 @@ SectorEntry:
     mov ss, ax
     mov sp, 0x7bff
     sti
+
+    ;
+    ; Save the drive number
+    ;
+    mov [DriveNumber], dl
+    
 .LoadPrimaryStage:
     mov ah, 0x42
     mov si, PrimaryStageDap
@@ -33,6 +39,10 @@ SectorEntry:
     hlt
     jmp .Halt
 .ExecutePrimaryStage:
+    ;
+    ; Provide the drive number, saved earlier 
+    ;
+    mov dl, [DriveNumber] 
     jmp 0x0800:0x0000
 
 ;
@@ -76,6 +86,11 @@ PrimaryStageDap:
 Message_LoadingPrimaryStageFailed:
     db 'vqbootsector: Loading the primary stage failed'
     db 13, 10, 0
+
+;
+; Disk-associated
+;
+DriveNumber db 0
 
 times 510-($-$$) db 0
 dw 0xaa55
