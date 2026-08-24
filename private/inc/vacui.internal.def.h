@@ -8,8 +8,8 @@
 //      components
 //
 
-#ifndef _VACUI_INTERNAL_DEF_H
-#define _VACUI_INTERNAL_DEF_H
+#ifndef VACUI_INTERNAL_DEF_H
+#define VACUI_INTERNAL_DEF_H
 
 typedef signed char        VQ_BYTE;
 typedef signed short       VQ_SHORT;
