@@ -12,5 +12,7 @@ type = "regular"
 
 [info.regular]
 target_path = "vqbootsector.bin"
-sources = []
+sources = [
+    "sector.S"
+]
 objs_dir = ".objs"
