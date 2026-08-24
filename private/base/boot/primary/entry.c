@@ -9,7 +9,9 @@
 
 __asm(".code16gcc");
 
+#include <vqdef.h>
+
 void
-PrimaryEntry()
+PrimaryEntry(USHORT DriveNumber)
 {
 }

@@ -21,4 +21,11 @@ PrimaryStartup:
     mov sp, 0x7bff
     sti
 
+    ;
+    ; The boot sector stage stores the drive number into
+    ; the dl register.
+    ;
+
+    push dx
     call PrimaryEntry
+    add esp, 2
