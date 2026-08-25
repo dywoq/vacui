@@ -86,13 +86,16 @@ typedef struct _HLB_DAP
     ULONG  LbaStart;
 } HLB_DAP;
 
+typedef UBYTE HLB_DISK_EXTENDED_WRITE_FLAG;
+#define HLB_DISK_EXTENDED_WRITE_FLAG_VERIFY_WRITE 1 << 0
+
 //
 // Routine Description
 //
 //      Provides the latest disk operation status.
 //
 //      If the BIOS interrupt handler sets carry flag, the function clears it
-//      forcefully. The set carry flag indicates that operation status is not 
+//      forcefully. The set carry flag indicates that operation status is not
 //      [HLB_DISK_OPERATION_SUCCESSFUL].
 //
 //
@@ -100,5 +103,66 @@ typedef struct _HLB_DAP
 //
 HLB_DISK_OPERATION_STATUS
 HlbGetDiskOperationStatus(HLB_DRIVE_NUMBER DriveNumber);
+
+//
+// Routine Description
+//
+//      Reads data from the drive.
+//
+//      In this function, the `Dap.Offset` and `Dap.Segment` fields specify
+//      destination buffer address. The `Dap.LbaStart` field tells where to
+//      read memory. The `Dap.SectorsCount` field shows how much sectors 
+//      to read.
+//
+//      If the carry flag is set, the function forcefully clears it.
+// 
+//      See more information: https://www.ctyme.com/intr/rb-0708.htm
+//
+// Returns
+//
+//      true
+//
+//          If the carry flag is not set, and the Dap parameter is not null.
+//
+//      false
+//
+//          If the carry flag is set or the Dap parameter is null.
+//
+bool
+HlbDiskExtendedRead(
+    HLB_DRIVE_NUMBER DriveNumber,
+    const HLB_DAP   *Dap
+);
+
+//
+// Routine Description
+//
+//      Writes buffer to the drive.
+//
+//      In this function, the `Dap.Offset` and `Dap.Segment` fields specify
+//      source buffer address. The `Dap.LbaStart` field tells where to
+//      write memory in the drive. The `Dap.SectorsCount` field shows how 
+//      much sectors to write.
+//
+//      If the carry flag is set, the function forcefully clears it.
+// 
+//      See more information: https://www.ctyme.com/intr/rb-0710.htm
+//
+// Returns
+//
+//      true
+//
+//          If the carry flag is not set, and the Dap parameter is not null.
+//
+//      false
+//
+//          If the carry flag is set or the Dap parameter is null.
+//
+bool
+HlbDiskExtendedWrite(
+    HLB_DRIVE_NUMBER             DriveNumber,
+    const HLB_DAP               *Dap,
+    HLB_DISK_EXTENDED_WRITE_FLAG Flags
+);
 
 #endif

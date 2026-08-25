@@ -17,10 +17,21 @@ __asm(".code16gcc");
 void
 PrimaryEntry(HLB_DRIVE_NUMBER DriveNumber)
 {
-    HLB_DISK_OPERATION_STATUS OperationStatus =
-        HlbGetDiskOperationStatus(DriveNumber);
-    if (OperationStatus == HLB_DISK_OPERATION_INVALID_FUNCTION_OR_PARAMETER)
+    bool Okay = HlbDiskExtendedRead(
+        DriveNumber, &(HLB_DAP){.Size = 16,
+                                .Reserved = 0,
+                                .SectorsCount = 2,
+                                .Offset = 0x0000,
+                                .Segment = 0x1000,
+                                .LbaStart = 128}
+    );
+    if (!Okay)
     {
-        PrimaryPrintMsg("The disk operation status is 0x01.\n\r");
+        PrimaryPrintMsg("Hi!\n\r");
+    }
+
+    while (true)
+    {
+        __asm volatile("hlt\n");
     }
 }
