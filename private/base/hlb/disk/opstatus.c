@@ -13,9 +13,19 @@ __asm(".code16gcc");
 #include <vqdef.h>
 
 HLB_DISK_OPERATION_STATUS
-HlbGetDiskOperationStatus()
+HlbGetDiskOperationStatus(HLB_DRIVE_NUMBER DriveNumber)
 {
     USHORT ActualOperationStatus;
-    __asm volatile("int $13\n" : "=a"(ActualOperationStatus));
+    bool   Carry;
+
+    __asm volatile("int $13\n"
+                   : "=a"(ActualOperationStatus), "=@ccc"(Carry)
+                   : "a"(0x1 << 8), "d"(DriveNumber));
+
+    if (Carry)
+    {
+        __asm volatile("clc\n");
+    }
+
     return (ActualOperationStatus >> 8) & 0xFF;
 }

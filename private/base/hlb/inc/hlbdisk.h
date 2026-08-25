@@ -89,10 +89,16 @@ typedef struct _HLB_DAP
 //
 // Routine Description
 //
-//      Provides the latest disk operation status. See more information:
-//      https://www.ctyme.com/intr/rb-0606.htm
+//      Provides the latest disk operation status.
+//
+//      If the BIOS interrupt handler sets carry flag, the function clears it
+//      forcefully. The set carry flag indicates that operation status is not 
+//      [HLB_DISK_OPERATION_SUCCESSFUL].
+//
+//
+//      See more information: https://www.ctyme.com/intr/rb-0606.htm
 //
 HLB_DISK_OPERATION_STATUS
-HlbGetDiskOperationStatus();
+HlbGetDiskOperationStatus(HLB_DRIVE_NUMBER DriveNumber);
 
 #endif
