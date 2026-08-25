@@ -11,7 +11,7 @@
 type = "regular"
 
 [info.regular]
-target_path = "../../../lib/libbase_hlbdisk.a"
+target_path = "../../lib/libbase_hlbdisk.a"
 sources = [
     "opstatus.c",
     "ext.c"

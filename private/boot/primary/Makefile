@@ -11,10 +11,10 @@ FLAGS_C := -std=c23 \
 	-I../../inc \
 	-I../../hlb/inc
 
-FLAGS_LINKER := -L../../../lib \
+FLAGS_LINKER := -L../../lib \
 	-lbase_hlbvid \
 	-lbase_hlbdisk
 
 LINKER_ENTRY_FUNCTION := PrimaryStartup
 LINKER_ADDRESS := 0x8000
-include ../../../templates/x86_16-bare-metal-program.mk
+include ../../templates/x86_16-bare-metal-program.mk

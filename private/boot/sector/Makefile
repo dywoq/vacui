@@ -9,4 +9,4 @@
 
 LINKER_ENTRY_FUNCTION := SectorEntry
 LINKER_ADDRESS := 0x7c00
-include ../../../templates/x86_16-bare-metal-program.mk
+include ../../templates/x86_16-bare-metal-program.mk

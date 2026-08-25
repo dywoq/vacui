@@ -12,5 +12,6 @@ type = "workspace"
 
 [info.workspace]
 modules = [
-    "base"
+    "boot",
+    "hlb",
 ]

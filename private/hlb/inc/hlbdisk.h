@@ -111,11 +111,11 @@ HlbGetDiskOperationStatus(HLB_DRIVE_NUMBER DriveNumber);
 //
 //      In this function, the `Dap.Offset` and `Dap.Segment` fields specify
 //      destination buffer address. The `Dap.LbaStart` field tells where to
-//      read memory. The `Dap.SectorsCount` field shows how much sectors 
+//      read memory. The `Dap.SectorsCount` field shows how much sectors
 //      to read.
 //
 //      If the carry flag is set, the function forcefully clears it.
-// 
+//
 //      See more information: https://www.ctyme.com/intr/rb-0708.htm
 //
 // Returns
@@ -141,11 +141,11 @@ HlbDiskExtendedRead(
 //
 //      In this function, the `Dap.Offset` and `Dap.Segment` fields specify
 //      source buffer address. The `Dap.LbaStart` field tells where to
-//      write memory in the drive. The `Dap.SectorsCount` field shows how 
+//      write memory in the drive. The `Dap.SectorsCount` field shows how
 //      much sectors to write.
 //
 //      If the carry flag is set, the function forcefully clears it.
-// 
+//
 //      See more information: https://www.ctyme.com/intr/rb-0710.htm
 //
 // Returns

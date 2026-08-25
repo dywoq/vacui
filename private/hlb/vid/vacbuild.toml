@@ -11,7 +11,7 @@
 type = "regular"
 
 [info.regular]
-target_path = "../../../lib/libbase_hlbvid.a"
+target_path = "../../lib/libbase_hlbvid.a"
 sources = [
     "mode.c",
     "teletype.c"

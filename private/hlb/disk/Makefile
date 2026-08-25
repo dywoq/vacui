@@ -9,4 +9,4 @@
 
 FLAGS_C := -I../inc -I../../inc -std=c23
 LIBRARY_TYPE := static
-include ../../../templates/x86_16-bare-metal-library.mk
+include ../../templates/x86_16-bare-metal-library.mk
