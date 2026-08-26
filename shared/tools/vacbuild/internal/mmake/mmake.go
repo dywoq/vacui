@@ -11,15 +11,22 @@ import (
 	"github.com/dywoq/vacui/shared/tools/vacbuild/internal/crosscompile"
 )
 
+type BuildType string
+
+const (
+	BuildRelease BuildType = "release"
+	BuildDebug   BuildType = "debug"
+)
+
 // GenerateCommand wraps around the [GenerateCommandWithToolchain] function.
 // It provides [crosscompile.DefaultToolchain] as a cross-compilation toolchain.
-func GenerateCommand(m *config.Module) (string, []string) {
-	return GenerateCommandWithToolchain(m, crosscompile.DefaultToolchain())
+func GenerateCommand(m *config.Module, typ BuildType) (string, []string) {
+	return GenerateCommandWithToolchain(m, crosscompile.DefaultToolchain(), typ)
 }
 
 // GenerateCommand uses the provided module and toolchain information to
 // generate a Make command name and arguments.
-func GenerateCommandWithToolchain(m *config.Module, t *crosscompile.Toolchain) (cmd string, args []string) {
+func GenerateCommandWithToolchain(m *config.Module, t *crosscompile.Toolchain, typ BuildType) (cmd string, args []string) {
 	cmd = "make"
 	args = []string{
 		fmt.Sprintf("SOURCES=%s", strings.Join(m.Info.Regular.Sources, " ")),
@@ -36,6 +43,12 @@ func GenerateCommandWithToolchain(m *config.Module, t *crosscompile.Toolchain) (
 	}
 	for key, value := range m.Info.Regular.AdditionalMakeOptions {
 		args = append(args, fmt.Sprintf("%s=%q", key, value))
+	}
+	if typ == BuildRelease {
+		args = append(args, "BUILD_TYPE=RELEASE")
+	}
+	if typ == BuildDebug {
+		args = append(args, "BUILD_TYPE=DEBUG")
 	}
 	return
 }

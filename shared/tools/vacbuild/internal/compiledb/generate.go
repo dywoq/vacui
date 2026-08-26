@@ -20,7 +20,7 @@ import (
 // recursively generates a compilation database in specified modules.
 // If the module has dependencies, the function recursively generates a
 // compilation database in dependencies first.
-func GenerateInModule(dir string, toolchain string) error {
+func GenerateInModule(dir string, toolchain string, typ mmake.BuildType) error {
 	t, err := crosscompile.ParseToolchain(toolchain)
 	if err != nil {
 		return err
@@ -34,7 +34,7 @@ func GenerateInModule(dir string, toolchain string) error {
 	case config.ModuleWorkspace:
 		for _, m := range m.Info.Workspace.Modules {
 			finalPath := path.Join(dir, m)
-			err := GenerateInModule(finalPath, toolchain)
+			err := GenerateInModule(finalPath, toolchain, typ)
 			if err != nil {
 				return fmt.Errorf("could not generate a compilation database in a module %q: %v", finalPath, err)
 			}
@@ -43,12 +43,12 @@ func GenerateInModule(dir string, toolchain string) error {
 	case config.ModuleRegular:
 		for _, d := range m.Info.Regular.Dependencies {
 			finalPath := path.Join(dir, d)
-			err := GenerateInModule(path.Join(dir, d), toolchain)
+			err := GenerateInModule(path.Join(dir, d), toolchain, typ)
 			if err != nil {
 				return fmt.Errorf("could not generate a compilation database in a dependency %q: %v", finalPath, err)
 			}
 		}
-		name, args := mmake.GenerateCommandWithToolchain(m, t)
+		name, args := mmake.GenerateCommandWithToolchain(m, t, typ)
 		cmd := exec.Command("bear", slices.Concat([]string{"--"}, []string{name}, args)...)
 		cmd.Dir = dir
 		output, err := cmd.CombinedOutput()

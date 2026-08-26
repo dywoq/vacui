@@ -21,7 +21,7 @@ import (
 // command and executes it with dir as the working directory. It recursively
 // cleans dependencies if they are specified in the configuration. If the module
 // type is [config.ModuleWorkspace], the function cleans workspace modules recursively.
-func ModuleWithToolchain(dir string, t *crosscompile.Toolchain) error {
+func ModuleWithToolchain(dir string, t *crosscompile.Toolchain, typ mmake.BuildType) error {
 	moduleFile := path.Join(dir, "vacbuild.toml")
 	conf, err := config.ParseModule(moduleFile)
 	if err != nil {
@@ -32,7 +32,7 @@ func ModuleWithToolchain(dir string, t *crosscompile.Toolchain) error {
 	case config.ModuleWorkspace:
 		for _, m := range conf.Info.Workspace.Modules {
 			finalPath := path.Join(dir, m)
-			err := ModuleWithToolchain(finalPath, t)
+			err := ModuleWithToolchain(finalPath, t, typ)
 			if err != nil {
 				return fmt.Errorf("could not clean a module %q from the list: %v", finalPath, err)
 			}
@@ -41,12 +41,12 @@ func ModuleWithToolchain(dir string, t *crosscompile.Toolchain) error {
 	case config.ModuleRegular:
 		for _, d := range conf.Info.Regular.Dependencies {
 			finalPath := path.Join(dir, d)
-			err := ModuleWithToolchain(finalPath, t)
+			err := ModuleWithToolchain(finalPath, t, typ)
 			if err != nil {
 				return fmt.Errorf("could not clean a dependency %q: %v", finalPath, err)
 			}
 		}
-		name, args := mmake.GenerateCommandWithToolchain(conf, t)
+		name, args := mmake.GenerateCommandWithToolchain(conf, t, typ)
 		cmd := exec.Command(name, slices.Concat([]string{"clean"}, args)...)
 		cmd.Dir = dir
 		output, err := cmd.CombinedOutput()

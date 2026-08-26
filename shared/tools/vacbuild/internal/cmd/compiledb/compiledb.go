@@ -5,6 +5,7 @@ package compiledb
 
 import (
 	"github.com/dywoq/vacui/shared/tools/vacbuild/internal/compiledb"
+	"github.com/dywoq/vacui/shared/tools/vacbuild/internal/mmake"
 	"github.com/spf13/cobra"
 )
 
@@ -19,13 +20,14 @@ func Cmd() *cobra.Command {
 
 func Generate() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "generate [module-dir] [toolchain-path]",
+		Use:   "generate [module-dir] [toolchain-path] [build-type]",
 		Short: "Generate a compilation database for your module",
-		Args:  cobra.ExactArgs(2),
+		Args:  cobra.ExactArgs(3),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			moduleDir := args[0]
 			toolchainPath := args[1]
-			err := compiledb.GenerateInModule(moduleDir, toolchainPath)
+			buildType := args[2]
+			err := compiledb.GenerateInModule(moduleDir, toolchainPath, mmake.BuildType(buildType))
 			if err != nil {
 				return err
 			}
