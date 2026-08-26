@@ -37,6 +37,18 @@ OBJECTS := $(patsubst %.c,$(OBJS_DIR)/%.o,$(filter %.c,$(SOURCES))) \
 		$(patsubst %.cxx,$(OBJS_DIR)/%.o,$(filter %.cxx,$(SOURCES))) \
 		$(patsubst %.S,$(OBJS_DIR)/%.o,$(filter %.S,$(SOURCES)))
 
+# 
+# Adjust the C flags to the build type
+# 
+
+ifeq ($(BUILD_TYPE), RELEASE)
+	FLAGS_C += -DRELEASE
+endif
+
+ifeq ($(BUILD_TYPE), DEBUG)
+	FLAGS_C += -DDEBUG
+endif
+		
 all: $(TARGET_PATH)
 
 $(TARGET_PATH): $(OBJS_DIR) $(OBJECTS)

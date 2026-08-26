@@ -59,6 +59,19 @@ SECTIONS
 }
 endef
 
+# 
+# Adjust the C flags to the build type
+# 
+
+ifeq ($(BUILD_TYPE), RELEASE)
+	FLAGS_C += -DRELEASE
+endif
+
+ifeq ($(BUILD_TYPE), DEBUG)
+	FLAGS_C += -DDEBUG
+endif
+
+
 TEMPORARY_LINKER_SCRIPT := __tmpscript.ld
 OBJECTS := $(patsubst %.c,$(OBJS_DIR)/%.o,$(filter %.c,$(SOURCES))) \
 		$(patsubst %.cxx,$(OBJS_DIR)/%.o,$(filter %.cxx,$(SOURCES))) \

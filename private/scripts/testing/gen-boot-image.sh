@@ -24,7 +24,7 @@
 #       Testing 
 # 
 
-vacbuild build $BOOT_DIR toolchains/x86_16-bare-metal.toml
+vacbuild build $BOOT_DIR toolchains/x86_16-bare-metal.toml debug
 dd if=/dev/zero of=$OUTPUT bs=1M count=10
 dd if=$BOOT_DIR/sector/vqbootsector.bin of=$OUTPUT bs=512 seek=0 conv=notrunc
 dd if=$BOOT_DIR/primary/vqbootprimary.bin of=$OUTPUT bs=512 seek=64 conv=notrunc
