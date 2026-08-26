@@ -1,0 +1,26 @@
+#
+# Copyright 2026 dywoq - Apache License 2.0
+# https://github.com/dywoq/vacui
+#
+# Routine Description
+# 
+#       Toolchain for building user programs, libraries etc. in ELF 
+#       format for x86_64 architecture.
+# 
+#       The Makefile templates, associated with this toolchain, are 
+#       private/templates/x86_16-elf-*.mk files. You should include them in
+#       Makefile of components.
+#
+
+compiler_c = "gcc"
+compiler_cxx = "g++"
+linker = "ld"
+assembly = "gcc"
+additional_flags_c = [
+    "-DTOOLCHAIN_ELF",
+    "-DTOOLCHAIN_X86_64"
+]
+additional_flags_cxx = [
+    "-DTOOLCHAIN_ELF",
+    "-DTOOLCHAIN_X86_64"
+]
