@@ -17,10 +17,9 @@
 //      The filesystem header information, which is at the start of a
 //      formatted drive.
 //
-typedef struct _VQFS_HEADER
+typedef struct [[gnu::packed]] _VQFS_HEADER
 {
-    char          Signature[5];
-    unsigned char Reserved1;
+    char Signature[4];
 
     //
     // Version
@@ -45,7 +44,7 @@ typedef struct _VQFS_HEADER
     //
     // Padding
     //
-    char Padding[487];
+    char Padding[490];
 } VQFS_HEADER;
 
 typedef enum _VQFS_CLUSTER_STATE : unsigned char
