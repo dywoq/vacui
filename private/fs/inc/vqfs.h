@@ -11,43 +11,6 @@
 #ifndef VQFS_H
 #define VQFS_H
 
-//
-// Routine Description
-//
-//      The filesystem header information, which is at the start of a
-//      formatted drive.
-//
-typedef struct [[gnu::packed]] _VQFS_HEADER
-{
-    char Signature[4];
-
-    //
-    // Version
-    //
-    unsigned short MajorVersion;
-    unsigned short MinorVersion;
-
-    //
-    // Clusters Table
-    //
-    unsigned short ClusterMaxSizeInBytes;
-    unsigned short ClustersTableMaxLength;
-    unsigned short ClustersTableCurrentLength;
-    unsigned int   ClustersTableOffset;
-
-    //
-    // Global Directory entries table
-    //
-    unsigned short GlobalDirectoryEntriesMaxLength;
-    unsigned short GlobalDirectoryEntriesCurrentLength;
-    unsigned int   GlobalDirectoryEntriesTableOffset;
-
-    //
-    // Padding
-    //
-    char Padding[486];
-} VQFS_HEADER;
-
 typedef enum _VQFS_CLUSTER_STATE : unsigned char
 {
     VQFS_CLUSTER_FREE = 0,
@@ -111,18 +74,11 @@ typedef struct _VQFS_DIR_ENTRY
     // then ClusterIndexes will point to clusters that hold a
     // linear array of sub-directory entries.
     //
-    unsigned short ClusterIndexes[8];
+    VQFS_CLUSTER_OFFSET ClusterIndexes[4];
 } VQFS_DIR_ENTRY;
 
-//
-// Routine Description
-//
-//      A table which consists of a linear array. It contains global
-//      directory entries.
-//
-typedef struct _VQFS_GLOBAL_DIR_ENTRIES_TABLE
-{
-    VQFS_DIR_ENTRY *LinearArray;
-} VQFS_GLOBAL_DIR_ENTRIES_TABLE;
+#define VQFS_DIR_ENTRIES_MAX_LENGTH 2047
+#define VQFS_CLUSTER_SIZE           8192
+#define VQFS_CLUSTERS_MAX_LENGTH    65536
 
 #endif
