@@ -33,18 +33,19 @@ typedef struct [[gnu::packed]] _VQFS_HEADER
     unsigned short ClusterMaxSizeInBytes;
     unsigned short ClustersTableMaxLength;
     unsigned short ClustersTableCurrentLength;
+    unsigned int   ClustersTableOffset;
 
     //
-    // Directory entries table
+    // Global Directory entries table
     //
-    unsigned short DirectoryEntriesMaxLength;
-    unsigned short DirectoryEntriesCurrentLength;
-    unsigned int   DirectoryEntriesTableOffset;
+    unsigned short GlobalDirectoryEntriesMaxLength;
+    unsigned short GlobalDirectoryEntriesCurrentLength;
+    unsigned int   GlobalDirectoryEntriesTableOffset;
 
     //
     // Padding
     //
-    char Padding[490];
+    char Padding[486];
 } VQFS_HEADER;
 
 typedef enum _VQFS_CLUSTER_STATE : unsigned char
@@ -116,12 +117,12 @@ typedef struct _VQFS_DIR_ENTRY
 //
 // Routine Description
 //
-//      A table which consists of a linear array containing
-//      directory entries at the root folder.
+//      A table which consists of a linear array. It contains global
+//      directory entries.
 //
-typedef struct _VQFS_DIR_ENTRIES_TABLE
+typedef struct _VQFS_GLOBAL_DIR_ENTRIES_TABLE
 {
     VQFS_DIR_ENTRY *LinearArray;
-} _VQFS_DIR_ENTRY_TABLE;
+} VQFS_GLOBAL_DIR_ENTRIES_TABLE;
 
 #endif
