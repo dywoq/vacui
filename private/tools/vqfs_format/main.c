@@ -61,8 +61,10 @@ main(
         fprintf(stderr, "Failed to allocate a directory entries array\n");
         goto Failure;
     }
-    DirectoryEntries[VQFS_DIR_ENTRIES_MAX_LENGTH - 1] =
-        (VQFS_DIR_ENTRY){.Name = "RESERVED", .Extension = "READ", .Flags = 0x7};
+    DirectoryEntries[VQFS_DIR_ENTRIES_MAX_LENGTH - 1] = (VQFS_DIR_ENTRY){
+        .Name = "RESERVED",
+        .Extension = "READ",
+        .Flags = VQFS_DIR_ENTRY_READONLY | VQFS_DIR_ENTRY_FILE};
 
     //
     // Allocate an array of clusters

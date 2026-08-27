@@ -57,7 +57,7 @@ typedef struct _VQFS_CLUSTERS_TABLE
 
 typedef unsigned int VQFS_DIR_ENTRY_FLAG;
 #define VQFS_DIR_ENTRY_FILE      (VQFS_DIR_ENTRY_FLAG)(1 << 0)
-#define VQFS_DIR_ENTRY_DIRECTORY (VQFS_DIR_ENTRY_FLAG)(1 << 1)
+#define VQFS_DIR_ENTRY_READONLY  (VQFS_DIR_ENTRY_FLAG)(1 << 1)
 
 //
 // Routine Description
