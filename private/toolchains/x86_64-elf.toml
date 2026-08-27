@@ -14,7 +14,7 @@
 
 compiler_c = "gcc"
 compiler_cxx = "g++"
-linker = "ld"
+linker = "g++"
 assembly = "gcc"
 additional_flags_c = [
     "-DTOOLCHAIN_ELF",
