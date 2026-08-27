@@ -15,6 +15,8 @@ typedef unsigned int VQFS_DIR_ENTRY_FLAG;
 #define VQFS_DIR_ENTRY_FILE     (VQFS_DIR_ENTRY_FLAG)(1 << 0)
 #define VQFS_DIR_ENTRY_READONLY (VQFS_DIR_ENTRY_FLAG)(1 << 1)
 
+#define VQFS_DIR_ENTRIES_MAX_LENGTH 2048
+
 //
 // Routine Description
 //
