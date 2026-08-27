@@ -97,8 +97,6 @@ main(
         goto Failure;
     }
 
-    //    fseek(DestinationFileStream, ClusterOffsetsSize, SEEK_SET);
-
     Count = fwrite(
         DirectoryEntries, sizeof(uint8_t), DirectoryEntriesSize,
         DestinationFileStream
@@ -108,8 +106,6 @@ main(
         printf("Failed to write the directory entries to the file\n");
         goto Failure;
     }
-
-    // fseek(DestinationFileStream, DirectoryEntriesSize, SEEK_SET);
 
     Count =
         fwrite(Clusters, sizeof(uint8_t), ClustersSize, DestinationFileStream);
