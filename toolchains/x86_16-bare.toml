@@ -13,7 +13,28 @@ compiler_c = "gcc"
 compiler_cxx = "g++"
 linker = "ld"
 assembly = "nasm"
-additional_flags_c = ["-D_TOOLCHAIN_X86_16", "-m32"]
-additional_flags_cxx = ["-D_TOOLCHAIN_X86_16", "-m32"]
-additional_flags_linker = ["-m", "elf_i386"]
-additional_flags_assembly = ["-f", "elf32"]
+additional_flags_c = [
+    "-ffreestanding",
+    "-nostdlib",
+    "-nostdinc",
+    "-m32",
+    "-fno-pic",
+    "-fno-stack-protector",
+    "-D_TOOLCHAIN_X86_16"
+]
+additional_flags_cxx = [
+    "-ffreestanding",
+    "-nostdlib",
+    "-nostdinc",
+    "-m32",
+    "-fno-pic",
+    "-fno-stack-protector",
+    "-D_TOOLCHAIN_X86_16"
+]
+additional_flags_linker = [
+    "-m", "elf_i386",
+    "-no-pie",
+]
+additional_flags_assembly = [
+    "-f", "elf32"
+]
