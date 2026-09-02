@@ -106,7 +106,7 @@ typedef struct vqfs_dir_entry {
     vqfs_uint_t starting_block_id;
 } vqfs_dir_entry_t;
 
-#define VQFS_DIR_ENTRIES_LIMIT VQFS_BLOCK_SIZE / sizeof(vqfs_dir_entry)
+#define VQFS_DIR_ENTRIES_LIMIT VQFS_BLOCK_SIZE / sizeof(struct vqfs_dir_entry)
 
 //
 // Routine Description
