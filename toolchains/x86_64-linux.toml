@@ -1,0 +1,22 @@
+#
+# Copyright 2026 dywoq - Apache License 2.0
+# https://github.com/dywoq/vacui
+#
+# Module Description
+#
+# 		Toolchain for building Linux programs for x86_64 architecture.
+#       Its templates are "templates/x86-64-linux-*.mk"
+#
+
+compiler_c = "gcc"
+compiler_cxx = "g++"
+linker = "g++"
+assembly = "nasm"
+additional_flags_c = [
+    "-D_TOOLCHAIN_X86_64",
+    "-D_TOOLCHAIN_LINUX"
+]
+additional_flags_cxx = [
+    "-D_TOOLCHAIN_X86_64",
+    "-D_TOOLCHAIN_LINUX"
+]
