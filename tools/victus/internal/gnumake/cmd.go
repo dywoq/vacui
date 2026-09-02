@@ -67,6 +67,7 @@ func GenerateCmd(rules []string, m *module.Config, t *toolchain.Toolchain, b Bui
 		fmt.Sprintf("TOOLCHAIN_ADDITIONAL_FLAGS_LINKER=%s", strings.Join(t.AdditionalFlagsLinker, " ")),
 		fmt.Sprintf("TOOLCHAIN_ADDITIONAL_FLAGS_ASSEMBLY=%s", strings.Join(t.AdditionalFlagsAssembly, " ")),
 	)
+	c.Args = append(c.Args, fmt.Sprintf("BUILD_TYPE=%s", b))
 
 	return c, nil
 }
