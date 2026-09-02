@@ -4,7 +4,7 @@
 //
 // Module Description
 //
-//      A main function of the vqfs_fmt command utility
+//      The main function of the vqfs_fmt command utility
 //
 
 #include "vqfs.h"
