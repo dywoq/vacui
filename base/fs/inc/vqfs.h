@@ -45,8 +45,6 @@ typedef struct vqfs_header {
     char padding[3568];
 } vqfs_header_t;
 
-typedef vqfs_uint_t vqfs_block_offset_t;
-
 typedef struct vqfs_blocks_table {
     vqfs_uint_t block_offsets[VQFS_BLOCKS_TOTAL_COUNT];
 } vqfs_blocks_table_t;
