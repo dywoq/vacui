@@ -3,6 +3,13 @@
 
 package module
 
+import (
+	"io"
+	"os"
+
+	"github.com/pelletier/go-toml"
+)
+
 // Workspace contains module workspace information.
 type Workspace struct {
 	Modules []string `toml:"modules"`
@@ -42,3 +49,30 @@ const (
 	TypeWorkspace Type = "workspace"
 	TypeRegular   Type = "regular"
 )
+
+// ParseWithReader decodes content using the provided [io.Reader].
+// It assumes content uses TOML configuration format. Returns an error
+// if it failed to do so.
+func ParseWithReader(r io.Reader) (*Config, error) {
+	var c *Config
+	err := toml.NewDecoder(r).Decode(c)
+	if err != nil {
+		return nil, err
+	}
+	return c, nil
+}
+
+// ParseFile opens a file handle. The function provides it as a reader
+// to [ParseWithReader]. Returns an error if it failed to open the file,
+// or [ParseWithReader] returns an error.
+func ParseFile(filepath string) (*Config, error) {
+	f, err := os.Open(filepath)
+	if err != nil {
+		return nil, err
+	}
+	c, err := ParseWithReader(f)
+	if err != nil {
+		return nil, err
+	}
+	return c, nil
+}
