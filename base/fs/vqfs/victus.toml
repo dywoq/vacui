@@ -4,7 +4,7 @@
 # 
 # Module Description
 # 
-#       The Vacui filesystem workspace
+#       The VQFS workspace
 # 
 
 [general]
@@ -12,5 +12,7 @@ type = "workspace"
 
 [info.workspace]
 modules = [
-    "vqfs"
+    "fmt",
+    "read",
+    "write"
 ]
