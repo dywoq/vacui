@@ -62,7 +62,15 @@ func moduleBuildRegular(dir string, m *module.Config, t *toolchain.Toolchain) er
 			return err
 		}
 	}
-	cmd, err := gnumake.GenerateCmd([]string{"all"}, m, t)
+	finalToolchain := t
+	if len(m.Info.Regular.ForcedToolchain) != 0 {
+		forcedToolchain, err := toolchain.ParseFile(m.Info.Regular.ForcedToolchain)
+		if err != nil {
+			return fmt.Errorf("failed to parse the forced toolchain file %q: %v", m.Info.Regular.ForcedToolchain, err)
+		}
+		finalToolchain = forcedToolchain
+	}
+	cmd, err := gnumake.GenerateCmd([]string{"all"}, m, finalToolchain)
 	if err != nil {
 		return err
 	}

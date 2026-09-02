@@ -17,10 +17,11 @@ type Workspace struct {
 
 // Regular contains regular module information.
 type Regular struct {
-	TargetPath   string   `toml:"target_path"`
-	ObjectsDir   string   `toml:"objects_dir"`
-	Sources      []string `toml:"sources"`
-	Dependencies []string `toml:"dependencies"`
+	TargetPath      string   `toml:"target_path"`
+	ObjectsDir      string   `toml:"objects_dir"`
+	Sources         []string `toml:"sources"`
+	Dependencies    []string `toml:"dependencies"`
+	ForcedToolchain string   `toml:"forced_toolchain"`
 }
 
 // Type is used to identify a module type.
