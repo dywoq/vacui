@@ -1,0 +1,19 @@
+# 
+# Copyright 2026 dywoq - Apache License 2.0
+# https://github.com/dywoq/vacui
+# 
+# Module Description
+# 
+# 		Toolchain for building bare-metal programs for the x86_16 (Real Mode) 
+# 		architecture. Despite flags declaring 32-bit flags, the code must
+#       use the ".code16gcc" directive (in NASM, it must use "bits 16").
+# 
+
+compiler_c = "gcc"
+compiler_cxx = "g++"
+linker = "ld"
+assembly = "nasm"
+additional_flags_c = ["-D_TOOLCHAIN_X86_16", "-m32"]
+additional_flags_cxx = ["-D_TOOLCHAIN_X86_16", "-m32"]
+additional_flags_linker = ["-m", "elf_i386"]
+additional_flags_assembly = ["-f", "elf32"]
