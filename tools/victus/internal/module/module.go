@@ -54,12 +54,12 @@ const (
 // It assumes content uses TOML configuration format. Returns an error
 // if it failed to do so.
 func ParseWithReader(r io.Reader) (*Config, error) {
-	var c *Config
+	var c Config
 	err := toml.NewDecoder(r).Decode(c)
 	if err != nil {
 		return nil, err
 	}
-	return c, nil
+	return &c, nil
 }
 
 // ParseFile opens a file handle. The function provides it as a reader
