@@ -79,6 +79,12 @@ typedef vqfs_uint_t vqfs_time_t;
 #define VQFS_TIME_GET_MINUTE(time) (vqfs_uint_t)((time & (0xFF << 8)) >> 8)
 #define VQFS_TIME_GET_SECOND(time) (vqfs_uint_t)((time & (0xFF << 16)) >> 16)
 
+//
+// Routine Description
+// 
+//      Directory entry flags
+// 
+
 #define VQFS_DIR_ENTRY_FILE      1 << 0
 #define VQFS_DIR_ENTRY_DIRECTORY 1 << 1
 #define VQFS_DIR_ENTRY_READONLY  1 << 2
