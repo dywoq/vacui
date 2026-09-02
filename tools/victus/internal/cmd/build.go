@@ -15,7 +15,7 @@ import (
 func Build() *cobra.Command {
 	b := &cobra.Command{
 		Use:   "build",
-		Short: "Build a workspace or regular module",
+		Short: "Build workspace modules or a regular module",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			toolchainPath, _ := cmd.Flags().GetString("toolchain")
 			if len(toolchainPath) == 0 {

@@ -12,10 +12,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func Clean() *cobra.Command {
-	c := &cobra.Command{
-		Use:   "clean",
-		Short: "Remove build artifacts inside workspace modules or a regular module",
+func Compiledb() *cobra.Command {
+	с := &cobra.Command{
+		Use:   "compiledb",
+		Short: "Generate a compilation database inside workspace modules or a regular module",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			toolchainPath, _ := cmd.Flags().GetString("toolchain")
 			if len(toolchainPath) == 0 {
@@ -30,15 +30,15 @@ func Clean() *cobra.Command {
 			if err != nil {
 				return fmt.Errorf("failed to parse the toolchain: %v", err)
 			}
-			err = routines.ModuleClean(moduleDir, t)
+			err = routines.ModuleGenerateCompileDatabase(moduleDir, t)
 			if err != nil {
 				return err
 			}
-			fmt.Printf("Successfully removed build artifacts in the module %q\n", moduleDir)
+			fmt.Printf("Successfully generated a compilation database in the module %q\n", moduleDir)
 			return nil
 		},
 	}
-	c.Flags().String("module", "", "module directory")
-	c.Flags().String("toolchain", "", "toolchain filepath")
-	return c
+	с.Flags().String("module", "", "module directory")
+	с.Flags().String("toolchain", "", "toolchain filepath")
+	return с
 }
