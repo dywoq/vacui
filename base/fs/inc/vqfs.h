@@ -74,4 +74,9 @@ typedef struct vqfs_root_dir {
     vqfs_dir_entry_t dir_entries[VQFS_DIR_ENTRIES_LIMIT];
 } vqfs_root_dir_t;
 
+typedef struct vqfs_block {
+    char        content[4092];
+    vqfs_uint_t next_cluster_id;
+} vqfs_block_t;
+
 #endif
