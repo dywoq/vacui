@@ -1,4 +1,4 @@
-BasedOnStyle: Microsoft 
+BasedOnStyle: LLVM 
 IndentWidth: 4
 BreakBeforeTemplateCloser: true
 FixNamespaceComments: true
@@ -14,12 +14,10 @@ RemoveEmptyLinesInUnwrappedLines: true
 ShortNamespaceLines: 0
 SortIncludes:
    Enabled: true
-BreakAfterReturnType: All
 BreakAfterAttributes: Always
 BinPackParameters: AlwaysOnePerLine
 BreakAfterOpenBracketFunction: true
 BreakBeforeCloseBracketFunction: true
-BreakBeforeBraces: Allman
 AlignConsecutiveMacros:
   Enabled: true
   AcrossEmptyLines: false
