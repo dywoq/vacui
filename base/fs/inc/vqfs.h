@@ -40,10 +40,10 @@ typedef unsigned long long vqfs_ulong_t;
 //
 // Routine Description
 //
-//      Header information of VQFS, which is at the very start of 
-//      a formatted drive. 
-// 
-//      It contains boot sector code, meta information and offsets to other 
+//      Header information of VQFS, which is at the very start of
+//      a formatted drive.
+//
+//      It contains boot sector code, meta information and offsets to other
 //      information data.
 //
 typedef struct vqfs_header {
@@ -64,8 +64,8 @@ typedef struct vqfs_header {
 
 //
 // Routine Description
-// 
-//      Table consisting of block offsets. It is placed after header 
+//
+//      Table consisting of block offsets. It is placed after header
 //      information.
 //
 typedef struct vqfs_blocks_table {
@@ -79,13 +79,17 @@ typedef vqfs_uint_t vqfs_time_t;
 #define VQFS_TIME_GET_MINUTE(time) (vqfs_uint_t)((time & (0xFF << 8)) >> 8)
 #define VQFS_TIME_GET_SECOND(time) (vqfs_uint_t)((time & (0xFF << 16)) >> 16)
 
+#define VQFS_DIR_ENTRY_FILE      1 << 0
+#define VQFS_DIR_ENTRY_DIRECTORY 1 << 1
+#define VQFS_DIR_ENTRY_READONLY  1 << 2
+
 //
 // Routine Description
-// 
-//      Directory entry with a name, extension and flags, and meta 
-//      information, such as creation and last update time. If this is 
+//
+//      Directory entry with a name, extension and flags, and meta
+//      information, such as creation and last update time. If this is
 //      a directory, then its block points to an array of directory entries.
-// 
+//
 typedef struct vqfs_dir_entry {
     char        name[8];
     char        extension[4];
@@ -100,19 +104,19 @@ typedef struct vqfs_dir_entry {
 
 //
 // Routine Description
-// 
+//
 //      Root directory. It is placed after the blocks table.
-// 
+//
 typedef struct vqfs_root_dir {
     vqfs_dir_entry_t dir_entries[VQFS_DIR_ENTRIES_LIMIT];
 } vqfs_root_dir_t;
 
 //
 // Routine Description
-// 
-//      Single block information. Next cluster index is pointing at a block 
+//
+//      Single block information. Next cluster index is pointing at a block
 //      offset in the blocks table.
-// 
+//
 typedef struct vqfs_block {
     char        content[4092];
     vqfs_uint_t next_cluster_index;
