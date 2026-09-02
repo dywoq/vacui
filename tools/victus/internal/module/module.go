@@ -55,7 +55,7 @@ const (
 // if it failed to do so.
 func ParseWithReader(r io.Reader) (*Config, error) {
 	var c Config
-	err := toml.NewDecoder(r).Decode(c)
+	err := toml.NewDecoder(r).Decode(&c)
 	if err != nil {
 		return nil, err
 	}
