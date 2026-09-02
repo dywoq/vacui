@@ -22,11 +22,11 @@ import (
 //
 //   - If it is [module.TypeWorkspace], then the function builds modules,
 //     specified in the workspace module. It recursively calls itself.
-// 
-// The provided toolchain applies to all modules being built. It requires 
+//
+// The provided toolchain applies to all modules being built. It requires
 // Makefile of modules to have a "all" building rule.
-// 
-// Returns an error if one of the modules failed to build.  
+//
+// Returns an error if one of the modules failed to build.
 func ModuleBuild(dir string, t *toolchain.Toolchain) error {
 	modulePath := path.Join(dir, "victus.toml")
 	m, err := module.ParseFile(modulePath)
@@ -57,9 +57,9 @@ func moduleBuildWorkspace(dir string, m *module.Config, t *toolchain.Toolchain) 
 func moduleBuildRegular(dir string, m *module.Config, t *toolchain.Toolchain) error {
 	for _, depend := range m.Info.Regular.Dependencies {
 		dependPath := path.Join(dir, depend)
-		err := ModuleBuild(path.Join(dir, depend), t)
+		err := ModuleBuild(dependPath, t)
 		if err != nil {
-			return fmt.Errorf("building the module %q failed: %v", dependPath, err)
+			return err
 		}
 	}
 	cmd, err := gnumake.GenerateCmd([]string{"all"}, m, t)
