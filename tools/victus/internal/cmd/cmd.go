@@ -10,5 +10,6 @@ func Root() *cobra.Command {
 		Use:   "victus",
 		Short: "C/C++ Build orchestrator, which is specifically made for Vacui",
 	}
+	root.AddCommand(Build())
 	return root
 }
