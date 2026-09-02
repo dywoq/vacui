@@ -27,7 +27,7 @@ import (
 // Makefile of modules to have a "all" building rule.
 //
 // Returns an error if one of the modules failed to build.
-func ModuleBuild(dir string, t *toolchain.Toolchain) error {
+func ModuleBuild(dir string, t *toolchain.Toolchain, b gnumake.BuildType) error {
 	modulePath := path.Join(dir, "victus.toml")
 	m, err := module.ParseFile(modulePath)
 	if err != nil {
@@ -35,18 +35,18 @@ func ModuleBuild(dir string, t *toolchain.Toolchain) error {
 	}
 
 	if m.General.Type == module.TypeRegular {
-		return moduleBuildRegular(dir, m, t)
+		return moduleBuildRegular(dir, m, t, b)
 	}
 	if m.General.Type == module.TypeWorkspace {
-		return moduleBuildWorkspace(dir, m, t)
+		return moduleBuildWorkspace(dir, m, t, b)
 	}
 	return fmt.Errorf("unknown module type: %s", m.General.Type)
 }
 
-func moduleBuildWorkspace(dir string, m *module.Config, t *toolchain.Toolchain) error {
+func moduleBuildWorkspace(dir string, m *module.Config, t *toolchain.Toolchain, b gnumake.BuildType) error {
 	for _, mod := range m.Info.Workspace.Modules {
 		moduleDir := path.Join(dir, mod)
-		err := ModuleBuild(moduleDir, t)
+		err := ModuleBuild(moduleDir, t, b)
 		if err != nil {
 			return fmt.Errorf("failed to build the workspace module %q: %v\n", moduleDir, err)
 		}
@@ -54,10 +54,10 @@ func moduleBuildWorkspace(dir string, m *module.Config, t *toolchain.Toolchain) 
 	return nil
 }
 
-func moduleBuildRegular(dir string, m *module.Config, t *toolchain.Toolchain) error {
+func moduleBuildRegular(dir string, m *module.Config, t *toolchain.Toolchain, b gnumake.BuildType) error {
 	for _, depend := range m.Info.Regular.Dependencies {
 		dependPath := path.Join(dir, depend)
-		err := ModuleBuild(dependPath, t)
+		err := ModuleBuild(dependPath, t, b)
 		if err != nil {
 			return err
 		}
@@ -70,7 +70,7 @@ func moduleBuildRegular(dir string, m *module.Config, t *toolchain.Toolchain) er
 		}
 		finalToolchain = forcedToolchain
 	}
-	cmd, err := gnumake.GenerateCmd([]string{"all"}, m, finalToolchain)
+	cmd, err := gnumake.GenerateCmd([]string{"all"}, m, finalToolchain, b)
 	if err != nil {
 		return err
 	}

@@ -16,7 +16,7 @@ import (
 // ModuleClean works the same as [ModuleBuild], but it inserts a "clean"
 // recipe instead of the "all" recipe. Returns an error if it failed
 // to delete build artifacts.
-func ModuleClean(dir string, t *toolchain.Toolchain) error {
+func ModuleClean(dir string, t *toolchain.Toolchain, b gnumake.BuildType) error {
 	modulePath := path.Join(dir, "victus.toml")
 	m, err := module.ParseFile(modulePath)
 	if err != nil {
@@ -24,19 +24,19 @@ func ModuleClean(dir string, t *toolchain.Toolchain) error {
 	}
 
 	if m.General.Type == module.TypeRegular {
-		return moduleCleanRegular(dir, m, t)
+		return moduleCleanRegular(dir, m, t, b)
 	}
 	if m.General.Type == module.TypeWorkspace {
-		return moduleCleanWorkspace(dir, m, t)
+		return moduleCleanWorkspace(dir, m, t, b)
 	}
 
 	return fmt.Errorf("unknown module type: %s", m.General.Type)
 }
 
-func moduleCleanRegular(dir string, m *module.Config, t *toolchain.Toolchain) error {
+func moduleCleanRegular(dir string, m *module.Config, t *toolchain.Toolchain, b gnumake.BuildType) error {
 	for _, depend := range m.Info.Regular.Dependencies {
 		dependPath := path.Join(dir, depend)
-		err := ModuleClean(dependPath, t)
+		err := ModuleClean(dependPath, t, b)
 		if err != nil {
 			return err
 		}
@@ -49,7 +49,7 @@ func moduleCleanRegular(dir string, m *module.Config, t *toolchain.Toolchain) er
 		}
 		finalToolchain = forcedToolchain
 	}
-	cmd, err := gnumake.GenerateCmd([]string{"clean"}, m, finalToolchain)
+	cmd, err := gnumake.GenerateCmd([]string{"clean"}, m, finalToolchain, b)
 	if err != nil {
 		return err
 	}
@@ -62,10 +62,10 @@ func moduleCleanRegular(dir string, m *module.Config, t *toolchain.Toolchain) er
 	return nil
 }
 
-func moduleCleanWorkspace(dir string, m *module.Config, t *toolchain.Toolchain) error {
+func moduleCleanWorkspace(dir string, m *module.Config, t *toolchain.Toolchain, b gnumake.BuildType) error {
 	for _, mod := range m.Info.Workspace.Modules {
 		moduleDir := path.Join(dir, mod)
-		err := ModuleClean(moduleDir, t)
+		err := ModuleClean(moduleDir, t, b)
 		if err != nil {
 			return fmt.Errorf("failed to clean the workspace module %q: %v\n", moduleDir, err)
 		}
