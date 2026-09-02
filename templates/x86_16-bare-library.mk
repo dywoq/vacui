@@ -2,7 +2,7 @@
 # Copyright 2026 dywoq - Apache License 2.0
 # https://github.com/dywoq/vacui
 #
-# Routine Description
+# Module Description
 # 
 # 		Template for bare-metal libraries for x86-16 (Real Mode) architecutre, which 
 # 		works with the "toolchains/x86_16-bare-metal.toml" toolchain. It 
