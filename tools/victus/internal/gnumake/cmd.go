@@ -19,12 +19,32 @@ type Cmd struct {
 	Args       []string
 }
 
+type BuildType string
+
+const (
+	BuildRelease BuildType = "release"
+	BuildDebug   BuildType = "debug"
+)
+
+// IsValid checks whether b is a valid build type.
+func (b BuildType) IsValid() bool {
+	switch b {
+	case BuildRelease, BuildDebug:
+		return true
+	default:
+		return false
+	}
+}
+
 // GenerateCmd uses the provided module and toolchain to generate a GNU Make
 // command executable and arguments. Returns an error if m.General.Type is
 // [module.TypeRegular].
-func GenerateCmd(rules []string, m *module.Config, t *toolchain.Toolchain) (*Cmd, error) {
+func GenerateCmd(rules []string, m *module.Config, t *toolchain.Toolchain, b BuildType) (*Cmd, error) {
 	if m.General.Type != module.TypeRegular {
 		return nil, errors.New("regular modules are supported only")
+	}
+	if !b.IsValid() {
+		return nil, errors.New("non-valid build type")
 	}
 
 	c := &Cmd{}
