@@ -7,13 +7,14 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/dywoq/vacui/tools/victus/internal/gnumake"
 	"github.com/dywoq/vacui/tools/victus/internal/routines"
 	"github.com/dywoq/vacui/tools/victus/internal/toolchain"
 	"github.com/spf13/cobra"
 )
 
 func Compiledb() *cobra.Command {
-	с := &cobra.Command{
+	c := &cobra.Command{
 		Use:   "compiledb",
 		Short: "Generate a compilation database inside workspace modules or a regular module",
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -25,12 +26,16 @@ func Compiledb() *cobra.Command {
 			if len(moduleDir) == 0 {
 				return errors.New("no module directory specified")
 			}
+			buildType, _ := cmd.Flags().GetString("build_type")
+			if len(buildType) == 0 {
+				return errors.New("no build type specified")
+			}
 
 			t, err := toolchain.ParseFile(toolchainPath)
 			if err != nil {
 				return fmt.Errorf("failed to parse the toolchain: %v", err)
 			}
-			err = routines.ModuleGenerateCompileDatabase(moduleDir, t)
+			err = routines.ModuleGenerateCompileDatabase(moduleDir, t, gnumake.BuildType(buildType))
 			if err != nil {
 				return err
 			}
@@ -38,7 +43,8 @@ func Compiledb() *cobra.Command {
 			return nil
 		},
 	}
-	с.Flags().String("module", "", "module directory")
-	с.Flags().String("toolchain", "", "toolchain filepath")
-	return с
+	c.Flags().String("module", "", "module directory")
+	c.Flags().String("toolchain", "", "toolchain filepath")
+	c.Flags().String("build_type", "debug", "build type")
+	return c
 }

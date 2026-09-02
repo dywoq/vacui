@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/dywoq/vacui/tools/victus/internal/gnumake"
 	"github.com/dywoq/vacui/tools/victus/internal/routines"
 	"github.com/dywoq/vacui/tools/victus/internal/toolchain"
 	"github.com/spf13/cobra"
@@ -25,12 +26,16 @@ func Build() *cobra.Command {
 			if len(moduleDir) == 0 {
 				return errors.New("no module directory specified")
 			}
+			buildType, _ := cmd.Flags().GetString("build_type")
+			if len(buildType) == 0 {
+				return errors.New("no build type specified")
+			}
 
 			t, err := toolchain.ParseFile(toolchainPath)
 			if err != nil {
 				return fmt.Errorf("failed to parse the toolchain: %v", err)
 			}
-			err = routines.ModuleBuild(moduleDir, t)
+			err = routines.ModuleBuild(moduleDir, t, gnumake.BuildType(buildType))
 			if err != nil {
 				return err
 			}
@@ -40,5 +45,6 @@ func Build() *cobra.Command {
 	}
 	b.Flags().String("module", "", "module directory")
 	b.Flags().String("toolchain", "", "toolchain filepath")
+	b.Flags().String("build_type", "debug", "build type")
 	return b
 }
