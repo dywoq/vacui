@@ -3,4 +3,8 @@
 
 package main
 
-func main() {}
+import "github.com/dywoq/vacui/tools/victus/internal/cmd"
+
+func main() {
+	cmd.Root().Execute()
+}
