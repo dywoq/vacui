@@ -8,6 +8,8 @@
 # 		architecture. Despite flags declaring 32-bit flags, the code must
 #       use the ".code16gcc" directive (in NASM, it must use "bits 16").
 # 
+#       Its templates are "templates/x86_16-*.mk"
+# 
 
 compiler_c = "gcc"
 compiler_cxx = "g++"
