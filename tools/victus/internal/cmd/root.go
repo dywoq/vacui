@@ -11,5 +11,6 @@ func Root() *cobra.Command {
 		Short: "C/C++ Build orchestrator, which is specifically made for Vacui",
 	}
 	root.AddCommand(Build())
+	root.AddCommand(Clean())
 	return root
 }
