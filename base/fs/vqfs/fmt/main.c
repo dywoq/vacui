@@ -142,11 +142,11 @@ static bool reserve_space(
 
     if (blocks_count < 0) {
         err("blocks count cannot be lower than zero\n");
-        return false;
+        goto failure;
     }
     if (blocks_count == 0) {
         err("blocks count cannot be zero\n");
-        return false;
+        goto failure;
     }
 
     //
