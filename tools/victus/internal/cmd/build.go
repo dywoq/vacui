@@ -30,12 +30,21 @@ func Build() *cobra.Command {
 			if len(buildType) == 0 {
 				return errors.New("no build type specified")
 			}
+			globalVarsMap := map[string]string{}
+			globalVars, _ := cmd.Flags().GetStringSlice("global_vars")
+			if len(globalVars) != 0 {
+				m, err := gnumake.ParseVars(globalVars)
+				if err != nil {
+					return fmt.Errorf("failed to parse the provided global variables: %v", err)
+				}
+				globalVarsMap = m
+			}
 
 			t, err := toolchain.ParseFile(toolchainPath)
 			if err != nil {
 				return fmt.Errorf("failed to parse the toolchain: %v", err)
 			}
-			err = routines.ModuleBuild(moduleDir, t, gnumake.BuildType(buildType))
+			err = routines.ModuleBuild(moduleDir, t, gnumake.BuildType(buildType), globalVarsMap)
 			if err != nil {
 				return err
 			}
@@ -46,5 +55,6 @@ func Build() *cobra.Command {
 	b.Flags().String("module", "", "module directory")
 	b.Flags().String("toolchain", "", "toolchain filepath")
 	b.Flags().String("build_type", "debug", "build type")
+	b.Flags().StringSlice("global_vars", []string{}, "custom global GNU Make variables. format: KEY1=VALUE,KEY2=VALUE")
 	return b
 }

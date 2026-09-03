@@ -16,7 +16,7 @@ import (
 // ModuleClean works the same as [ModuleBuild], but it inserts a "clean"
 // recipe instead of the "all" recipe. Returns an error if it failed
 // to delete build artifacts.
-func ModuleClean(dir string, t *toolchain.Toolchain, b gnumake.BuildType) error {
+func ModuleClean(dir string, t *toolchain.Toolchain, b gnumake.BuildType, customVars map[string]string) error {
 	modulePath := path.Join(dir, "victus.toml")
 	m, err := module.ParseFile(modulePath)
 	if err != nil {
@@ -24,19 +24,19 @@ func ModuleClean(dir string, t *toolchain.Toolchain, b gnumake.BuildType) error 
 	}
 
 	if m.General.Type == module.TypeRegular {
-		return moduleCleanRegular(dir, m, t, b)
+		return moduleCleanRegular(dir, m, t, b, customVars)
 	}
 	if m.General.Type == module.TypeWorkspace {
-		return moduleCleanWorkspace(dir, m, t, b)
+		return moduleCleanWorkspace(dir, m, t, b, customVars)
 	}
 
 	return fmt.Errorf("unknown module type: %s", m.General.Type)
 }
 
-func moduleCleanRegular(dir string, m *module.Config, t *toolchain.Toolchain, b gnumake.BuildType) error {
+func moduleCleanRegular(dir string, m *module.Config, t *toolchain.Toolchain, b gnumake.BuildType, customVars map[string]string) error {
 	for _, depend := range m.Info.Regular.Dependencies {
 		dependPath := path.Join(dir, depend)
-		err := ModuleClean(dependPath, t, b)
+		err := ModuleClean(dependPath, t, b, customVars)
 		if err != nil {
 			return err
 		}
@@ -50,7 +50,7 @@ func moduleCleanRegular(dir string, m *module.Config, t *toolchain.Toolchain, b 
 		}
 		finalToolchain = forcedToolchain
 	}
-	cmd, err := gnumake.GenerateCmd([]string{"clean"}, m, finalToolchain, b)
+	cmd, err := gnumake.GenerateCmd([]string{"clean"}, m, finalToolchain, b, customVars)
 	if err != nil {
 		return err
 	}
@@ -63,10 +63,10 @@ func moduleCleanRegular(dir string, m *module.Config, t *toolchain.Toolchain, b 
 	return nil
 }
 
-func moduleCleanWorkspace(dir string, m *module.Config, t *toolchain.Toolchain, b gnumake.BuildType) error {
+func moduleCleanWorkspace(dir string, m *module.Config, t *toolchain.Toolchain, b gnumake.BuildType, customVars map[string]string) error {
 	for _, mod := range m.Info.Workspace.Modules {
 		moduleDir := path.Join(dir, mod)
-		err := ModuleClean(moduleDir, t, b)
+		err := ModuleClean(moduleDir, t, b, customVars)
 		if err != nil {
 			return fmt.Errorf("failed to clean the workspace module %q: %v\n", moduleDir, err)
 		}

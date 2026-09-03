@@ -18,7 +18,7 @@ import (
 // but in addition, it generates a compilation database in modules. It relies
 // on the bear command utility to generate the database. Returns an error
 // if it failed to do so.
-func ModuleGenerateCompileDatabase(dir string, t *toolchain.Toolchain, b gnumake.BuildType) error {
+func ModuleGenerateCompileDatabase(dir string, t *toolchain.Toolchain, b gnumake.BuildType, customVars map[string]string) error {
 	modulePath := path.Join(dir, "victus.toml")
 	m, err := module.ParseFile(modulePath)
 	if err != nil {
@@ -26,19 +26,19 @@ func ModuleGenerateCompileDatabase(dir string, t *toolchain.Toolchain, b gnumake
 	}
 
 	if m.General.Type == module.TypeRegular {
-		return moduleGenerateCompileDatabaseRegular(dir, m, t, b)
+		return moduleGenerateCompileDatabaseRegular(dir, m, t, b, customVars)
 	}
 	if m.General.Type == module.TypeWorkspace {
-		return moduleGenerateCompileDatabaseWorkspace(dir, m, t, b)
+		return moduleGenerateCompileDatabaseWorkspace(dir, m, t, b, customVars)
 	}
 
 	return fmt.Errorf("unknown module type: %s", m.General.Type)
 }
 
-func moduleGenerateCompileDatabaseRegular(dir string, m *module.Config, t *toolchain.Toolchain, b gnumake.BuildType) error {
+func moduleGenerateCompileDatabaseRegular(dir string, m *module.Config, t *toolchain.Toolchain, b gnumake.BuildType, customVars map[string]string) error {
 	for _, depend := range m.Info.Regular.Dependencies {
 		dependPath := path.Join(dir, depend)
-		err := ModuleGenerateCompileDatabase(dependPath, t, b)
+		err := ModuleGenerateCompileDatabase(dependPath, t, b, customVars)
 		if err != nil {
 			return err
 		}
@@ -52,7 +52,7 @@ func moduleGenerateCompileDatabaseRegular(dir string, m *module.Config, t *toolc
 		}
 		finalToolchain = forcedToolchain
 	}
-	cmd, err := gnumake.GenerateCmd([]string{"all"}, m, finalToolchain, b)
+	cmd, err := gnumake.GenerateCmd([]string{"all"}, m, finalToolchain, b, customVars)
 	if err != nil {
 		return err
 	}
@@ -67,10 +67,10 @@ func moduleGenerateCompileDatabaseRegular(dir string, m *module.Config, t *toolc
 	return nil
 }
 
-func moduleGenerateCompileDatabaseWorkspace(dir string, m *module.Config, t *toolchain.Toolchain, b gnumake.BuildType) error {
+func moduleGenerateCompileDatabaseWorkspace(dir string, m *module.Config, t *toolchain.Toolchain, b gnumake.BuildType, customVars map[string]string) error {
 	for _, mod := range m.Info.Workspace.Modules {
 		moduleDir := path.Join(dir, mod)
-		err := ModuleGenerateCompileDatabase(moduleDir, t, b)
+		err := ModuleGenerateCompileDatabase(moduleDir, t, b, customVars)
 		if err != nil {
 			return fmt.Errorf("failed to generate compilation database in the workspace module %q: %v\n", moduleDir, err)
 		}

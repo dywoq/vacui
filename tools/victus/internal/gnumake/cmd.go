@@ -39,7 +39,7 @@ func (b BuildType) IsValid() bool {
 // GenerateCmd uses the provided module and toolchain to generate a GNU Make
 // command executable and arguments. Returns an error if m.General.Type is
 // [module.TypeRegular].
-func GenerateCmd(rules []string, m *module.Config, t *toolchain.Toolchain, b BuildType) (*Cmd, error) {
+func GenerateCmd(rules []string, m *module.Config, t *toolchain.Toolchain, b BuildType, customVars map[string]string) (*Cmd, error) {
 	if m.General.Type != module.TypeRegular {
 		return nil, errors.New("regular modules are supported only")
 	}
@@ -68,6 +68,8 @@ func GenerateCmd(rules []string, m *module.Config, t *toolchain.Toolchain, b Bui
 		fmt.Sprintf("TOOLCHAIN_ADDITIONAL_FLAGS_ASSEMBLY=%s", strings.Join(t.AdditionalFlagsAssembly, " ")),
 	)
 	c.Args = append(c.Args, fmt.Sprintf("BUILD_TYPE=%s", b))
-
+	for key, value := range customVars {
+		c.Args = append(c.Args, fmt.Sprintf("%s=%s", key, value))
+	}
 	return c, nil
 }
