@@ -23,7 +23,7 @@ export DEVENV_BIN=$(pwd)/.devenv/bin
 mkdir $DEVENV_BIN -p
 
 #
-# Compile the host OS tools
+# Compile the host OS development tools
 # 
 
 # Victus
@@ -38,11 +38,27 @@ echo "Setting up the PATH variable..."
 export PATH=$PATH:$DEVENV_BIN
 
 #
+# Define environment variables
+# 
+
+export VACUI_BASE=$(pwd)/base
+export VACUI_TEMPLATES=$(pwd)/templates
+export VACUI_TOOLCHAINS=$(pwd)/toolchains
+
+#
 # Final message
 # 
+
 echo "The development environment is done! :> Now, you can run commands,"
 echo "compiled directly from the source tree:"
 echo ""
 echo "      [dywoq@ArchLinux vacui] victus"
 echo "      C/C++ Build orchestrator, which is specifically made for Vacui"
 echo "      ..."
+echo ""
+echo "The defined environment variables":
+echo ""
+echo "      VACUI_BASE          $VACUI_BASE"
+echo "      VACUI_TEMPLATES     $VACUI_TEMPLATES"
+echo "      VACUI_TOOLCHAINS    $VACUI_TOOLCHAINS"
+echo ""
