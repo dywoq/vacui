@@ -144,12 +144,12 @@ typedef struct vqfs_root_dir {
 //
 // Routine Description
 //
-//      Single block information. Next cluster index is pointing at a block
-//      offset in the blocks table.
+//      Block information struct. The next block index is pointing at a
+//      block offset in the blocks table.
 //
 typedef struct vqfs_block {
-    char        content[4092];
-    vqfs_uint_t next_cluster_index;
+    vqfs_ubyte_t content[4092];
+    vqfs_uint_t  next_block_index;
 } vqfs_block_t;
 
 #endif
