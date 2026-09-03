@@ -105,11 +105,48 @@ typedef bsl_status_t (*bsl_mm_base_destroy_func)(
 //
 // Routine Description
 //
+//      Copies the memory from destination to source. The provided memory
+//      handles is allowed to not contain memory that is allocated using
+//      bsl_mm_base_allocate_func function.
+//
+// Parameters
+//
+//      memory_handle_dest  OUT
+//
+//          A required pointer to memory destination.
+//
+//      memory_handle_src   IN
+//
+//          A required pointer to memory source.
+//
+// Error codes
+//
+//      BSL_STATUS_ERROR_CODE_OK
+//
+//          The operation was successful.
+//
+//      BSL_MM_ERROR_NULL_POINTER
+//
+//          The destination or source memory handle is null.
+//
+// Return
+//
+//      A status code.
+//
+typedef bsl_status_t (*bsl_mm_base_copy_func)(
+    const bsl_memory_handle_t *memory_handle_dest,
+    bsl_memory_handle_t       *memory_handle_src
+);
+
+//
+// Routine Description
+//
 //      Provides a set of base methods to manage memory.
 //
 typedef struct bsl_mm_base_iface {
     bsl_mm_base_allocate_func allocate;
     bsl_mm_base_destroy_func  destroy;
+    bsl_mm_base_copy_func     copy;
 } bsl_mm_base_iface_t;
 
 #endif
