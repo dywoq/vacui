@@ -10,6 +10,9 @@
 #ifndef BSLMETA_H
 #define BSLMETA_H
 
+typedef const char *(bsl_meta_information_get_name_func)();
+typedef const char *(bsl_meta_information_get_type_func)();
+
 //
 // Routine Description
 //
@@ -17,8 +20,8 @@
 //      environment.
 //
 typedef struct bsl_meta_information_iface {
-    const char *(get_name)();
-    const char *(get_type)();
+    bsl_meta_information_get_name_func get_name;
+    bsl_meta_information_get_type_func get_type;
 } bsl_meta_information_iface_t;
 
 #endif
