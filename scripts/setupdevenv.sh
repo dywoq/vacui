@@ -41,6 +41,7 @@ export PATH=$PATH:$DEVENV_BIN
 # Define environment variables
 # 
 
+echo "Defining environment variables..."
 export VACUI_BASE=$(pwd)/base
 export VACUI_TEMPLATES=$(pwd)/templates
 export VACUI_TOOLCHAINS=$(pwd)/toolchains
