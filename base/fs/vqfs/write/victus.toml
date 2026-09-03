@@ -11,7 +11,7 @@
 type = "regular"
 
 [info.regular]
-target_path = "vqfs_read"
+target_path = "vqfs_write"
 sources = ["main.c"]
 objects_dir = ".objs"
 forced_toolchain = "../../../../toolchains/x86_64-linux.toml"

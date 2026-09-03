@@ -7,4 +7,6 @@
 #       The vqfs_write Makefile
 # 
 
+FLAGS_C := --std=c23 -I../../inc
+
 include ../../../../templates/x86_64-linux-program.mk

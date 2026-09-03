@@ -141,6 +141,8 @@ typedef struct vqfs_root_dir {
     vqfs_dir_entry_t dir_entries[VQFS_DIR_ENTRIES_LIMIT];
 } vqfs_root_dir_t;
 
+#define VQFS_BLOCK_INDEX_EOF 0xFFFFFFFF
+
 //
 // Routine Description
 //
