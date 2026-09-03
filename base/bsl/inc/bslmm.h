@@ -104,8 +104,8 @@ typedef bsl_status_t (*bsl_mm_base_destroy_func)(
 //      Provides a set of base methods to manage memory.
 //
 typedef struct bsl_mm_base_iface {
-    bsl_mm_base_allocate_func allocate;
-    bsl_mm_base_destroy_func  destroy;
+    bsl_mm_base_allocate_func *allocate;
+    bsl_mm_base_destroy_func  *destroy;
 } bsl_mm_base_iface_t;
 
 #endif
