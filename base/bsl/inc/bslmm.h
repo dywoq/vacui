@@ -57,6 +57,10 @@ typedef struct bsl_memory_handle {
 //
 //          There is no enough memory for allocation.
 //
+//      BSL_MM_ERROR_NULL_POINTER
+//
+//          The memory_handle_dest parameter is null.
+//
 // Return
 //
 //      A status code.
@@ -74,10 +78,10 @@ typedef bsl_status_t (*bsl_mm_base_allocate_func)(
 //
 // Parameters
 //
-//      memory_handle_source  IN
+//      memory_handle_dest  OUT
 //
-//          The memory handle, returned by the allocation function
-//          (bsl_mm_base_allocate_func).
+//          The required destination memory handle, returned by the allocation
+//          function (bsl_mm_base_allocate_func).
 //
 // Error codes
 //
@@ -95,7 +99,7 @@ typedef bsl_status_t (*bsl_mm_base_allocate_func)(
 //      A status code.
 //
 typedef bsl_status_t (*bsl_mm_base_destroy_func)(
-    const bsl_memory_handle_t *memory_handle_source
+    bsl_memory_handle_t *memory_handle_dest
 );
 
 //
@@ -104,8 +108,8 @@ typedef bsl_status_t (*bsl_mm_base_destroy_func)(
 //      Provides a set of base methods to manage memory.
 //
 typedef struct bsl_mm_base_iface {
-    bsl_mm_base_allocate_func *allocate;
-    bsl_mm_base_destroy_func  *destroy;
+    bsl_mm_base_allocate_func allocate;
+    bsl_mm_base_destroy_func  destroy;
 } bsl_mm_base_iface_t;
 
 #endif
