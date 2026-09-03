@@ -10,4 +10,4 @@
 FLAGS_C += -I../inc/
 LIBRARY_TYPE := static
 
-include ../../../templates/x86_64-linux-library.mk
+include $(VACUI_TEMPLATES)/x86_64-linux-library.mk
