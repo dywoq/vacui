@@ -122,10 +122,9 @@ typedef vqfs_uint_t vqfs_time_t;
 //      a directory, then its block points to an array of directory entries.
 //
 typedef struct vqfs_dir_entry {
-    char        name[8];
+    char        name[12];
     char        extension[4];
     vqfs_uint_t flags;
-    vqfs_uint_t starting_block_offset;
     vqfs_time_t time_creation;
     vqfs_time_t time_last_update;
     vqfs_uint_t starting_block_id;
