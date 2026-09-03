@@ -111,6 +111,8 @@ typedef vqfs_uint_t vqfs_time_t;
 #define VQFS_DIR_ENTRY_FILE      1 << 0
 #define VQFS_DIR_ENTRY_DIRECTORY 1 << 1
 #define VQFS_DIR_ENTRY_READONLY  1 << 2
+#define VQFS_DIR_ENTRY_HIDDEN    1 << 3
+#define VQFS_DIR_ENTRY_SYSTEM    1 << 4
 
 //
 // Routine Description
