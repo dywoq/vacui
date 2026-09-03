@@ -19,7 +19,7 @@
 # Create the .devenv/bin directory
 # 
 
-export DEVENV_BIN=.devenv/bin
+export DEVENV_BIN=$(pwd)/.devenv/bin
 mkdir $DEVENV_BIN -p
 
 #
