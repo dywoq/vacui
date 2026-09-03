@@ -85,4 +85,4 @@ static bsl_mm_base_iface_t mm_base_iface_ = {
     .destroy = mm_base_destroy_,
 };
 
-bsl_mm_base_iface_t *bsl_host_get_mm_base_ifacec() { return &mm_base_iface_; }
+bsl_mm_base_iface_t *bsl_host_get_mm_base_iface() { return &mm_base_iface_; }

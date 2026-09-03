@@ -28,6 +28,6 @@ bsl_meta_information_iface_t *bsl_host_get_meta_information_iface();
 //      Returns a pointer to the host implementation of the
 //      bsl_mm_base_iface_t interface.
 //
-bsl_mm_base_iface_t *bsl_host_get_mm_base_ifacec();
+bsl_mm_base_iface_t *bsl_host_get_mm_base_iface();
 
 #endif
