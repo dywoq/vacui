@@ -1,0 +1,77 @@
+#
+# Copyright 2026 dywoq - Apache License 2.0
+# https://github.com/dywoq/vacui
+#
+# Module Description
+# 
+# 		Template for Linux libraries for x86-64 architecture, which 
+# 		works with the "toolchains/x86_64-linux.toml" toolchain. It 
+# 		supports compilation of source files at root of the module only.
+#
+# Available Options
+# 
+# 		FLAGS_C
+# 		
+# 			Additional C compiler flags.
+#
+# 		FLAGS_CXX
+# 		
+# 			Additional C++ compiler flags.
+# 
+# 		FLAGS_ASSEMBLY
+# 		
+# 			Additional Assembly flags.
+# 
+# 		LIBRARY_TYPE
+# 			
+# 			A library type. Supported options: static
+#
+
+#
+# Static library
+# 
+
+ifeq ($(LIBRARY_TYPE), static)
+
+OBJECTS := $(patsubst %.c,$(OBJECTS_DIR)/%.o,$(filter %.c,$(SOURCES))) \
+		$(patsubst %.cxx,$(OBJECTS_DIR)/%.o,$(filter %.cxx,$(SOURCES))) \
+		$(patsubst %.S,$(OBJECTS_DIR)/%.o,$(filter %.S,$(SOURCES)))
+
+# 
+# Adjust the C/C++ flags to the build type
+# 
+
+ifeq ($(BUILD_TYPE), RELEASE)
+	FLAGS_C += -DRELEASE
+	FLAGS_CXX += -DRELEASE
+endif
+
+ifeq ($(BUILD_TYPE), DEBUG)
+	FLAGS_C += -DDEBUG
+	FLAGS_CXX += -DDEBUG
+endif
+
+all: $(TARGET_PATH)
+
+$(TARGET_PATH): $(OBJECTS_DIR) $(OBJECTS)
+	@echo " AR  $(TARGET_PATH)"
+	@ar rcs $(TARGET_PATH) $(OBJECTS)
+	
+$(OBJECTS_DIR)/%.o: %.S
+	@echo " $(TOOLCHAIN_ASSEMBLY)   $< ... $@"
+	@$(TOOLCHAIN_ASSEMBLY) $(TOOLCHAIN_ADDITIONAL_FLAGS_ASSEMBLY) $(FLAGS_ASSEMBLY) $< -o $@
+$(OBJECTS_DIR)/%.o: %.c
+	@echo " $(TOOLCHAIN_COMPILER_C)   $< ... $@"
+	$(TOOLCHAIN_COMPILER_C) $(TOOLCHAIN_ADDITIONAL_FLAGS_C) $(FLAGS_C) -c $< -o $@
+$(OBJECTS_DIR)/%.o: %.cxx
+	@echo " $(TOOLCHAIN_COMPILER_CXX)   $< ... $@"
+	$(TOOLCHAIN_COMPILER_CXX) $(TOOLCHAIN_ADDITIONAL_FLAGS_CXX) $(FLAGS_CXX) -c $< -o $@
+
+$(OBJECTS_DIR):
+	mkdir -p $(OBJECTS_DIR)
+
+clean:
+	@rm -fr $(OBJECTS_DIR)
+	@rm -fr $(TARGET_PATH)
+	
+endif

@@ -12,6 +12,5 @@ type = "workspace"
 
 [info.workspace]
 modules = [
-    "bsl",
-    "fs"
+    "host"
 ]

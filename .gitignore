@@ -2,3 +2,4 @@ compile_commands.json
 .objs
 *.bin
 *.img
+*.a
