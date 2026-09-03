@@ -12,7 +12,7 @@
 # 
 #       It must be ran as:
 # 
-#           source scripts/setupdevenv.h
+#           source scripts/setupdevenv.
 #
 
 #
@@ -26,6 +26,7 @@ mkdir $DEVENV_BIN -p
 # Compile the host OS tools
 # 
 
+# Victus
 cd tools/victus && go build . && cd ../../ && mv tools/victus/victus $DEVENV_BIN
 
 #
