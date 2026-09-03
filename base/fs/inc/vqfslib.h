@@ -5,7 +5,7 @@
 // Module Description
 //
 //      This header defines types and declares functionality for
-//      initializing images into the VQFS filesystem
+//      managing the VQFS filesystem images
 //
 
 #ifndef VQFSLIB_H
