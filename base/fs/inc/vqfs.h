@@ -49,17 +49,40 @@ typedef unsigned long long vqfs_ulong_t;
 typedef struct vqfs_header {
     vqfs_ubyte_t boot_sector[512];
 
+    //
     // Version
+    //
     vqfs_ushort_t major_version;
     vqfs_ushort_t minor_version;
 
+    //
     // Offsets
+    //
     vqfs_uint_t blocks_table_offset;
     vqfs_uint_t root_dir_offset;
     vqfs_uint_t blocks_array_offset;
 
+    //
+    // Blocks table information
+    //
+    vqfs_uint_t blocks_table_max_limit;
+    vqfs_uint_t blocks_table_current_count;
+
+    //
+    // Root and regular directory information
+    //
+    vqfs_uint_t regular_dir_max_limit;
+    vqfs_uint_t root_dir_current_count;
+
+    //
+    // Blocks array information
+    //
+    vqfs_uint_t blocks_array_max_limit;
+
+    //
     // Padding
-    char padding[3568];
+    //
+    char padding[3548];
 } vqfs_header_t;
 
 //
@@ -81,9 +104,9 @@ typedef vqfs_uint_t vqfs_time_t;
 
 //
 // Routine Description
-// 
+//
 //      Directory entry flags
-// 
+//
 
 #define VQFS_DIR_ENTRY_FILE      1 << 0
 #define VQFS_DIR_ENTRY_DIRECTORY 1 << 1

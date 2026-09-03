@@ -34,7 +34,8 @@ static int print_usage() {
 
 static bool init_header(
     FILE       *dest_image_stream,
-    const char *boot_sector
+    const char *boot_sector,
+    int         blocks_count
 ) {
     //
     // Allocate a header instance
@@ -90,6 +91,11 @@ static bool init_header(
     header->blocks_array_offset = sizeof(struct vqfs_header) +
                                   sizeof(struct vqfs_blocks_table) +
                                   sizeof(struct vqfs_root_dir);
+    header->blocks_table_max_limit = blocks_count;
+    header->blocks_table_current_count = 0;
+    header->regular_dir_max_limit = VQFS_DIR_ENTRIES_LIMIT;
+    header->root_dir_current_count = 0;
+    header->blocks_array_max_limit = blocks_count;
 
     //
     // Write it to the destination file
@@ -210,7 +216,7 @@ int main(
     // Initialization routine
     //
 
-    if (!init_header(stream, boot_sector)) {
+    if (!init_header(stream, boot_sector, blocks_count)) {
         err("failed to initialize a header\n");
         goto failure;
     }
