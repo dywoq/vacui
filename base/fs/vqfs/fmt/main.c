@@ -28,7 +28,7 @@ err(const char *fmt,
 }
 
 static int print_usage() {
-    err("usage: vqfs_fmt [dest_file] [boot_sector] [blocks_count]\n");
+    err("usage: vqfs_fmt [dest_image] [boot_sector] [blocks_count]\n");
     return -1;
 }
 
