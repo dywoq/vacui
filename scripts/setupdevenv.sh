@@ -27,10 +27,22 @@ mkdir $DEVENV_BIN -p
 # 
 
 # Victus
+echo "Compiling Victus..."
 cd tools/victus && go build . && cd ../../ && mv tools/victus/victus $DEVENV_BIN
 
 #
 # Put the $DEVENV_BIN onto the path 
 # 
 
+echo "Setting up the PATH variable..."
 export PATH=$PATH:$DEVENV_BIN
+
+#
+# Final message
+# 
+echo "The development environment is done! :> Now, you can run commands,"
+echo "compiled directly from the source tree:"
+echo ""
+echo "      [dywoq@ArchLinux vacui] victus"
+echo "      C/C++ Build orchestrator, which is specifically made for Vacui"
+echo "      ..."
