@@ -21,21 +21,21 @@ The kernel uses hybrid model. It provides common services to user programs
 (e.g. memory management, creating files, editing registry data etc.). It 
 consists of subsystems, such as: 
 
-        Initialization Routine (IR)
+-   Initialization Routine (IR)
 
-        Cleaning Routine (CR)
+-   Cleaning Routine (CR)
 
-        Memory Manager (MM)
+-   Memory Manager (MM)
 
-        Interrupt Bus Controller (IBC)
+-   Interrupt Bus Controller (IBC)
 
-        Object Manager (OB)
+-   Object Manager (OB)
 
-        Task Manager (TM)
+-   Task Manager (TM)
 
-        Registry Editor (RE)
+-   Registry Editor (RE)
 
-        User Software Communication Layer (USCL)
+-   User Software Communication Layer (USCL)
 
 _______________________________________________________________________________
 
