@@ -10,14 +10,18 @@ subsystems.
 
 Internally, the IR subsystem consists of meta information related to the
 procedures. It is not exposed publicly to external kernel subsystems unless
-it is stated otherwise. The IR subsystem consists of the following parameters:
+it is stated otherwise. The parameters has group permissions (R = read,
+W = write). Groups are KS (Kernel subsystems) and IR (Initialization Routine).
 
 - **Initialization Procedure** and **Startup Procedure** (**PUBLIC**)
   Conditions: These separate parameters indicate the procedures' current
-  state. They can be changed by the corresponding procedures. They are
-  exposed publicly through the IR's APIs. Specific conditions cannot
-  be forced despite restrictions. The subsystem is forbidden from
-  activating more than one condition.
+  state. They can be changed by the corresponding procedures. Specific
+  conditions cannot be forced despite restrictions. The subsystem is
+  forbidden from activating more than one condition.
+
+  **The group permissions**:
+  - KS: R
+  - IR: RW
 
 - **Kernel Subsystems Initialization Order, KSIO** (**INTERNAL**): This parameter is
   a list containing a kernel subsystems' initialization priority. It is needed
@@ -29,6 +33,10 @@ it is stated otherwise. The IR subsystem consists of the following parameters:
   - As a kernel subsystem's dependencies list increases, its priority
     decreases.
   - Kernel subsystem's dependencies are built first.
+
+  **The group permissions**:
+  - KS: _None_
+  - IR: RW
 
 ### Procedure Conditions
 
