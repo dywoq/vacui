@@ -70,7 +70,7 @@ The IR subsystem has two procedures: **Initialization** and **Startup**.
 #### Environment Installation
 
 _Description_: This step installs the kernel environment. The kernel
-environment implies that everything is configured correctly to make
+environment implies that everything is configured correctly to make the
 kernel properly work.
 
 _Next step_: **Subsystems Initialization**
