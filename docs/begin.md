@@ -9,7 +9,7 @@ services are developed in the programming languages C/Assembly.
 
 VQ consists of the following components: boot loader and kernel.
 
-The boot loader includes sector and primary stages. The sector stage finds the
+The boot loader includes ***sector** and **primary** stages. The sector stage finds the
 primary stage executable on formatted disk and runs it. The primary stage
 gathers boot information (such as memory map), locates kernel executable and
 enables protected mode before starting kernel.
@@ -18,14 +18,14 @@ The kernel uses hybrid model. It provides common services to user programs
 (e.g. memory management, creating files, editing registry data etc.). It
 consists of subsystems, such as:
 
-- Initialization Routine (IR)
-- Cleaning Routine (CR)
-- Memory Manager (MM)
-- Interrupt Bus Controller (IBC)
-- Object Manager (OB)
-- Task Manager (TM)
-- Registry Editor (RE)
-- User Software Communication Layer (USCL)
+- **Initialization Routine (IR)**
+- **Cleaning Routine (CR)**
+- **Memory Manager (MM)**
+- **Interrupt Bus Controller (IBC)**
+- **Object Manager (OB)**
+- **Task Manager (TM)**
+- **Registry Editor (RE)**
+- **User Software Communication Layer (USCL)**
 
 # Goals
 
