@@ -104,9 +104,13 @@ void
 ir_init_environment_installation();
 ```
 
-This function corresponds to the **"Environment Installation"** step. It is
-implemented in Assembly to prevent accidental usage of stack. After environment
-installation, it calls the **IrInitSubsystemsInitialization** function.
+This function corresponds to the **"Environment Installation"** step After
+environment installation, it calls the **IrInitSubsystemsInitialization**
+function.
+
+It is implemented fully in Assembly to prevent accidental stack usage.
+Before the procedure configures stack, the stack still contains a
+physical address of the boot loader stack.
 
 ### Subsystems initialization
 
@@ -162,5 +166,5 @@ This function writes information to the provided destination instance.
 
 ## Startup Procedure
 
-_Note: As mentioned earlier, the startup procedure description is not ready 
+_Note: As mentioned earlier, the startup procedure description is not ready
 yet. - dywoq_
