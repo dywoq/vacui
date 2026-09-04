@@ -2,7 +2,7 @@
 
 Vacui - is an operating system running on x86_32-based hardware that is also
 compatible with BIOS firmware. It has a codename VQ, which stands for Vacui
-Quarter. The operating system components, user SDKs and other low-level 
+Quarter. The operating system components, user SDKs and other low-level
 services are developed in the programming languages C/Assembly.
 
 # Components
@@ -37,3 +37,5 @@ consists of subsystems, such as:
 
 - High reliability to prevent user software from causing an OS crash and doing
   dangerous operations.
+
+- Support for booting from recovery and graphical mode.
