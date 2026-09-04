@@ -60,6 +60,7 @@ The IR subsystem has two procedures: **Initialization** and **Startup**.
 - **Initialization Procedure**: This procedure is responsible for
   installing kernel environment and initializing kernel subsystems.
   Any error, which procedure encountered, causes the kernel to halt.
+  It is the first procedure started.
 
 - **Startup Procedure**: This procedure is responsible for starting the kernel.
   _Note: Its description expands as more subsystems get their
@@ -75,7 +76,7 @@ kernel properly work.
 
 _Next step_: **Subsystems Initialization**
 
-### Subsystems Initialization
+#### Subsystems Initialization
 
 _Description_: This step uses the KSIO (see the **Parameters** chapter) parameter
 to correctly initialize the kernel subsystems. After initializing them,
@@ -85,3 +86,81 @@ the step begins the **Startup Procedure**.
 
 _Note: The steps of the procedure will be added as soon as more documents
 of the kernel subsystems appear - dywoq_
+
+# API
+
+## Initialization Procedure
+
+Functions, types and macros of the initialization procedure start with
+`ir_init` prefix or `IR_INIT` prefix if a symbol is a macro.
+
+### Environment installation
+
+Visibility Scope: Private
+Signature:
+
+```c
+void
+ir_init_environment_installation();
+```
+
+This function corresponds to the **"Environment Installation"** step. It is
+implemented in Assembly to prevent accidental usage of stack. After environment
+installation, it calls the **IrInitSubsystemsInitialization** function.
+
+### Subsystems initialization
+
+Visibility Scope: Private
+Signature:
+
+```c
+void ir_init_subsystems_initialization();
+```
+
+This function corresponds to the **"Subsystems Initialization"** step.
+
+### Inspecting the public information
+
+Visibility Scope: Public
+Signature:
+
+```c
+bool ir_init_inspect_info(ir_init_info_t *dest_info);
+```
+
+Parameters:
+
+- `dest_info` **OUT** - A required pointer to the destination `ir_init_info_t`
+  structure instance.
+
+  `ir_init_info` structure:
+
+  ```c
+  typedef struct ir_init_info {
+      ir_init_condition_t condition;
+  } ir_init_info_t;
+  ```
+  - `condition` - This field corresponds to the public condition
+    parameter of the initialization routine.
+
+  `ir_init_condition-t` enumeration:
+
+  ```c
+  typedef enum ir_init_condition : vq_ubyte {
+      ir_init_condition_ready = 0,
+      ir_init_condition_success,
+      ir_init_condition_failure
+  } ir_init_condition_t;
+  ```
+
+Returns:
+
+- `true` - The information have been written successfully.
+- `false` - The `dest_info` parameter is null.
+
+This function writes information to the provided destination instance.
+
+## Startup Procedure
+
+_Note: As mentioned earlier, the startup procedure description is not ready 
+yet. - dywoq_
