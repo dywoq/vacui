@@ -1,8 +1,9 @@
 # Beginning
 
-Vacui - is an operating system running on x86_32-based hardware, which is also
+Vacui - is an operating system running on x86_32-based hardware that is also
 compatible with BIOS firmware. It has a codename VQ, which stands for Vacui
-Quarter.
+Quarter. The operating system components, user SDKs and other low-level 
+services are developed in the programming languages C/Assembly.
 
 # Components
 
