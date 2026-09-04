@@ -122,6 +122,9 @@ void ir_init_subsystems_initialization();
 ```
 
 This function corresponds to the **"Subsystems Initialization"** step.
+If it successfully initialized the kernel subsystems, the condition
+`Success` is activated. Otherwise, the condition `Failure` is activated
+and the function prints a failure message and halts a machine.
 
 ### Inspecting the public information
 
