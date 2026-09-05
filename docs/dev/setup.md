@@ -8,10 +8,11 @@ necessary tools and set development environment up in the project.
 - **Linux**: You can use any distribution that supports downloading subsequent
   tools with specified version. Or, if you are on Windows, you can use
   **WSL (Windows Subsystem for Linux) 2**.
-- **GNU**: Minimal version is 16.2. It must support compilation to x86
-  architecture.
+- **GCC (GNU Compiler Collection)**: Minimal version is 16.2. It must support compilation
+  to x86 architecture.
 - **GNU Make**: Minimal version is 4.4.0.
-- **Golang**: Minimal version is 1.26
+- **Golang**: Minimal version is 1.26.
+- **Bear (Build EAR)**: Minimal version is 4.2.0.
 
 # Setting the development environment up
 
