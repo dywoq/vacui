@@ -29,7 +29,7 @@ func ModuleClean(dir string, t *toolchain.Toolchain, b gnumake.BuildType, custom
 		return moduleCleanRegular(dir, m, t, b, customVars)
 	}
 	if m.General.Type == module.TypeWorkspace {
-		logging.Infof("\t| REGULAR MODULE %q |\n", dir)
+		logging.Infof("\t| WORKSPACE MODULE %q |\n", dir)
 		return moduleCleanWorkspace(dir, m, t, b, customVars)
 	}
 

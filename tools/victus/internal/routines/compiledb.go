@@ -31,7 +31,7 @@ func ModuleGenerateCompileDatabase(dir string, t *toolchain.Toolchain, b gnumake
 		return moduleGenerateCompileDatabaseRegular(dir, m, t, b, customVars)
 	}
 	if m.General.Type == module.TypeWorkspace {
-		logging.Infof("\t| REGULAR MODULE %q |\n", dir)
+		logging.Infof("\t| WORKSPACE MODULE %q |\n", dir)
 		return moduleGenerateCompileDatabaseWorkspace(dir, m, t, b, customVars)
 	}
 
