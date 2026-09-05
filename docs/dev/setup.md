@@ -1,4 +1,4 @@
-# Development
+# Introduction
 
 Before writing an operating system code, you must ensure you have installed
 necessary tools and set development environment up in the project.
