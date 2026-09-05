@@ -8,6 +8,7 @@ import (
 	"fmt"
 
 	"github.com/dywoq/vacui/tools/victus/internal/gnumake"
+	"github.com/dywoq/vacui/tools/victus/internal/logging"
 	"github.com/dywoq/vacui/tools/victus/internal/routines"
 	"github.com/dywoq/vacui/tools/victus/internal/toolchain"
 	"github.com/spf13/cobra"
@@ -18,6 +19,7 @@ func Compiledb() *cobra.Command {
 		Use:   "compiledb",
 		Short: "Generate a compilation database inside workspace modules or a regular module",
 		RunE: func(cmd *cobra.Command, args []string) error {
+			logging.SetMode(logging.ModeEnabled)
 			toolchainPath, _ := cmd.Flags().GetString("toolchain")
 			if len(toolchainPath) == 0 {
 				return errors.New("no toolchain filepath specified")
