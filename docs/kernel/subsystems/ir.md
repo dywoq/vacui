@@ -104,16 +104,17 @@ Functions, types and macros of the initialization procedure start with
 
 ### Environment installation
 
-Visibility Scope: Private
-Signature:
+_Visibility Scope_: Private
+
+_Signature_:
 
 ```c
 void
 ir_init_environment_installation();
 ```
 
-This function corresponds to the **"Environment Installation"** step After
-environment installation, it calls the **IrInitSubsystemsInitialization**
+This function corresponds to the **"Environment Installation"** step. After
+installation of the kernel environment, it calls the **IrInitSubsystemsInitialization**
 function.
 
 It is implemented fully in Assembly to prevent accidental stack usage.
@@ -122,8 +123,9 @@ physical address of the boot loader stack.
 
 ### Subsystems initialization
 
-Visibility Scope: Private
-Signature:
+_Visibility Scope_: Private
+
+_Signature_:
 
 ```c
 void ir_init_subsystems_initialization();
