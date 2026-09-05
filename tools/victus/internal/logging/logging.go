@@ -41,8 +41,8 @@ func Errorf(format string, v ...any) {
 	if mode == ModeDisabled {
 		return
 	}
-	prefix := color.RedString("ERROR: ")
-	fmt.Fprintf(os.Stderr, "%s: %s", prefix, fmt.Sprintf(format, v...))
+	prefix := color.RedString("[error]")
+	fmt.Fprintf(os.Stderr, "* %s: %s", prefix, fmt.Sprintf(format, v...))
 }
 
 func Infof(format string, v ...any) {
@@ -51,8 +51,8 @@ func Infof(format string, v ...any) {
 	if mode == ModeDisabled {
 		return
 	}
-	prefix := color.BlueString("INFO: ")
-	fmt.Fprintf(os.Stderr, "%s: %s", prefix, fmt.Sprintf(format, v...))
+	prefix := color.GreenString("[info]")
+	fmt.Fprintf(os.Stderr, "* %s: %s", prefix, fmt.Sprintf(format, v...))
 }
 
 func Warnf(format string, v ...any) {
@@ -61,6 +61,6 @@ func Warnf(format string, v ...any) {
 	if mode == ModeDisabled {
 		return
 	}
-	prefix := color.YellowString("WARN: ")
-	fmt.Fprintf(os.Stderr, "%s: %s", prefix, fmt.Sprintf(format, v...))
+	prefix := color.YellowString("[warn]")
+	fmt.Fprintf(os.Stderr, "* %s: %s", prefix, fmt.Sprintf(format, v...))
 }
