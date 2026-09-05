@@ -10,6 +10,7 @@ import (
 	"slices"
 
 	"github.com/dywoq/vacui/tools/victus/internal/gnumake"
+	"github.com/dywoq/vacui/tools/victus/internal/logging"
 	"github.com/dywoq/vacui/tools/victus/internal/module"
 	"github.com/dywoq/vacui/tools/victus/internal/toolchain"
 )
@@ -26,9 +27,11 @@ func ModuleGenerateCompileDatabase(dir string, t *toolchain.Toolchain, b gnumake
 	}
 
 	if m.General.Type == module.TypeRegular {
+		logging.Infof("\t| REGULAR MODULE %q |\n", dir)
 		return moduleGenerateCompileDatabaseRegular(dir, m, t, b, customVars)
 	}
 	if m.General.Type == module.TypeWorkspace {
+		logging.Infof("\t| REGULAR MODULE %q |\n", dir)
 		return moduleGenerateCompileDatabaseWorkspace(dir, m, t, b, customVars)
 	}
 
@@ -45,6 +48,7 @@ func moduleGenerateCompileDatabaseRegular(dir string, m *module.Config, t *toolc
 	}
 	finalToolchain := t
 	if len(m.Info.Regular.ForcedToolchain) != 0 {
+		logging.Infof("%q - Detected a forced toolchain path, parsing it\n", dir)
 		forcedToolchainPath := path.Join(dir, m.Info.Regular.ForcedToolchain)
 		forcedToolchain, err := toolchain.ParseFile(forcedToolchainPath)
 		if err != nil {
@@ -56,6 +60,7 @@ func moduleGenerateCompileDatabaseRegular(dir string, m *module.Config, t *toolc
 	if err != nil {
 		return err
 	}
+	logging.Infof("%q - Running Bear\n", dir)
 	cmd.Executable = "bear"
 	cmd.Args = slices.Concat([]string{"--", "make"}, cmd.Args)
 	realCmd := exec.Command(cmd.Executable, cmd.Args...)
@@ -64,11 +69,16 @@ func moduleGenerateCompileDatabaseRegular(dir string, m *module.Config, t *toolc
 	if err != nil {
 		return fmt.Errorf("generating compilation database in the module %q failed:\n%q", dir, string(output))
 	}
+	logging.Infof("%q - Generating compilation database done!\n", dir)
 	return nil
 }
 
 func moduleGenerateCompileDatabaseWorkspace(dir string, m *module.Config, t *toolchain.Toolchain, b gnumake.BuildType, customVars map[string]string) error {
+	if len(m.Info.Workspace.Modules) != 0 {
+		logging.Infof("%q - Detected workspace modules\n", dir)
+	}
 	for _, mod := range m.Info.Workspace.Modules {
+		logging.Infof("%q - Generating compilation database in a module %q\n", dir, mod)
 		moduleDir := path.Join(dir, mod)
 		err := ModuleGenerateCompileDatabase(moduleDir, t, b, customVars)
 		if err != nil {
