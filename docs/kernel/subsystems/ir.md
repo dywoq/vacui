@@ -10,7 +10,7 @@ subsystems.
 
 Internally, the IR subsystem consists of meta information related to the
 procedures. It is not exposed publicly to external kernel subsystems unless
-it is stated otherwise. The parameters has group permissions (R = read,
+it is stated otherwise. The parameters have group permissions (R = read,
 W = write). Groups are KS (Kernel subsystems) and IR (Initialization Routine).
 
 - **Initialization Procedure** and **Startup Procedure** (**PUBLIC**)
