@@ -6,7 +6,7 @@ linking/archiving and packing operating system components. `vacuicpp` is used on
 # Documentation
 
 The `vacui-cpp`'s documentation is available in the `docs/tools/vacui-cpp` folder of the repository:
-https://github.com/dywoq/vacui/tree/master/docs/tools/vacbuild.
+https://github.com/dywoq/vacui/tree/master/docs/tools/vacui-cpp.
 
 # License
 
