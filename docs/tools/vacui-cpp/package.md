@@ -21,7 +21,8 @@ Subsequent chapters provide a description of sections and their keys.
 
 ### Invariants
 
-- All configuration keys that specify physical filepath shall be relative to the package's directory.
+- All configuration keys that specify physical filepath are relative to the package's directory.
+- A filename of the config is `vacui-cpp.toml`.
 
 ### `general`
 
