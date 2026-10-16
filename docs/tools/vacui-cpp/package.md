@@ -28,8 +28,9 @@ Subsequent chapters provide a description of sections and their keys.
 
 This section consists of the package's general information that does not depend on the package's type.
 
-| **Key**             | **Type** | **Description**                                                        |
-| ------------------- | -------- | ---------------------------------------------------------------------- |
-| `type`              | `string` | Defines the package's type. **Allowed options**: `program`, `library`. |
-| `default_toolchain` | `string` | Specifies the default toolchain's path.                                |
-| `output_file`       | `string` | Specifies the final output's path.                                     |
+| **Key**             | **Type** | **Description**                                                                             |
+| ------------------- | -------- | ------------------------------------------------------------------------------------------- |
+| `type`              | `string` | Defines the package's type. **Allowed options**: `program`, `library`.                      |
+| `default_toolchain` | `string` | Specifies the default toolchain's path.                                                     |
+| `output_file`       | `string` | Specifies the final output's path.                                                          |
+| `objects_dir`       | `string` | Specifies the path of the objects directory. It is created if the directory does not exist. |
