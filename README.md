@@ -6,6 +6,10 @@ and standards without breaking native VQ programs.
 
 The project's codename is VQ that stands for **Vacui Quarter**.
 
+# Current Status
+
+Currently, the project focuses on creating and programming development tooling.
+
 # License
 
 The operating system's source code is published under Apache License 2.0.
